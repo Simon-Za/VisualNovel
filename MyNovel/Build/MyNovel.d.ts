@@ -42,3 +42,6 @@ declare namespace MyNovel {
 declare namespace MyNovel {
     function Scene(): ƒS.SceneReturn;
 }
+declare namespace MyNovel {
+    function Scene2(): ƒS.SceneReturn;
+}

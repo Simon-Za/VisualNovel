@@ -1,10 +1,31 @@
+html, body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  background-color: black;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 2.3vmin;
+  color: rgb(64, 134, 195);
+  user-select: none;
+}
+
 scene {
   width: 1280px;
   height: 720px;
   display: inline-block;
+  position: absolute;
+  
 }
 
-dialog[type=splash] {
+canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/*dialog[type=splash] {
   margin: 0px;
   padding: 0px;
   width: 100vw;
@@ -17,4 +38,54 @@ dialog[type=splash] {
 }
 dialog[type=splash]>img#FudgeStoryLogo {
   width: 100%;
+}*/
+
+dialog[type="splash"] {
+  background-image: url("Images/Backgrounds/starry.gif");
+  background-repeat: repeat;
+  /* background-size: contain; */
+  width: 100%;
+  height: 100%;
+}
+
+dialog[type="splash"] > p {
+  font-size: 2vmin;
+  color: white;
+  text-align: center;
+}
+
+#FudgeStoryLogo {
+  display: block;
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/***** SPEECH, CONTENT, NAMES *****/
+speech {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  color: beige;
+  background-color: rgba(92, 34, 48, 0.9);
+  width: 100%;
+  height: 25%;
+}
+
+speech content {
+  color: rgb(203, 158, 188);
+  font-size: 2.5vmin;
+  position: absolute;
+  left: 25px;
+}
+
+name {
+  font-size: 4vmin;
+  display: block;
+  color: rgb(223, 60, 182);
+  margin-bottom: 10px;
+  padding-left: 25px;
+}
+#speech { /*versteckt am Anfang die Textbox*/
+  visibility: hidden;
 }

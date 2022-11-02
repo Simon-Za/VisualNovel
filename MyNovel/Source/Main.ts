@@ -7,14 +7,14 @@ namespace MyNovel {
   export let transition = {
     puzzle: {
       duration: 1,
-      alpha: "Images/FreeTransitions/Others/009.jpg", //"" mit Pfad füllen
+      alpha: "Images/Transitions/Others/009.jpg", //"" mit Pfad füllen
       edge: 1
     }
   };
 
   export let sound = {
     //themes
-    club: "Images/FreeTransitions/Audio/Nightclub.ogg",
+    club: "Sounds/Nightclub.ogg",
     
     // SFX
     drop:  "" //Pfad
@@ -23,7 +23,7 @@ namespace MyNovel {
   export let locations = {
     citySunset: {
       name: "City_Sunset",
-      background: "Images/Backgrounds/bg_city_sunset.png," //"Images\Backgrounds\bg_city_sunset.png",
+      background: "Images/Backgrounds/bg_city_sunset.png" //"Images\Backgrounds\bg_city_sunset.png",
       // foreground: ""
     }
   };
@@ -59,7 +59,7 @@ namespace MyNovel {
   window.addEventListener("load", start);
   function start(_event: Event): void {
     let scenes: ƒS.Scenes = [
-      { scene: Scene, name: "Scene" }
+      { scene: Scene2, name: "Scene" }
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");
