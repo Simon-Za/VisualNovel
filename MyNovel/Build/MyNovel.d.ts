@@ -10,10 +10,18 @@ declare namespace MyNovel {
     };
     let sound: {
         club: string;
+        street: string;
+        piano: string;
         drop: string;
+        chuckle: string;
+        huh: string;
     };
     let locations: {
         citySunset: {
+            name: string;
+            background: string;
+        };
+        cityNight: {
             name: string;
             background: string;
         };
@@ -38,6 +46,8 @@ declare namespace MyNovel {
     let dataForSave: {
         nameProtagonist: string;
     };
+    function animation(): ƒS.AnimationDefinition;
+    function getAnimation(): ƒS.AnimationDefinition;
 }
 declare namespace MyNovel {
     function Scene(): ƒS.SceneReturn;
