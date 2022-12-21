@@ -38,6 +38,20 @@ namespace MyNovel {
     },
   };
 
+  export let items = {
+    stick: {
+      name: "Stick",
+      description: "an ordinary stick",
+      image: "Images/Items/stick.png", //Beispiel
+      static: true //konsumierbar = true, "statisch" machen = false oder weglassen
+    },
+    crossbow: {
+      name: "Crossbow",
+      description: "a simple ranged weapon",
+      image: "Images/Items/crossbow.png", //Beispiel
+    }
+  };
+
   export let characters = {
     narrator: {
       name: ""
@@ -59,7 +73,9 @@ namespace MyNovel {
 
   // Data that will be saved
   export let dataForSave = {
-    nameProtagonist: ""
+    nameProtagonist: "",
+    points: 0,
+
   };
 
   export function animation(): ƒS.AnimationDefinition {
@@ -85,12 +101,17 @@ namespace MyNovel {
   let inGameMenuButtons = {
     save: "Save",
     load: "Load",
-    close: "Close"
+    close: "Close",
+    credits: "Credits"
   };
 
   let gameMenu: ƒS.Menu;
 
   let menuIsOpen: boolean = true;
+
+  function credits(): void {
+    ƒS.Text.print("");
+  }
 
   async function  buttonFunctionalities(_option: string): Promise<void> {
     console.log(_option);
@@ -105,6 +126,8 @@ namespace MyNovel {
         gameMenu.close();
         menuIsOpen = false;
         break;
+      case inGameMenuButtons.credits:
+        credits();
     }
   }
 
@@ -143,7 +166,11 @@ async function hndKeyPress(_event: KeyboardEvent): Promise<void> {
     gameMenu = ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
     buttonFunctionalities("Close");
     let scenes: ƒS.Scenes = [
-      { scene: Scene, name: "Scene" }
+      //{ scene: Scene, name: "Scene" },
+      {id: "Write", scene: Scene, name: "We write some text"},
+      {id: "", scene: Scene2, name: "We build in some choices", next: "GoodEnding"},
+                  //Nur Namen von existierenden Files werden akzeptiert
+      {id: "", scene: GoodEnding, name: "Ending ohne Folgeszene", next: "Empty Scene"}
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");

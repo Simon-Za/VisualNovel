@@ -110,7 +110,15 @@ namespace MyNovel {
         creepy = true;
         break;
      }
+
+
+
+     //Das hier macht, dass wir automatisch zu Scene2 springen!!
+     return "Scene2";
     }
+
+
+    
     else {
       let dialogueElement2 = await ƒS.Menu.getInput(dialogueAsk, "choicesCSSClass");
 
@@ -142,6 +150,7 @@ namespace MyNovel {
       }
     }  
 
+    ƒS.Speech.clear();
     //await ƒS.Character.animate(characters.aisaka, characters.aisaka.pose.upset, animation());
   }
 }

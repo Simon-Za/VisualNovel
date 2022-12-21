@@ -128,18 +128,35 @@ namespace MyNovel {
        case dialogueAsk.IJudge:
          //storypfad 
          await ƒS.Speech.tell(characters.aisaka, "Yes. Yes, I am into 'this kind of stuff'. You should stop being that judgy.");
+         dataForSave.points -= 10;
          judge = true;
          break;
  
        case dialogueAsk.IHurry:
          //
          await ƒS.Speech.tell(characters.aisaka, ".. okay. See you.");
+         dataForSave.points -= 5;
          hurry = true;
          break;
       }
     }  
 
     await ƒS.Character.animate(characters.aisaka, characters.aisaka.pose.upset, animation());
+
+    ƒS.Speech.setTickerDelays(80, 5000);
+    await ƒS.Speech.tell(null, "WHat is happening here?"); //null heißt es wird kein Name angezeigt
+    //ƒS.Inventory.add(items.stick);
+
+    for (let i: number = 0; i < 5; i++) {
+      ƒS.Inventory.add(items.stick);
+      ƒS.Inventory.add(items.crossbow);
+    }
+    await ƒS.Inventory.open();
+
+    //Novel pages
+    await ƒS.Text.print("hi");
+    //CSS für Novel Page
+    ƒS.Text.addClass("novelPage");
 
      /*  await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.upset, ƒS.positionPercent(50, 110));
       await ƒS.Character.hide(characters.aisaka)
