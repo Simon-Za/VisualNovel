@@ -37,6 +37,18 @@ namespace MyNovel {
       let correct: boolean;
       let deny: boolean;
 
+
+      //meter
+      //dataForSave.pickedMeterScene = true;
+      //document.getElementsByName("aisakaScore").forEach(meterStuff => meterStuff.hidden = true);
+      //document.getElementById("scoreForAisaka").style.display = "none";
+
+      //ƒS.Speech.hide();
+      //dataForSave.aisakaScore += 50;
+      //console.log(dataForSave.aisakaScore);
+
+
+
   
       switch(dialogueElement0) {
         case dialogue0.IAgree:

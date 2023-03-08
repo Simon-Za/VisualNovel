@@ -67,6 +67,34 @@ speech {
   bottom: 0px;
   left: 0px;
   color: beige;
+  background-color: rgba(10, 6, 46, 0.9);
+  width: 100%;
+  height: 25%;
+}
+
+speech content {
+  color: rgb(187, 187, 187);
+  font-size: 4vmin;
+  position: absolute;
+  left: 25px;
+  top: 80px; /*vllt stupid*/
+}
+
+name {
+  font-size: 4vmin;
+  display: block;
+  color: rgb(60, 144, 223);
+  margin-bottom: 10px;
+  padding-left: 25px;
+  padding-top: 20px;;
+}
+
+/***** SPEECH, CONTENT, NAMES *****/
+/*speech {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  color: beige;
   background-color: rgba(92, 34, 48, 0.9);
   width: 100%;
   height: 25%;
@@ -85,7 +113,124 @@ name {
   color: rgb(223, 60, 182);
   margin-bottom: 10px;
   padding-left: 25px;
-}
+}*/
+
+
 #speech { /*versteckt am Anfang die Textbox*/
   visibility: hidden;
 }
+
+
+.choicesCSSClass {
+  position: absolute;
+  top: 500px;
+  bottom: 0px;
+  left: 0px;
+  color: beige;
+  background-color: rgba(10, 6, 46, 0.9);
+  width: 100%;
+  height: 25%;
+}
+#Attack {
+  position: absolute;
+  bottom: 135px;
+  left: 0px;
+  color: beige;
+  background-color: rgba(148, 144, 190, 0.9);
+  width: 50%;
+  height: 25%;
+}
+#Item {
+  position: absolute;
+  bottom: 135px;
+  left: 682px;
+  color: beige;
+  background-color: rgba(148, 144, 190, 0.9);
+  width: 50%;
+  height: 25%;
+}
+#Dodge {
+  position: absolute;
+  bottom: 60px;
+  left: 0px;
+  color: beige;
+  background-color: rgba(148, 144, 190, 0.9);
+  width: 50%;
+  height: 25%;
+}
+#Flee {
+  position: absolute;
+  bottom: 60px;
+  left: 682px;
+  color: beige;
+  background-color: rgba(148, 144, 190, 0.9);
+  width: 50%;
+  height: 25%;
+}
+#Target1 {
+  position: absolute;
+  bottom: 135px;
+  left: 0px;
+  color: beige;
+  background-color: rgba(148, 144, 190, 0.9);
+  width: 50%;
+  height: 25%;
+}
+#Target2 {
+  position: absolute;
+  bottom: 135px;
+  left: 682px;
+  color: beige;
+  background-color: rgba(148, 144, 190, 0.9);
+  width: 50%;
+  height: 25%;
+}
+.enemy1 {
+  position: absolute;
+  bottom: 500px;
+  left: 980px;
+  width: 8%;
+  height: 5%;
+  border: transparent;
+  background: transparent;
+  color: red;
+  font-weight: bold;
+  font-size: larger;
+}
+.enemy2 {
+  position: absolute;
+  bottom: 150px;
+  left: 980px;
+  width: 8%;
+  height: 5%;
+  border: transparent;
+  background: transparent;
+  color: red;
+  font-weight: bold;
+  font-size: larger;
+}
+.healEnemy1 {
+  position: absolute;
+  bottom: 500px;
+  left: 980px;
+  width: 8%;
+  height: 5%;
+  border: transparent;
+  background: transparent;
+  color: rgb(60, 255, 0);
+  font-weight: bold;
+  font-size: larger;
+}
+.healEnemy2 {
+  position: absolute;
+  bottom: 150px;
+  left: 980px;
+  width: 8%;
+  height: 5%;
+  border: transparent;
+  background: transparent;
+  color: rgb(60, 255, 0);
+  font-weight: bold;
+  font-size: larger;
+}
+/*meter stuff ist im Tutorial*/

@@ -1,0 +1,16 @@
+- novelPages für dmg Zahlen mit html divs austauschen 
+- funktionierende Turn loop haben
+- alle npc actions haben
+✓ Atk animation für Gegner
+- HP bar
+- actionTaken nur true, wenn item genutzt;
+    oder items unusable machen und turn recycable
+✓ code für dodge ----> existiert, 
+    aber nur für aktuelle Atks
+✓ code für enemyHeal
+- code für enemyDodge
+- code für EnemyAtk finishen
+- todeschecks
+
+- Funktionen auslagern
+- Doppeltes Zusammenfassen
