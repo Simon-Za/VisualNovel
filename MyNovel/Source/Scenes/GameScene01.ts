@@ -288,6 +288,8 @@ namespace MyNovel {
             }
             if (AtkRll2 >= bullywugAC) {
             
+
+              
             }
             else {
 
