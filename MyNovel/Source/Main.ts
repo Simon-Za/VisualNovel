@@ -76,6 +76,7 @@ namespace MyNovel {
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
         upset: "Images/Characters/smolBully.png",
+        down: "Images/Characters/smolBully_down.png",
       }
     },
     bullywug02: {
@@ -83,6 +84,7 @@ namespace MyNovel {
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
         upset: "Images/Characters/smolBully.png",
+        down: "Images/Characters/smolBully_down.png",
       }
     },
     bullywug03: {
@@ -90,6 +92,7 @@ namespace MyNovel {
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
         upset: "Images/Characters/smolBully.png",
+        down: "Images/Characters/smolBully_down.png",
       }
     },
     bullywug04: {
@@ -97,6 +100,7 @@ namespace MyNovel {
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
         upset: "Images/Characters/smolBully.png",
+        down: "Images/Characters/smolBully_down.png",
       }
     },
     fighter01: {
@@ -104,6 +108,7 @@ namespace MyNovel {
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
         upset: "Images/Characters/fightersmol.png",
+        down: "Images/Characters/fightersmol_down.png",
       }
     },
     fighter02: {
@@ -111,6 +116,7 @@ namespace MyNovel {
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
         upset: "Images/Characters/fightersmol.png",
+        down: "Images/Characters/fightersmol_down.png",
       }
     }
 

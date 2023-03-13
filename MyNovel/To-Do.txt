@@ -8,9 +8,12 @@
 ✓ code für dodge ----> existiert, 
     aber nur für aktuelle Atks
 ✓ code für enemyHeal
-- code für enemyDodge
-- code für EnemyAtk finishen
-- todeschecks
+✓ code für enemyDodge
+- code für enemydodge in npc atk
+✓ code für EnemyAtk finishen
+- todeschecks (nach jedem enemy turn)
+✓ down "animation"
+- frog atk animation
 
 - Funktionen auslagern
 - Doppeltes Zusammenfassen

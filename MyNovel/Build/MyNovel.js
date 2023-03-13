@@ -603,6 +603,7 @@ var MyNovel;
                         ;
                         //WENN DODGE; DANN WIRD ATKRLL ERNEUT GEROLLT UND SCHLECHTERES ERGEBNIS GENOMMEN
                         if (dodging == true) {
+                            //HIER DODGING ANZEIGE + ANIMATION (?)
                             let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
                             if (d20 + 5 < AtkRll2) {
                                 AtkRll2 = d20 + 5;
@@ -610,7 +611,7 @@ var MyNovel;
                         }
                         if (AtkRll2 >= bullywugAC) {
                             console.log("DmgRoll 2: " + DmgRll2);
-                            //PCHP -= DmgRll2;    //HIER WIRD HP AUS DER METER BAR GEZOGEN
+                            PCHP -= DmgRll2; //HIER WIRD HP AUS DER METER BAR GEZOGEN
                             //Novel pages
                             MyNovel.ƒS.Text.setClass("Player");
                             await MyNovel.ƒS.Text.print(DmgRll2.toString());
@@ -633,17 +634,176 @@ var MyNovel;
                     }
                     else {
                         //Abfragen, wer noch HP hat
-                        //nach HP Anzahl sortieren
-                        if (AtkRll1 >= bullywugAC) {
-                            //hier bullywug mit meisten Hp angreifen (außer PC)
+                        if (frog1HP > 0) {
+                            //atk frog 1
+                            if (AtkRll1 >= bullywugAC) {
+                                frog1HP -= DmgRll1;
+                                console.log("DmgRoll 1: " + DmgRll1);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog1");
+                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("frog1");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog1");
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("frog1");
+                            }
+                            ;
                         }
-                        else {
+                        else if (frog2HP > 0) {
+                            //atk frog 2
+                            if (AtkRll1 >= bullywugAC) {
+                                frog2HP -= DmgRll1;
+                                console.log("DmgRoll 1: " + DmgRll1);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog2");
+                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("frog2");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog2");
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("frog2");
+                            }
+                            ;
                         }
-                        if (AtkRll2 >= bullywugAC) {
+                        else if (frog3HP > 0) {
+                            //atk frog 3
+                            if (AtkRll1 >= bullywugAC) {
+                                frog3HP -= DmgRll1;
+                                console.log("DmgRoll 1: " + DmgRll1);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog3");
+                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("frog3");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog3");
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("frog3");
+                            }
+                            ;
                         }
-                        else {
+                        else if (PCHP > 0) {
+                            //atk PC
+                            if (dodging == true) {
+                                let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+                                if (d20 + 5 < AtkRll2) {
+                                    AtkRll1 = d20 + 5;
+                                }
+                            }
+                            if (AtkRll1 >= bullywugAC) {
+                                PCHP -= DmgRll1;
+                                console.log("DmgRoll 1: " + DmgRll1);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("Player");
+                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("Player");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("Player");
+                                if (dodging == true) {
+                                    await MyNovel.ƒS.Text.print("ausgewichen");
+                                }
+                                else {
+                                    await MyNovel.ƒS.Text.print("verfehlt");
+                                }
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("Player");
+                            }
+                            ;
                         }
-                        ;
+                        //nach HP Anzahl sortieren -> fuck it, we script the fight
+                        if (frog2HP > 0) {
+                            if (AtkRll2 >= bullywugAC) {
+                                frog2HP -= DmgRll2;
+                                console.log("DmgRoll 2: " + DmgRll2);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog2");
+                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("frog2");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog2");
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("frog2");
+                            }
+                        }
+                        else if (frog3HP > 0) {
+                            if (AtkRll2 >= bullywugAC) {
+                                frog3HP -= DmgRll2;
+                                console.log("DmgRoll 2: " + DmgRll2);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog3");
+                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("frog3");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog3");
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("frog3");
+                            }
+                        }
+                        else if (frog1HP > 0) {
+                            if (AtkRll2 >= bullywugAC) {
+                                frog1HP -= DmgRll2;
+                                console.log("DmgRoll 2: " + DmgRll2);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog1");
+                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("frog1");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog1");
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("frog1");
+                            }
+                        }
+                        else if (PCHP > 0) {
+                            if (dodging == true) {
+                                let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+                                if (d20 + 5 < AtkRll2) {
+                                    AtkRll2 = d20 + 5;
+                                }
+                            }
+                            if (AtkRll2 >= bullywugAC) {
+                                PCHP -= DmgRll2;
+                                console.log("DmgRoll 2: " + DmgRll2);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("Player");
+                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("Player");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("Player");
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("Player");
+                            }
+                        }
                     }
                     await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
                     await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
@@ -750,6 +910,12 @@ var MyNovel;
                             console.log("frog1");
                         }
                         ;
+                        if (dodging == true) {
+                            let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+                            if (d20 + 5 < AtkRll2) {
+                                AtkRll2 = d20 + 5;
+                            }
+                        }
                         if (AtkRll2 >= bullywugAC) {
                             //PCHP -= DmgRll2;    //HIER WIRD HP AUS DER METER BAR GEZOGEN
                             console.log("DmgRoll 2: " + DmgRll2);
@@ -769,7 +935,166 @@ var MyNovel;
                         ;
                     }
                     else {
-                        // 
+                        if (frog3HP > 0) {
+                            if (AtkRll1 >= bullywugAC) {
+                                frog3HP -= DmgRll1;
+                                console.log("DmgRoll 1: " + DmgRll1);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog3");
+                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("frog3");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog3");
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("frog3");
+                            }
+                            ;
+                        }
+                        else if (frog1HP > 0) {
+                            if (AtkRll1 >= bullywugAC) {
+                                frog1HP -= DmgRll1;
+                                console.log("DmgRoll 1: " + DmgRll1);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog1");
+                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("frog1");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog1");
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("frog1");
+                            }
+                            ;
+                        }
+                        else if (frog2HP > 0) {
+                            if (AtkRll1 >= bullywugAC) {
+                                frog2HP -= DmgRll1;
+                                console.log("DmgRoll 1: " + DmgRll1);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog2");
+                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("frog2");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog2");
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("frog2");
+                            }
+                            ;
+                        }
+                        else if (PCHP > 0) {
+                            if (dodging == true) {
+                                let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+                                if (d20 + 5 < AtkRll2) {
+                                    AtkRll1 = d20 + 5;
+                                }
+                            }
+                            if (AtkRll1 >= bullywugAC) {
+                                PCHP -= DmgRll1;
+                                console.log("DmgRoll 1: " + DmgRll1);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("PC");
+                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("PC");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("PC");
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("PC");
+                            }
+                            ;
+                        }
+                        if (frog2HP > 0) {
+                            if (AtkRll2 >= bullywugAC) {
+                                frog2HP -= DmgRll2;
+                                console.log("DmgRoll 2: " + DmgRll2);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog2");
+                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("frog2");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog2");
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("frog2");
+                            }
+                        }
+                        else if (frog3HP > 0) {
+                            if (AtkRll2 >= bullywugAC) {
+                                frog3HP -= DmgRll2;
+                                console.log("DmgRoll 2: " + DmgRll2);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog3");
+                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("frog3");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog3");
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("frog3");
+                            }
+                        }
+                        else if (frog1HP > 0) {
+                            if (AtkRll2 >= bullywugAC) {
+                                frog1HP -= DmgRll2;
+                                console.log("DmgRoll 2: " + DmgRll2);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog1");
+                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("frog1");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("frog1");
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("frog1");
+                            }
+                        }
+                        else if (PCHP > 0) {
+                            if (dodging == true) {
+                                let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+                                if (d20 + 5 < AtkRll2) {
+                                    AtkRll2 = d20 + 5;
+                                }
+                            }
+                            if (AtkRll2 >= bullywugAC) {
+                                PCHP -= DmgRll2;
+                                console.log("DmgRoll 2: " + DmgRll2);
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("PC");
+                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                                console.log("PC");
+                            }
+                            else {
+                                //Novel pages
+                                MyNovel.ƒS.Text.setClass("PC");
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                                MyNovel.ƒS.Text.addClass("novelPage");
+                                console.log("PC");
+                            }
+                        }
                     }
                     await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
                     await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
