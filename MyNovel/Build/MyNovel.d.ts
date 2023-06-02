@@ -7,18 +7,42 @@ declare namespace MyNovel {
             alpha: string;
             edge: number;
         };
+        deathSpiral: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
     };
     let sound: {
         piano: string;
+        swamp: string;
+        squelch: string;
         drop: string;
         crash: string;
         drawSword: string;
         drawGun: string;
+        slash: string;
         chuckle: string;
         huh: string;
     };
     let locations: {
         waldweg: {
+            name: string;
+            background: string;
+        };
+        blackscreen: {
+            name: string;
+            background: string;
+        };
+        deathScreen: {
+            name: string;
+            background: string;
+        };
+        swampWalk: {
+            name: string;
+            background: string;
+        };
+        swampBoat: {
             name: string;
             background: string;
         };
@@ -58,11 +82,22 @@ declare namespace MyNovel {
                 upset: string;
             };
         };
+        steve: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                upset: string;
+                down: string;
+                medium: string;
+                large: string;
+            };
+        };
         bullywug01: {
             name: string;
             origin: ƒ.ORIGIN2D;
             pose: {
                 upset: string;
+                down: string;
             };
         };
         bullywug02: {
@@ -70,6 +105,7 @@ declare namespace MyNovel {
             origin: ƒ.ORIGIN2D;
             pose: {
                 upset: string;
+                down: string;
             };
         };
         bullywug03: {
@@ -77,6 +113,7 @@ declare namespace MyNovel {
             origin: ƒ.ORIGIN2D;
             pose: {
                 upset: string;
+                down: string;
             };
         };
         bullywug04: {
@@ -84,6 +121,7 @@ declare namespace MyNovel {
             origin: ƒ.ORIGIN2D;
             pose: {
                 upset: string;
+                down: string;
             };
         };
         fighter01: {
@@ -91,6 +129,7 @@ declare namespace MyNovel {
             origin: ƒ.ORIGIN2D;
             pose: {
                 upset: string;
+                down: string;
             };
         };
         fighter02: {
@@ -98,13 +137,17 @@ declare namespace MyNovel {
             origin: ƒ.ORIGIN2D;
             pose: {
                 upset: string;
+                down: string;
             };
         };
     };
     let dataForSave: {
-        nameProtagonist: string;
+        Protagonist: {
+            name: string;
+        };
         points: number;
         HP: number;
+        HPCount: string;
     };
     function animation(): ƒS.AnimationDefinition;
     function getAnimation(): ƒS.AnimationDefinition;
@@ -112,6 +155,9 @@ declare namespace MyNovel {
 }
 declare namespace MyNovel {
     function GameScene01(): ƒS.SceneReturn;
+}
+declare namespace MyNovel {
+    function GameScene02(): ƒS.SceneReturn;
 }
 declare namespace MyNovel {
     function Scene(): ƒS.SceneReturn;

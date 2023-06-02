@@ -1,19 +1,46 @@
+Szene 1:
+
 - novelPages für dmg Zahlen mit html divs austauschen 
-- funktionierende Turn loop haben
-- alle npc actions haben
+- atk sounds bzw allgemein sounds + musik
+
+✓ HP bar
+✓ Hp bar mit dmg Zahlen?
+✓ letzter dmg Roll nicht angezeigt (?)
+✓ funktionierende Turn loop haben
+✓ alle npc actions haben
 ✓ Atk animation für Gegner
-- HP bar
-- actionTaken nur true, wenn item genutzt;
+✓ actionTaken nur true, wenn item genutzt;
     oder items unusable machen und turn recycable
 ✓ code für dodge ----> existiert, 
     aber nur für aktuelle Atks
 ✓ code für enemyHeal
 ✓ code für enemyDodge
-- code für enemydodge in npc atk
+✓ code für enemydodge in npc atk
 ✓ code für EnemyAtk finishen
-- todeschecks (nach jedem enemy turn)
+✓ todeschecks (nach jedem enemy turn)
 ✓ down "animation"
-- frog atk animation
+   ✓ maybe nicht erst wenn X wieder am Zug
+    und nicht resetten nach atk anim
+✓  nicht ausweichen und verfehlt zusammen anzeigen
+✓ frog atk animation
+✓ enemy 1 macht nur 1 atk??
+✓ indicator für enemy dodge (in turn)
+✓ Pc attackable machen (dmg roll fehlt gegen später -> PCHP = 0)
+✓ falscher Gegner heilt? (apparently not true)
+✓ css box größer
 
 - Funktionen auslagern
 - Doppeltes Zusammenfassen
+- CSS anpassen ( + css für Inventar)
+- Assets austauschen
+
+
+Szene 2:
+
+- Respawn text (Quote)
+- Talking with the fey?
+- Background
+- Szene setzen (du erwachst im Tümpel...)
+- Steve appearance + expo
+
+- sounds

@@ -115,9 +115,82 @@ name {
   padding-left: 25px;
 }*/
 
+meter::-webkit-meter-bar {
+  background-color: #ececec;
+}
+
+meter[id="HPlvl1"] {
+  display: none;
+  position: absolute;
+  /*transform:rotate(-90deg);*/
+  bottom: 90%;
+  left: 5%;
+  width: 15%;
+  height: 6%;
+}
+
+meter[id="HPlvl1"]::-webkit-meter-optimum-value {
+  background: red;
+ /* background-image: linear-gradient(
+    90deg, 
+    #8bcf69 5%, 
+    #e6d450 5%,
+    #e6d450 15%,
+    #f28f68 15%,
+    #f28f68 55%,
+    #cf82bf 55%,
+    #cf82bf 95%,
+    #719fd1 95%,
+    #719fd1 100%
+    );*/
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+input[id="HPCount"] {  
+  display: none;
+  /*color: rgb(255, 3, 3);*/
+  color:rgba(10, 6, 46, 0.9);
+  /*background-color:rgb(155, 42, 95);*/
+  background-color: transparent;
+  font-size: 11pt;
+  font-weight: bolder;
+  
+  z-index: 1;
+  border: none;
+  position: absolute;
+  bottom: 91.5%;
+  left: 5.5%;
+  width: 2.7%;
+  height: 2.3%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+} 
+
 
 #speech { /*versteckt am Anfang die Textbox*/
   visibility: hidden;
+}
+#respawnQuote {
+  display: none;
+  position: relative;
+  text-align: center;
+  bottom: 60%;
+  border: transparent;
+  background: transparent;
+  color: white;
+  font-weight: bold;
+  font-size: larger;
+  z-index: 1;
 }
 
 
@@ -189,7 +262,7 @@ name {
   position: absolute;
   bottom: 500px;
   left: 980px;
-  width: 8%;
+  width: 12%;
   height: 5%;
   border: transparent;
   background: transparent;
@@ -201,7 +274,7 @@ name {
   position: absolute;
   bottom: 150px;
   left: 980px;
-  width: 8%;
+  width: 12%;
   height: 5%;
   border: transparent;
   background: transparent;
@@ -210,18 +283,6 @@ name {
   font-size: larger;
 }
 .healEnemy1 {
-  position: absolute;
-  bottom: 500px;
-  left: 980px;
-  width: 8%;
-  height: 5%;
-  border: transparent;
-  background: transparent;
-  color: rgb(60, 255, 0);
-  font-weight: bold;
-  font-size: larger;
-}
-.healEnemy2 {
   position: absolute;
   bottom: 150px;
   left: 980px;
@@ -233,4 +294,68 @@ name {
   font-weight: bold;
   font-size: larger;
 }
-/*meter stuff ist im Tutorial*/
+.healEnemy2 {
+  position: absolute;
+  bottom: 500px;
+  left: 980px;
+  width: 8%;
+  height: 5%;
+  border: transparent;
+  background: transparent;
+  color: rgb(60, 255, 0);
+  font-weight: bold;
+  font-size: larger;
+}
+
+
+/* NOT SURE, WAS DAVON WIRKLICH FUNKTIONIERT (SPEECH INPUT)*/
+
+speech input {
+  background-color: rgb(100, 100, 100);
+  color: rgb(228, 228, 228);
+  margin: 0px 0px 0px 3%;
+  width: 20%;
+  height: 10%;
+  border-radius: 7px;
+  /* box-shadow: 1px 1px 1px 1px gold; */
+  /* background-blend-mode: color; */
+}
+
+/* For Dialog fancy buttons */
+
+speech input:hover::before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+speech input:hover::after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(36, 36, 36);
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+speech input:active {
+  color: #000
+}
+
+speech input:active::after {
+  background: transparent;
+}

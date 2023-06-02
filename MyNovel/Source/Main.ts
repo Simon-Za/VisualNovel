@@ -9,18 +9,26 @@ namespace MyNovel {
       duration: 1,
       alpha: "Images/Transitions/Others/009.jpg", //"" mit Pfad füllen
       edge: 1
-    }
+    },
+    deathSpiral: {
+      duration: 1,
+      alpha: "Images/Transitions/Others/015.jpg", //"" mit Pfad füllen
+      edge: 1
+    },
   };
 
   export let sound = {
     //themes
     piano: "Sounds/soft_piano.mp3",
+    swamp: "Sounds/swampWoods.mp3",
+    squelch: "Sounds/waterSquelch.mp3",
 
     // SFX
     drop: "", //Pfad
     crash: "Sounds/carCrash.mp3",
     drawSword: "Sounds/drawSword.mp3",
     drawGun: "Sounds/drawPistol.mp3",
+    slash: "Sounds/slash.mp3",
 
     // Voices
     chuckle: "Sounds/chuckle.mp3",
@@ -31,6 +39,22 @@ namespace MyNovel {
     waldweg: {
       name: "Waldweg",
       background: "Images/Backgrounds/Map.jpg"
+    },
+    blackscreen: {
+      name: "Blackscreen",
+      background: "Images/Backgrounds/blackscreen.jpg"
+    },
+    deathScreen: {
+      name: "YouDied",
+      background: "Images/Backgrounds/YouDied.jpg"
+    },
+    swampWalk: {
+      name: "SwampWalk",
+      background: "Images/Backgrounds/SwampWalk.jpeg"
+    },
+    swampBoat: {
+      name: "SwampBoat",
+      background: "Images/Backgrounds/SwampBoat.jpeg"
     },
   };
 
@@ -60,7 +84,7 @@ namespace MyNovel {
       name: ""
     },
     protagonist: {
-      name: "",
+      name: "Du",
     },
     unknown: {
       name: "???",
@@ -69,6 +93,16 @@ namespace MyNovel {
         angry: "Images/Characters/aisaka_angry.png",
         happy: "Images/Characters/aisaka_happy.png",
         upset: "Images/Characters/aisaka_upset.png",
+      }
+    },
+    steve: {
+      name: "Steve",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        upset: "Images/Characters/smolBully.png",
+        down: "Images/Characters/smolBully_down.png",
+        medium: "Images/Characters/mediumBully.png",
+        large: "Images/Characters/largeBully.png",
       }
     },
     bullywug01: {
@@ -124,10 +158,13 @@ namespace MyNovel {
 
   // Data that will be saved
   export let dataForSave = {
-    nameProtagonist: "",
+    Protagonist: {
+      name: ""
+    },
     points: 0,
     //für meter
-    HP: 100,
+    HP: 20,
+    HPCount: "20/20",
   };
 
   export function animation(): ƒS.AnimationDefinition {
@@ -230,7 +267,8 @@ namespace MyNovel {
     gameMenu = ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
     buttonFunctionalities("Close");
     let scenes: ƒS.Scenes = [
-      { scene: GameScene01, name: "Scene01" },
+      //{ scene: GameScene01, name: "Scene01" },
+      { scene: GameScene02, name: "Scene02" },
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");

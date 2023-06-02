@@ -4,12 +4,12 @@ namespace MyNovel {
 
     console.log("Scene 1 starting");
 
+    dataForSave.HP = 20;
+
     let text = {
       Unknown: {
         T0001: "Und los! Zielt auf die Räder!",
         T0002: "Sie haben Beschützer dabei! Macht sie fertig!",
-        T0003: "",
-        T0004: "",
       },
     };
 
@@ -19,6 +19,7 @@ namespace MyNovel {
     let dodging = false;
     let turnCount = 0;
     let enemy1HP = 60;
+    let enemyMaxHP = 60;
     let e1DmgTaken = 0;
     let e1Dodge = false
     let enemy2HP = 60;
@@ -30,9 +31,9 @@ namespace MyNovel {
     let f2DmgTaken = 0;
     let frog3HP = 11;
     let f3DmgTaken = 0;
-    let actionTaken = false;   
+    let actionTaken = false;
 
-    ƒS.Inventory.add(items.stick);
+    //ƒS.Inventory.add(items.stick);
 
     ƒS.Speech.hide();
     //STORYBOARD
@@ -57,15 +58,20 @@ namespace MyNovel {
     await ƒS.Character.show(characters.fighter01, characters.fighter01.pose.upset, ƒS.positionPercent(80, 70));
     await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(80, 50));
     await ƒS.update(1);
-    //??Inventar offen, Waffe wählen??
-    //Text-feld hat Auswahlmöglichkeiten, welche Action man machen will (wie Pokémon; angriff, flucht, item, guard(bzw dnd stuff: dodge, disengage)
+
     ƒS.Speech.hide();
     await ƒS.update(1);
 
+
     //!!!AM ENDE DEAD AUF TRUE SETZEN!!!
     while (!dead) {
+      //HP bar
+      document.getElementById("HPlvl1").setAttribute("style", "display: block");
+      document.getElementById("HPCount").setAttribute("style", "display: block");
+
       console.log("while restart");
       turnCount += 1;
+      actionTaken = false;
 
       //calc turn order unnütz -> fixed turn order (enemy1, frog, enemy2, frog, player, frog)
       /*let player = Math.floor(Math.random() * (20 - 1 + 1) + 1) + 1;
@@ -88,6 +94,7 @@ namespace MyNovel {
 
 
       //ENEMY TURN
+      console.log("enemy1 turn");
       if (enemy1HP > 0) {
         e1Dodge = false;
         if (turnCount == 1) {
@@ -95,58 +102,258 @@ namespace MyNovel {
           await delay(3000);
         }
         else {
-          if(e1DmgTaken > 8 && e1DmgTaken < 15) {
+          if (e1DmgTaken > 8 && e1DmgTaken < 15) {
             e1Dodge = true;
+            //Novel pages
+            ƒS.Text.setClass("enemy1");
+            await ƒS.Text.print("Ausweichen");
+            //CSS für Novel Page
+            ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+            console.log("enemy1 dodging");
+
+
           }
-          else if(enemy1HP <= enemy1HP - 20) {
+          else if (enemy1HP <= enemyMaxHP - 20) {
             enemyHeal(1);
           }
-          else 
+          else
             enemyAttack(1);
-            await delay(3000);
+          await delay(3000);
         }
         e1DmgTaken = 0;  //hier wird variable, die bestimmt, wv dmg im letzten Zug erlitten wurde, zurückgesetzt
+      
+         //checken, ob Player tot ist
+         if (PCHP <= 0) {
+          dead = true;
+        };
       }
+      
       else {
         //HIER DOWN ANIMATION
         await ƒS.Character.hide(characters.fighter01)
         await ƒS.Character.show(characters.fighter01, characters.fighter01.pose.down, ƒS.positionPercent(80, 70));
         await ƒS.update(0.1);
       }
-      
 
-      //FROG1 TURN  -> nur atk
+
+      //FROG 1 TURN  -> nur atk
+      console.log("frog1 turn");
       if (frog1HP > 0) {
-          frogAttack(1);
-          await delay(3000);
-      }
-      else {
-        //DOWN ANIMATION
-        await ƒS.Character.hide(characters.bullywug01)
-        await ƒS.Character.show(characters.bullywug01, characters.bullywug01.pose.down, ƒS.positionPercent(80, 70));
-        await ƒS.update(0.1);
+        frogAttack(2);
+        await delay(3000);
       }
 
 
       async function frogAttack(frogNumber: number) {
         //random Ziel auswählen
+        let randomEnemy = Math.floor(Math.random() * (2 - 1 + 1) + 1);
 
         //dmg
         let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
         let AtkRll1 = d20 + 3;
-        let dmgSpearAtk = Math.floor(Math.random() * (8 - 1 + 1) + 1);      
-        if(d20 == 20) {
-          dmgSpearAtk *= 2;
-        }
-        let DmgRll = dmgSpearAtk+ 3;
+
 
         //Hier atk animation für jeden frog
+        if (frogNumber == 2 && frog1HP > 0) {
+          await ƒS.Character.hide(characters.bullywug02)
+          await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.upset, ƒS.positionPercent(15, 50));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug02)
+          await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.upset, ƒS.positionPercent(20, 50));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug02)
+          await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.upset, ƒS.positionPercent(25, 50));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug02)
+          await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.upset, ƒS.positionPercent(30, 50));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug02)
+          await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.upset, ƒS.positionPercent(35, 50));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug02)
+          await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.upset, ƒS.positionPercent(40, 50));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug02)
+          await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.upset, ƒS.positionPercent(45, 50));
+          await ƒS.update(0.2);
+          await ƒS.Character.hide(characters.bullywug02)
+          await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.upset, ƒS.positionPercent(50, 45));
+          await ƒS.update(0.2);
+          await ƒS.Character.hide(characters.bullywug02)
+          await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.upset, ƒS.positionPercent(55, 50));
+          await ƒS.update(0.2);
+        }
+        else if (frogNumber == 3 && frog2HP > 0) {
+          await ƒS.Character.hide(characters.bullywug03)
+          await ƒS.Character.show(characters.bullywug03, characters.bullywug03.pose.upset, ƒS.positionPercent(25, 60));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug03)
+          await ƒS.Character.show(characters.bullywug03, characters.bullywug03.pose.upset, ƒS.positionPercent(30, 60));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug03)
+          await ƒS.Character.show(characters.bullywug03, characters.bullywug03.pose.upset, ƒS.positionPercent(35, 60));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug03)
+          await ƒS.Character.show(characters.bullywug03, characters.bullywug03.pose.upset, ƒS.positionPercent(40, 60));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug03)
+          await ƒS.Character.show(characters.bullywug03, characters.bullywug03.pose.upset, ƒS.positionPercent(45, 60));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug03)
+          await ƒS.Character.show(characters.bullywug03, characters.bullywug03.pose.upset, ƒS.positionPercent(50, 60));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug03)
+          await ƒS.Character.show(characters.bullywug03, characters.bullywug03.pose.upset, ƒS.positionPercent(55, 60));
+          await ƒS.update(0.2);
+          await ƒS.Character.hide(characters.bullywug03)
+          await ƒS.Character.show(characters.bullywug03, characters.bullywug03.pose.upset, ƒS.positionPercent(60, 55));
+          await ƒS.update(0.2);
+          await ƒS.Character.hide(characters.bullywug03)
+          await ƒS.Character.show(characters.bullywug03, characters.bullywug03.pose.upset, ƒS.positionPercent(65, 60));
+          await ƒS.update(0.2);
+        }
+        else if (frogNumber == 4 && frog3HP > 0) {
+          await ƒS.Character.hide(characters.bullywug04)
+          await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.upset, ƒS.positionPercent(15, 70));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug04)
+          await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.upset, ƒS.positionPercent(20, 70));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug04)
+          await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.upset, ƒS.positionPercent(25, 70));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug04)
+          await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.upset, ƒS.positionPercent(30, 70));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug04)
+          await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.upset, ƒS.positionPercent(35, 70));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug04)
+          await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.upset, ƒS.positionPercent(40, 70));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.bullywug04)
+          await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.upset, ƒS.positionPercent(45, 70));
+          await ƒS.update(0.2);
+          await ƒS.Character.hide(characters.bullywug04)
+          await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.upset, ƒS.positionPercent(50, 65));
+          await ƒS.update(0.2);
+          await ƒS.Character.hide(characters.bullywug04)
+          await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.upset, ƒS.positionPercent(55, 70));
+          await ƒS.update(0.2);
+        }
 
-        //DODGE ABFRAGEN!
+
+
+        //HIER ATK
+        let EnemyAC = 15;
+
+        if (randomEnemy == 1) {
+          if (e1Dodge == true) {
+            let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+            if (d20 + 5 < AtkRll1) {
+              AtkRll1 = d20 + 5;
+            }
+          }
+          if (AtkRll1 >= EnemyAC) {
+            let dmgSpearAtk = Math.floor(Math.random() * (8 - 1 + 1) + 1);
+            if (d20 == 20) {
+              dmgSpearAtk *= 2;
+            }
+            let DmgRll = dmgSpearAtk + 3;
+            enemy1HP = enemy1HP - DmgRll;
+            e1DmgTaken = e1DmgTaken + DmgRll;
+            //Novel pages
+            ƒS.Text.setClass("enemy1");
+            await ƒS.Text.print(DmgRll.toString());
+            //CSS für Novel Page
+            ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+            console.log("target: 1");
+
+          }
+          else {
+            ƒS.Text.setClass("enemy1");
+            if (dodging == true) {
+              await ƒS.Text.print("ausgewichen");
+            }
+            else {
+              await ƒS.Text.print("verfehlt");
+            };
+            ƒS.Text.addClass("novelPage");
+            console.log("enemy1");
+          }
+
+        }
+        else if (randomEnemy == 2) {
+          if (e2Dodge == true) {
+            let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+            if (d20 + 5 < AtkRll1) {
+              AtkRll1 = d20 + 5;
+            }
+          }
+          if (AtkRll1 >= EnemyAC) {
+            let dmgSpearAtk = Math.floor(Math.random() * (8 - 1 + 1) + 1);
+            if (d20 == 20) {
+              dmgSpearAtk *= 2;
+            }
+
+            let DmgRll = dmgSpearAtk + 3;
+            enemy2HP = enemy2HP - DmgRll;
+            e2DmgTaken = e2DmgTaken + DmgRll;
+
+            //Novel pages
+            ƒS.Text.setClass("enemy2");
+            await ƒS.Text.print(DmgRll.toString());
+            //CSS für Novel Page
+            ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+            console.log("target: 2");
+          }
+          else {
+            ƒS.Text.setClass("enemy2");
+            if (dodging == true) {
+              await ƒS.Text.print("ausgewichen");
+            }
+            else {
+              await ƒS.Text.print("verfehlt");
+            }
+            ƒS.Text.addClass("novelPage");
+            console.log("enemy2");
+          }
+        }
+        if (frog3HP <= 0) {
+          await ƒS.Character.hide(characters.bullywug04);
+          await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.down, ƒS.positionPercent(10, 70));
+          await ƒS.update(0.1);
+        }
+        else {
+          await ƒS.Character.hide(characters.bullywug04);
+          await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.upset, ƒS.positionPercent(10, 70));
+          await ƒS.update(0.1);
+        }
+        if (frog2HP <= 0) {
+          await ƒS.Character.hide(characters.bullywug03);
+          await ƒS.Character.show(characters.bullywug03, characters.bullywug03.pose.down, ƒS.positionPercent(20, 60));
+          await ƒS.update(0.1);
+        }
+        else {
+          await ƒS.Character.hide(characters.bullywug03);
+          await ƒS.Character.show(characters.bullywug03, characters.bullywug03.pose.upset, ƒS.positionPercent(20, 60));
+          await ƒS.update(0.1);
+        }
+        if (frog1HP <= 0) {
+          await ƒS.Character.hide(characters.bullywug02)
+          await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.down, ƒS.positionPercent(10, 50));
+          await ƒS.update(0.1);
+        }
+        else {
+          await ƒS.Character.hide(characters.bullywug02);
+          await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.upset, ƒS.positionPercent(10, 50));
+          await ƒS.update(0.1);
+        }
       };
 
 
       //ENEMY2 TURN
+      console.log("enemy2 turn");
       if (enemy2HP > 0) {
         e2Dodge = false;
         if (turnCount == 1) {
@@ -154,26 +361,40 @@ namespace MyNovel {
           await delay(3000);
         }
         else {
-          if(e2DmgTaken > 8 && e2DmgTaken < 15) {
+          if (e2DmgTaken > 8 && e2DmgTaken < 15) {
             e2Dodge = true;
+            //Novel pages
+            ƒS.Text.setClass("enemy2");
+            await ƒS.Text.print("Ausweichen");
+            //CSS für Novel Page
+            ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+            console.log("enemy2 dodging");
           }
-          else if(enemy2HP <= enemy2HP - 20) {
+          else if (enemy2HP <= enemyMaxHP - 20) {
             enemyHeal(2);
           }
-          else 
+          else
             enemyAttack(2);
-            await delay(3000);
+          await delay(3000);
         }
         e2DmgTaken = 0;  //hier wird variable, die bestimmt, wv dmg im letzten Zug erlitten wurde, zurückgesetzt
+
+        //checken, ob Player tot ist
+        if (PCHP <= 0) {
+          dead = true;
+        };
       }
       else {
         //HIER DOWN ANIMATION
-        await ƒS.Character.hide(characters.fighter01)
+        await ƒS.Character.hide(characters.fighter01);
         await ƒS.Character.show(characters.fighter01, characters.fighter01.pose.down, ƒS.positionPercent(80, 50));
         await ƒS.update(0.1);
-      }
+      };
 
 
+      if(dead) {
+        break;
+      };
 
       async function enemyAttack(enemyNumber: number): Promise<void> { //FUNKTIONEN AUSLAGERN
         //hier Ziel auswählen und dmg berechnen (2mal)
@@ -188,48 +409,48 @@ namespace MyNovel {
 
         let bullywugAC = 15;
 
-        let dmgScimitarAtk1 = Math.floor(Math.random() * (6 - 1 + 1) + 1);      
-        if(d20 == 20) {
+        let dmgScimitarAtk1 = Math.floor(Math.random() * (6 - 1 + 1) + 1);
+        if (d20 == 20) {
           dmgScimitarAtk1 *= 2;
         }
         let DmgRll1 = dmgScimitarAtk1 + 3;
 
-        let dmgScimitarAtk = Math.floor(Math.random() * (6 - 1 + 1) + 1);      
-        if(anotherd20 == 20) {
+        let dmgScimitarAtk = Math.floor(Math.random() * (6 - 1 + 1) + 1);
+        if (anotherd20 == 20) {
           dmgScimitarAtk *= 2;
         }
         let DmgRll2 = dmgScimitarAtk + 3;
 
-        
+
 
         if (enemyNumber == 1) {
           console.log("enemy1Atk");
           //ANIMATION
-          await ƒS.Character.hide(characters.fighter01)
+          await ƒS.Character.hide(characters.fighter01);
           await ƒS.Character.show(characters.fighter01, characters.fighter01.pose.upset, ƒS.positionPercent(75, 70));
           await ƒS.update(0.1);
-          await ƒS.Character.hide(characters.fighter01)
+          await ƒS.Character.hide(characters.fighter01);
           await ƒS.Character.show(characters.fighter01, characters.fighter01.pose.upset, ƒS.positionPercent(70, 70));
           await ƒS.update(0.1);
-          await ƒS.Character.hide(characters.fighter01)
+          await ƒS.Character.hide(characters.fighter01);
           await ƒS.Character.show(characters.fighter01, characters.fighter01.pose.upset, ƒS.positionPercent(65, 70));
           await ƒS.update(0.1);
-          await ƒS.Character.hide(characters.fighter01)
+          await ƒS.Character.hide(characters.fighter01);
           await ƒS.Character.show(characters.fighter01, characters.fighter01.pose.upset, ƒS.positionPercent(60, 70));
           await ƒS.update(0.1);
-          await ƒS.Character.hide(characters.fighter01)
+          await ƒS.Character.hide(characters.fighter01);
           await ƒS.Character.show(characters.fighter01, characters.fighter01.pose.upset, ƒS.positionPercent(55, 70));
           await ƒS.update(0.1);
-          await ƒS.Character.hide(characters.fighter01)
+          await ƒS.Character.hide(characters.fighter01);
           await ƒS.Character.show(characters.fighter01, characters.fighter01.pose.upset, ƒS.positionPercent(50, 70));
           await ƒS.update(0.1);
-          await ƒS.Character.hide(characters.fighter01)
+          await ƒS.Character.hide(characters.fighter01);
           await ƒS.Character.show(characters.fighter01, characters.fighter01.pose.upset, ƒS.positionPercent(45, 70));
           await ƒS.update(0.2);
-          await ƒS.Character.hide(characters.fighter01)
+          await ƒS.Character.hide(characters.fighter01);
           await ƒS.Character.show(characters.fighter01, characters.fighter01.pose.upset, ƒS.positionPercent(40, 65));
           await ƒS.update(0.2);
-          await ƒS.Character.hide(characters.fighter01)
+          await ƒS.Character.hide(characters.fighter01);
           await ƒS.Character.show(characters.fighter01, characters.fighter01.pose.upset, ƒS.positionPercent(35, 70));
           await ƒS.update(0.2);
 
@@ -250,7 +471,7 @@ namespace MyNovel {
               //Novel pages
               ƒS.Text.setClass("frog1");
               await ƒS.Text.print("verfehlt");
-              ƒS.Text.addClass("novelPage"); 
+              ƒS.Text.addClass("novelPage");
               console.log("frog1");
             };
 
@@ -288,43 +509,45 @@ namespace MyNovel {
               //Novel pages
               ƒS.Text.setClass("frog3");
               await ƒS.Text.print("verfehlt");
-              ƒS.Text.addClass("novelPage"); 
+              ƒS.Text.addClass("novelPage");
               console.log("frog3");
             };
 
-             //WENN DODGE; DANN WIRD ATKRLL ERNEUT GEROLLT UND SCHLECHTERES ERGEBNIS GENOMMEN
-            if(dodging == true){
+            //WENN DODGE; DANN WIRD ATKRLL ERNEUT GEROLLT UND SCHLECHTERES ERGEBNIS GENOMMEN
+            if (dodging == true) {
               //HIER DODGING ANZEIGE + ANIMATION (?)
               let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-              if(d20 + 5 < AtkRll2) {
+              if (d20 + 5 < AtkRll2) {
                 AtkRll2 = d20 + 5;
               }
             }
-            if (AtkRll2 >= bullywugAC) {                
+            if (AtkRll2 >= bullywugAC) {
               console.log("DmgRoll 2: " + DmgRll2);
               PCHP -= DmgRll2;    //HIER WIRD HP AUS DER METER BAR GEZOGEN
+              dataForSave.HP -=DmgRll2;
+              document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
               //Novel pages
               ƒS.Text.setClass("Player");
               await ƒS.Text.print(DmgRll2.toString());
               ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-              console.log("Player");
+              console.log("PC");
             }
             else {
               //Novel pages
               ƒS.Text.setClass("Player");
-              if(dodging == true) {
+              if (dodging == true) {
                 await ƒS.Text.print("ausgewichen");
               }
               else {
                 await ƒS.Text.print("verfehlt");
               }
               ƒS.Text.addClass("novelPage");
-              console.log("Player");
+              console.log("PC");
             };
           }
           else {
             //Abfragen, wer noch HP hat
-            if(frog1HP > 0) {
+            if (frog1HP > 0) {
               //atk frog 1
               if (AtkRll1 >= bullywugAC) {
                 frog1HP -= DmgRll1;
@@ -339,11 +562,11 @@ namespace MyNovel {
                 //Novel pages
                 ƒS.Text.setClass("frog1");
                 await ƒS.Text.print("verfehlt");
-                ƒS.Text.addClass("novelPage"); 
+                ƒS.Text.addClass("novelPage");
                 console.log("frog1");
               };
             }
-            else if(frog2HP > 0) {
+            else if (frog2HP > 0) {
               //atk frog 2
               if (AtkRll1 >= bullywugAC) {
                 frog2HP -= DmgRll1;
@@ -358,11 +581,11 @@ namespace MyNovel {
                 //Novel pages
                 ƒS.Text.setClass("frog2");
                 await ƒS.Text.print("verfehlt");
-                ƒS.Text.addClass("novelPage"); 
+                ƒS.Text.addClass("novelPage");
                 console.log("frog2");
               };
             }
-            else if(frog3HP > 0) {
+            else if (frog3HP > 0) {
               //atk frog 3
               if (AtkRll1 >= bullywugAC) {
                 frog3HP -= DmgRll1;
@@ -377,44 +600,47 @@ namespace MyNovel {
                 //Novel pages
                 ƒS.Text.setClass("frog3");
                 await ƒS.Text.print("verfehlt");
-                ƒS.Text.addClass("novelPage"); 
+                ƒS.Text.addClass("novelPage");
                 console.log("frog3");
               };
             }
-            else if(PCHP > 0) {
+            else if (PCHP > 0) {
+
               //atk PC
 
-              if(dodging == true){
+              if (dodging == true) {
                 let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                if(d20 + 5 < AtkRll2) {
+                if (d20 + 5 < AtkRll2) {
                   AtkRll1 = d20 + 5;
                 }
               }
 
               if (AtkRll1 >= bullywugAC) {
                 PCHP -= DmgRll1;
+                dataForSave.HP -=DmgRll2;
+                document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
                 console.log("DmgRoll 1: " + DmgRll1);
                 //Novel pages
                 ƒS.Text.setClass("Player");
                 await ƒS.Text.print(DmgRll1.toString());
                 ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                console.log("Player");
+                console.log("PC");
               }
               else {
                 //Novel pages
                 ƒS.Text.setClass("Player");
-                if(dodging == true) {
+                if (dodging == true) {
                   await ƒS.Text.print("ausgewichen");
                 }
                 else {
                   await ƒS.Text.print("verfehlt");
                 }
                 ƒS.Text.addClass("novelPage");
-                console.log("Player");
+                console.log("PC");
               };
             }
             //nach HP Anzahl sortieren -> fuck it, we script the fight
-            if(frog2HP > 0) {
+            if (frog2HP > 0) {
               if (AtkRll2 >= bullywugAC) {
                 frog2HP -= DmgRll2;
                 console.log("DmgRoll 2: " + DmgRll2);
@@ -428,11 +654,11 @@ namespace MyNovel {
                 //Novel pages
                 ƒS.Text.setClass("frog2");
                 await ƒS.Text.print("verfehlt");
-                ƒS.Text.addClass("novelPage"); 
+                ƒS.Text.addClass("novelPage");
                 console.log("frog2");
               }
             }
-            else if(frog3HP > 0) {
+            else if (frog3HP > 0) {
               if (AtkRll2 >= bullywugAC) {
                 frog3HP -= DmgRll2;
                 console.log("DmgRoll 2: " + DmgRll2);
@@ -446,11 +672,11 @@ namespace MyNovel {
                 //Novel pages
                 ƒS.Text.setClass("frog3");
                 await ƒS.Text.print("verfehlt");
-                ƒS.Text.addClass("novelPage"); 
+                ƒS.Text.addClass("novelPage");
                 console.log("frog3");
               }
             }
-            else if(frog1HP > 0) {
+            else if (frog1HP > 0) {
               if (AtkRll2 >= bullywugAC) {
                 frog1HP -= DmgRll2;
                 console.log("DmgRoll 2: " + DmgRll2);
@@ -464,34 +690,41 @@ namespace MyNovel {
                 //Novel pages
                 ƒS.Text.setClass("frog1");
                 await ƒS.Text.print("verfehlt");
-                ƒS.Text.addClass("novelPage"); 
+                ƒS.Text.addClass("novelPage");
                 console.log("frog1");
               }
             }
-            else if(PCHP > 0) {
+            else if (PCHP > 0) {
 
-              if(dodging == true){
+              if (dodging == true) {
                 let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                if(d20 + 5 < AtkRll2) {
+                if (d20 + 5 < AtkRll2) {
                   AtkRll2 = d20 + 5;
                 }
               }
 
               if (AtkRll2 >= bullywugAC) {
                 PCHP -= DmgRll2;
+                dataForSave.HP -=DmgRll2;
+                document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
                 console.log("DmgRoll 2: " + DmgRll2);
                 //Novel pages
                 ƒS.Text.setClass("Player");
                 await ƒS.Text.print(DmgRll2.toString());
                 ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                console.log("Player");
+                console.log("PC");
               }
               else {
                 //Novel pages
                 ƒS.Text.setClass("Player");
-                await ƒS.Text.print("verfehlt");
+                if (dodging == true) {
+                  await ƒS.Text.print("ausgewichen");
+                }
+                else {
+                  await ƒS.Text.print("verfehlt");
+                }
                 ƒS.Text.addClass("novelPage");
-                console.log("Player");
+                console.log("PC");
               }
             }
           }
@@ -500,38 +733,54 @@ namespace MyNovel {
           await ƒS.Character.show(characters.fighter01, characters.fighter01.pose.upset, ƒS.positionPercent(80, 70));
           await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(80, 50));
           await ƒS.update(0.1);
-        }
 
+          //DOWN ANIMATION
+          if (frog1HP <= 0) {
+            await ƒS.Character.hide(characters.bullywug02)
+            await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.down, ƒS.positionPercent(10, 50));
+            await ƒS.update(0.1);
+          };
+          if (frog2HP <= 0) {
+            await ƒS.Character.hide(characters.bullywug03);
+            await ƒS.Character.show(characters.bullywug03, characters.bullywug03.pose.down, ƒS.positionPercent(20, 60));
+            await ƒS.update(0.1);
+          };
+          if (frog3HP <= 0) {
+            await ƒS.Character.hide(characters.bullywug04);
+            await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.down, ƒS.positionPercent(10, 70));
+            await ƒS.update(0.1);
+          };
+        }
         else if (enemyNumber == 2) {
           console.log("enemy2Atk");
-           //ANIMATION
-           await ƒS.Character.hide(characters.fighter02)
-           await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(75, 50));
-           await ƒS.update(0.1);
-           await ƒS.Character.hide(characters.fighter02)
-           await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(70, 50));
-           await ƒS.update(0.1);
-           await ƒS.Character.hide(characters.fighter02)
-           await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(65, 50));
-           await ƒS.update(0.1);
-           await ƒS.Character.hide(characters.fighter02)
-           await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(60, 50));
-           await ƒS.update(0.1);
-           await ƒS.Character.hide(characters.fighter02)
-           await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(55, 50));
-           await ƒS.update(0.1);
-           await ƒS.Character.hide(characters.fighter02)
-           await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(50, 50));
-           await ƒS.update(0.1);
-           await ƒS.Character.hide(characters.fighter02)
-           await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(45, 50));
-           await ƒS.update(0.2);
-           await ƒS.Character.hide(characters.fighter02)
-           await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(40, 45));
-           await ƒS.update(0.2);
-           await ƒS.Character.hide(characters.fighter02)
-           await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(35, 50));
-           await ƒS.update(0.2);
+          //ANIMATION
+          await ƒS.Character.hide(characters.fighter02)
+          await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(75, 50));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.fighter02)
+          await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(70, 50));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.fighter02)
+          await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(65, 50));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.fighter02)
+          await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(60, 50));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.fighter02)
+          await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(55, 50));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.fighter02)
+          await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(50, 50));
+          await ƒS.update(0.1);
+          await ƒS.Character.hide(characters.fighter02)
+          await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(45, 50));
+          await ƒS.update(0.2);
+          await ƒS.Character.hide(characters.fighter02)
+          await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(40, 45));
+          await ƒS.update(0.2);
+          await ƒS.Character.hide(characters.fighter02)
+          await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(35, 50));
+          await ƒS.update(0.2);
 
           if (turnCount == 1) {
             //atk frog 3 und PC
@@ -549,30 +798,31 @@ namespace MyNovel {
               //Novel pages
               ƒS.Text.setClass("frog3");
               await ƒS.Text.print("verfehlt");
-              ƒS.Text.addClass("novelPage"); 
+              ƒS.Text.addClass("novelPage");
               console.log("frog3");
             };
 
-            if(dodging == true){
+            if (dodging == true) {
               let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-              if(d20 + 5 < AtkRll2) {
+              if (d20 + 5 < AtkRll2) {
                 AtkRll2 = d20 + 5;
               };
             }
 
             if (AtkRll2 >= bullywugAC) {
               PCHP -= DmgRll2;  //HIER WIRD HP AUS DER METER BAR GEZOGEN
+              dataForSave.HP -=DmgRll2;
               console.log("DmgRoll 2: " + DmgRll2);
               //Novel pages
-              ƒS.Text.setClass(""); //hier PC Klasse rein, bzw ersetzen mit Html stuff
+              ƒS.Text.setClass("Player"); //hier PC Klasse rein, bzw ersetzen mit Html stuff
               await ƒS.Text.print(DmgRll2.toString());
               ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
               console.log("PC");
             }
             else {
               //Novel pages
-              ƒS.Text.setClass("");
-              if(dodging == true) {
+              ƒS.Text.setClass("Player");
+              if (dodging == true) {
                 await ƒS.Text.print("ausgewichen");
               }
               else {
@@ -599,19 +849,19 @@ namespace MyNovel {
               //Novel pages
               ƒS.Text.setClass("frog1");
               await ƒS.Text.print("verfehlt");
-              ƒS.Text.addClass("novelPage"); 
+              ƒS.Text.addClass("novelPage");
               console.log("frog1");
             };
 
-            if(dodging == true){
+            if (dodging == true) {
               let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-              if(d20 + 5 < AtkRll2) {
+              if (d20 + 5 < AtkRll2) {
                 AtkRll2 = d20 + 5;
               }
             }
 
             if (AtkRll2 >= bullywugAC) {
-              //PCHP -= DmgRll2;    //HIER WIRD HP AUS DER METER BAR GEZOGEN
+              frog2HP -= DmgRll2;
               console.log("DmgRoll 2: " + DmgRll2);
               //Novel pages
               ƒS.Text.setClass("frog2");
@@ -629,11 +879,11 @@ namespace MyNovel {
 
           }
           else {
-            if(frog3HP > 0) {
+            if (frog3HP > 0) {
               if (AtkRll1 >= bullywugAC) {
                 frog3HP -= DmgRll1;
                 console.log("DmgRoll 1: " + DmgRll1);
-  
+
                 //Novel pages
                 ƒS.Text.setClass("frog3");
                 await ƒS.Text.print(DmgRll1.toString());
@@ -644,15 +894,15 @@ namespace MyNovel {
                 //Novel pages
                 ƒS.Text.setClass("frog3");
                 await ƒS.Text.print("verfehlt");
-                ƒS.Text.addClass("novelPage"); 
+                ƒS.Text.addClass("novelPage");
                 console.log("frog3");
               };
             }
-            else if(frog1HP > 0) {
+            else if (frog1HP > 0) {
               if (AtkRll1 >= bullywugAC) {
                 frog1HP -= DmgRll1;
                 console.log("DmgRoll 1: " + DmgRll1);
-  
+
                 //Novel pages
                 ƒS.Text.setClass("frog1");
                 await ƒS.Text.print(DmgRll1.toString());
@@ -663,15 +913,15 @@ namespace MyNovel {
                 //Novel pages
                 ƒS.Text.setClass("frog1");
                 await ƒS.Text.print("verfehlt");
-                ƒS.Text.addClass("novelPage"); 
+                ƒS.Text.addClass("novelPage");
                 console.log("frog1");
               };
             }
-            else if(frog2HP > 0) {
+            else if (frog2HP > 0) {
               if (AtkRll1 >= bullywugAC) {
                 frog2HP -= DmgRll1;
                 console.log("DmgRoll 1: " + DmgRll1);
-  
+
                 //Novel pages
                 ƒS.Text.setClass("frog2");
                 await ƒS.Text.print(DmgRll1.toString());
@@ -682,130 +932,162 @@ namespace MyNovel {
                 //Novel pages
                 ƒS.Text.setClass("frog2");
                 await ƒS.Text.print("verfehlt");
-                ƒS.Text.addClass("novelPage"); 
+                ƒS.Text.addClass("novelPage");
                 console.log("frog2");
               };
             }
-            else if(PCHP > 0) {
+            else if (PCHP > 0) {
 
-              if(dodging == true){
+              if (dodging == true) {
                 let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                if(d20 + 5 < AtkRll2) {
+                if (d20 + 5 < AtkRll2) {
                   AtkRll1 = d20 + 5;
                 }
               }
 
               if (AtkRll1 >= bullywugAC) {
                 PCHP -= DmgRll1;
+                dataForSave.HP -=DmgRll2;
+                document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
                 console.log("DmgRoll 1: " + DmgRll1);
-  
+
                 //Novel pages
-                ƒS.Text.setClass("PC");
+                ƒS.Text.setClass("Player");
                 await ƒS.Text.print(DmgRll1.toString());
                 ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
                 console.log("PC");
               }
               else {
                 //Novel pages
-                ƒS.Text.setClass("PC");
-                await ƒS.Text.print("verfehlt");
-                ƒS.Text.addClass("novelPage"); 
+                ƒS.Text.setClass("Player");
+                if (dodging == true) {
+                  await ƒS.Text.print("ausgewichen");
+                }
+                else {
+                  await ƒS.Text.print("verfehlt");
+                }
+                ƒS.Text.addClass("novelPage");
                 console.log("PC");
-              };
-            }
-            if(frog2HP > 0){
-              if(AtkRll2 >= bullywugAC) {
-                frog2HP -= DmgRll2;
-                console.log("DmgRoll 2: " + DmgRll2);
-  
-                //Novel pages
-                ƒS.Text.setClass("frog2");
-                await ƒS.Text.print(DmgRll2.toString());
-                ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                console.log("frog2");
-              }
-              else {
-                //Novel pages
-                ƒS.Text.setClass("frog2");
-                await ƒS.Text.print("verfehlt");
-                ƒS.Text.addClass("novelPage");
-                console.log("frog2");
               }
             }
-            else if(frog3HP > 0) {
-              if(AtkRll2 >= bullywugAC) {
-                frog3HP -= DmgRll2;
-                console.log("DmgRoll 2: " + DmgRll2);
-  
-                //Novel pages
-                ƒS.Text.setClass("frog3");
-                await ƒS.Text.print(DmgRll2.toString());
-                ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                console.log("frog3");
-              }
-              else {
-                //Novel pages
-                ƒS.Text.setClass("frog3");
-                await ƒS.Text.print("verfehlt");
-                ƒS.Text.addClass("novelPage");
-                console.log("frog3");
-              }
-            }
-            else if(frog1HP > 0) {
-              if(AtkRll2 >= bullywugAC) {
-                frog1HP -= DmgRll2;
-                console.log("DmgRoll 2: " + DmgRll2);
-  
-                //Novel pages
-                ƒS.Text.setClass("frog1");
-                await ƒS.Text.print(DmgRll2.toString());
-                ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                console.log("frog1");
-              }
-              else {
-                //Novel pages
-                ƒS.Text.setClass("frog1");
-                await ƒS.Text.print("verfehlt");
-                ƒS.Text.addClass("novelPage");
-                console.log("frog1");
-              }
-            }
-            else if(PCHP > 0) {
+              if (frog2HP > 0) {
+                if (AtkRll2 >= bullywugAC) {
+                  frog2HP -= DmgRll2;
+                  console.log("DmgRoll 2: " + DmgRll2);
 
-              if(dodging == true){
-                let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                if(d20 + 5 < AtkRll2) {
-                  AtkRll2 = d20 + 5;
+                  //Novel pages
+                  ƒS.Text.setClass("frog2");
+                  await ƒS.Text.print(DmgRll2.toString());
+                  ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                  console.log("frog2");
+                }
+                else {
+                  //Novel pages
+                  ƒS.Text.setClass("frog2");
+                  await ƒS.Text.print("verfehlt");
+                  ƒS.Text.addClass("novelPage");
+                  console.log("frog2");
                 }
               }
+              else if (frog3HP > 0) {
+                if (AtkRll2 >= bullywugAC) {
+                  frog3HP -= DmgRll2;
+                  console.log("DmgRoll 2: " + DmgRll2);
 
-              if(AtkRll2 >= bullywugAC) {
-                PCHP -= DmgRll2;
-                console.log("DmgRoll 2: " + DmgRll2);
-  
-                //Novel pages
-                ƒS.Text.setClass("PC");
-                await ƒS.Text.print(DmgRll2.toString());
-                ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                console.log("PC");
+                  //Novel pages
+                  ƒS.Text.setClass("frog3");
+                  await ƒS.Text.print(DmgRll2.toString());
+                  ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                  console.log("frog3");
+                }
+                else {
+                  //Novel pages
+                  ƒS.Text.setClass("frog3");
+                  await ƒS.Text.print("verfehlt");
+                  ƒS.Text.addClass("novelPage");
+                  console.log("frog3");
+                }
               }
-              else {
-                //Novel pages
-                ƒS.Text.setClass("PC");
-                await ƒS.Text.print("verfehlt");
-                ƒS.Text.addClass("novelPage");
-                console.log("PC");
+              else if (frog1HP > 0) {
+                if (AtkRll2 >= bullywugAC) {
+                  frog1HP -= DmgRll2;
+                  console.log("DmgRoll 2: " + DmgRll2);
+
+                  //Novel pages
+                  ƒS.Text.setClass("frog1");
+                  await ƒS.Text.print(DmgRll2.toString());
+                  ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                  console.log("frog1");
+                }
+                else {
+                  //Novel pages
+                  ƒS.Text.setClass("frog1");
+                  await ƒS.Text.print("verfehlt");
+                  ƒS.Text.addClass("novelPage");
+                  console.log("frog1");
+                }
+              }
+              else if (PCHP > 0) {
+
+                if (dodging == true) {
+                  let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+                  if (d20 + 5 < AtkRll2) {
+                    AtkRll2 = d20 + 5;
+                  }
+                }
+
+                if (AtkRll2 >= bullywugAC) {
+                  PCHP -= DmgRll2;
+                  dataForSave.HP -=DmgRll2;
+                  document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
+                  console.log("DmgRoll 2: " + DmgRll2);
+
+                  //Novel pages
+                  ƒS.Text.setClass("Player");
+                  await ƒS.Text.print(DmgRll2.toString());
+                  ƒS.Text.addClass("novelPage");    //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                  console.log("PC");
+                }
+                else {
+                  //Novel pages
+                  ƒS.Text.setClass("Player");
+                  if (dodging == true) {
+                    await ƒS.Text.print("ausgewichen");
+                  }
+                  else {
+                    await ƒS.Text.print("verfehlt");
+                  }
+                  ƒS.Text.addClass("novelPage");
+                  console.log("PC");
+                }
               }
             }
-          }
 
           await ƒS.Character.hide(characters.fighter01);
           await ƒS.Character.hide(characters.fighter02);
           await ƒS.Character.show(characters.fighter01, characters.fighter01.pose.upset, ƒS.positionPercent(80, 70));
           await ƒS.Character.show(characters.fighter02, characters.fighter02.pose.upset, ƒS.positionPercent(80, 50));
           await ƒS.update(0.1);
+
+          //DOWN ANIMATION
+          if (frog1HP <= 0) {
+            await ƒS.Character.hide(characters.bullywug02)
+            await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.down, ƒS.positionPercent(10, 50));
+            await ƒS.update(0.1);
+          }
+          if (frog2HP <= 0) {
+            await ƒS.Character.hide(characters.bullywug03);
+            await ƒS.Character.show(characters.bullywug03, characters.bullywug03.pose.down, ƒS.positionPercent(20, 60));
+            await ƒS.update(0.1);
+          }
+          if (frog3HP <= 0) {
+            await ƒS.Character.hide(characters.bullywug04);
+            await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.down, ƒS.positionPercent(10, 70));
+            await ƒS.update(0.1);
+          }
+
         };
-       
+
         //dodge abfragen
       };
 
@@ -815,10 +1097,10 @@ namespace MyNovel {
         let greaterHealingPotion = 4 * (Math.floor(Math.random() * (4 - 1 + 1) + 1)) + 4;
         console.log(greaterHealingPotion);
 
-        if(enemyNumber == 1) {
+        if (enemyNumber == 1) {
           enemy1HP += greaterHealingPotion;
         }
-        else if( enemyNumber == 2) {
+        else if (enemyNumber == 2) {
           enemy2HP += greaterHealingPotion;
         }
 
@@ -828,35 +1110,48 @@ namespace MyNovel {
         ƒS.Text.addClass("novelPage");
       };
 
-      //FROG TURN
-
-
+      //FROG 2 TURN 
+      console.log("frog2 turn");
+      if (frog2HP > 0) {
+        frogAttack(3);
+        await delay(3000);
+      };
 
       //PLAYER TURN
+      console.log("player turn");
       await takeAction();
       dodging = false;
-      
 
-      while(actionTaken == false) {
-        //HIER ZUG DER NÄCHSTEN PERSON
+
+      while (actionTaken == false) {
         await takeAction();
       };
 
 
-      //FROG TURN
-      
-
-
-
+      //FROG 3 TURN
+      console.log("frog 3 turn");
+      if (frog3HP > 0) {
+        frogAttack(4);
+        await delay(3000);
+      };
 
       console.log("turn over");
-    }
+    };
+      
+      document.getElementById("HPlvl1").setAttribute("style", "display: none");
+      document.getElementById("HPCount").setAttribute("style", "display: none");
+      await ƒS.Character.hideAll();
+      await ƒS.Character.show(characters.bullywug01, characters.bullywug01.pose.down, ƒS.positionPercent(20, 40));
+      await ƒS.update(1);
+
+      await ƒS.Location.show(locations.deathScreen);
+      await ƒS.update(transition.deathSpiral.duration, transition.deathSpiral.alpha, transition.deathSpiral.edge);
+      await ƒS.update(1);
+      await ƒS.Character.hideAll();
+      await ƒS.update(1);
 
 
-
-
-
-    async function takeAction(){
+    async function takeAction() {
 
       let dialogue0 = {
         Attack: "Attack",
@@ -866,7 +1161,7 @@ namespace MyNovel {
       }
 
       let dialogueElement0 = await ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
-      
+
       switch (dialogueElement0) {
         case dialogue0.Attack:
           console.log("You attack");
@@ -917,14 +1212,8 @@ namespace MyNovel {
           flee();
           await delay(2500);
           break;
-      }
+      };
     };
-
-
-
-
-
-
 
     async function attack(ziel: number): Promise<void> {
       dodging = false;
@@ -966,30 +1255,30 @@ namespace MyNovel {
       await ƒS.Character.show(characters.bullywug01, characters.bullywug01.pose.upset, ƒS.positionPercent(65, 40));
       await ƒS.update(0.2);
 
-      if(target == 1) {
-        if(e1Dodge = true) {
-          
+      if (target == 1) {
+        if (e1Dodge == true) {
+
           //Novel Pages
           ƒS.Text.setClass("enemy1");
-          await ƒS.Text.print("Ausweichen");
+          await ƒS.Text.print("ausgewichen");
           ƒS.Text.addClass("novelPage");
           console.log("enemy1");
 
-          if(disadvAtkRll < AtkRll) {
+          if (disadvAtkRll < AtkRll) {
             AtkRll = disadvAtkRll;
           }
         }
       }
-      else if(target == 2) {
-        if(e2Dodge = true) {
+      else if (target == 2) {
+        if (e2Dodge == true) {
 
           //Novel Pages
           ƒS.Text.setClass("enemy2");
-          await ƒS.Text.print("Ausweichen");
+          await ƒS.Text.print("ausgewichen");
           ƒS.Text.addClass("novelPage");
           console.log("enemy2");
 
-          if(disadvAtkRll < AtkRll) {
+          if (disadvAtkRll < AtkRll) {
             AtkRll = disadvAtkRll;
           }
         }
@@ -997,17 +1286,17 @@ namespace MyNovel {
 
 
       if (AtkRll >= EnemyAC) {
-        let dmgSpearAtk = Math.floor(Math.random() * (8 - 1 + 1) + 1);      
-        if(d20 == 20) {
+        let dmgSpearAtk = Math.floor(Math.random() * (8 - 1 + 1) + 1);
+        if (d20 == 20) {
           dmgSpearAtk *= 2;
         }
         let DmgRll = dmgSpearAtk + 1;
 
-        if(target == 1) {
+        if (target == 1) {
           enemy1HP -= DmgRll;
           e1DmgTaken += DmgRll;
         }
-        else if(target == 2) {
+        else if (target == 2) {
           enemy2HP -= DmgRll;
           e2DmgTaken += DmgRll;
         }
@@ -1025,7 +1314,23 @@ namespace MyNovel {
         //atkMiss();  //hier Miss indicator einfügen
         //Novel pages
         await ƒS.Text.setClass("enemy" + target);
-        await ƒS.Text.print("verfehlt");
+        if(target == 1) {
+          if(e1Dodge){
+            await ƒS.Text.print("ausgewichen");
+          }
+          else {
+            await ƒS.Text.print("verfehlt");
+          }
+        }
+        else if(target == 2) {
+          if(e2Dodge){
+            await ƒS.Text.print("ausgewichen");
+          }
+          else {
+            await ƒS.Text.print("verfehlt");
+          }
+        }
+       
         //await delay(1000);
         //CSS für Novel Page
         await ƒS.Text.addClass("novelPage");  //6 css klassen (immer set class, um neue zu setzen)
@@ -1039,9 +1344,9 @@ namespace MyNovel {
     async function useItem(): Promise<void> {
       dodging = false;
       await ƒS.Inventory.open();
-
       //ITEM SELECTEN ETC
     }
+
     function dodge(): void {
       dodging = true;
       //DODGE = DISADVANTAGE FÜR GEGNER
@@ -1052,8 +1357,8 @@ namespace MyNovel {
       document.getElementById("speech").hidden = false;
       dodging = false; //????? why
       switch (fleeCount) {
-        case 0: 
-          await ƒS.Speech.tell(characters.unknown, "Bleib standfest, Soldat!");        
+        case 0:
+          await ƒS.Speech.tell(characters.unknown, "Bleib standfest, Soldat!");
           document.getElementById("speech").hidden = true;
           fleeCount += 1;
           break;
@@ -1081,6 +1386,5 @@ namespace MyNovel {
       //HIER MACHEN; DASS SPIELER WAS ANDERES IM ZUG MACHEN KANN (nach jeder erfolgreichen Aktion, maybe ne Rundenvariable hoch?) (vllt nicht möglich nochmal flucht auszuwählen?)
     }
 
-
-  }  //RUNDENKAMPF: ANDERE FRÖSCHE WERDEN ZUERST GETÖTET
+  }
 }
