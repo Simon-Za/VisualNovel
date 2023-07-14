@@ -57,6 +57,9 @@ namespace MyNovel {
     };
 
     ƒS.Speech.hide();
+    await delay(3000);
+    await ƒS.Location.show(locations.blackscreen);
+    await ƒS.update(1);
     await ƒS.Speech.tell(characters.unknown, text.Unknown.T0001);
     await ƒS.Speech.tell(characters.unknown, text.Unknown.T0002);
     await ƒS.Speech.tell(characters.unknown, text.Unknown.T0003);
@@ -68,10 +71,10 @@ namespace MyNovel {
     //hier ersten respawn hintergrund (blackscreen + quote)
     document.getElementById("respawnQuote").style.display = "block";
     const p = document.createElement("p");
-    p.textContent = "'We all have big changes in our lives that are more or less a second chance.'";
+    p.textContent = deathQuotes[dataForSave.Protagonist.deaths - 1];
     document.getElementById("respawnQuote")?.appendChild(p);
 
-    await delay(5000); //-> NUR FÜR PAYTESTING
+    await delay(5000); //-> NUR FÜR PAYTESTING aus
     document.getElementById("respawnQuote").style.display = "none";
     document.getElementById("respawnQuote").removeChild(p);
 
@@ -277,18 +280,20 @@ namespace MyNovel {
     await ƒS.update(1);
 
     await ƒS.Location.show(locations.deathScreen);
+
     await ƒS.Character.hideAll();
     await ƒS.Sound.fade(sound.swamp, 0, 1);
+    dataForSave.Protagonist.deaths += 1;
     await ƒS.update(transition.deathSpiral.duration, transition.deathSpiral.alpha, transition.deathSpiral.edge);
     await ƒS.update(1);
-    await delay(2000);
+    await delay(3000);
 
 
     await ƒS.Location.show(locations.blackscreen);
     await ƒS.Character.hideAll();
     document.getElementById("respawnQuote").style.display = "block";
     const pp = document.createElement("p");
-    pp.textContent = "'If there is no struggle, there is no Progress'";
+    pp.textContent = deathQuotes[dataForSave.Protagonist.deaths - 1];
     document.getElementById("respawnQuote")?.appendChild(pp);
     await ƒS.update(1);
  
@@ -301,7 +306,6 @@ namespace MyNovel {
     await ƒS.Sound.fade(sound.swamp, 0.2, 1);
     await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
     await ƒS.update(1);
-    //sounds
 
 
     await ƒS.Speech.tell(characters.protagonist, text.Player.T0006);
@@ -418,17 +422,20 @@ namespace MyNovel {
         await ƒS.Speech.tell(characters.steve, "Dann geh ins Gefängnis und hol das Zepter aus dem Tresorraum und bring es mir.");
         await ƒS.Speech.tell(characters.steve, "Und sei vorsichtig. Lass dich nicht erwischen. Es soll ja eine Überraschung werden.");
         await ƒS.Speech.tell(characters.steve, "Viel Glück!");
-        break;
+        dataForSave.Quest = 1;
+        return "GameScene03Q1";
+
       case questChoice.Platzieren:
         await ƒS.Speech.tell(characters.steve, "Gute Wahl!");
         await ƒS.Speech.tell(characters.steve, "Ich habe vor einiger Zeit ein Geschenk für den König bestellt, eine wunderschöne Kette aus Wildschweinzähnen.");
         await ƒS.Speech.tell(characters.steve, "Unglücklicherweise wurde der Frosch, der mir das Geschenk liefern sollte, verhaftet.");
-        await ƒS.Speech.tell(characters.steve, "Die Gründe sind mir unbekannt und ja auch irrelevant, frag ihn besser nicht danach, wenn du willst, dass er hilft.");
+        await ƒS.Speech.tell(characters.steve, "Die Gründe sind mir unbekannt, und ja auch irrelevant, frag ihn besser nicht danach, wenn du willst, dass er hilft.");
         await ƒS.Speech.tell(characters.steve, "Verschaff dir Zugang zum Gefängnis und frag den Frosch wo die Kette ist.");
         await ƒS.Speech.tell(characters.steve, "Wenn du den Standort herausgefunden hast, dann hol die Kette von dort und leg sie dem König auf den Schreibtisch.");
         await ƒS.Speech.tell(characters.steve, "Und sei vorsichtig. Lass dich nicht erwischen. Es soll ja eine Überraschung werden.");
         await ƒS.Speech.tell(characters.steve, "Viel Glück!");
-        break;
+        dataForSave.Quest = 2;
+        return "GameScene03Q2";
     }
     await ƒS.update(transition.deathSpiral.duration, transition.deathSpiral.alpha, transition.deathSpiral.edge);
     await ƒS.update(1);

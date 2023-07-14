@@ -33,6 +33,9 @@ namespace MyNovel {
     // Voices
     chuckle: "Sounds/chuckle.mp3",
     huh: "Sounds/huh.mp3",
+    crowd: "Sounds/crowd.mp3",
+    crowdGasp: "Sounds/gasp.mp3",
+    cheer: "Sounds/cheer.mp3",
   };
 
   export let locations = {
@@ -56,6 +59,50 @@ namespace MyNovel {
       name: "SwampBoat",
       background: "Images/Backgrounds/SwampBoat.jpeg"
     },
+    BueroAußen: {
+      name: "BueroAußen",
+      background: "Images/Backgrounds/BueroAußen.jpeg"
+    },
+    BueroInnen: {
+      name: "BueroInnen",
+      background: "Images/Backgrounds/BueroInnen.jpeg"
+    },
+    BueroHinten: {
+      name: "BueroHinten",
+      background: "Images/Backgrounds/BueroHinten.png"
+    },
+    BueroHintenAst: {
+      name: "BueroHintenAst",
+      background: "Images/Backgrounds/BueroHintenAst.png"
+    },
+    BueroVorne: { 
+      name: "BueroVorne",
+      background: "Images/Backgrounds/BueroVorne.png"
+    },
+    Gefaengnis: { 
+      name: "Gefaengnis",
+      background: "Images/Backgrounds/GefaengnisDoorOpen.png"
+    },
+    GefaengnisOpenVault: { 
+      name: "GefaengnisVaultDoorOpen",
+      background: "Images/Backgrounds/Gefaengnis.png"
+    },
+    GefaengnisOutside: { 
+      name: "GefaengnisOutside",
+      background: "Images/Backgrounds/PrisonEntrance.png"
+    },
+    sageHouse: {
+    name: "Weisenhaus",
+    background: "Images/Backgrounds/SageHouse.png"
+    },
+    sageHouseInside: {
+    name: "WeisenhausInnen",
+    background: "Images/Backgrounds/sageHouseInside.png"
+    },
+    villageSquare: {
+      name: "Marktplatz",
+      background: "Images/Backgrounds/townSquare.png"
+      },
   };
 
   export let items = {
@@ -75,7 +122,26 @@ namespace MyNovel {
       name: "Healing Potion",
       description: "a healy potion",
       image: "Images/Items/.png", //Beispiel
-
+    },
+    keyDrawer: {
+      name: "Schubladenschlüssel",
+      description: "Scheint eine Schublade zu öffnen",
+      image: "Images/Items/.png", //Beispiel
+    },
+    keyDungeon: {
+      name: "Dungeon Schlüssel",
+      description: "Schlüssel für das Verlies?",
+      image: "Images/Items/.png", //Beispiel
+    },
+    keyVault: {
+      name: "Tresorschlüssel",
+      description: "Schlüssel für den Tresor",
+      image: "Images/Items/.png", //Beispiel
+    },
+    dirtyMags: {
+      name: "Schmutzige Magazine",
+      description: "Aus der Privatsammlung des Königs",
+      image: "Images/Items/.png", //Beispiel
     },
   };
 
@@ -90,8 +156,6 @@ namespace MyNovel {
       name: "???",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        angry: "Images/Characters/aisaka_angry.png",
-        happy: "Images/Characters/aisaka_happy.png",
         upset: "Images/Characters/aisaka_upset.png",
       }
     },
@@ -152,19 +216,65 @@ namespace MyNovel {
         upset: "Images/Characters/fightersmol.png",
         down: "Images/Characters/fightersmol_down.png",
       }
-    }
-
+    },
+    guardBully1: {
+      name: "Wache links",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        upset: "Images/Characters/smollerBully.png",
+      }
+    },
+    guardBully2: {
+      name: "Wache rechts",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        upset: "Images/Characters/smollerBully.png",
+      }
+    },
+    prisoner1: {
+      name: "Tym",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        upset: "Images/Characters/.png",  //fehlt!!
+      }
+    },
+    prisoner2: {
+      name: "???",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        upset: "Images/Characters/.png",  //fehlt!!
+      }
+    },
+    prisoner3: {
+      name: "Frogtaro",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        upset: "Images/Characters/.png",  //fehlt!!
+      }
+    },
+    sage: {
+      name: "Weiser",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        upset: "Images/Characters/smollerBully.png",  //fehlt!!
+      }
+    },
   };
 
   // Data that will be saved
+  //HIER TEST DATEN WIEDER RAUS!-------------------------------------------
   export let dataForSave = {
     Protagonist: {
-      name: ""
+      name: "",
+      deaths: 0,
+      mags: false,
+      hasKey: false,
+      savedTym: false,
     },
-    points: 0,
     //für meter
     HP: 20,
     HPCount: "20/20",
+    Quest: 0,
   };
 
   export function animation(): ƒS.AnimationDefinition {
@@ -260,6 +370,23 @@ namespace MyNovel {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
+  export function deleteInventory(name: string) {
+    document.getElementById(name).remove();
+  }
+
+
+    export let deathQuotes: string[] = [ 
+      "'We all have big changes in our lives that are more or less a second chance.'",
+      "'If there is no struggle, there is no progress'",
+      "'I have not failed. I've just found 10,000 ways that won't work.'",
+      "'You only live once, but if you do it right, once is enough.'",
+      "'In three words I can sum up everything I've learned about life: it goes on.'",
+      "'A thing of nature. For every Push, there is a Pull. A consequence.'",
+      "'That which does not kill us makes us stronger.'",
+      "'There is a beauty in death -- the beauty of finality, the beauty of completion. For nothing is truly complete until the day it is at last destroyed.'",
+    ];
+
+
 
 
   window.addEventListener("load", start);
@@ -267,8 +394,16 @@ namespace MyNovel {
     gameMenu = ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
     buttonFunctionalities("Close");
     let scenes: ƒS.Scenes = [
-      //{ scene: GameScene01, name: "Scene01" },
-      { scene: GameScene02, name: "Scene02" },
+      //{ scene: GameScene01, name: "OpeningFight"},
+      //{ scene: GameScene02, name: "Exposition"},
+      //{ id: "GameScene03Q1", scene: GameScene03Q1, name: "Quest1Start", next: "GameScene04Q1" },
+      //{ id: "GameScene03Q2", scene: GameScene03Q2, name: "Quest2Start", next: "GameScene04Q2" },
+      //{ id: "GameScene04Q1", scene: GameScene04Q1, name: "Quest1Part2", next: "GameScene05"},
+      //{ id: "GameScene04Q2", scene: GameScene04Q2, name: "Quest2Part2", next: "GameScene05"},
+      { id: "GameScene05", scene: GameScene05, name: "QuestEnd", next: "GameScene06"},
+      { id: "GameScene06", scene: GameScene06, name: "Sage", next: "GameScene07"},
+      { id: "GameScene07", scene: GameScene07, name: "Ending"},
+      
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");

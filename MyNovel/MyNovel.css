@@ -88,6 +88,10 @@ name {
   padding-left: 25px;
   padding-top: 20px;;
 }
+/* Dass leere Optionen verschwinden*/
+button:empty {
+  display: none;
+}
 
 /***** SPEECH, CONTENT, NAMES *****/
 /*speech {

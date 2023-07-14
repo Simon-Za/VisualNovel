@@ -1140,6 +1140,7 @@ namespace MyNovel {
       
       document.getElementById("HPlvl1").setAttribute("style", "display: none");
       document.getElementById("HPCount").setAttribute("style", "display: none");
+      dataForSave.Protagonist.deaths += 1;
       await ƒS.Character.hideAll();
       await ƒS.Character.show(characters.bullywug01, characters.bullywug01.pose.down, ƒS.positionPercent(20, 40));
       await ƒS.update(1);
