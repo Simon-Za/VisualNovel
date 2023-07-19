@@ -20,19 +20,35 @@ var MyNovel;
         //themes
         piano: "Sounds/soft_piano.mp3",
         swamp: "Sounds/swampWoods.mp3",
-        squelch: "Sounds/waterSquelch.mp3",
+        mystic: "Sounds/mystic.mp3",
+        battle01: "Sounds/battle01.mp3",
+        battle02: "Sounds/battle02.mp3",
+        dungeon: "Sounds/dungeon.mp3",
         // SFX
         drop: "",
         crash: "Sounds/carCrash.mp3",
         drawSword: "Sounds/drawSword.mp3",
         drawGun: "Sounds/drawPistol.mp3",
         slash: "Sounds/slash.mp3",
+        slashAxe: "Sounds/slashAxe.mp3",
+        swordMiss: "Sounds/swordMiss.mp3",
+        healthPotion: "Sounds/healthPotion.mp3",
+        squelch: "Sounds/waterSquelch.mp3",
+        cloth: "Sounds/clothFlap.mp3",
+        branchSnap: "Sounds/branchSnap.mp3",
+        fall: "Sounds/fall.mp3",
+        stairs: "Sounds/stairs.mp3",
+        clang: "Sounds/clang.mp3",
+        doorCreak: "Sounds/doorCreak.mp3",
+        closetCreak: "Sounds/closetCreak.mp3",
+        drawerOpen: "Sounds/drawerOpen.mp3",
+        drawerClose: "Sounds/drawerClose.mp3",
         // Voices
-        chuckle: "Sounds/chuckle.mp3",
-        huh: "Sounds/huh.mp3",
         crowd: "Sounds/crowd.mp3",
         crowdGasp: "Sounds/gasp.mp3",
         cheer: "Sounds/cheer.mp3",
+        crying: "Sounds/crying.mp3",
+        frogCroak: "Sounds/frogCroak.mp3",
     };
     MyNovel.locations = {
         waldweg: {
@@ -49,19 +65,19 @@ var MyNovel;
         },
         swampWalk: {
             name: "SwampWalk",
-            background: "Images/Backgrounds/SwampWalk.jpeg"
+            background: "Images/Backgrounds/SwampWalk.png"
         },
-        swampBoat: {
-            name: "SwampBoat",
-            background: "Images/Backgrounds/SwampBoat.jpeg"
+        swamp: {
+            name: "Swamp",
+            background: "Images/Backgrounds/Swamp.png"
         },
         BueroAußen: {
             name: "BueroAußen",
-            background: "Images/Backgrounds/BueroAußen.jpeg"
+            background: "Images/Backgrounds/BueroAußen.png"
         },
         BueroInnen: {
             name: "BueroInnen",
-            background: "Images/Backgrounds/BueroInnen.jpeg"
+            background: "Images/Backgrounds/BueroInnen.png"
         },
         BueroHinten: {
             name: "BueroHinten",
@@ -77,7 +93,7 @@ var MyNovel;
         },
         Gefaengnis: {
             name: "Gefaengnis",
-            background: "Images/Backgrounds/GefaengnisDoorOpen.png"
+            background: "Images/Backgrounds/Gefaengnis.png"
         },
         GefaengnisOpenVault: {
             name: "GefaengnisVaultDoorOpen",
@@ -86,6 +102,22 @@ var MyNovel;
         GefaengnisOutside: {
             name: "GefaengnisOutside",
             background: "Images/Backgrounds/PrisonEntrance.png"
+        },
+        CellTym: {
+            name: "TymCell",
+            background: "Images/Backgrounds/CellTym.png"
+        },
+        CellFrogtaro: {
+            name: "FrogtaroCell",
+            background: "Images/Backgrounds/CellFrogtaro.png"
+        },
+        CellFroglin: {
+            name: "FroglinCell",
+            background: "Images/Backgrounds/CellFroglin.png"
+        },
+        CellEmpty: {
+            name: "EmptyCell",
+            background: "Images/Backgrounds/CellEmpty.png"
         },
         sageHouse: {
             name: "Weisenhaus",
@@ -99,44 +131,31 @@ var MyNovel;
             name: "Marktplatz",
             background: "Images/Backgrounds/townSquare.png"
         },
+        endingScreen: {
+            name: "Ende",
+            background: "Images/Backgrounds/EndingScreen.jpg"
+        },
     };
     MyNovel.items = {
-        stick: {
-            name: "Stick",
-            description: "an ordinary stick",
-            image: "Images/Items/stick.png",
-            static: true, //konsumierbar = true, "statisch" machen = false oder weglassen
-        },
-        crossbow: {
-            name: "Crossbow",
-            description: "a simple ranged weapon",
-            image: "Images/Items/crossbow.png",
-            static: true,
-        },
-        healingPotion: {
-            name: "Healing Potion",
-            description: "a healy potion",
-            image: "Images/Items/.png", //Beispiel
-        },
         keyDrawer: {
             name: "Schubladenschlüssel",
             description: "Scheint eine Schublade zu öffnen",
-            image: "Images/Items/.png", //Beispiel
+            image: "Images/Items/drawerKey.png",
         },
         keyDungeon: {
             name: "Dungeon Schlüssel",
             description: "Schlüssel für das Verlies?",
-            image: "Images/Items/.png", //Beispiel
+            image: "Images/Items/dungeonKey.png",
         },
         keyVault: {
             name: "Tresorschlüssel",
             description: "Schlüssel für den Tresor",
-            image: "Images/Items/.png", //Beispiel
+            image: "Images/Items/vaultKey.png",
         },
         dirtyMags: {
             name: "Schmutzige Magazine",
             description: "Aus der Privatsammlung des Königs",
-            image: "Images/Items/.png", //Beispiel
+            image: "Images/Items/mags.png",
         },
     };
     MyNovel.characters = {
@@ -149,80 +168,92 @@ var MyNovel;
         unknown: {
             name: "???",
             origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
-            pose: {
-                upset: "Images/Characters/aisaka_upset.png",
-            }
+            pose: {}
         },
         steve: {
             name: "Steve",
             origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                upset: "Images/Characters/smolBully.png",
-                down: "Images/Characters/smolBully_down.png",
-                medium: "Images/Characters/mediumBully.png",
-                large: "Images/Characters/largeBully.png",
+                upset: "Images/Characters/Steve.png",
+                medium: "Images/Characters/SteveMedium.png",
+                large: "Images/Characters/SteveBig.png",
             }
         },
         bullywug01: {
             name: "Bullywug01",
             origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                upset: "Images/Characters/smolBully.png",
-                down: "Images/Characters/smolBully_down.png",
+                //frogs sind immer upset
+                upset: "Images/Characters/smolFrog.png",
+                down: "Images/Characters/smolFrogDown.png",
             }
         },
         bullywug02: {
             name: "Bullywug02",
             origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                upset: "Images/Characters/smolBully.png",
-                down: "Images/Characters/smolBully_down.png",
+                upset: "Images/Characters/smolFrog.png",
+                down: "Images/Characters/smolFrogDown.png",
             }
         },
         bullywug03: {
             name: "Bullywug03",
             origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                upset: "Images/Characters/smolBully.png",
-                down: "Images/Characters/smolBully_down.png",
+                upset: "Images/Characters/smolFrog.png",
+                down: "Images/Characters/smolFrogDown.png",
             }
         },
         bullywug04: {
             name: "Bullywug04",
             origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                upset: "Images/Characters/smolBully.png",
-                down: "Images/Characters/smolBully_down.png",
+                upset: "Images/Characters/smolFrog.png",
+                down: "Images/Characters/smolFrogDown.png",
             }
         },
         fighter01: {
             name: "Fighter01",
             origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                upset: "Images/Characters/fightersmol.png",
-                down: "Images/Characters/fightersmol_down.png",
+                upset: "Images/Characters/fighter.png",
+                down: "Images/Characters/fighterDown.png",
             }
         },
         fighter02: {
             name: "Fighter02",
             origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                upset: "Images/Characters/fightersmol.png",
-                down: "Images/Characters/fightersmol_down.png",
+                upset: "Images/Characters/fighter.png",
+                down: "Images/Characters/fighterDown.png",
             }
         },
         guardBully1: {
-            name: "Wache links",
+            name: "WacheLinks",
             origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                upset: "Images/Characters/smollerBully.png",
+                upset: "Images/Characters/smollerFrog.png",
             }
         },
         guardBully2: {
-            name: "Wache rechts",
+            name: "WacheRechts",
             origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                upset: "Images/Characters/smollerBully.png",
+                upset: "Images/Characters/smollerFrog.png",
+            }
+        },
+        guardBully1Big: {
+            name: "WacheLinks",
+            origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                upset: "Images/Characters/smolFrog.png",
+            }
+        },
+        guardBully2Big: {
+            name: "WacheRechts",
+            origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                upset: "Images/Characters/smolFrog.png",
             }
         },
         prisoner1: {
@@ -250,7 +281,21 @@ var MyNovel;
             name: "Weiser",
             origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                upset: "Images/Characters/smollerBully.png", //fehlt!!
+                upset: "Images/Characters/sage.png",
+            }
+        },
+        cryer: {
+            name: "Dorfschreier",
+            origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                upset: "Images/Characters/cryer.png",
+            }
+        },
+        frogCrowd: {
+            name: "Versammlung",
+            origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                upset: "Images/Characters/frogCrowd.png",
             }
         },
     };
@@ -259,7 +304,7 @@ var MyNovel;
     MyNovel.dataForSave = {
         Protagonist: {
             name: "",
-            deaths: 0,
+            deaths: 3,
             mags: false,
             hasKey: false,
             savedTym: false,
@@ -267,7 +312,7 @@ var MyNovel;
         //für meter
         HP: 20,
         HPCount: "20/20",
-        Quest: 0,
+        Quest: 2,
     };
     function animation() {
         return {
@@ -381,8 +426,8 @@ var MyNovel;
             //{ id: "GameScene03Q2", scene: GameScene03Q2, name: "Quest2Start", next: "GameScene04Q2" },
             //{ id: "GameScene04Q1", scene: GameScene04Q1, name: "Quest1Part2", next: "GameScene05"},
             //{ id: "GameScene04Q2", scene: GameScene04Q2, name: "Quest2Part2", next: "GameScene05"},
-            { id: "GameScene05", scene: MyNovel.GameScene05, name: "QuestEnd", next: "GameScene06" },
-            { id: "GameScene06", scene: MyNovel.GameScene06, name: "Sage", next: "GameScene07" },
+            //{ id: "GameScene05", scene: GameScene05, name: "QuestEnd", next: "GameScene06"},
+            //{ id: "GameScene06", scene: GameScene06, name: "Sage", next: "GameScene07"},
             { id: "GameScene07", scene: MyNovel.GameScene07, name: "Ending" },
         ];
         let uiElement = document.querySelector("[type=interface]");
@@ -391,171 +436,6 @@ var MyNovel;
         MyNovel.ƒS.Progress.go(scenes);
     }
 })(MyNovel || (MyNovel = {}));
-// namespace MyNovel {
-//     export import ƒ = FudgeCore;
-//     export import ƒS = FudgeStory;
-//     console.log("okayyy lessgo");
-//     export let transition = {
-//       puzzle: {
-//         duration: 1,
-//         alpha: "Images/Transitions/Others/009.jpg", //"" mit Pfad füllen
-//         edge: 1
-//       }
-//     };
-//     export let sound = {
-//       //themes
-//       club: "Sounds/Nightclub.ogg",
-//       street: "Sounds/Street_Night_Calm.mp3",
-//       piano: "Sounds/soft_piano.mp3",
-//       // SFX
-//       drop:  "", //Pfad
-//       // Voices
-//       chuckle: "Sounds/chuckle.mp3",
-//       huh: "Sounds/huh.mp3",
-//     };
-//     export let locations = {
-//       citySunset: {
-//         name: "City_Sunset",
-//         background: "Images/Backgrounds/bg_city_sunset.png" //"Images\Backgrounds\bg_city_sunset.png",
-//         // foreground: ""
-//       },
-//       cityNight: {
-//         name: "CityNight",
-//         background: "Images/Backgrounds/Nightcity.png"
-//       },
-//       waldweg: {
-//         name: "Waldweg",
-//         background: "Images/Backgrounds/Waldweg_stock.jpg"
-//       },
-//     };
-//     export let items = {
-//       stick: {
-//         name: "Stick",
-//         description: "an ordinary stick",
-//         image: "Images/Items/stick.png", //Beispiel
-//         static: true //konsumierbar = true, "statisch" machen = false oder weglassen
-//       },
-//       crossbow: {
-//         name: "Crossbow",
-//         description: "a simple ranged weapon",
-//         image: "Images/Items/crossbow.png", //Beispiel
-//       }
-//     };
-//     export let characters = {
-//       narrator: {
-//         name: ""
-//       },
-//       protagonist: {
-//         name: "",
-//       },
-//       aisaka: {
-//         name: "Aisaka",
-//         origin: ƒS.ORIGIN.BOTTOMCENTER,
-//         pose: {
-//         angry: "Images/Characters/aisaka_angry.png",
-//           happy: "Images/Characters/aisaka_happy.png",
-//           upset: "Images/Characters/aisaka_upset.png",
-//           //flabberghasted: ""
-//         }
-//       }
-//     };
-//     // Data that will be saved
-//     export let dataForSave = {
-//       nameProtagonist: "",
-//       points: 0,
-//       //für meter
-//       aisakaScore: 0,
-//       scoreForAisaka: "",
-//     };
-//     export function animation(): ƒS.AnimationDefinition {
-//       return {
-//         start: {translation: ƒS.positions.bottomcenter, color: ƒS.Color.CSS("white", 1)},
-//         end: {translation: ƒS.positions.bottomleft, color: ƒS.Color.CSS("Black", 0)},
-//         duration: 3,
-//         playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE,
-//       };
-//     }
-//     //BEISPIEL MIT ROT UND SCALING
-//     export function getAnimation(): ƒS.AnimationDefinition {
-//       return {
-//       start: { translation: ƒS.positions.bottomleft, rotation: -20, scaling: new ƒS.Position(0.5, 1.5), color: ƒS.Color.CSS("white", 0.3) },
-//       end: { translation: ƒS.positions.bottomright, rotation: 20, scaling: new ƒS.Position(1.5, 0.5), color: ƒS.Color.CSS("red") },
-//       duration: 1,
-//       playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
-//       };
-//       }
-//     //Menu shortcuts
-//     let inGameMenuButtons = {
-//       save: "Save",
-//       load: "Load",
-//       close: "Close",
-//       credits: "Credits"
-//     };
-//     let gameMenu: ƒS.Menu;
-//     let menuIsOpen: boolean = true;
-//     function credits(): void {
-//       ƒS.Text.print("");
-//     }
-//     async function  buttonFunctionalities(_option: string): Promise<void> {
-//       console.log(_option);
-//       switch(_option) {
-//         case inGameMenuButtons.save:
-//           await ƒS.Progress.save();
-//           break;
-//         case inGameMenuButtons.load:
-//           await ƒS.Progress.load();
-//           break;
-//         case inGameMenuButtons.close:
-//           gameMenu.close();
-//           menuIsOpen = false;
-//           break;
-//         case inGameMenuButtons.credits:
-//           credits();
-//       }
-//     }
-//     //Menu shortcuts
-//   document.addEventListener("keydown", hndKeyPress);
-//   async function hndKeyPress(_event: KeyboardEvent): Promise<void> {
-//     switch (_event.code) {
-//       case ƒ.KEYBOARD_CODE.F8:
-//         console.log("Save");
-//         await ƒS.Progress.save();
-//         break;
-//       case ƒ.KEYBOARD_CODE.F9:
-//         console.log("Load");
-//         await ƒS.Progress.load();
-//         break;
-//       case ƒ.KEYBOARD_CODE.M:
-//         if (menuIsOpen) {
-//           console.log("close");
-//           gameMenu.close();
-//           menuIsOpen = false;
-//         }
-//         else {
-//           console.log("open");
-//           gameMenu.open();
-//           menuIsOpen = true;
-//         }
-//         break;
-//     }
-//   }
-//     window.addEventListener("load", start);
-//     function start(_event: Event): void {
-//       gameMenu = ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
-//       buttonFunctionalities("Close");
-//       let scenes: ƒS.Scenes = [
-//         //{ scene: Scene, name: "Scene" },
-//         {id: "Write", scene: Scene, name: "We write some text"},
-//         {id: "", scene: Scene2, name: "We build in some choices", next: "GoodEnding"},
-//                     //Nur Namen von existierenden Files werden akzeptiert
-//         //{id: "", scene: GoodEnding, name: "Ending ohne Folgeszene", next: "Empty Scene"}
-//       ];
-//       let uiElement: HTMLElement = document.querySelector("[type=interface]");
-//       dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
-//       // start the sequence
-//       ƒS.Progress.go(scenes);
-//     }
-//   }
 var MyNovel;
 (function (MyNovel) {
     async function GameScene01() {
@@ -586,32 +466,26 @@ var MyNovel;
         let frog3HP = 11;
         let f3DmgTaken = 0;
         let actionTaken = false;
-        //ƒS.Inventory.add(items.stick);
         MyNovel.ƒS.Speech.hide();
-        //STORYBOARD
-        //hier kommt blackscreen
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Unknown.T0001);
-        //Kampfgeräusche sind zu hören (klirren von Waffen, schreie, krachen) bzw erst Überfall (Wagen crashen lassen), dann Kampf
-        await MyNovel.ƒS.Sound.play(MyNovel.sound.crash, 0.5);
+        MyNovel.ƒS.Sound.play(MyNovel.sound.crash, 0.3);
         //await delay(4000); -> AUSGEKLAMMERT, WEIL SCHNELLERES TESTEN
-        //Textbar erscheint, es werden Befehle geschrien
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Unknown.T0002);
-        await MyNovel.ƒS.Sound.play(MyNovel.sound.drawSword, 0.5);
-        await MyNovel.ƒS.Sound.play(MyNovel.sound.drawGun, 0.5);
-        //Fade-in
-        //Schlachtfeld ist zu sehen: squad Frösche steht Gruppe von Mercenaries entgegen; HP bar ist zu sehen
         await MyNovel.ƒS.Location.show(MyNovel.locations.waldweg);
         await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
         await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(10, 70));
         await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(20, 60));
         await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(10, 50));
         await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug01, MyNovel.characters.bullywug01.pose.upset, MyNovel.ƒS.positionPercent(20, 40));
-        await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(80, 70));
+        await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(80, 80));
         await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(80, 50));
+        await MyNovel.ƒS.Sound.fade(MyNovel.sound.battle02, 0.2, 1, true);
         await MyNovel.ƒS.update(1);
         MyNovel.ƒS.Speech.hide();
+        MyNovel.ƒS.Sound.play(MyNovel.sound.drawGun, 0.5);
+        await MyNovel.delay(500);
+        MyNovel.ƒS.Sound.play(MyNovel.sound.drawSword, 0.5);
         await MyNovel.ƒS.update(1);
-        //!!!AM ENDE DEAD AUF TRUE SETZEN!!!
         while (!dead) {
             //HP bar
             document.getElementById("HPlvl1").setAttribute("style", "display: block");
@@ -619,1000 +493,30 @@ var MyNovel;
             console.log("while restart");
             turnCount += 1;
             actionTaken = false;
-            //calc turn order unnütz -> fixed turn order (enemy1, frog, enemy2, frog, player, frog)
-            /*let player = Math.floor(Math.random() * (20 - 1 + 1) + 1) + 1;
-            let buddy1 = Math.floor(Math.random() * (20 - 1 + 1) + 1) + 1;
-            let buddy2 = Math.floor(Math.random() * (20 - 1 + 1) + 1) + 1;
-            let buddy3 = Math.floor(Math.random() * (20 - 1 + 1) + 1) + 1;
-            let enemy1 = Math.floor(Math.random() * (20 - 1 + 1) + 1) + 3;
-            let enemy2 = Math.floor(Math.random() * (20 - 1 + 1) + 1) + 3;
-      
-            let initiativeRolls: number[] = [player, buddy1, buddy2, buddy3, enemy1, enemy2];
-      
-            let initiativeOrder: number[] = initiativeRolls.sort((n1,n2) => n1 - n2);
-            console.log(initiativeOrder);
-      
-            for(let i: number = 0; i <= initiativeOrder.length - 1; i++) {
-              initiativeOrder[i].valueOf();
-              console.log(initiativeOrder[i].);
-            }*/
             //ENEMY TURN
-            console.log("enemy1 turn");
-            if (enemy1HP > 0) {
-                e1Dodge = false;
-                if (turnCount == 1) {
-                    enemyAttack(1);
-                    await MyNovel.delay(3000);
-                }
-                else {
-                    if (e1DmgTaken > 8 && e1DmgTaken < 15) {
-                        e1Dodge = true;
-                        //Novel pages
-                        MyNovel.ƒS.Text.setClass("enemy1");
-                        await MyNovel.ƒS.Text.print("Ausweichen");
-                        //CSS für Novel Page
-                        MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                        console.log("enemy1 dodging");
-                    }
-                    else if (enemy1HP <= enemyMaxHP - 20) {
-                        enemyHeal(1);
-                    }
-                    else
-                        enemyAttack(1);
-                    await MyNovel.delay(3000);
-                }
-                e1DmgTaken = 0; //hier wird variable, die bestimmt, wv dmg im letzten Zug erlitten wurde, zurückgesetzt
-                //checken, ob Player tot ist
-                if (PCHP <= 0) {
-                    dead = true;
-                }
-                ;
-            }
-            else {
-                //HIER DOWN ANIMATION
-                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
-                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.down, MyNovel.ƒS.positionPercent(80, 70));
-                await MyNovel.ƒS.update(0.1);
-            }
-            //FROG 1 TURN  -> nur atk
-            console.log("frog1 turn");
-            if (frog1HP > 0) {
-                frogAttack(2);
-                await MyNovel.delay(3000);
-            }
-            async function frogAttack(frogNumber) {
-                //random Ziel auswählen
-                let randomEnemy = Math.floor(Math.random() * (2 - 1 + 1) + 1);
-                //dmg
-                let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                let AtkRll1 = d20 + 3;
-                //Hier atk animation für jeden frog
-                if (frogNumber == 2 && frog1HP > 0) {
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(15, 50));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(20, 50));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(25, 50));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(30, 50));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(35, 50));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(40, 50));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(45, 50));
-                    await MyNovel.ƒS.update(0.2);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(50, 45));
-                    await MyNovel.ƒS.update(0.2);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(55, 50));
-                    await MyNovel.ƒS.update(0.2);
-                }
-                else if (frogNumber == 3 && frog2HP > 0) {
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(25, 60));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(30, 60));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(35, 60));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(40, 60));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(45, 60));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(50, 60));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(55, 60));
-                    await MyNovel.ƒS.update(0.2);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(60, 55));
-                    await MyNovel.ƒS.update(0.2);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(65, 60));
-                    await MyNovel.ƒS.update(0.2);
-                }
-                else if (frogNumber == 4 && frog3HP > 0) {
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(15, 70));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(20, 70));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(25, 70));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(30, 70));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(35, 70));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(40, 70));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(45, 70));
-                    await MyNovel.ƒS.update(0.2);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(50, 65));
-                    await MyNovel.ƒS.update(0.2);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(55, 70));
-                    await MyNovel.ƒS.update(0.2);
-                }
-                //HIER ATK
-                let EnemyAC = 15;
-                if (randomEnemy == 1) {
-                    if (e1Dodge == true) {
-                        let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                        if (d20 + 5 < AtkRll1) {
-                            AtkRll1 = d20 + 5;
-                        }
-                    }
-                    if (AtkRll1 >= EnemyAC) {
-                        let dmgSpearAtk = Math.floor(Math.random() * (8 - 1 + 1) + 1);
-                        if (d20 == 20) {
-                            dmgSpearAtk *= 2;
-                        }
-                        let DmgRll = dmgSpearAtk + 3;
-                        enemy1HP = enemy1HP - DmgRll;
-                        e1DmgTaken = e1DmgTaken + DmgRll;
-                        //Novel pages
-                        MyNovel.ƒS.Text.setClass("enemy1");
-                        await MyNovel.ƒS.Text.print(DmgRll.toString());
-                        //CSS für Novel Page
-                        MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                        console.log("target: 1");
-                    }
-                    else {
-                        MyNovel.ƒS.Text.setClass("enemy1");
-                        if (dodging == true) {
-                            await MyNovel.ƒS.Text.print("ausgewichen");
-                        }
-                        else {
-                            await MyNovel.ƒS.Text.print("verfehlt");
-                        }
-                        ;
-                        MyNovel.ƒS.Text.addClass("novelPage");
-                        console.log("enemy1");
-                    }
-                }
-                else if (randomEnemy == 2) {
-                    if (e2Dodge == true) {
-                        let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                        if (d20 + 5 < AtkRll1) {
-                            AtkRll1 = d20 + 5;
-                        }
-                    }
-                    if (AtkRll1 >= EnemyAC) {
-                        let dmgSpearAtk = Math.floor(Math.random() * (8 - 1 + 1) + 1);
-                        if (d20 == 20) {
-                            dmgSpearAtk *= 2;
-                        }
-                        let DmgRll = dmgSpearAtk + 3;
-                        enemy2HP = enemy2HP - DmgRll;
-                        e2DmgTaken = e2DmgTaken + DmgRll;
-                        //Novel pages
-                        MyNovel.ƒS.Text.setClass("enemy2");
-                        await MyNovel.ƒS.Text.print(DmgRll.toString());
-                        //CSS für Novel Page
-                        MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                        console.log("target: 2");
-                    }
-                    else {
-                        MyNovel.ƒS.Text.setClass("enemy2");
-                        if (dodging == true) {
-                            await MyNovel.ƒS.Text.print("ausgewichen");
-                        }
-                        else {
-                            await MyNovel.ƒS.Text.print("verfehlt");
-                        }
-                        MyNovel.ƒS.Text.addClass("novelPage");
-                        console.log("enemy2");
-                    }
-                }
-                if (frog3HP <= 0) {
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.down, MyNovel.ƒS.positionPercent(10, 70));
-                    await MyNovel.ƒS.update(0.1);
-                }
-                else {
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(10, 70));
-                    await MyNovel.ƒS.update(0.1);
-                }
-                if (frog2HP <= 0) {
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.down, MyNovel.ƒS.positionPercent(20, 60));
-                    await MyNovel.ƒS.update(0.1);
-                }
-                else {
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(20, 60));
-                    await MyNovel.ƒS.update(0.1);
-                }
-                if (frog1HP <= 0) {
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.down, MyNovel.ƒS.positionPercent(10, 50));
-                    await MyNovel.ƒS.update(0.1);
-                }
-                else {
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(10, 50));
-                    await MyNovel.ƒS.update(0.1);
-                }
-            }
-            ;
-            //ENEMY2 TURN
-            console.log("enemy2 turn");
-            if (enemy2HP > 0) {
-                e2Dodge = false;
-                if (turnCount == 1) {
-                    enemyAttack(2);
-                    await MyNovel.delay(3000);
-                }
-                else {
-                    if (e2DmgTaken > 8 && e2DmgTaken < 15) {
-                        e2Dodge = true;
-                        //Novel pages
-                        MyNovel.ƒS.Text.setClass("enemy2");
-                        await MyNovel.ƒS.Text.print("Ausweichen");
-                        //CSS für Novel Page
-                        MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                        console.log("enemy2 dodging");
-                    }
-                    else if (enemy2HP <= enemyMaxHP - 20) {
-                        enemyHeal(2);
-                    }
-                    else
-                        enemyAttack(2);
-                    await MyNovel.delay(3000);
-                }
-                e2DmgTaken = 0; //hier wird variable, die bestimmt, wv dmg im letzten Zug erlitten wurde, zurückgesetzt
-                //checken, ob Player tot ist
-                if (PCHP <= 0) {
-                    dead = true;
-                }
-                ;
-            }
-            else {
-                //HIER DOWN ANIMATION
-                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
-                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.down, MyNovel.ƒS.positionPercent(80, 50));
-                await MyNovel.ƒS.update(0.1);
-            }
-            ;
+            await enemy1Turn();
+            //testen, ob PC tot ist
             if (dead) {
+                await MyNovel.ƒS.Sound.fade(MyNovel.sound.battle02, 0, 2, true);
                 break;
             }
             ;
-            async function enemyAttack(enemyNumber) {
-                //hier Ziel auswählen und dmg berechnen (2mal)
-                //system wer angegriffen wird (Pc muss letzter sein)  
-                let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                let AtkRll1 = d20 + 5;
-                let anotherd20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                let AtkRll2 = anotherd20 + 5;
-                console.log("enemyAtkRll1: " + AtkRll1);
-                console.log("enemyAtkRll2: " + AtkRll2);
-                let bullywugAC = 15;
-                let dmgScimitarAtk1 = Math.floor(Math.random() * (6 - 1 + 1) + 1);
-                if (d20 == 20) {
-                    dmgScimitarAtk1 *= 2;
-                }
-                let DmgRll1 = dmgScimitarAtk1 + 3;
-                let dmgScimitarAtk = Math.floor(Math.random() * (6 - 1 + 1) + 1);
-                if (anotherd20 == 20) {
-                    dmgScimitarAtk *= 2;
-                }
-                let DmgRll2 = dmgScimitarAtk + 3;
-                if (enemyNumber == 1) {
-                    console.log("enemy1Atk");
-                    //ANIMATION
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(75, 70));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(70, 70));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(65, 70));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(60, 70));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(55, 70));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(50, 70));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(45, 70));
-                    await MyNovel.ƒS.update(0.2);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(40, 65));
-                    await MyNovel.ƒS.update(0.2);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(35, 70));
-                    await MyNovel.ƒS.update(0.2);
-                    if (turnCount == 1) {
-                        //atk frog 1 und 2
-                        if (AtkRll1 >= bullywugAC) {
-                            frog1HP -= DmgRll1;
-                            console.log("DmgRoll 1: " + DmgRll1);
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("frog1");
-                            await MyNovel.ƒS.Text.print(DmgRll1.toString());
-                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                            console.log("frog1");
-                        }
-                        else {
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("frog1");
-                            await MyNovel.ƒS.Text.print("verfehlt");
-                            MyNovel.ƒS.Text.addClass("novelPage");
-                            console.log("frog1");
-                        }
-                        ;
-                        if (AtkRll2 >= bullywugAC) {
-                            frog2HP -= DmgRll2;
-                            console.log("DmgRoll 2: " + DmgRll2);
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("frog2");
-                            await MyNovel.ƒS.Text.print(DmgRll2.toString());
-                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                            console.log("frog2");
-                        }
-                        else {
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("frog2");
-                            await MyNovel.ƒS.Text.print("verfehlt");
-                            MyNovel.ƒS.Text.addClass("novelPage");
-                            console.log("frog2");
-                        }
-                        ;
-                    }
-                    else if (turnCount == 2) {
-                        //ES MUSS ABGEFRAGT WERDEN, OB ZIELE NOCH HP HABEN
-                        //atk frog 3 und PC
-                        if (AtkRll1 >= bullywugAC) {
-                            frog3HP -= DmgRll1;
-                            console.log("DmgRoll 1: " + DmgRll1);
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("frog3");
-                            await MyNovel.ƒS.Text.print(DmgRll1.toString());
-                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                            console.log("frog3");
-                        }
-                        else {
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("frog3");
-                            await MyNovel.ƒS.Text.print("verfehlt");
-                            MyNovel.ƒS.Text.addClass("novelPage");
-                            console.log("frog3");
-                        }
-                        ;
-                        //WENN DODGE; DANN WIRD ATKRLL ERNEUT GEROLLT UND SCHLECHTERES ERGEBNIS GENOMMEN
-                        if (dodging == true) {
-                            //HIER DODGING ANZEIGE + ANIMATION (?)
-                            let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                            if (d20 + 5 < AtkRll2) {
-                                AtkRll2 = d20 + 5;
-                            }
-                        }
-                        if (AtkRll2 >= bullywugAC) {
-                            console.log("DmgRoll 2: " + DmgRll2);
-                            PCHP -= DmgRll2; //HIER WIRD HP AUS DER METER BAR GEZOGEN
-                            MyNovel.dataForSave.HP -= DmgRll2;
-                            document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("Player");
-                            await MyNovel.ƒS.Text.print(DmgRll2.toString());
-                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                            console.log("PC");
-                        }
-                        else {
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("Player");
-                            if (dodging == true) {
-                                await MyNovel.ƒS.Text.print("ausgewichen");
-                            }
-                            else {
-                                await MyNovel.ƒS.Text.print("verfehlt");
-                            }
-                            MyNovel.ƒS.Text.addClass("novelPage");
-                            console.log("PC");
-                        }
-                        ;
-                    }
-                    else {
-                        //Abfragen, wer noch HP hat
-                        if (frog1HP > 0) {
-                            //atk frog 1
-                            if (AtkRll1 >= bullywugAC) {
-                                frog1HP -= DmgRll1;
-                                console.log("DmgRoll 1: " + DmgRll1);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog1");
-                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("frog1");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog1");
-                                await MyNovel.ƒS.Text.print("verfehlt");
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("frog1");
-                            }
-                            ;
-                        }
-                        else if (frog2HP > 0) {
-                            //atk frog 2
-                            if (AtkRll1 >= bullywugAC) {
-                                frog2HP -= DmgRll1;
-                                console.log("DmgRoll 1: " + DmgRll1);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog2");
-                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("frog2");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog2");
-                                await MyNovel.ƒS.Text.print("verfehlt");
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("frog2");
-                            }
-                            ;
-                        }
-                        else if (frog3HP > 0) {
-                            //atk frog 3
-                            if (AtkRll1 >= bullywugAC) {
-                                frog3HP -= DmgRll1;
-                                console.log("DmgRoll 1: " + DmgRll1);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog3");
-                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("frog3");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog3");
-                                await MyNovel.ƒS.Text.print("verfehlt");
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("frog3");
-                            }
-                            ;
-                        }
-                        else if (PCHP > 0) {
-                            //atk PC
-                            if (dodging == true) {
-                                let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                                if (d20 + 5 < AtkRll2) {
-                                    AtkRll1 = d20 + 5;
-                                }
-                            }
-                            if (AtkRll1 >= bullywugAC) {
-                                PCHP -= DmgRll1;
-                                MyNovel.dataForSave.HP -= DmgRll2;
-                                document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
-                                console.log("DmgRoll 1: " + DmgRll1);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("Player");
-                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("PC");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("Player");
-                                if (dodging == true) {
-                                    await MyNovel.ƒS.Text.print("ausgewichen");
-                                }
-                                else {
-                                    await MyNovel.ƒS.Text.print("verfehlt");
-                                }
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("PC");
-                            }
-                            ;
-                        }
-                        //nach HP Anzahl sortieren -> fuck it, we script the fight
-                        if (frog2HP > 0) {
-                            if (AtkRll2 >= bullywugAC) {
-                                frog2HP -= DmgRll2;
-                                console.log("DmgRoll 2: " + DmgRll2);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog2");
-                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("frog2");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog2");
-                                await MyNovel.ƒS.Text.print("verfehlt");
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("frog2");
-                            }
-                        }
-                        else if (frog3HP > 0) {
-                            if (AtkRll2 >= bullywugAC) {
-                                frog3HP -= DmgRll2;
-                                console.log("DmgRoll 2: " + DmgRll2);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog3");
-                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("frog3");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog3");
-                                await MyNovel.ƒS.Text.print("verfehlt");
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("frog3");
-                            }
-                        }
-                        else if (frog1HP > 0) {
-                            if (AtkRll2 >= bullywugAC) {
-                                frog1HP -= DmgRll2;
-                                console.log("DmgRoll 2: " + DmgRll2);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog1");
-                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("frog1");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog1");
-                                await MyNovel.ƒS.Text.print("verfehlt");
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("frog1");
-                            }
-                        }
-                        else if (PCHP > 0) {
-                            if (dodging == true) {
-                                let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                                if (d20 + 5 < AtkRll2) {
-                                    AtkRll2 = d20 + 5;
-                                }
-                            }
-                            if (AtkRll2 >= bullywugAC) {
-                                PCHP -= DmgRll2;
-                                MyNovel.dataForSave.HP -= DmgRll2;
-                                document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
-                                console.log("DmgRoll 2: " + DmgRll2);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("Player");
-                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("PC");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("Player");
-                                if (dodging == true) {
-                                    await MyNovel.ƒS.Text.print("ausgewichen");
-                                }
-                                else {
-                                    await MyNovel.ƒS.Text.print("verfehlt");
-                                }
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("PC");
-                            }
-                        }
-                    }
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(80, 70));
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(80, 50));
-                    await MyNovel.ƒS.update(0.1);
-                    //DOWN ANIMATION
-                    if (frog1HP <= 0) {
-                        await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
-                        await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.down, MyNovel.ƒS.positionPercent(10, 50));
-                        await MyNovel.ƒS.update(0.1);
-                    }
-                    ;
-                    if (frog2HP <= 0) {
-                        await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
-                        await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.down, MyNovel.ƒS.positionPercent(20, 60));
-                        await MyNovel.ƒS.update(0.1);
-                    }
-                    ;
-                    if (frog3HP <= 0) {
-                        await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
-                        await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.down, MyNovel.ƒS.positionPercent(10, 70));
-                        await MyNovel.ƒS.update(0.1);
-                    }
-                    ;
-                }
-                else if (enemyNumber == 2) {
-                    console.log("enemy2Atk");
-                    //ANIMATION
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(75, 50));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(70, 50));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(65, 50));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(60, 50));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(55, 50));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(50, 50));
-                    await MyNovel.ƒS.update(0.1);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(45, 50));
-                    await MyNovel.ƒS.update(0.2);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(40, 45));
-                    await MyNovel.ƒS.update(0.2);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(35, 50));
-                    await MyNovel.ƒS.update(0.2);
-                    if (turnCount == 1) {
-                        //atk frog 3 und PC
-                        if (AtkRll1 >= bullywugAC) {
-                            frog3HP -= DmgRll1;
-                            console.log("DmgRoll 1: " + DmgRll1);
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("frog3");
-                            await MyNovel.ƒS.Text.print(DmgRll1.toString());
-                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                            console.log("frog3");
-                        }
-                        else {
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("frog3");
-                            await MyNovel.ƒS.Text.print("verfehlt");
-                            MyNovel.ƒS.Text.addClass("novelPage");
-                            console.log("frog3");
-                        }
-                        ;
-                        if (dodging == true) {
-                            let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                            if (d20 + 5 < AtkRll2) {
-                                AtkRll2 = d20 + 5;
-                            }
-                            ;
-                        }
-                        if (AtkRll2 >= bullywugAC) {
-                            PCHP -= DmgRll2; //HIER WIRD HP AUS DER METER BAR GEZOGEN
-                            MyNovel.dataForSave.HP -= DmgRll2;
-                            console.log("DmgRoll 2: " + DmgRll2);
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("Player"); //hier PC Klasse rein, bzw ersetzen mit Html stuff
-                            await MyNovel.ƒS.Text.print(DmgRll2.toString());
-                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                            console.log("PC");
-                        }
-                        else {
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("Player");
-                            if (dodging == true) {
-                                await MyNovel.ƒS.Text.print("ausgewichen");
-                            }
-                            else {
-                                await MyNovel.ƒS.Text.print("verfehlt");
-                            }
-                            MyNovel.ƒS.Text.addClass("novelPage");
-                            console.log("PC");
-                        }
-                        ;
-                    }
-                    else if (turnCount == 2) {
-                        //ES MUSS ABGEFRAGT WERDEN, OB ZIELE NOCH HP HABEN
-                        //atk frog 1 und 2
-                        if (AtkRll1 >= bullywugAC) {
-                            frog1HP -= DmgRll1;
-                            console.log("DmgRoll 1: " + DmgRll1);
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("frog1");
-                            await MyNovel.ƒS.Text.print(DmgRll1.toString());
-                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                            console.log("frog1");
-                        }
-                        else {
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("frog1");
-                            await MyNovel.ƒS.Text.print("verfehlt");
-                            MyNovel.ƒS.Text.addClass("novelPage");
-                            console.log("frog1");
-                        }
-                        ;
-                        if (dodging == true) {
-                            let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                            if (d20 + 5 < AtkRll2) {
-                                AtkRll2 = d20 + 5;
-                            }
-                        }
-                        if (AtkRll2 >= bullywugAC) {
-                            frog2HP -= DmgRll2;
-                            console.log("DmgRoll 2: " + DmgRll2);
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("frog2");
-                            await MyNovel.ƒS.Text.print(DmgRll2.toString());
-                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                            console.log("frog2");
-                        }
-                        else {
-                            //Novel pages
-                            MyNovel.ƒS.Text.setClass("frog2");
-                            await MyNovel.ƒS.Text.print("verfehlt");
-                            MyNovel.ƒS.Text.addClass("novelPage");
-                            console.log("frog2");
-                        }
-                        ;
-                    }
-                    else {
-                        if (frog3HP > 0) {
-                            if (AtkRll1 >= bullywugAC) {
-                                frog3HP -= DmgRll1;
-                                console.log("DmgRoll 1: " + DmgRll1);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog3");
-                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("frog3");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog3");
-                                await MyNovel.ƒS.Text.print("verfehlt");
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("frog3");
-                            }
-                            ;
-                        }
-                        else if (frog1HP > 0) {
-                            if (AtkRll1 >= bullywugAC) {
-                                frog1HP -= DmgRll1;
-                                console.log("DmgRoll 1: " + DmgRll1);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog1");
-                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("frog1");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog1");
-                                await MyNovel.ƒS.Text.print("verfehlt");
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("frog1");
-                            }
-                            ;
-                        }
-                        else if (frog2HP > 0) {
-                            if (AtkRll1 >= bullywugAC) {
-                                frog2HP -= DmgRll1;
-                                console.log("DmgRoll 1: " + DmgRll1);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog2");
-                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("frog2");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog2");
-                                await MyNovel.ƒS.Text.print("verfehlt");
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("frog2");
-                            }
-                            ;
-                        }
-                        else if (PCHP > 0) {
-                            if (dodging == true) {
-                                let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                                if (d20 + 5 < AtkRll2) {
-                                    AtkRll1 = d20 + 5;
-                                }
-                            }
-                            if (AtkRll1 >= bullywugAC) {
-                                PCHP -= DmgRll1;
-                                MyNovel.dataForSave.HP -= DmgRll2;
-                                document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
-                                console.log("DmgRoll 1: " + DmgRll1);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("Player");
-                                await MyNovel.ƒS.Text.print(DmgRll1.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("PC");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("Player");
-                                if (dodging == true) {
-                                    await MyNovel.ƒS.Text.print("ausgewichen");
-                                }
-                                else {
-                                    await MyNovel.ƒS.Text.print("verfehlt");
-                                }
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("PC");
-                            }
-                        }
-                        if (frog2HP > 0) {
-                            if (AtkRll2 >= bullywugAC) {
-                                frog2HP -= DmgRll2;
-                                console.log("DmgRoll 2: " + DmgRll2);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog2");
-                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("frog2");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog2");
-                                await MyNovel.ƒS.Text.print("verfehlt");
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("frog2");
-                            }
-                        }
-                        else if (frog3HP > 0) {
-                            if (AtkRll2 >= bullywugAC) {
-                                frog3HP -= DmgRll2;
-                                console.log("DmgRoll 2: " + DmgRll2);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog3");
-                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("frog3");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog3");
-                                await MyNovel.ƒS.Text.print("verfehlt");
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("frog3");
-                            }
-                        }
-                        else if (frog1HP > 0) {
-                            if (AtkRll2 >= bullywugAC) {
-                                frog1HP -= DmgRll2;
-                                console.log("DmgRoll 2: " + DmgRll2);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog1");
-                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("frog1");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("frog1");
-                                await MyNovel.ƒS.Text.print("verfehlt");
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("frog1");
-                            }
-                        }
-                        else if (PCHP > 0) {
-                            if (dodging == true) {
-                                let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-                                if (d20 + 5 < AtkRll2) {
-                                    AtkRll2 = d20 + 5;
-                                }
-                            }
-                            if (AtkRll2 >= bullywugAC) {
-                                PCHP -= DmgRll2;
-                                MyNovel.dataForSave.HP -= DmgRll2;
-                                document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
-                                console.log("DmgRoll 2: " + DmgRll2);
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("Player");
-                                await MyNovel.ƒS.Text.print(DmgRll2.toString());
-                                MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
-                                console.log("PC");
-                            }
-                            else {
-                                //Novel pages
-                                MyNovel.ƒS.Text.setClass("Player");
-                                if (dodging == true) {
-                                    await MyNovel.ƒS.Text.print("ausgewichen");
-                                }
-                                else {
-                                    await MyNovel.ƒS.Text.print("verfehlt");
-                                }
-                                MyNovel.ƒS.Text.addClass("novelPage");
-                                console.log("PC");
-                            }
-                        }
-                    }
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(80, 70));
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(80, 50));
-                    await MyNovel.ƒS.update(0.1);
-                    //DOWN ANIMATION
-                    if (frog1HP <= 0) {
-                        await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
-                        await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.down, MyNovel.ƒS.positionPercent(10, 50));
-                        await MyNovel.ƒS.update(0.1);
-                    }
-                    if (frog2HP <= 0) {
-                        await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
-                        await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.down, MyNovel.ƒS.positionPercent(20, 60));
-                        await MyNovel.ƒS.update(0.1);
-                    }
-                    if (frog3HP <= 0) {
-                        await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
-                        await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.down, MyNovel.ƒS.positionPercent(10, 70));
-                        await MyNovel.ƒS.update(0.1);
-                    }
-                }
-                ;
-                //dodge abfragen
+            //FROG 1 TURN  -> nur atk
+            console.log("frog1 turn");
+            if (frog1HP > 0) {
+                await frogAttack(2);
             }
-            ;
-            async function enemyHeal(enemyNumber) {
-                //4d4 + 4
-                let greaterHealingPotion = 4 * (Math.floor(Math.random() * (4 - 1 + 1) + 1)) + 4;
-                console.log(greaterHealingPotion);
-                if (enemyNumber == 1) {
-                    enemy1HP += greaterHealingPotion;
-                }
-                else if (enemyNumber == 2) {
-                    enemy2HP += greaterHealingPotion;
-                }
-                //healing animation
-                MyNovel.ƒS.Text.setClass("healEnemy" + enemyNumber);
-                await MyNovel.ƒS.Text.print(greaterHealingPotion.toString());
-                MyNovel.ƒS.Text.addClass("novelPage");
+            //ENEMY2 TURN
+            await enemy2Turn();
+            if (dead) {
+                await MyNovel.ƒS.Sound.fade(MyNovel.sound.battle02, 0, 2, true);
+                break;
             }
             ;
             //FROG 2 TURN 
             console.log("frog2 turn");
             if (frog2HP > 0) {
-                frogAttack(3);
-                await MyNovel.delay(3000);
+                await frogAttack(3);
             }
             ;
             //PLAYER TURN
@@ -1626,24 +530,105 @@ var MyNovel;
             //FROG 3 TURN
             console.log("frog 3 turn");
             if (frog3HP > 0) {
-                frogAttack(4);
-                await MyNovel.delay(3000);
+                await frogAttack(4);
             }
             ;
             console.log("turn over");
         }
         ;
+        //out of loop; wenn PC tot ist
         document.getElementById("HPlvl1").setAttribute("style", "display: none");
         document.getElementById("HPCount").setAttribute("style", "display: none");
         MyNovel.dataForSave.Protagonist.deaths += 1;
-        await MyNovel.ƒS.Character.hideAll();
+        MyNovel.ƒS.Character.hideAll();
         await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug01, MyNovel.characters.bullywug01.pose.down, MyNovel.ƒS.positionPercent(20, 40));
         await MyNovel.ƒS.update(1);
         await MyNovel.ƒS.Location.show(MyNovel.locations.deathScreen);
         await MyNovel.ƒS.update(MyNovel.transition.deathSpiral.duration, MyNovel.transition.deathSpiral.alpha, MyNovel.transition.deathSpiral.edge);
         await MyNovel.ƒS.update(1);
-        await MyNovel.ƒS.Character.hideAll();
+        MyNovel.ƒS.Character.hideAll();
         await MyNovel.ƒS.update(1);
+        async function enemy1Turn() {
+            console.log("enemy1 turn");
+            if (enemy1HP > 0) {
+                e1Dodge = false;
+                if (turnCount == 1) {
+                    await enemyAttack(1);
+                }
+                else {
+                    if (e1DmgTaken > 8 && e1DmgTaken < 15) {
+                        e1Dodge = true;
+                        //Novel pages
+                        MyNovel.ƒS.Text.setClass("enemy1");
+                        await MyNovel.ƒS.Text.print("Ausweichen");
+                        //CSS für Novel Page
+                        MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                        console.log("enemy1 dodging");
+                    }
+                    else if (enemy1HP <= enemyMaxHP - 20) {
+                        await enemyHeal(1);
+                    }
+                    else {
+                        await enemyAttack(1);
+                    }
+                }
+                e1DmgTaken = 0; //hier wird variable, die bestimmt, wv dmg im letzten Zug erlitten wurde, zurückgesetzt
+                //checken, ob Player tot ist
+                if (PCHP <= 0) {
+                    dead = true;
+                    MyNovel.dataForSave.Protagonist.deaths += 1;
+                }
+                ;
+            }
+            else {
+                //HIER DOWN ANIMATION
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.down, MyNovel.ƒS.positionPercent(80, 80));
+                await MyNovel.ƒS.update(0.1);
+            }
+        }
+        ;
+        async function enemy2Turn() {
+            console.log("enemy2 turn");
+            if (enemy2HP > 0) {
+                e2Dodge = false;
+                if (turnCount == 1) {
+                    await enemyAttack(2);
+                }
+                else {
+                    if (e2DmgTaken > 8 && e2DmgTaken < 15) {
+                        e2Dodge = true;
+                        //Novel pages
+                        MyNovel.ƒS.Text.setClass("enemy2");
+                        await MyNovel.ƒS.Text.print("Ausweichen");
+                        //CSS für Novel Page
+                        MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                        console.log("enemy2 dodging");
+                    }
+                    else if (enemy2HP <= enemyMaxHP - 20) {
+                        await enemyHeal(2);
+                    }
+                    else {
+                        await enemyAttack(2);
+                    }
+                    ;
+                }
+                e2DmgTaken = 0; //hier wird variable, die bestimmt, wv dmg im letzten Zug erlitten wurde, zurückgesetzt
+                //checken, ob Player tot ist
+                if (PCHP <= 0) {
+                    dead = true;
+                }
+                ;
+            }
+            else {
+                //HIER DOWN ANIMATION
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.down, MyNovel.ƒS.positionPercent(80, 80));
+                await MyNovel.ƒS.update(0.1);
+            }
+            ;
+        }
+        ;
         async function takeAction() {
             let dialogue0 = {
                 Attack: "Attack",
@@ -1664,36 +649,29 @@ var MyNovel;
                     switch (dialogueElement1) {
                         case dialogue1.Target1:
                             console.log("Target 1");
-                            attack(1);
+                            await attack(2);
                             actionTaken = true;
-                            await MyNovel.delay(3000);
                             break;
                         case dialogue1.Target2:
                             console.log("Target 2");
-                            attack(2);
+                            await attack(1);
                             actionTaken = true;
-                            await MyNovel.delay(3000);
                             break;
                     }
                     break;
                 case dialogue0.Item:
-                    console.log("You use an item");
-                    //useItem();
-                    //actionTaken = true; //FIX! Nur true, wenn item benutzt wurde (nicht, wenn close gedrückt wird)
-                    await MyNovel.ƒS.Inventory.open();
-                    //HIER REINMACHEN, DASS WENN ITEM BENUTZT WIRD, NACHRICHT MIT: "KANNST DU HIER NICHT BENUTZEN"
-                    await MyNovel.delay(500);
+                    console.log("You try to use an item");
+                    MyNovel.ƒS.Speech.clear();
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, "Dein Iventar ist leer.");
                     break;
                 case dialogue0.Dodge:
                     console.log("You dodge");
-                    dodge();
+                    await dodge();
                     actionTaken = true;
-                    await MyNovel.delay(1000);
                     break;
                 case dialogue0.Flee:
                     console.log("You try to flee");
-                    flee();
-                    await MyNovel.delay(2500);
+                    await flee();
                     break;
             }
             ;
@@ -1736,6 +714,7 @@ var MyNovel;
             await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug01);
             await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug01, MyNovel.characters.bullywug01.pose.upset, MyNovel.ƒS.positionPercent(65, 40));
             await MyNovel.ƒS.update(0.2);
+            MyNovel.ƒS.Sound.play(MyNovel.sound.slashAxe, 0.2);
             if (target == 1) {
                 if (e1Dodge == true) {
                     //Novel Pages
@@ -1786,7 +765,7 @@ var MyNovel;
             else {
                 //atkMiss();  //hier Miss indicator einfügen
                 //Novel pages
-                await MyNovel.ƒS.Text.setClass("enemy" + target);
+                MyNovel.ƒS.Text.setClass("enemy" + target);
                 if (target == 1) {
                     if (e1Dodge) {
                         await MyNovel.ƒS.Text.print("ausgewichen");
@@ -1805,58 +784,1087 @@ var MyNovel;
                 }
                 //await delay(1000);
                 //CSS für Novel Page
-                await MyNovel.ƒS.Text.addClass("novelPage"); //6 css klassen (immer set class, um neue zu setzen)
-                await console.log("target: " + target);
+                MyNovel.ƒS.Text.addClass("novelPage"); //6 css klassen (immer set class, um neue zu setzen)
+                console.log("target: " + target);
             }
             await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug01);
             await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug01, MyNovel.characters.bullywug01.pose.upset, MyNovel.ƒS.positionPercent(20, 40));
             await MyNovel.ƒS.update(0.1);
         }
+        ;
+        async function frogAttack(frogNumber) {
+            //random Ziel auswählen
+            let randomEnemy = Math.floor(Math.random() * (2 - 1 + 1) + 1);
+            //dmg
+            let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+            let AtkRll1 = d20 + 3;
+            //Hier atk animation für jeden frog
+            if (frogNumber == 2 && frog1HP > 0) {
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(15, 50));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(20, 50));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(25, 50));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(30, 50));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(35, 50));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(40, 50));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(45, 50));
+                await MyNovel.ƒS.update(0.2);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(50, 45));
+                await MyNovel.ƒS.update(0.2);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(55, 50));
+                await MyNovel.ƒS.update(0.2);
+                MyNovel.ƒS.Sound.play(MyNovel.sound.slashAxe, 0.2);
+            }
+            else if (frogNumber == 3 && frog2HP > 0) {
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(25, 60));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(30, 60));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(35, 60));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(40, 60));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(45, 60));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(50, 60));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(55, 60));
+                await MyNovel.ƒS.update(0.2);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(60, 55));
+                await MyNovel.ƒS.update(0.2);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(65, 60));
+                await MyNovel.ƒS.update(0.2);
+                MyNovel.ƒS.Sound.play(MyNovel.sound.slashAxe, 0.2);
+            }
+            else if (frogNumber == 4 && frog3HP > 0) {
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(15, 70));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(20, 70));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(25, 70));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(30, 70));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(35, 70));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(40, 70));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(45, 70));
+                await MyNovel.ƒS.update(0.2);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(50, 65));
+                await MyNovel.ƒS.update(0.2);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(55, 70));
+                await MyNovel.ƒS.update(0.2);
+                MyNovel.ƒS.Sound.play(MyNovel.sound.slashAxe, 0.2);
+            }
+            //HIER ATK
+            let EnemyAC = 15;
+            if (randomEnemy == 1) {
+                if (e1Dodge == true) {
+                    let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+                    if (d20 + 5 < AtkRll1) {
+                        AtkRll1 = d20 + 5;
+                    }
+                }
+                if (AtkRll1 >= EnemyAC) {
+                    let dmgSpearAtk = Math.floor(Math.random() * (8 - 1 + 1) + 1);
+                    if (d20 == 20) {
+                        dmgSpearAtk *= 2;
+                    }
+                    let DmgRll = dmgSpearAtk + 3;
+                    enemy1HP = enemy1HP - DmgRll;
+                    e1DmgTaken = e1DmgTaken + DmgRll;
+                    //Novel pages
+                    MyNovel.ƒS.Text.setClass("enemy1");
+                    await MyNovel.ƒS.Text.print(DmgRll.toString());
+                    //CSS für Novel Page
+                    MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                    console.log("target: 1");
+                }
+                else {
+                    MyNovel.ƒS.Text.setClass("enemy1");
+                    if (dodging == true) {
+                        await MyNovel.ƒS.Text.print("ausgewichen");
+                    }
+                    else {
+                        await MyNovel.ƒS.Text.print("verfehlt");
+                    }
+                    ;
+                    MyNovel.ƒS.Text.addClass("novelPage");
+                    console.log("enemy1");
+                }
+            }
+            else if (randomEnemy == 2) {
+                if (e2Dodge == true) {
+                    let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+                    if (d20 + 5 < AtkRll1) {
+                        AtkRll1 = d20 + 5;
+                    }
+                }
+                if (AtkRll1 >= EnemyAC) {
+                    let dmgSpearAtk = Math.floor(Math.random() * (8 - 1 + 1) + 1);
+                    if (d20 == 20) {
+                        dmgSpearAtk *= 2;
+                    }
+                    let DmgRll = dmgSpearAtk + 3;
+                    enemy2HP = enemy2HP - DmgRll;
+                    e2DmgTaken = e2DmgTaken + DmgRll;
+                    //Novel pages
+                    MyNovel.ƒS.Text.setClass("enemy2");
+                    await MyNovel.ƒS.Text.print(DmgRll.toString());
+                    //CSS für Novel Page
+                    MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                    console.log("target: 2");
+                }
+                else {
+                    MyNovel.ƒS.Text.setClass("enemy2");
+                    if (dodging == true) {
+                        await MyNovel.ƒS.Text.print("ausgewichen");
+                    }
+                    else {
+                        await MyNovel.ƒS.Text.print("verfehlt");
+                    }
+                    MyNovel.ƒS.Text.addClass("novelPage");
+                    console.log("enemy2");
+                }
+            }
+            if (frog3HP <= 0) {
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.down, MyNovel.ƒS.positionPercent(10, 70));
+                await MyNovel.ƒS.update(0.1);
+            }
+            else {
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(10, 70));
+                await MyNovel.ƒS.update(0.1);
+            }
+            if (frog2HP <= 0) {
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.down, MyNovel.ƒS.positionPercent(20, 60));
+                await MyNovel.ƒS.update(0.1);
+            }
+            else {
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.upset, MyNovel.ƒS.positionPercent(20, 60));
+                await MyNovel.ƒS.update(0.1);
+            }
+            if (frog1HP <= 0) {
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.down, MyNovel.ƒS.positionPercent(10, 50));
+                await MyNovel.ƒS.update(0.1);
+            }
+            else {
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(10, 50));
+                await MyNovel.ƒS.update(0.1);
+            }
+            await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug01);
+            await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug01, MyNovel.characters.bullywug01.pose.upset, MyNovel.ƒS.positionPercent(20, 40));
+            await MyNovel.ƒS.update(0.1);
+        }
+        ;
         async function useItem() {
             dodging = false;
             await MyNovel.ƒS.Inventory.open();
             //ITEM SELECTEN ETC
         }
-        function dodge() {
+        ;
+        async function dodge() {
             dodging = true;
             //DODGE = DISADVANTAGE FÜR GEGNER
-            //DODGE ANIMATION (???)
         }
+        ;
         async function flee() {
             document.getElementById("speech").hidden = false;
             dodging = false; //????? why
             switch (fleeCount) {
                 case 0:
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, "Bleib standfest, Soldat!");
-                    document.getElementById("speech").hidden = true;
+                    MyNovel.ƒS.Speech.clear();
                     fleeCount += 1;
                     break;
                 case 1:
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, "Formation halten! Wir haben sie gleich!");
-                    document.getElementById("speech").hidden = true;
+                    MyNovel.ƒS.Speech.clear();
                     fleeCount += 1;
                     break;
                 case 2:
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, "Wir sind Krieger! Wir kämpfen bis zum Schluss!");
-                    document.getElementById("speech").hidden = true;
+                    MyNovel.ƒS.Speech.clear();
                     fleeCount += 1;
                     break;
                 case 3:
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, "Niemand verlässt den Kampf!");
-                    document.getElementById("speech").hidden = true;
+                    MyNovel.ƒS.Speech.clear();
                     fleeCount += 1;
                     break;
                 case 4:
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, "Du elender Feigling! Kämpfe!");
-                    document.getElementById("speech").hidden = true;
+                    MyNovel.ƒS.Speech.clear();
                     break;
             }
             //await delay(5000);
-            //HIER MACHEN; DASS SPIELER WAS ANDERES IM ZUG MACHEN KANN (nach jeder erfolgreichen Aktion, maybe ne Rundenvariable hoch?) (vllt nicht möglich nochmal flucht auszuwählen?)
         }
+        ;
+        async function enemyAttack(enemyNumber) {
+            //hier Ziel auswählen und dmg berechnen (2mal)
+            //system wer angegriffen wird (Pc muss letzter sein)  
+            let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+            let AtkRll1 = d20 + 5;
+            let anotherd20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+            let AtkRll2 = anotherd20 + 5;
+            console.log("enemyAtkRll1: " + AtkRll1);
+            console.log("enemyAtkRll2: " + AtkRll2);
+            let bullywugAC = 15;
+            let dmgScimitarAtk1 = Math.floor(Math.random() * (6 - 1 + 1) + 1);
+            if (d20 == 20) {
+                dmgScimitarAtk1 *= 2;
+            }
+            let DmgRll1 = dmgScimitarAtk1 + 3;
+            let dmgScimitarAtk = Math.floor(Math.random() * (6 - 1 + 1) + 1);
+            if (anotherd20 == 20) {
+                dmgScimitarAtk *= 2;
+            }
+            let DmgRll2 = dmgScimitarAtk + 3;
+            if (enemyNumber == 1) {
+                console.log("enemy1Atk");
+                //ANIMATION
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(75, 80));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(70, 80));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(65, 80));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(60, 80));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(55, 80));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(50, 80));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(45, 80));
+                await MyNovel.ƒS.update(0.2);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(40, 75));
+                await MyNovel.ƒS.update(0.2);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(35, 80));
+                await MyNovel.ƒS.update(0.2);
+                if (turnCount == 1) {
+                    //atk frog 1 und 2
+                    if (AtkRll1 >= bullywugAC) {
+                        frog1HP -= DmgRll1;
+                        console.log("DmgRoll 1: " + DmgRll1);
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                        //Novel pages
+                        MyNovel.ƒS.Text.setClass("frog1");
+                        await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                        MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                        console.log("frog1 hit");
+                    }
+                    else {
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                        //Novel pages
+                        MyNovel.ƒS.Text.setClass("frog1");
+                        await MyNovel.ƒS.Text.print("verfehlt");
+                        MyNovel.ƒS.Text.addClass("novelPage");
+                        console.log("frog1 miss");
+                    }
+                    ;
+                    if (AtkRll2 >= bullywugAC) {
+                        frog2HP -= DmgRll2;
+                        console.log("DmgRoll 2: " + DmgRll2);
+                        //Novel pages
+                        MyNovel.ƒS.Text.setClass("frog2");
+                        await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                        MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                        console.log("frog2 hit");
+                    }
+                    else {
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                        //Novel pages
+                        MyNovel.ƒS.Text.setClass("frog2");
+                        await MyNovel.ƒS.Text.print("verfehlt");
+                        MyNovel.ƒS.Text.addClass("novelPage");
+                        console.log("frog2 miss");
+                    }
+                    ;
+                }
+                else if (turnCount == 2) {
+                    //ES MUSS ABGEFRAGT WERDEN, OB ZIELE NOCH HP HABEN
+                    //atk frog 3 und PC
+                    if (AtkRll1 >= bullywugAC) {
+                        frog3HP -= DmgRll1;
+                        console.log("DmgRoll 1: " + DmgRll1);
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                        //Novel pages
+                        MyNovel.ƒS.Text.setClass("frog3");
+                        await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                        MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                        console.log("frog3 hit");
+                    }
+                    else {
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                        //Novel pages
+                        MyNovel.ƒS.Text.setClass("frog3");
+                        await MyNovel.ƒS.Text.print("verfehlt");
+                        MyNovel.ƒS.Text.addClass("novelPage");
+                        console.log("frog3 miss");
+                    }
+                    ;
+                    //WENN DODGE; DANN WIRD ATKRLL ERNEUT GEROLLT UND SCHLECHTERES ERGEBNIS GENOMMEN
+                    if (dodging == true) {
+                        //HIER DODGING ANZEIGE + ANIMATION (?)
+                        let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+                        if (d20 + 5 < AtkRll2) {
+                            AtkRll2 = d20 + 5;
+                        }
+                    }
+                    if (AtkRll2 >= bullywugAC) {
+                        console.log("DmgRoll 2: " + DmgRll2);
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                        PCHP -= DmgRll2; //HIER WIRD HP AUS DER METER BAR GEZOGEN
+                        MyNovel.dataForSave.HP -= DmgRll2;
+                        if (PCHP > 0) {
+                            document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
+                        }
+                        else {
+                            document.getElementById("HPCount").setAttribute("value", "0/20");
+                        }
+                        //Novel pages
+                        MyNovel.ƒS.Text.setClass("Player");
+                        await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                        MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                        console.log("PC hit");
+                    }
+                    else {
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                        //Novel pages
+                        MyNovel.ƒS.Text.setClass("Player");
+                        if (dodging == true) {
+                            await MyNovel.ƒS.Text.print("ausgewichen");
+                        }
+                        else {
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                        }
+                        MyNovel.ƒS.Text.addClass("novelPage");
+                        console.log("PC miss");
+                    }
+                    ;
+                }
+                else {
+                    //Abfragen, wer noch HP hat
+                    if (frog1HP > 0) {
+                        //atk frog 1
+                        if (AtkRll1 >= bullywugAC) {
+                            frog1HP -= DmgRll1;
+                            console.log("DmgRoll 1: " + DmgRll1);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog1");
+                            await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("frog1 hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog1");
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("frog1 miss");
+                        }
+                        ;
+                    }
+                    else if (frog2HP > 0) {
+                        //atk frog 2
+                        if (AtkRll1 >= bullywugAC) {
+                            frog2HP -= DmgRll1;
+                            console.log("DmgRoll 1: " + DmgRll1);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog2");
+                            await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("frog2 hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog2");
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("frog2 miss");
+                        }
+                        ;
+                    }
+                    else if (frog3HP > 0) {
+                        //atk frog 3
+                        if (AtkRll1 >= bullywugAC) {
+                            frog3HP -= DmgRll1;
+                            console.log("DmgRoll 1: " + DmgRll1);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog3");
+                            await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("frog3 hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog3");
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("frog3 miss");
+                        }
+                        ;
+                    }
+                    else if (PCHP > 0) {
+                        //atk PC
+                        if (dodging == true) {
+                            let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+                            if (d20 + 5 < AtkRll2) {
+                                AtkRll1 = d20 + 5;
+                            }
+                        }
+                        if (AtkRll1 >= bullywugAC) {
+                            PCHP -= DmgRll1;
+                            MyNovel.dataForSave.HP -= DmgRll2;
+                            if (PCHP > 0) {
+                                document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
+                            }
+                            else {
+                                document.getElementById("HPCount").setAttribute("value", "0/20");
+                            }
+                            console.log("DmgRoll 1: " + DmgRll1);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("Player");
+                            await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("PC hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("Player");
+                            if (dodging == true) {
+                                await MyNovel.ƒS.Text.print("ausgewichen");
+                            }
+                            else {
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                            }
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("PC miss");
+                        }
+                        ;
+                    }
+                    //nach HP Anzahl sortieren -> fuck it, we script the fight
+                    if (frog2HP > 0) {
+                        if (AtkRll2 >= bullywugAC) {
+                            frog2HP -= DmgRll2;
+                            console.log("DmgRoll 2: " + DmgRll2);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog2");
+                            await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("frog2 hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog2");
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("frog2 miss");
+                        }
+                    }
+                    else if (frog3HP > 0) {
+                        if (AtkRll2 >= bullywugAC) {
+                            frog3HP -= DmgRll2;
+                            console.log("DmgRoll 2: " + DmgRll2);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog3");
+                            await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("frog3 hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog3");
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("frog3 miss");
+                        }
+                    }
+                    else if (frog1HP > 0) {
+                        if (AtkRll2 >= bullywugAC) {
+                            frog1HP -= DmgRll2;
+                            console.log("DmgRoll 2: " + DmgRll2);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog1");
+                            await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("frog1 hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog1");
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("frog1 miss");
+                        }
+                    }
+                    else if (PCHP > 0) {
+                        if (dodging == true) {
+                            let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+                            if (d20 + 5 < AtkRll2) {
+                                AtkRll2 = d20 + 5;
+                            }
+                        }
+                        if (AtkRll2 >= bullywugAC) {
+                            PCHP -= DmgRll2;
+                            MyNovel.dataForSave.HP -= DmgRll2;
+                            if (PCHP > 0) {
+                                document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
+                            }
+                            else {
+                                document.getElementById("HPCount").setAttribute("value", "0/20");
+                            }
+                            console.log("DmgRoll 2: " + DmgRll2);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("Player");
+                            await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("PC hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("Player");
+                            if (dodging == true) {
+                                await MyNovel.ƒS.Text.print("ausgewichen");
+                            }
+                            else {
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                            }
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("PC miss");
+                        }
+                    }
+                }
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(80, 80));
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(80, 50));
+                await MyNovel.ƒS.update(0.1);
+                //DOWN ANIMATION
+                if (frog3HP <= 0) {
+                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
+                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.down, MyNovel.ƒS.positionPercent(10, 70));
+                    await MyNovel.ƒS.update(0.1);
+                }
+                ;
+                if (frog2HP <= 0) {
+                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
+                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.down, MyNovel.ƒS.positionPercent(20, 60));
+                    await MyNovel.ƒS.update(0.1);
+                }
+                ;
+                if (frog1HP <= 0) {
+                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
+                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.down, MyNovel.ƒS.positionPercent(10, 50));
+                    await MyNovel.ƒS.update(0.1);
+                }
+                ;
+            }
+            else if (enemyNumber == 2) {
+                console.log("enemy2Atk");
+                //ANIMATION
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(75, 50));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(70, 50));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(65, 50));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(60, 50));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(55, 50));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(50, 50));
+                await MyNovel.ƒS.update(0.1);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(45, 50));
+                await MyNovel.ƒS.update(0.2);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(40, 45));
+                await MyNovel.ƒS.update(0.2);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(35, 50));
+                await MyNovel.ƒS.update(0.2);
+                if (turnCount == 1) {
+                    //atk frog 3 und PC
+                    if (AtkRll1 >= bullywugAC) {
+                        frog3HP -= DmgRll1;
+                        console.log("DmgRoll 1: " + DmgRll1);
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                        //Novel pages
+                        MyNovel.ƒS.Text.setClass("frog3");
+                        await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                        MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                        console.log("frog3 hit");
+                    }
+                    else {
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                        //Novel pages
+                        MyNovel.ƒS.Text.setClass("frog3");
+                        await MyNovel.ƒS.Text.print("verfehlt");
+                        MyNovel.ƒS.Text.addClass("novelPage");
+                        console.log("frog3 miss");
+                    }
+                    ;
+                    if (dodging == true) {
+                        let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+                        if (d20 + 5 < AtkRll2) {
+                            AtkRll2 = d20 + 5;
+                        }
+                        ;
+                    }
+                    if (AtkRll2 >= bullywugAC) {
+                        PCHP -= DmgRll2; //HIER WIRD HP AUS DER METER BAR GEZOGEN
+                        MyNovel.dataForSave.HP -= DmgRll2;
+                        if (PCHP > 0) {
+                            document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
+                        }
+                        else {
+                            document.getElementById("HPCount").setAttribute("value", "0/20");
+                        }
+                        console.log("DmgRoll 2: " + DmgRll2);
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                        //Novel pages
+                        MyNovel.ƒS.Text.setClass("Player"); //hier PC Klasse rein, bzw ersetzen mit Html stuff
+                        await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                        MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                        console.log("PC hit");
+                    }
+                    else {
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                        //Novel pages
+                        MyNovel.ƒS.Text.setClass("Player");
+                        if (dodging == true) {
+                            await MyNovel.ƒS.Text.print("ausgewichen");
+                        }
+                        else {
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                        }
+                        MyNovel.ƒS.Text.addClass("novelPage");
+                        console.log("PC miss");
+                    }
+                    ;
+                }
+                else if (turnCount == 2) {
+                    //ES MUSS ABGEFRAGT WERDEN, OB ZIELE NOCH HP HABEN
+                    //atk frog 1 und 2
+                    if (frog1HP > 0) {
+                        if (AtkRll1 >= bullywugAC) {
+                            frog1HP -= DmgRll1;
+                            console.log("DmgRoll 1: " + DmgRll1);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog1");
+                            await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("frog1 hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog1");
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("frog1 miss");
+                        }
+                        ;
+                    }
+                    else if (frog3HP > 0) {
+                        if (AtkRll2 >= bullywugAC) {
+                            frog3HP -= DmgRll2;
+                            console.log("DmgRoll 2: " + DmgRll2);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog3");
+                            await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("frog3 hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog3");
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("frog3 miss");
+                        }
+                    }
+                    if (frog2HP > 0) {
+                        if (AtkRll2 >= bullywugAC) {
+                            frog2HP -= DmgRll2;
+                            console.log("DmgRoll 2: " + DmgRll2);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog2");
+                            await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("frog2 hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog2");
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("frog2 miss");
+                        }
+                        ;
+                    }
+                    else if (PCHP > 0) {
+                        if (dodging == true) {
+                            let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+                            if (d20 + 5 < AtkRll2) {
+                                AtkRll2 = d20 + 5;
+                            }
+                        }
+                        if (AtkRll2 >= bullywugAC) {
+                            PCHP -= DmgRll2;
+                            MyNovel.dataForSave.HP -= DmgRll2;
+                            if (PCHP > 0) {
+                                document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
+                            }
+                            else {
+                                document.getElementById("HPCount").setAttribute("value", "0/20");
+                            }
+                            console.log("DmgRoll 2: " + DmgRll2);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("Player");
+                            await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("PC hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("Player");
+                            if (dodging == true) {
+                                await MyNovel.ƒS.Text.print("ausgewichen");
+                            }
+                            else {
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                            }
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("PC miss");
+                        }
+                    }
+                }
+                else {
+                    if (frog3HP > 0) {
+                        if (AtkRll1 >= bullywugAC) {
+                            frog3HP -= DmgRll1;
+                            console.log("DmgRoll 1: " + DmgRll1);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog3");
+                            await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("frog3 hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog3");
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("frog3 miss");
+                        }
+                        ;
+                    }
+                    else if (frog1HP > 0) {
+                        if (AtkRll1 >= bullywugAC) {
+                            frog1HP -= DmgRll1;
+                            console.log("DmgRoll 1: " + DmgRll1);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog1");
+                            await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("frog1 hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog1");
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("frog1 miss");
+                        }
+                        ;
+                    }
+                    else if (frog2HP > 0) {
+                        if (AtkRll1 >= bullywugAC) {
+                            frog2HP -= DmgRll1;
+                            console.log("DmgRoll 1: " + DmgRll1);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog2");
+                            await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("frog2 hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog2");
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("frog2 miss");
+                        }
+                        ;
+                    }
+                    else if (PCHP > 0) {
+                        if (dodging == true) {
+                            let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+                            if (d20 + 5 < AtkRll2) {
+                                AtkRll1 = d20 + 5;
+                            }
+                        }
+                        if (AtkRll1 >= bullywugAC) {
+                            PCHP -= DmgRll1;
+                            MyNovel.dataForSave.HP -= DmgRll2;
+                            if (PCHP > 0) {
+                                document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
+                            }
+                            else {
+                                document.getElementById("HPCount").setAttribute("value", "0/20");
+                            }
+                            console.log("DmgRoll 1: " + DmgRll1);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("Player");
+                            await MyNovel.ƒS.Text.print(DmgRll1.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("PC hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("Player");
+                            if (dodging == true) {
+                                await MyNovel.ƒS.Text.print("ausgewichen");
+                            }
+                            else {
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                            }
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("PC miss");
+                        }
+                    }
+                    if (frog2HP > 0) {
+                        if (AtkRll2 >= bullywugAC) {
+                            frog2HP -= DmgRll2;
+                            console.log("DmgRoll 2: " + DmgRll2);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog2");
+                            await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("frog2 hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog2");
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("frog2 miss");
+                        }
+                    }
+                    else if (frog3HP > 0) {
+                        if (AtkRll2 >= bullywugAC) {
+                            frog3HP -= DmgRll2;
+                            console.log("DmgRoll 2: " + DmgRll2);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog3");
+                            await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("frog3 hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog3");
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("frog3 miss");
+                        }
+                    }
+                    else if (frog1HP > 0) {
+                        if (AtkRll2 >= bullywugAC) {
+                            frog1HP -= DmgRll2;
+                            console.log("DmgRoll 2: " + DmgRll2);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog1");
+                            await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("frog1 hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("frog1");
+                            await MyNovel.ƒS.Text.print("verfehlt");
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("frog1 miss");
+                        }
+                    }
+                    else if (PCHP > 0) {
+                        if (dodging == true) {
+                            let d20 = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+                            if (d20 + 5 < AtkRll2) {
+                                AtkRll2 = d20 + 5;
+                            }
+                        }
+                        if (AtkRll2 >= bullywugAC) {
+                            PCHP -= DmgRll2;
+                            MyNovel.dataForSave.HP -= DmgRll2;
+                            if (PCHP > 0) {
+                                document.getElementById("HPCount").setAttribute("value", PCHP.toString() + "/20");
+                            }
+                            else {
+                                document.getElementById("HPCount").setAttribute("value", "0/20");
+                            }
+                            console.log("DmgRoll 2: " + DmgRll2);
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("Player");
+                            await MyNovel.ƒS.Text.print(DmgRll2.toString());
+                            MyNovel.ƒS.Text.addClass("novelPage"); //DAS HIER MUSS NACH 1 SEK VERSCHWINDEN
+                            console.log("PC hit");
+                        }
+                        else {
+                            MyNovel.ƒS.Sound.play(MyNovel.sound.swordMiss, 0.2);
+                            //Novel pages
+                            MyNovel.ƒS.Text.setClass("Player");
+                            if (dodging == true) {
+                                await MyNovel.ƒS.Text.print("ausgewichen");
+                            }
+                            else {
+                                await MyNovel.ƒS.Text.print("verfehlt");
+                            }
+                            MyNovel.ƒS.Text.addClass("novelPage");
+                            console.log("PC miss");
+                        }
+                    }
+                }
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter01);
+                await MyNovel.ƒS.Character.hide(MyNovel.characters.fighter02);
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter01, MyNovel.characters.fighter01.pose.upset, MyNovel.ƒS.positionPercent(80, 80));
+                await MyNovel.ƒS.Character.show(MyNovel.characters.fighter02, MyNovel.characters.fighter02.pose.upset, MyNovel.ƒS.positionPercent(80, 50));
+                await MyNovel.ƒS.update(0.1);
+                //DOWN ANIMATION
+                if (frog3HP <= 0) {
+                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug04);
+                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.down, MyNovel.ƒS.positionPercent(10, 70));
+                    await MyNovel.ƒS.update(0.1);
+                }
+                if (frog2HP <= 0) {
+                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug03);
+                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug03, MyNovel.characters.bullywug03.pose.down, MyNovel.ƒS.positionPercent(20, 60));
+                    await MyNovel.ƒS.update(0.1);
+                }
+                if (frog1HP <= 0) {
+                    await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug02);
+                    await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.down, MyNovel.ƒS.positionPercent(10, 50));
+                    await MyNovel.ƒS.update(0.1);
+                }
+            }
+            ;
+            //dodge abfragen
+        }
+        ;
+        async function enemyHeal(enemyNumber) {
+            //4d4 + 4
+            let greaterHealingPotion = 4 * (Math.floor(Math.random() * (4 - 1 + 1) + 1)) + 4;
+            console.log(greaterHealingPotion);
+            if (enemyNumber == 1) {
+                enemy1HP += greaterHealingPotion;
+            }
+            else if (enemyNumber == 2) {
+                enemy2HP += greaterHealingPotion;
+            }
+            MyNovel.ƒS.Sound.play(MyNovel.sound.healthPotion, 0.2);
+            //healing animation
+            MyNovel.ƒS.Text.setClass("healEnemy" + enemyNumber);
+            await MyNovel.ƒS.Text.print(greaterHealingPotion.toString());
+            MyNovel.ƒS.Text.addClass("novelPage");
+        }
+        ;
     }
     MyNovel.GameScene01 = GameScene01;
 })(MyNovel || (MyNovel = {}));
+;
 var MyNovel;
 (function (MyNovel) {
     async function GameScene02() {
@@ -1925,7 +1933,7 @@ var MyNovel;
         document.getElementById("respawnQuote").style.display = "none";
         document.getElementById("respawnQuote").removeChild(p);
         //dann fade in und tümpel sounds
-        await MyNovel.ƒS.Location.show(MyNovel.locations.swampBoat);
+        await MyNovel.ƒS.Location.show(MyNovel.locations.swamp);
         await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true);
         await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
         //self-dialog 
@@ -1939,7 +1947,7 @@ var MyNovel;
         await MyNovel.ƒS.Location.show(MyNovel.locations.swampWalk);
         await MyNovel.ƒS.Sound.fade(MyNovel.sound.squelch, 0.2, 1);
         //BILD VON STEVE EINFÜGEN
-        await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(55, 80));
+        await MyNovel.ƒS.Character.show(MyNovel.characters.steve, MyNovel.characters.steve.pose.upset, MyNovel.ƒS.positionPercent(50, 80));
         await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Unknown.T0006);
         //Spieler kann Name eingeben
@@ -2079,13 +2087,13 @@ var MyNovel;
         //Steve stabs player
         //Steve mit Messer oder Speer
         await MyNovel.ƒS.Character.hideAll();
-        await MyNovel.ƒS.Character.show(MyNovel.characters.steve, MyNovel.characters.steve.pose.upset, MyNovel.ƒS.positionPercent(55, 80));
+        await MyNovel.ƒS.Character.show(MyNovel.characters.steve, MyNovel.characters.steve.pose.upset, MyNovel.ƒS.positionPercent(50, 80));
         await MyNovel.ƒS.update(0.5);
         await MyNovel.ƒS.Character.hideAll();
-        await MyNovel.ƒS.Character.show(MyNovel.characters.steve, MyNovel.characters.steve.pose.medium, MyNovel.ƒS.positionPercent(58, 85));
+        await MyNovel.ƒS.Character.show(MyNovel.characters.steve, MyNovel.characters.steve.pose.medium, MyNovel.ƒS.positionPercent(50, 85));
         await MyNovel.ƒS.update(0.5);
         await MyNovel.ƒS.Character.hideAll();
-        await MyNovel.ƒS.Character.show(MyNovel.characters.steve, MyNovel.characters.steve.pose.large, MyNovel.ƒS.positionPercent(60, 100));
+        await MyNovel.ƒS.Character.show(MyNovel.characters.steve, MyNovel.characters.steve.pose.large, MyNovel.ƒS.positionPercent(55, 100));
         await MyNovel.ƒS.update(0.5);
         await MyNovel.ƒS.Sound.fade(MyNovel.sound.slash, 0.2, 1);
         //Hier respawn hintergrund (blackscreen + quote)
@@ -2106,11 +2114,11 @@ var MyNovel;
         pp.textContent = MyNovel.deathQuotes[MyNovel.dataForSave.Protagonist.deaths - 1];
         document.getElementById("respawnQuote")?.appendChild(pp);
         await MyNovel.ƒS.update(1);
-        await MyNovel.delay(5000);
+        await MyNovel.delay(4000);
         document.getElementById("respawnQuote").style.display = "none";
         document.getElementById("respawnQuote").removeChild(pp);
         //dann fade in und tümpel sounds
-        await MyNovel.ƒS.Location.show(MyNovel.locations.swampBoat);
+        await MyNovel.ƒS.Location.show(MyNovel.locations.swamp);
         await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1);
         await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
         await MyNovel.ƒS.update(1);
@@ -2122,7 +2130,7 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, MyNovel.dataForSave.Protagonist.name + "!");
         //Background Wechsel
         await MyNovel.ƒS.Location.show(MyNovel.locations.swampWalk);
-        await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(55, 80));
+        await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(50, 80));
         await MyNovel.ƒS.Sound.fade(MyNovel.sound.squelch, 0.2, 1);
         await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0010);
@@ -2281,7 +2289,7 @@ var MyNovel;
                 T0024: "Geschafft.",
                 //hinten
                 T0025: "Der morsche Ast ist unter meinen Tritten komplett zerbröselt.",
-                T0026: "Aber hier ist eine Leiter, zumindest komm ich damit sicher auf den Boden.",
+                T0026: "Aber hier drin ist eine Leiter, zumindest komm ich damit sicher auf den Boden.",
                 //vorne bei Wachen
                 //bestechen
                 T0027: "Hallo, ich muss einen Schlüüühh.. Gegensand holen, den ein Freund hier vergessen hat.",
@@ -2334,18 +2342,19 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0002);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0003);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0004);
-        let dialogue0 = {
+        await MyNovel.ƒS.Speech.hide();
+        let approachHouse = {
             AltWeg: "Soll ich einen anderen Weg suchen...",
             WachenAnsprechen: "...oder die Wachen ansprechen?",
         };
         let altWeg;
         let reden;
-        let dialogueElement0 = await MyNovel.ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
-        switch (dialogueElement0) {
-            case dialogue0.AltWeg:
+        let approachHouseElement = await MyNovel.ƒS.Menu.getInput(approachHouse, "choicesCSSClass");
+        switch (approachHouseElement) {
+            case approachHouse.AltWeg:
                 altWeg = true;
                 break;
-            case dialogue0.WachenAnsprechen:
+            case approachHouse.WachenAnsprechen:
                 reden = true;
                 break;
         }
@@ -2357,54 +2366,57 @@ var MyNovel;
         }
         ;
         async function altWegScene() {
-            if (astGefallen == false) {
+            if (!astGefallen) {
                 await MyNovel.ƒS.Location.show(MyNovel.locations.BueroHinten);
                 await MyNovel.ƒS.Character.hideAll();
                 await MyNovel.ƒS.Speech.hide();
-                await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true);
+                await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true); //prolly useless
                 await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0005);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0006);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0007);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0008);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0009);
+                MyNovel.ƒS.Speech.hide();
                 //hier Auswahl, ob man es am Eingang versuchen will oder hierbleiben
-                let dialogue1 = {
+                let stayBackHouse = {
                     zurueck: "Soll ich mein Glück mit den Wachen versuchen...",
                     bleiben: "...oder erstmal hierbleiben?",
                 };
-                let dialogueElement1 = await MyNovel.ƒS.Menu.getInput(dialogue1, "choicesCSSClass");
-                switch (dialogueElement1) {
-                    case dialogue1.zurueck:
+                let stayBackHouseElement = await MyNovel.ƒS.Menu.getInput(stayBackHouse, "choicesCSSClass");
+                switch (stayBackHouseElement) {
+                    case stayBackHouse.zurueck:
                         await MyNovel.ƒS.Speech.hide();
                         await MyNovel.ƒS.update();
                         await redenScene();
                         break;
-                    case dialogue1.bleiben:
+                    case stayBackHouse.bleiben:
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0010);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0011);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0012);
+                        MyNovel.ƒS.Speech.hide();
                         //hier Auswahl, ob man es am Eingang versuchen will oder hierbleiben
-                        let dialogue2 = {
+                        let climbTree = {
                             zurueck: "Soll ich es doch lieber vorne herum versuchen...",
                             bleiben: "...oder wirklich versuchen, auf den Baum zu klettern?",
                         };
-                        let dialogueElement2 = await MyNovel.ƒS.Menu.getInput(dialogue2, "choicesCSSClass");
-                        switch (dialogueElement2) {
-                            case dialogue2.zurueck:
+                        let climbTreeElement = await MyNovel.ƒS.Menu.getInput(climbTree, "choicesCSSClass");
+                        switch (climbTreeElement) {
+                            case climbTree.zurueck:
                                 await redenScene();
                                 break;
-                            case dialogue2.bleiben:
+                            case climbTree.bleiben:
                                 break;
                         }
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0013);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0014);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0015);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0016);
-                        //hier sound für ast brechen ---------------------------------------------------------
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.branchSnap, 1);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0017);
                         astGefallen = true;
-                        //hier sound für fallen und sterben ---------------------------------------------------------
+                        await MyNovel.delay(2000);
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.fall, 1);
                         //hier todesscreen
                         await MyNovel.ƒS.Speech.hide();
                         await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0, 1);
@@ -2425,31 +2437,31 @@ var MyNovel;
                         await MyNovel.delay(5000);
                         document.getElementById("respawnQuote").style.display = "none";
                         document.getElementById("respawnQuote").removeChild(pp);
-                        await MyNovel.ƒS.Location.show(MyNovel.locations.swampBoat);
+                        await MyNovel.ƒS.Location.show(MyNovel.locations.swamp);
                         await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1);
                         await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
                         await MyNovel.ƒS.update(1);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0018);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0019);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0020);
+                        await MyNovel.ƒS.Speech.hide();
                         //Transition zurück zum Büro
                         await MyNovel.ƒS.Location.show(MyNovel.locations.BueroAußen);
-                        await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0, 1);
                         await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true);
                         await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully1, MyNovel.characters.guardBully1.pose.upset, MyNovel.ƒS.positionPercent(60, 71));
                         await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully2, MyNovel.characters.guardBully2.pose.upset, MyNovel.ƒS.positionPercent(65, 70));
                         await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
                         //als nächstes wieder Auswahl, ob man nach hinten will oder mit Wachen reden; hier bei "nach hinten gehen" neue Methode/neuer Hintergrund mit gefallenem Ast
-                        let dialogue3 = {
+                        let approachHouseAgain = {
                             AltWeg: "Soll ich nochmal nach hinten gehen...",
                             WachenAnsprechen: "...oder die Wachen ansprechen?",
                         };
-                        let dialogueElement3 = await MyNovel.ƒS.Menu.getInput(dialogue3, "choicesCSSClass");
-                        switch (dialogueElement3) {
-                            case dialogue3.AltWeg:
+                        let approachHouseAgainElement = await MyNovel.ƒS.Menu.getInput(approachHouseAgain, "choicesCSSClass");
+                        switch (approachHouseAgainElement) {
+                            case approachHouseAgain.AltWeg:
                                 await altWeg2Scene();
                                 break;
-                            case dialogue3.WachenAnsprechen:
+                            case approachHouseAgain.WachenAnsprechen:
                                 await redenScene();
                                 break;
                         }
@@ -2457,7 +2469,7 @@ var MyNovel;
                         break;
                 }
             }
-            else if (astGefallen == true) {
+            else if (astGefallen) {
                 await altWeg2Scene();
             }
             ;
@@ -2471,21 +2483,24 @@ var MyNovel;
             await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0021);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0022);
-            let dialogue4 = {
+            MyNovel.ƒS.Speech.hide();
+            let climbWindow = {
                 klettern: "Soll ich durch das Fenster hineinklettern...",
                 zurueck: "...oder lieber doch zurück zu den Wachen?",
             };
-            let dialogueElement4 = await MyNovel.ƒS.Menu.getInput(dialogue4, "choicesCSSClass");
-            switch (dialogueElement4) {
-                case dialogue4.klettern:
+            let climbWindowElement = await MyNovel.ƒS.Menu.getInput(climbWindow, "choicesCSSClass");
+            switch (climbWindowElement) {
+                case climbWindow.klettern:
+                    await MyNovel.ƒS.Sound.fade(MyNovel.sound.stairs, 0.2, 2, false);
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0023);
+                    await MyNovel.ƒS.Sound.fade(MyNovel.sound.stairs, 0, 2, false);
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0024);
                     await MyNovel.ƒS.Location.show(MyNovel.locations.BueroHinten);
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0025);
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0026);
                     await drinnenScene();
                     break;
-                case dialogue4.zurueck:
+                case climbWindow.zurueck:
                     await redenScene();
                     break;
             }
@@ -2500,61 +2515,63 @@ var MyNovel;
                     await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true);
                     await MyNovel.ƒS.Character.hideAll();
                     await MyNovel.ƒS.update(1);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully1, MyNovel.characters.guardBully1.pose.upset, MyNovel.ƒS.positionPercent(40, 70));
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully2, MyNovel.characters.guardBully2.pose.upset, MyNovel.ƒS.positionPercent(66, 70));
+                    await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully1Big, MyNovel.characters.guardBully1Big.pose.upset, MyNovel.ƒS.positionPercent(38, 80));
+                    await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully2Big, MyNovel.characters.guardBully2Big.pose.upset, MyNovel.ƒS.positionPercent(64, 80));
                     await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0001);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0001);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0002);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0002);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0003);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0003);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0004);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0005);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0004);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0006);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0007);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0008);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0005);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0006);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0009);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0007);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0008);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0009);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0001);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0001);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0002);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0002);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0003);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0003);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0004);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0005);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0004);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0006);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0007);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0008);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0005);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0006);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0009);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0007);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0008);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0009);
                 }
-                let dialogue5 = {
+                MyNovel.ƒS.Speech.hide();
+                let guardsDialogue = {
                     Bestechen: "Soll ich versuchen, die beiden zu bestechen...",
                     Überzeugen: "...oder sie mit meinem Charme zu überzeugen?",
                     Gehen: "Ich könnte auch gehen und mich hinterm Haus umschauen."
                 };
-                let dialogueElement5 = await MyNovel.ƒS.Menu.getInput(dialogue5, "choicesCSSClass");
-                switch (dialogueElement5) {
-                    case dialogue5.Bestechen:
-                        await dialogueBribe();
+                let guardsDialogueElement = await MyNovel.ƒS.Menu.getInput(guardsDialogue, "choicesCSSClass");
+                switch (guardsDialogueElement) {
+                    case guardsDialogue.Bestechen:
                         briberyAttempt = true;
                         guardsSpoken = true;
+                        await dialogueBribe();
                         break;
-                    case dialogue5.Überzeugen:
+                    case guardsDialogue.Überzeugen:
+                        guardsSpoken = true;
                         await dialoguePersuade();
-                        guardsSpoken = true;
                         break;
-                    case dialogue5.Gehen:
-                        await altWegScene();
+                    case guardsDialogue.Gehen:
                         guardsSpoken = true;
+                        await altWegScene();
                         break;
                 }
             }
             else {
-                let dialogue9 = {
+                let guardsDialogue2 = {
                     Überzeugen: "Soll ich versuchen, die beiden auf andere Weise zu überzeugen...",
                     Gehen: "... oder mich hinterm Haus umschauen?"
                 };
-                let dialogueElement9 = await MyNovel.ƒS.Menu.getInput(dialogue9, "choicesCSSClass");
-                switch (dialogueElement9) {
-                    case dialogue9.Überzeugen:
+                MyNovel.ƒS.Speech.hide();
+                let guardsDialogue2Element = await MyNovel.ƒS.Menu.getInput(guardsDialogue2, "choicesCSSClass");
+                switch (guardsDialogue2Element) {
+                    case guardsDialogue2.Überzeugen:
                         await dialoguePersuade();
                         break;
-                    case dialogue9.Gehen:
+                    case guardsDialogue2.Gehen:
                         await altWegScene();
                         break;
                 }
@@ -2563,132 +2580,136 @@ var MyNovel;
         ;
         async function dialogueBribe() {
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0027);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0010);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0011);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0010);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0011);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0028);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0029);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0010);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0011);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0012);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0012);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0010);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0011);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0012);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0012);
             let gold = false;
             let food = false;
             let fun = false;
-            let dialogue6 = {
+            MyNovel.ƒS.Speech.hide();
+            let bribeHow = {
                 Gold: "Gold",
                 Essen: "Essen",
                 Unterhaltung: "Unterhaltung"
             };
             while (!gold || !food || !fun) {
-                let dialogueElement6 = await MyNovel.ƒS.Menu.getInput(dialogue6, "choicesCSSClass");
-                switch (dialogueElement6) {
-                    case dialogue6.Gold:
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Ein Pimpf wie du trägt Gold mit sich rum?");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Wieviel hast du denn?");
+                let bribeHowElement = await MyNovel.ƒS.Menu.getInput(bribeHow, "choicesCSSClass");
+                switch (bribeHowElement) {
+                    case bribeHow.Gold:
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Ein Pimpf wie du trägt Gold mit sich rum?");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Wieviel hast du denn?");
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "*Verdammt, ich hab kein Gold und Steve sicher auch nicht.*");
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "*Und selbst wenn die alte Kröte was hätte, würde er mir nichts davon geben.*");
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Es scheint, ich habe meine Geldbörse verlegt, aber manche Dinge sind viel besser als Gold.");
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich könnte euch etwas anderes anbieten, zum Beispiel:");
                         //hier wieder zurück zur Auswahl, aber ohne Gold Option.
                         console.log(gold);
-                        dialogue6.Gold = "";
+                        bribeHow.Gold = "";
                         gold = true;
                         break;
-                    case dialogue6.Essen:
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Rumstehen macht schon echt hungrig.");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Was kannst du denn anbieten?");
-                        let dialogue7 = {
+                    case bribeHow.Essen:
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Rumstehen macht schon echt hungrig.");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Was kannst du denn anbieten?");
+                        MyNovel.ƒS.Speech.hide();
+                        let whatFood = {
                             Fliegen: "Fliegen",
                             Frikadellen: "Frikadellen",
                             Froschschenkel: "Froschschenkel"
                         };
-                        let dialogieElement7 = await MyNovel.ƒS.Menu.getInput(dialogue7, "choicesCSSClass");
-                        switch (dialogieElement7) {
-                            case dialogue7.Fliegen:
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Fliegen? Sehen wir für dich aus wie Frösche??");
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Frechheit! Jetzt ist mir der Appetit vergangen.");
+                        let whatFoodElement = await MyNovel.ƒS.Menu.getInput(whatFood, "choicesCSSClass");
+                        switch (whatFoodElement) {
+                            case whatFood.Fliegen:
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Fliegen? Sehen wir für dich aus wie Frösche??");
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Frechheit! Jetzt ist mir der Appetit vergangen.");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "War nur ein Witz. haha.. ");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich habe etwas viel Interessanteres zu bieten.");
                                 //hier zurück zur Auswahl, aber nur mit Unterhaltung (und Gold, falls noch nicht ausgewählt)
                                 food = true;
-                                dialogue6.Essen = "";
+                                bribeHow.Essen = "";
                                 break;
-                            case dialogue7.Frikadellen:
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Wir essen keine Frikadellen.");
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Wir sind überzeugte Veganer.");
+                            case whatFood.Frikadellen:
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Wir essen keine Frikadellen.");
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Wir sind überzeugte Veganer.");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Achso. Gut für euch!");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich habe sowieso noch etwas viel Besseres zu bieten.");
                                 //hier zurück zur Auswahl, aber nur mit Unterhaltung (und Gold, falls noch nicht ausgewählt)
                                 food = true;
-                                dialogue6.Essen = "";
+                                bribeHow.Essen = "";
                                 break;
-                            case dialogue7.Froschschenkel:
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Froschschenkel???");
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Wir wissen feine Küche zu schätzen, aber wir sind doch keine Kannibalen!!");
+                            case whatFood.Froschschenkel:
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Froschschenkel???");
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Wir wissen feine Küche zu schätzen, aber wir sind doch keine Kannibalen!!");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "*Puh, ich hatte eh nicht so Lust drauf mir ein Bein abzuhacken.*");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Wenn ihr meine Schenkel nicht appetitlich findet, habe ich noch etwas anderes zu bieten.");
                                 //hier zurück zur Auswahl, aber nur mit Unterhaltung (und Gold, falls noch nicht ausgewählt)
                                 food = true;
-                                dialogue6.Essen = "";
+                                bribeHow.Essen = "";
                                 break;
                         }
                         break;
-                    case dialogue6.Unterhaltung:
+                    case bribeHow.Unterhaltung:
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Unterhaltung? Was kannst du denn?");
                         let trick = false;
                         let stand = false;
                         let poem = false;
-                        let dialogue8 = {
+                        MyNovel.ƒS.Speech.hide();
+                        let whatEntertainment = {
                             Zaubertrick: "Zaubertrick",
                             Handstand: "Handstand",
                             Gedicht: "Gedicht"
                         };
                         while (!trick || !stand || !poem) {
-                            let dialogueElement8 = await MyNovel.ƒS.Menu.getInput(dialogue8, "choicesCSSClass");
-                            switch (dialogueElement8) {
-                                case dialogue8.Zaubertrick:
+                            let whatEntertainmentElement = await MyNovel.ƒS.Menu.getInput(whatEntertainment, "choicesCSSClass");
+                            switch (whatEntertainmentElement) {
+                                case whatEntertainment.Zaubertrick:
                                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Okay, passt auf!");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "_Du knickst deinen rechten Zeigefinger ein und legst deinen linken über die Mitte deines linken Daumens, hältst die beiden aneinander und ziehst sie ein paarmal wieder auseinander._");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Dieser Trick wäre fast beeindruckend, wenn ich nicht wüsste, dass mein Schwager seinen abgetrennten Finger auch immer mit sich herumträgt.");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Mein Cousin macht genau das gleiche ständig mit seinem abgetrennten Finger. Zeig uns was neues!");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du knickst deinen rechten Zeigefinger ein und legst deinen linken über die Mitte deines linken Daumens, hältst die beiden aneinander und ziehst sie ein paarmal wieder auseinander.*");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Dieser Trick wäre fast beeindruckend, wenn ich nicht wüsste, dass mein Schwager seinen abgetrennten Finger auch immer mit sich herumträgt.");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Mein Cousin macht genau das gleiche ständig mit seinem abgetrennten Finger. Zeig uns was neues!");
                                     trick = true;
-                                    dialogue8.Zaubertrick = "";
+                                    whatEntertainment.Zaubertrick = "";
                                     //hier zur Übersicht zurück, mit den anderen 2 Tricks
                                     break;
-                                case dialogue8.Handstand:
+                                case whatEntertainment.Handstand:
                                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "So, ich brauche etwas Platz.");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "_Du holst aus, platzierst mit Schwung deine Hände auf dem Boden, überschlägst dich und fällst auf den Hintern._");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Haha!");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "War klar, dass das nichts wird.");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Entschuldige, aber du hast echt nicht den Körperbau eines Akrobaten.");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Hast du was Besseres?");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du holst aus, platzierst mit Schwung deine Hände auf dem Boden, überschlägst dich und fällst auf den Hintern.*");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Haha!");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "War klar, dass das nichts wird.");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Entschuldige, aber du hast echt nicht den Körperbau eines Akrobaten.");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Hast du was Besseres?");
                                     stand = true;
-                                    dialogue8.Handstand = "";
+                                    whatEntertainment.Handstand = "";
                                     //hier zur Übersicht zurück, mit den anderen 2 oder 1 Tricks
                                     break;
-                                case dialogue8.Gedicht:
+                                case whatEntertainment.Gedicht:
                                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Okay, hrhmm.");
                                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Rosen sind rot,");
                                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Veilchen sind blau,");
                                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "die Wachleute vor dem Büro des Königs sind sehr schlau.");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Yeeahh!");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Recht hast du!");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Leider sind wir so schlau, dass wir uns nicht einfach so bestechen lassen.");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Yeeahh!");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Recht hast du!");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Leider sind wir so schlau, dass wir uns nicht einfach so bestechen lassen.");
                                     poem = true;
-                                    dialogue8.Gedicht = "";
+                                    whatEntertainment.Gedicht = "";
                                     //zu Übersicht zurück, mit den anderen 2 oder 1 Tricks
                                     break;
                             }
                         }
                         ;
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich hab auch was anderes zu bieten.");
-                        dialogue6.Unterhaltung = "";
+                        bribeHow.Unterhaltung = "";
                         fun = true;
                         break;
                 }
             }
             ;
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "*Ich glaube, ich sollte was anderes probieren.*");
+            guardsSpoken = true;
             await redenScene();
         }
         ;
@@ -2696,15 +2717,15 @@ var MyNovel;
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich muss wirklich nur einen vergessenen Gegenstand holen.");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich würde es niemals wagen, dem König etwas zu entwenden.");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Wir kennen uns ja schon eine Weile, ich bin ein vertrauenswürdiger Typ und werde auch nichts kaputt machen oder so.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Das letzte Mal, als ich jemanden in ein Haus gelassen habe, der sagte er würde nichts kaputt machen, habe ich das Haus kurz darauf komplett verwüstet vorgefunden.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Och nee! Kannst du bitte einfach darüber hinweg kommen?");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Nein, kann ich nicht! Mein Therapeut sagt, ich soll meine Traumata nicht verdrängen.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Und mein Therapeut sagt, dass du aufhören sollst, immer so passiv-aggressiv zu sein!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Passiv-aggressiv? Pf! Da kenn ich noch einen anderen.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Komm schon! Ich habe dir versucht zu erklären, dass nichts davon beabsichtigt war.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Und ich habe wochenlang nach ihr gesucht.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Manche Sachen kann man als Zufall erklären, aber das Verschwinden meines Ibericos?");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Du wusstest genau, dass ich den für das große Fest aufheben wollte.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Das letzte Mal, als ich jemanden in ein Haus gelassen habe, der sagte er würde nichts kaputt machen, habe ich das Haus kurz darauf komplett verwüstet vorgefunden.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Och nee! Kannst du bitte einfach darüber hinweg kommen?");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Nein, kann ich nicht! Mein Therapeut sagt, ich soll meine Traumata nicht verdrängen.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Und mein Therapeut sagt, dass du aufhören sollst, immer so passiv-aggressiv zu sein!");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Passiv-aggressiv? Pf! Da kenn ich noch einen anderen.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Komm schon! Ich habe dir versucht zu erklären, dass nichts davon beabsichtigt war.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Und ich habe wochenlang nach ihr gesucht.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Manche Sachen kann man als Zufall erklären, aber das Verschwinden meines Ibericos?");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Du wusstest genau, dass ich den für das große Fest aufheben wollte.");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Was wenn wir uns beruhigen und zum Thema zurückkehren?");
             let trash = false;
             let pet = false;
@@ -2715,84 +2736,96 @@ var MyNovel;
                 pet = false;
                 food = false;
                 if (!firstLoop) {
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Versuchs nochmal, Kleiner, irgendwie kauf ich dir das nicht ab.");
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Versuchs nochmal, Kleiner, irgendwie kauf ich dir das nicht ab.");
                 }
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich bin vertrauenswürdig, weil ich niemals:");
-                let dialogue12 = {
-                    Nachbarn: "den Schuppen des Nachbarn",
-                    Freund: "die Wohnung eines Freundes",
-                    König: "das Haus des Königs verwüsten würde",
+                MyNovel.ƒS.Speech.hide();
+                let trustworthy1 = {
+                    Nachbarn: "den Schuppen des Nachbarn anzünden würde.",
+                    Freund: "die Wohnung eines Freundes verwüsten würde.",
+                    König: "das Haus des Königs beschmieren würde.",
                 };
-                let dialogueElement12 = await MyNovel.ƒS.Menu.getInput(dialogue12, "choicesCSSClass");
-                switch (dialogueElement12) {
-                    case dialogue12.Nachbarn:
+                let trustworthy1Element = await MyNovel.ƒS.Menu.getInput(trustworthy1, "choicesCSSClass");
+                switch (trustworthy1Element) {
+                    case trustworthy1.Nachbarn:
                         break;
-                    case dialogue12.Freund:
+                    case trustworthy1.Freund:
                         trash = true;
                         break;
-                    case dialogue12.König:
+                    case trustworthy1.König:
                         break;
                 }
                 ;
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Außerdem bin ich nicht die Art von Person, die:");
-                let dialogue13 = {
-                    Kind: "ein Kind",
-                    Sklave: "einen Sklaven",
-                    Haustier: "ein Haustier entkommen lässt",
+                MyNovel.ƒS.Speech.hide();
+                let trustworthy2 = {
+                    Kind: "ein Kind weglaufen lässt.",
+                    Sklave: "einen Sklaven entkommen lässt.",
+                    Haustier: "ein Haustier entwischen lässt.",
                 };
-                let dialogueElement13 = await MyNovel.ƒS.Menu.getInput(dialogue13, "choicesCSSClass");
-                switch (dialogueElement13) {
-                    case dialogue13.Kind:
+                let trustworthy2Element = await MyNovel.ƒS.Menu.getInput(trustworthy2, "choicesCSSClass");
+                switch (trustworthy2Element) {
+                    case trustworthy2.Kind:
                         break;
-                    case dialogue13.Sklave:
+                    case trustworthy2.Sklave:
                         break;
-                    case dialogue13.Haustier:
+                    case trustworthy2.Haustier:
                         pet = true;
                         break;
                 }
                 ;
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "ich würde auch nie auf die Idee kommen von Freunden:");
-                let dialogue14 = {
+                MyNovel.ƒS.Speech.hide();
+                let trustworthy3 = {
                     Kammer: "die Speisekammer zu plündern.",
                     Figur: "die Sammelfigur zu klauen.",
                     Hut: "fancy Hüte zu entwenden.",
                 };
-                let dialogueElement14 = await MyNovel.ƒS.Menu.getInput(dialogue14, "choicesCSSClass");
-                switch (dialogueElement14) {
-                    case dialogue14.Kammer:
+                let trustworthy3Element = await MyNovel.ƒS.Menu.getInput(trustworthy3, "choicesCSSClass");
+                switch (trustworthy3Element) {
+                    case trustworthy3.Kammer:
                         food = true;
                         break;
-                    case dialogue14.Figur:
+                    case trustworthy3.Figur:
                         break;
-                    case dialogue14.Hut:
+                    case trustworthy3.Hut:
                         break;
                 }
                 ;
                 firstLoop = false;
             }
             ;
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Wenn das stimmt, dann bist du das genaue Gegenzeil von ihm hier!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Es war ein Unfall! Ich hab versucht, es wieder gut zu machen und ich hab mich oft genug entschuldigt!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Eine Entschuldigung bringt sie mir auch nicht zurück!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Ich wollte nur sehen, wie Missy mit einem lustigen kleinen Hut aussieht und dir für deinen Geburtstag ein Bild davon malen!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Woher sollte ich wissen, dass sie auf den Iberico mehr abfährt als du und die Speisekammer so einfach geöffnet bekommt?");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Ich wollte nicht, dass sie davon läuft, aber der Iberico hat sie zum Berserker gemacht.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Sie hat die Wohnung verwüstet und ist durch die Tür gebrochen!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Ich habe sie versucht mit dem restlichen Essen wieder herzulocken, aber konnte sie nicht finden.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Zwei ganze Wochen habe ich Nacht für Nacht und Tag für Tag nach ihr gesucht!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Ich habe mich so oft entschuldigt, aber ich glaube, du willst einfach nicht mehr mein Freund sein.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Such dir jemand anderen, mit dem du das Büro des Königs bewachen kannst.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Ich bin raus!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "_Die Wache kann die Tränen nicht mehr zurückhalten und rennt schluchzend davon._");
-            //hier machen, dass W1 verschwindet (einfach entfernen oder Animation?)
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Oh man.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Ich war mir nicht bewusst, dass ich...");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Wenn das stimmt, dann bist du das genaue Gegenzeil von ihm hier!");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Es war ein Unfall! Ich hab versucht, es wieder gut zu machen und ich hab mich oft genug entschuldigt!");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Eine Entschuldigung bringt sie mir auch nicht zurück!");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Ich wollte nur sehen, wie Missy mit einem lustigen kleinen Hut aussieht und dir für deinen Geburtstag ein Bild davon malen!");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Woher sollte ich wissen, dass sie auf den Iberico mehr abfährt als du und die Speisekammer so einfach geöffnet bekommt?");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Ich wollte nicht, dass sie davon läuft, aber der Iberico hat sie zum Berserker gemacht.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Sie hat die Wohnung verwüstet und ist durch die Tür gebrochen!");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Ich habe sie versucht mit dem restlichen Essen wieder herzulocken, aber konnte sie nicht finden.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Zwei ganze Wochen habe ich Nacht für Nacht und Tag für Tag nach ihr gesucht!");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Ich habe mich so oft entschuldigt, aber ich glaube, du willst einfach nicht mehr mein Freund sein.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Such dir jemand anderen, mit dem du das Büro des Königs bewachen kannst.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Ich bin raus!");
+            await MyNovel.ƒS.Sound.fade(MyNovel.sound.crying, 0.2, 1, false);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Die Wache kann die Tränen nicht mehr zurückhalten und rennt schluchzend davon.*");
+            await MyNovel.ƒS.Sound.fade(MyNovel.sound.crying, 0, 4, false);
+            await MyNovel.ƒS.Character.hide(MyNovel.characters.guardBully1Big);
+            await MyNovel.ƒS.update(1);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Oh man.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Ich war mir nicht bewusst, dass ich...");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Geh ihm hinterher! Es ist Zeit, dass du dich einmal bei ihm entschuldigst.");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Na los, renn! Du kannst das noch retten!");
-            //hier verschwindet W2 (einfach entfernen oder Animation?)
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "_Die zweite Wache lässt ihren Speer fallen und rennt der anderen hinterher._");
+            MyNovel.ƒS.Sound.play(MyNovel.sound.clang, 0.1, false);
+            //hier verschwindet W2 
+            await MyNovel.ƒS.Character.hide(MyNovel.characters.guardBully2Big);
+            await MyNovel.ƒS.update(1);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Die zweite Wache lässt ihren Speer fallen und rennt der anderen hinterher.*");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich hoffe, dass die zwei wieder Freunde werden können...");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Naja, der Weg ist frei, ich geh mal besser rein, bevor jemand zurückkommt.");
+            //door creak
+            MyNovel.ƒS.Sound.play(MyNovel.sound.doorCreak, 0.2, false);
+            await MyNovel.delay(2);
             await drinnenScene();
         }
         ;
@@ -2808,15 +2841,16 @@ var MyNovel;
             let drawerInspected = false;
             let keyFound = false;
             let leaving = false;
-            let dialogue10 = {
+            let searchWhat = {
                 Schublade: "Schubladen durchsuchen",
                 Bücherregal: "Bücherregal untersuchen",
                 Schrank: "Schrank öffnen"
             };
             while (!leaving) {
-                let dialogueElement10 = await MyNovel.ƒS.Menu.getInput(dialogue10, "choicesCSSClass");
-                switch (dialogueElement10) {
-                    case dialogue10.Schublade:
+                MyNovel.ƒS.Speech.hide();
+                let searchWhatElement = await MyNovel.ƒS.Menu.getInput(searchWhat, "choicesCSSClass");
+                switch (searchWhatElement) {
+                    case searchWhat.Schublade:
                         if (!drawerInspected) {
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Huh.");
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Die Schublade ist abgeschlossen.");
@@ -2828,25 +2862,27 @@ var MyNovel;
                         else {
                             if (keyFound) {
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Na dann schauen wir mal, was sich in der Schublade befindet.");
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "_Du benutzt den Schubladenschlüssel und die Schublade öffnet sich_");
+                                MyNovel.ƒS.Sound.play(MyNovel.sound.drawerOpen, 0.2, false);
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du benutzt den Schubladenschlüssel und die Schublade öffnet sich*");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Hier sind Magazine drin?");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Magazine, die nur Abbildungen von Fröschen zeigen?");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, " Wieso hat keiner dieser Frösche Kleidung? OH!! EWW!");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich glaube, ich habe genug gesehen.");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Das macht mich krank. Ugh.");
-                                dialogue10.Schublade = "";
-                                let dialogue11 = {
+                                MyNovel.ƒS.Speech.hide();
+                                searchWhat.Schublade = "";
+                                let takeMags = {
                                     Magazines: "Magazine mitnehmen",
                                     Gehen: "Zurück"
                                 };
-                                let dialogueElement11 = await MyNovel.ƒS.Menu.getInput(dialogue11, "choicesCSSClass");
-                                switch (dialogueElement11) {
-                                    case dialogue11.Magazines:
+                                let takeMagsElement = await MyNovel.ƒS.Menu.getInput(takeMags, "choicesCSSClass");
+                                switch (takeMagsElement) {
+                                    case takeMags.Magazines:
                                         MyNovel.dataForSave.Protagonist.mags = true;
-                                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "_Du steckst die Magazine ein_");
+                                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du steckst die Magazine ein*");
                                         MyNovel.ƒS.Inventory.add(MyNovel.items.dirtyMags);
                                         break;
-                                    case dialogue11.Gehen:
+                                    case takeMags.Gehen:
                                         break;
                                 }
                                 ;
@@ -2856,36 +2892,37 @@ var MyNovel;
                             }
                         }
                         break;
-                    case dialogue10.Bücherregal:
+                    case searchWhat.Bücherregal:
                         if (!keyFound) {
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Wow, das ist ein großes Bücherregal.");
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Dabei hat der König bisher keinen belesenen Eindruck auf mich gemacht.");
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Was für Bücher das wohl sind?");
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "_Du ziehst ein schweres Buch aus dem Regal_");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du ziehst ein schweres Buch aus dem Regal*");
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Moment, was.");
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Das sind angemalte Ziegelsteine.");
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Was ein trauriger Flex.");
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, " Ist wohl eher unwahrscheinlich, dass er in einem dieser 'Bücher' einen Schlüssel versteckt hat.");
-                            dialogue10.Bücherregal = "";
+                            searchWhat.Bücherregal = "";
                         }
                         else {
                             leaving = true;
                             break;
                         }
                         break;
-                    case dialogue10.Schrank:
+                    case searchWhat.Schrank:
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "So, schauen wir mal, was der König in seinem Schrank versteckt.");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "_Du öffnest den Schrank_");
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.doorCreak, 0.2);
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du öffnest den Schrank*");
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Wieso sind hier so viele Frauenkleider?");
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "In die passt der dicke..uhh majestätische König doch gar nicht rein.");
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ah! Hier hängen Schlüssel an Haken in der Schrankwand.");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich steck die einfach mal ein.");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich stecke die einfach mal ein.");
                         keyFound = true;
                         MyNovel.ƒS.Inventory.add(MyNovel.items.keyDrawer);
                         MyNovel.ƒS.Inventory.add(MyNovel.items.keyDungeon);
                         MyNovel.ƒS.Inventory.add(MyNovel.items.keyVault);
-                        dialogue10.Schrank = "";
-                        dialogue10.Bücherregal = "Gehen";
+                        searchWhat.Schrank = "";
+                        searchWhat.Bücherregal = "Gehen";
                         break;
                 }
                 ;
@@ -2894,11 +2931,11 @@ var MyNovel;
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich habe was ich wollte, ich geh jetzt besser.");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0032);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Dann auf Richtung Gefängnis.");
-            //hier Transition einfügen!!!
+            //hier Transition einfügen!!! ist glaub schon bei nächster sezene am anfang drin
+            await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //not sure, ob das geht/gebraucht wird
+            await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0, 1);
         }
         ;
-        //bei Tod
-        //dataForSave.Protagonist.deaths += 1; //DANN HALT NOCH NE KLASSE/SZENE DAFÜR
         console.log("Scene 3.1 End");
     }
     MyNovel.GameScene03Q1 = GameScene03Q1;
@@ -2937,7 +2974,7 @@ var MyNovel;
                 T0010: "Was? Du hast es immer noch nicht gelöst?",
                 T0011: "Oh man. Na gut. Dann mal los:",
                 T0012: "..Sie spielen nur zum Spaß und ohne Einsatz.",
-                T0013: "Was spielen sie?",
+                T0013: "Wie schaffen sie das?",
             },
             Wache2: {
                 T0001: "Stehen geblieben!",
@@ -2957,8 +2994,8 @@ var MyNovel;
             Frogtaro: {
                 T0001: "Stop! Komm nicht näher!",
                 T0002: "Nein, danke. Ich bin freiwillig hier.",
-                T0003: "Ich bin von einem Geist besessen.",
-                T0004: "Solange ich hier drin bin, kann ich keinen verletzen.",
+                T0003: "Ich bin von einem bösen Geist besessen.",
+                T0004: "Solange ich hier drin bin, kann ich keinem schaden.",
                 T0005: "Deshalb komm nicht näher.",
                 T0006: "Ich habe Angst, dass ich dich sonst verletze.",
                 T0007: "Du kannst meinem Großvater, Frogseph, Bescheid geben, dass ich hier bin.",
@@ -3008,6 +3045,7 @@ var MyNovel;
         //    Danach muss der Spieler sich ins Büro des Königs schleichen, um die Gegenstände zu platzieren
         await MyNovel.ƒS.Location.show(MyNovel.locations.GefaengnisOutside);
         //await ƒS.Sound.fade();  //Passenden Sound finden //vllt einfach gedämpfte Sumpf sounds
+        await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.1, 2, true);
         await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug01, MyNovel.characters.bullywug01.pose.upset, MyNovel.ƒS.positionPercent(40, 85));
         await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(55, 85));
         await MyNovel.ƒS.update(1);
@@ -3052,12 +3090,13 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.Wache1.T0009);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.Wache2.T0008);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.Wache1.T0010);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.Wache1.T0009);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.Wache1.T0010);
+        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.Wache2.T0009);
+        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.Wache2.T0010);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.Wache1.T0011);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.Wache1.T0011);
+        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.Wache2.T0011);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.Wache1.T0012);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.Wache1.T0012);
+        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.Wache2.T0012);
+        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.Wache1.T0013);
         let guardRiddle = {
             friends: "Der Gewinn, den sie machen, ist der Gewinn, mit Freunden Spaß gehabt zu haben.",
             twitch: "Sie streamen ihr Spiel auf einer bekannten Streamingplattform und verdienen dadurch Geld.",
@@ -3076,10 +3115,10 @@ var MyNovel;
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Uhhh..");
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Was ist Streaming?");
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Das ist definitiv nicht die richtige Antwort.");
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "_Ich glaube, er hat eine Schraube locker._");
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "_Wir sollten ihn nicht verärgern._");
+                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "*geflüstert* Ich glaube, er hat eine Schraube locker.");
+                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "*geflüstert* Wir sollten ihn nicht verärgern. Vielleicht ist er gefährlich.");
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Hm okay, uhh, du darfst rein.");
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "_Bitte tu uns nichts._");
+                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "*geflüstert* Bitte tu uns nichts.");
                 break;
             case guardRiddle.music:
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Das ist die richtige Antwort!");
@@ -3089,19 +3128,27 @@ var MyNovel;
                 break;
         }
         ;
+        await MyNovel.ƒS.Character.hideAll();
+        await MyNovel.ƒS.Speech.hide();
         //drinnen im Gefängnis sind wieder 3 guys: Frogtaro, Tym und ein Frog, der von dem Objekt weiß
+        //hier das Gefängnis innen eiblenden!!---------------------------------------------------------
         while (!finished) {
+            await MyNovel.ƒS.Location.show(MyNovel.locations.Gefaengnis);
+            await MyNovel.ƒS.Speech.hide();
+            await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0, 1, true);
+            await MyNovel.ƒS.Sound.fade(MyNovel.sound.dungeon, 0.2, 1, true);
+            await MyNovel.ƒS.update(1);
             if (!knowLocation) {
                 //Choice, welche Zelle anschauen
                 let dialogue0 = {
-                    linksVorn: "die erste links",
                     linksHinten: "die hintere linke",
-                    rechtsVorn: "die rechts vorne",
                     rechtsHinten: "die in der Ecke rechts",
+                    linksVorn: "die erste links",
+                    rechtsVorn: "die rechts vorne",
                 };
                 let dialogueElement0 = await MyNovel.ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
                 switch (dialogueElement0) {
-                    case dialogue0.linksHinten:
+                    case dialogue0.linksVorn:
                         await cellFrontLeft();
                         break;
                     case dialogue0.linksHinten:
@@ -3119,15 +3166,15 @@ var MyNovel;
             else {
                 //Choice, welche Zelle anschauen
                 let dialogue0 = {
-                    linksVorn: "die erste links",
                     linksHinten: "die hintere linke",
-                    rechtsVorn: "die rechts vorne",
                     rechtsHinten: "die in der Ecke rechts",
+                    linksVorn: "die erste links",
+                    rechtsVorn: "die rechts vorne",
                     sumpf: "Zum Sumpf"
                 };
                 let dialogueElement0 = await MyNovel.ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
                 switch (dialogueElement0) {
-                    case dialogue0.linksHinten:
+                    case dialogue0.linksVorn:
                         await cellFrontLeft();
                         break;
                     case dialogue0.linksHinten:
@@ -3150,72 +3197,81 @@ var MyNovel;
         ;
         console.log("Scene03Q1 done");
         async function cellFrontLeft() {
-            //Bild für Nahansicht der Zelle---------------------------------
-            if (tymSpoken == false) {
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0001);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0002);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0003);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0004);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich suche nach einem Frosch, der hier eingesperrt wurde.");
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0005);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0006);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0007);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0008);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0009);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0010);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0011);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0012);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0013);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Super, danke!");
-                tymSpoken = true;
-            }
-            else {
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0014);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0015);
-                //hier fragen, ob befreien
-                let dialogueTymFree = {
-                    free: "Tym befreien",
-                    leave: "Gehen",
-                };
-                let dialogueElementTymFree = await MyNovel.ƒS.Menu.getInput(dialogueTymFree, "choicesCSSClass");
-                switch (dialogueElementTymFree) {
-                    case dialogueTymFree.free:
-                        if (MyNovel.dataForSave.Protagonist.hasKey == true) {
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du benutzt den Dungeon Schlüssel*");
-                            MyNovel.dataForSave.Protagonist.savedTym = true;
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0016);
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0017);
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0018);
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0019);
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0020);
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0021);
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Tym.T0022);
-                        }
-                        else {
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "Du hast keinen passenden Schlüssel.");
-                        }
-                        break;
-                    case dialogueTymFree.leave:
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Nichts weiter.");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Okay. Tschüss.");
-                        break;
+            if (!MyNovel.dataForSave.Protagonist.savedTym) {
+                await MyNovel.ƒS.Location.show(MyNovel.locations.CellTym);
+                await MyNovel.ƒS.update(1);
+                if (tymSpoken == false) {
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0001);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0002);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0003);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0004);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich suche nach einem Frosch, der hier eingesperrt wurde.");
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0005);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0006);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0007);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0008);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0009);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0010);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0011);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0012);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0013);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Super, danke!");
+                    tymSpoken = true;
+                }
+                else {
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0014);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0015);
+                    //hier fragen, ob befreien
+                    let dialogueTymFree = {
+                        free: "Tym befreien",
+                        leave: "Gehen",
+                    };
+                    let dialogueElementTymFree = await MyNovel.ƒS.Menu.getInput(dialogueTymFree, "choicesCSSClass");
+                    switch (dialogueElementTymFree) {
+                        case dialogueTymFree.free:
+                            if (MyNovel.dataForSave.Protagonist.hasKey == true) {
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du benutzt den Dungeon Schlüssel*");
+                                MyNovel.dataForSave.Protagonist.savedTym = true;
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0016);
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0017);
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0018);
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0019);
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0020);
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0021);
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Tym.T0022);
+                            }
+                            else {
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "Du hast keinen passenden Schlüssel.");
+                            }
+                            break;
+                        case dialogueTymFree.leave:
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Nichts weiter.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Okay. Tschüss.");
+                            break;
+                    }
+                    ;
                 }
                 ;
+            }
+            else {
+                await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "Tym ist gegangen und hat die Zellentür hinter sich geschlossen.");
             }
             ;
         }
         ;
         async function cellBackLeft() {
             //hier Bild für Nahansicht der Zelle einfügen---------------------------------
+            await MyNovel.ƒS.Location.show(MyNovel.locations.CellFroglin);
+            await MyNovel.ƒS.update(1);
             if (!frogSpoken) {
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Gefangener1.T0001);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Gefangener1.T0002);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Gefangener1.T0003);
+                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Gefangener1.T0001);
+                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Gefangener1.T0002);
+                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Gefangener1.T0003);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Bin ich was?");
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Steve schickt mich, aber ich soll bloß eine Sache herausfinden.");
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Gefangener1.T0004);
+                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Gefangener1.T0004);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Genau. Bist du der Frosch, der sie liefern sollte?");
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Gefangener1.T0005);
+                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Gefangener1.T0005);
                 while (!knowLocation) {
                     let talkPrisoner = {
                         prison: "Wieso bist du eigentlich hier drin?",
@@ -3225,27 +3281,27 @@ var MyNovel;
                     let talkPrisonerElement = await MyNovel.ƒS.Menu.getInput(talkPrisoner, "choicesCSSClass");
                     switch (talkPrisonerElement) {
                         case talkPrisoner.prison:
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Hmpf. Müsstest du das nicht wissen?");
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Es scheint, der König hat Wind davon bekommen, dass wir von der Kette wussten.");
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Er hat darauf gewartet, dass wir versuchen, sie rauszuholen und eine Falle gestellt");
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Ich hatte Glück und konnte lang genug entkommen, um die Kette zu verstecken, bevor sie mich geschnappt haben.");
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Ich frage mich, woher sie wussten, wann ich zuschlagen würde.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Hmpf. Müsstest du das nicht wissen?");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Es scheint, der König hat Wind davon bekommen, dass wir von der Kette wussten.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Er hat darauf gewartet, dass wir versuchen, sie rauszuholen und eine Falle gestellt");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Ich hatte Glück und konnte lang genug entkommen, um die Kette zu verstecken, bevor sie mich geschnappt haben.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Ich frage mich, woher sie wussten, wann ich zuschlagen würde.");
                             break;
                         case talkPrisoner.necklace:
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Huh. Ich bin mir nocht sicher, ob ich sollte.");
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Aber es gibt sowieso nichts, was ich jetzt noch machen kann.");
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Wenn du mich rausholst, sobald diese Sache vorüber ist, sag ich dir wo sie ist.");
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Falls du es dann noch kannst.");
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Die Kette ist unter dem kleinen Steg beim Sumpf, ca nach dem ersten Drittel.");
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Viel Glück. Hoffen wir, dass du es nicht brauchst.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Huh. Ich bin mir nocht sicher, ob ich sollte.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Aber es gibt sowieso nichts, was ich jetzt noch machen kann.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Wenn du mich rausholst, sobald diese Sache vorüber ist, sag ich dir wo sie ist.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Falls du es dann noch kannst.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Die Kette ist unter dem kleinen Steg beim Sumpf, ca nach dem ersten Drittel.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Viel Glück. Hoffen wir, dass du es nicht brauchst.");
                             knowLocation = true;
                             break;
                         case talkPrisoner.steve:
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Wir haben zusammen die Grundausbildung in der Armee gemacht.");
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Ich habe für längere Zeit als uhh Söldner gearbeitet, aber vor einer Weile hat Steve mich rekrutiert, um ihm bei einem bestimmten Job zu helfen.");
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Mittlerweile bin ich mir ziemich sicher, dass das, was er mir erzählt hat gelogen war.");
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Was auch immer er dir erzählt, glaub ihm kein Wort.");
-                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Und nimm dich in Acht, vor allem dann, wenn deine Aufgabe beendet ist.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Wir haben zusammen die Grundausbildung in der Armee gemacht.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Ich habe für längere Zeit als uhh.. Söldner gearbeitet, aber vor einer Weile hat Steve mich rekrutiert, um ihm bei einem bestimmten Job zu helfen.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Mittlerweile bin ich mir ziemich sicher, dass das, was er mir erzählt hat gelogen war.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Was auch immer er dir erzählt, glaub ihm kein Wort.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Und nimm dich in Acht, vor allem dann, wenn deine Aufgabe beendet ist.");
                             break;
                     }
                     ;
@@ -3254,12 +3310,14 @@ var MyNovel;
                 ;
             }
             else {
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Viel Glück, Kleiner.");
+                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Viel Glück, Kleiner.");
             }
         }
         ;
         async function cellFrontRight() {
             //hier Bild für Nahansicht der Zelle einfügen---------------------------------
+            await MyNovel.ƒS.Location.show(MyNovel.locations.CellFrogtaro);
+            await MyNovel.ƒS.update(1);
             if (!frogTaroSpoken) {
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0001);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich bin keine Wache. Ich habe nur ein paar Fragen.");
@@ -3269,9 +3327,9 @@ var MyNovel;
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0003);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0004);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0005);
+                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0006);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Oh. Okay.");
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Kann ich dir irgendwie helfen?");
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0006);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0007);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0008);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0009);
@@ -3294,10 +3352,12 @@ var MyNovel;
         }
         ;
         async function cellBackRight() {
+            await MyNovel.ƒS.Location.show(MyNovel.locations.CellEmpty);
+            await MyNovel.ƒS.update(1);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "Die Zelle ist leer und verschlossen.");
             if (MyNovel.dataForSave.Protagonist.hasKey == true) {
                 let dialogueEmptyCell = {
-                    keyDungeon: "Dungeonschlüsse benutzen?",
+                    keyDungeon: "Dungeonschlüssel benutzen?",
                     leave: "Zurück",
                 };
                 let dialogueElementEmptyCell = await MyNovel.ƒS.Menu.getInput(dialogueEmptyCell, "choicesCSSClass");
@@ -3315,6 +3375,7 @@ var MyNovel;
         ;
         async function swamp() {
             await MyNovel.ƒS.Location.show(MyNovel.locations.swampWalk);
+            await MyNovel.ƒS.Sound.fade(MyNovel.sound.dungeon, 0, 1, false);
             await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true);
             await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "So, hier müsste sie irgendwo sein.");
@@ -3326,6 +3387,7 @@ var MyNovel;
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "So gut wie neu. Dann los.");
             await MyNovel.ƒS.Location.show(MyNovel.locations.blackscreen);
             await MyNovel.ƒS.Character.hideAll();
+            await MyNovel.ƒS.Speech.hide();
             finished = true;
         }
     }
@@ -4125,18 +4187,19 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0002);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0003);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0004);
-        let dialogue0 = {
+        await MyNovel.ƒS.Speech.hide();
+        let approachHouse = {
             AltWeg: "Soll ich einen anderen Weg suchen...",
             WachenAnsprechen: "...oder die Wachen ansprechen?",
         };
         let altWeg;
         let reden;
-        let dialogueElement0 = await MyNovel.ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
-        switch (dialogueElement0) {
-            case dialogue0.AltWeg:
+        let approachHouseElement = await MyNovel.ƒS.Menu.getInput(approachHouse, "choicesCSSClass");
+        switch (approachHouseElement) {
+            case approachHouse.AltWeg:
                 altWeg = true;
                 break;
-            case dialogue0.WachenAnsprechen:
+            case approachHouse.WachenAnsprechen:
                 reden = true;
                 break;
         }
@@ -4159,43 +4222,46 @@ var MyNovel;
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0007);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0008);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0009);
+                MyNovel.ƒS.Speech.hide();
                 //hier Auswahl, ob man es am Eingang versuchen will oder hierbleiben
-                let dialogue1 = {
+                let stayBackHouse = {
                     zurueck: "Soll ich mein Glück mit den Wachen versuchen...",
                     bleiben: "...oder erstmal hierbleiben?",
                 };
-                let dialogueElement1 = await MyNovel.ƒS.Menu.getInput(dialogue1, "choicesCSSClass");
-                switch (dialogueElement1) {
-                    case dialogue1.zurueck:
+                let stayBackHouseElement = await MyNovel.ƒS.Menu.getInput(stayBackHouse, "choicesCSSClass");
+                switch (stayBackHouseElement) {
+                    case stayBackHouse.zurueck:
                         await MyNovel.ƒS.Speech.hide();
                         await MyNovel.ƒS.update();
                         await redenScene();
                         break;
-                    case dialogue1.bleiben:
+                    case stayBackHouse.bleiben:
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0010);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0011);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0012);
+                        MyNovel.ƒS.Speech.hide();
                         //hier Auswahl, ob man es am Eingang versuchen will oder hierbleiben
-                        let dialogue2 = {
+                        let climbTree = {
                             zurueck: "Soll ich es doch lieber vorne herum versuchen...",
                             bleiben: "...oder wirklich versuchen, auf den Baum zu klettern?",
                         };
-                        let dialogueElement2 = await MyNovel.ƒS.Menu.getInput(dialogue2, "choicesCSSClass");
-                        switch (dialogueElement2) {
-                            case dialogue2.zurueck:
+                        let climbTreeElement = await MyNovel.ƒS.Menu.getInput(climbTree, "choicesCSSClass");
+                        switch (climbTreeElement) {
+                            case climbTree.zurueck:
                                 await redenScene();
                                 break;
-                            case dialogue2.bleiben:
+                            case climbTree.bleiben:
                                 break;
                         }
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0013);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0014);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0015);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0016);
-                        //hier sound für ast brechen ---------------------------------------------------------
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.branchSnap, 1);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0017);
                         astGefallen = true;
-                        //hier sound für fallen und sterben ---------------------------------------------------------
+                        await MyNovel.delay(2000);
+                        MyNovel.ƒS.Sound.play(MyNovel.sound.fall, 1);
                         //hier todesscreen
                         await MyNovel.ƒS.Speech.hide();
                         await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0, 1);
@@ -4216,31 +4282,31 @@ var MyNovel;
                         await MyNovel.delay(5000);
                         document.getElementById("respawnQuote").style.display = "none";
                         document.getElementById("respawnQuote").removeChild(pp);
-                        await MyNovel.ƒS.Location.show(MyNovel.locations.swampBoat);
+                        await MyNovel.ƒS.Location.show(MyNovel.locations.swamp);
                         await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1);
                         await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
                         await MyNovel.ƒS.update(1);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0018);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0019);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0020);
+                        await MyNovel.ƒS.Speech.hide();
                         //Transition zurück zum Büro
                         await MyNovel.ƒS.Location.show(MyNovel.locations.BueroAußen);
-                        await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0, 1);
                         await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true);
                         await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully1, MyNovel.characters.guardBully1.pose.upset, MyNovel.ƒS.positionPercent(60, 71));
                         await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully2, MyNovel.characters.guardBully2.pose.upset, MyNovel.ƒS.positionPercent(65, 70));
                         await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
                         //als nächstes wieder Auswahl, ob man nach hinten will oder mit Wachen reden; hier bei "nach hinten gehen" neue Methode/neuer Hintergrund mit gefallenem Ast
-                        let dialogue3 = {
+                        let approachHouseAgain = {
                             AltWeg: "Soll ich nochmal nach hinten gehen...",
                             WachenAnsprechen: "...oder die Wachen ansprechen?",
                         };
-                        let dialogueElement3 = await MyNovel.ƒS.Menu.getInput(dialogue3, "choicesCSSClass");
-                        switch (dialogueElement3) {
-                            case dialogue3.AltWeg:
+                        let approachHouseAgainElement = await MyNovel.ƒS.Menu.getInput(approachHouseAgain, "choicesCSSClass");
+                        switch (approachHouseAgainElement) {
+                            case approachHouseAgain.AltWeg:
                                 await altWeg2Scene();
                                 break;
-                            case dialogue3.WachenAnsprechen:
+                            case approachHouseAgain.WachenAnsprechen:
                                 await redenScene();
                                 break;
                         }
@@ -4262,21 +4328,24 @@ var MyNovel;
             await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0021);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0022);
-            let dialogue4 = {
+            await MyNovel.ƒS.Speech.hide();
+            let climbWindow = {
                 klettern: "Soll ich durch das Fenster hineinklettern...",
                 zurueck: "...oder lieber doch zurück zu den Wachen?",
             };
-            let dialogueElement4 = await MyNovel.ƒS.Menu.getInput(dialogue4, "choicesCSSClass");
-            switch (dialogueElement4) {
-                case dialogue4.klettern:
+            let climbWindowElement = await MyNovel.ƒS.Menu.getInput(climbWindow, "choicesCSSClass");
+            switch (climbWindowElement) {
+                case climbWindow.klettern:
+                    await MyNovel.ƒS.Sound.fade(MyNovel.sound.stairs, 0.2, 2, false);
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0023);
+                    await MyNovel.ƒS.Sound.fade(MyNovel.sound.stairs, 0, 2, false);
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0024);
                     await MyNovel.ƒS.Location.show(MyNovel.locations.BueroHinten);
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0025);
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0026);
                     await drinnenScene();
                     break;
-                case dialogue4.zurueck:
+                case climbWindow.zurueck:
                     await redenScene();
                     break;
             }
@@ -4291,58 +4360,63 @@ var MyNovel;
                     await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true);
                     await MyNovel.ƒS.Character.hideAll();
                     await MyNovel.ƒS.update(1);
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully1, MyNovel.characters.guardBully1.pose.upset, MyNovel.ƒS.positionPercent(40, 70));
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully2, MyNovel.characters.guardBully2.pose.upset, MyNovel.ƒS.positionPercent(66, 70));
+                    await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully1Big, MyNovel.characters.guardBully1Big.pose.upset, MyNovel.ƒS.positionPercent(40, 75));
+                    await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully2Big, MyNovel.characters.guardBully2Big.pose.upset, MyNovel.ƒS.positionPercent(66, 75));
                     await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0001);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0001);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0002);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0002);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0003);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0003);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0004);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0005);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0004);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0006);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0007);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0008);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0005);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0006);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0009);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0007);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0008);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0009);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0001);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0001);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0002);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0002);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0003);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0003);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0004);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0005);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0004);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0006);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0007);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0008);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0005);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0006);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0009);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0007);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0008);
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0009);
                 }
-                let dialogue5 = {
+                MyNovel.ƒS.Speech.hide();
+                let guardsDialogue = {
                     Bestechen: "Soll ich versuchen, die beiden zu bestechen...",
                     Überzeugen: "...oder sie mit meinem Charme zu überzeugen?",
                     Gehen: "Ich könnte auch gehen und mich hinterm Haus umschauen."
                 };
-                let dialogueElement5 = await MyNovel.ƒS.Menu.getInput(dialogue5, "choicesCSSClass");
-                switch (dialogueElement5) {
-                    case dialogue5.Bestechen:
-                        await dialogueBribe();
+                let guardsDialogueElement = await MyNovel.ƒS.Menu.getInput(guardsDialogue, "choicesCSSClass");
+                switch (guardsDialogueElement) {
+                    case guardsDialogue.Bestechen:
                         briberyAttempt = true;
+                        guardsSpoken = true;
+                        await dialogueBribe();
                         break;
-                    case dialogue5.Überzeugen:
+                    case guardsDialogue.Überzeugen:
+                        guardsSpoken = true;
                         await dialoguePersuade();
                         break;
-                    case dialogue5.Gehen:
+                    case guardsDialogue.Gehen:
+                        guardsSpoken = true;
                         await altWegScene();
                         break;
                 }
             }
             else {
-                let dialogue9 = {
+                let guardsDialogue2 = {
                     Überzeugen: "Soll ich versuchen, die beiden auf andere Weise zu überzeugen...",
                     Gehen: "... oder mich hinterm Haus umschauen?"
                 };
-                let dialogueElement9 = await MyNovel.ƒS.Menu.getInput(dialogue9, "choicesCSSClass");
-                switch (dialogueElement9) {
-                    case dialogue9.Überzeugen:
+                MyNovel.ƒS.Speech.hide();
+                let guardsDialogue2Element = await MyNovel.ƒS.Menu.getInput(guardsDialogue2, "choicesCSSClass");
+                switch (guardsDialogue2Element) {
+                    case guardsDialogue2.Überzeugen:
                         await dialoguePersuade();
                         break;
-                    case dialogue9.Gehen:
+                    case guardsDialogue2.Gehen:
                         await altWegScene();
                         break;
                 }
@@ -4351,132 +4425,136 @@ var MyNovel;
         ;
         async function dialogueBribe() {
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0027);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0010);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0011);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0010);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0011);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0028);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0029);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0010);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0011);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0012);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0012);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0010);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0011);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0012);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0012);
             let gold = false;
             let food = false;
             let fun = false;
-            let dialogue6 = {
+            MyNovel.ƒS.Speech.hide();
+            let bribeHow = {
                 Gold: "Gold",
                 Essen: "Essen",
                 Unterhaltung: "Unterhaltung"
             };
             while (!gold || !food || !fun) {
-                let dialogueElement6 = await MyNovel.ƒS.Menu.getInput(dialogue6, "choicesCSSClass");
-                switch (dialogueElement6) {
-                    case dialogue6.Gold:
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Ein Pimpf wie du trägt Gold mit sich rum?");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Wieviel hast du denn?");
+                let bribeHowElement = await MyNovel.ƒS.Menu.getInput(bribeHow, "choicesCSSClass");
+                switch (bribeHowElement) {
+                    case bribeHow.Gold:
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Ein Pimpf wie du trägt Gold mit sich rum?");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Wieviel hast du denn?");
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "*Verdammt, ich hab kein Gold und Steve sicher auch nicht.*");
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "*Und selbst wenn die alte Kröte was hätte, würde er mir nichts davon geben.*");
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Es scheint, ich habe meine Geldbörse verlegt, aber manche Dinge sind viel besser als Gold.");
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich könnte euch etwas anderes anbieten, zum Beispiel:");
                         //hier wieder zurück zur Auswahl, aber ohne Gold Option.
                         console.log(gold);
-                        dialogue6.Gold = "";
+                        bribeHow.Gold = "";
                         gold = true;
                         break;
-                    case dialogue6.Essen:
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Rumstehen macht schon echt hungrig.");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Was kannst du denn anbieten?");
-                        let dialogue7 = {
+                    case bribeHow.Essen:
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Rumstehen macht schon echt hungrig.");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Was kannst du denn anbieten?");
+                        MyNovel.ƒS.Speech.hide();
+                        let whatFood = {
                             Fliegen: "Fliegen",
                             Frikadellen: "Frikadellen",
                             Froschschenkel: "Froschschenkel"
                         };
-                        let dialogieElement7 = await MyNovel.ƒS.Menu.getInput(dialogue7, "choicesCSSClass");
-                        switch (dialogieElement7) {
-                            case dialogue7.Fliegen:
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Fliegen? Sehen wir für dich aus wie Frösche??");
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Frechheit! Jetzt ist mir der Appetit vergangen.");
+                        let whatFoodElement = await MyNovel.ƒS.Menu.getInput(whatFood, "choicesCSSClass");
+                        switch (whatFoodElement) {
+                            case whatFood.Fliegen:
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Fliegen? Sehen wir für dich aus wie Frösche??");
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Frechheit! Jetzt ist mir der Appetit vergangen.");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "War nur ein Witz. haha.. ");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich habe etwas viel Interessanteres zu bieten.");
                                 //hier zurück zur Auswahl, aber nur mit Unterhaltung (und Gold, falls noch nicht ausgewählt)
                                 food = true;
-                                dialogue6.Essen = "";
+                                bribeHow.Essen = "";
                                 break;
-                            case dialogue7.Frikadellen:
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Wir essen keine Frikadellen.");
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Wir sind überzeugte Veganer.");
+                            case whatFood.Frikadellen:
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Wir essen keine Frikadellen.");
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Wir sind überzeugte Veganer.");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Achso. Gut für euch!");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich habe sowieso noch etwas viel Besseres zu bieten.");
                                 //hier zurück zur Auswahl, aber nur mit Unterhaltung (und Gold, falls noch nicht ausgewählt)
                                 food = true;
-                                dialogue6.Essen = "";
+                                bribeHow.Essen = "";
                                 break;
-                            case dialogue7.Froschschenkel:
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Froschschenkel???");
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Wir wissen feine Küche zu schätzen, aber wir sind doch keine Kannibalen!!");
+                            case whatFood.Froschschenkel:
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Froschschenkel???");
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Wir wissen feine Küche zu schätzen, aber wir sind doch keine Kannibalen!!");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "*Puh, ich hatte eh nicht so Lust drauf mir ein Bein abzuhacken.*");
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Wenn ihr meine Schenkel nicht appetitlich findet, habe ich noch etwas anderes zu bieten.");
                                 //hier zurück zur Auswahl, aber nur mit Unterhaltung (und Gold, falls noch nicht ausgewählt)
                                 food = true;
-                                dialogue6.Essen = "";
+                                bribeHow.Essen = "";
                                 break;
                         }
                         break;
-                    case dialogue6.Unterhaltung:
+                    case bribeHow.Unterhaltung:
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Unterhaltung? Was kannst du denn?");
                         let trick = false;
                         let stand = false;
                         let poem = false;
-                        let dialogue8 = {
+                        MyNovel.ƒS.Speech.hide();
+                        let whatEntertainment = {
                             Zaubertrick: "Zaubertrick",
                             Handstand: "Handstand",
                             Gedicht: "Gedicht"
                         };
                         while (!trick || !stand || !poem) {
-                            let dialogueElement8 = await MyNovel.ƒS.Menu.getInput(dialogue8, "choicesCSSClass");
-                            switch (dialogueElement8) {
-                                case dialogue8.Zaubertrick:
+                            let whatEntertainmentElement = await MyNovel.ƒS.Menu.getInput(whatEntertainment, "choicesCSSClass");
+                            switch (whatEntertainmentElement) {
+                                case whatEntertainment.Zaubertrick:
                                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Okay, passt auf!");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "_Du knickst deinen rechten Zeigefinger ein und legst deinen linken über die Mitte deines linken Daumens, hältst die beiden aneinander und ziehst sie ein paarmal wieder auseinander._");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Dieser Trick wäre fast beeindruckend, wenn ich nicht wüsste, dass mein Schwager seinen abgetrennten Finger auch immer mit sich herumträgt.");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Mein Cousin macht genau das gleiche ständig mit seinem abgetrennten Finger. Zeig uns was neues!");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du knickst deinen rechten Zeigefinger ein und legst deinen linken über die Mitte deines linken Daumens, hältst die beiden aneinander und ziehst sie ein paarmal wieder auseinander.*");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Dieser Trick wäre fast beeindruckend, wenn ich nicht wüsste, dass mein Schwager seinen abgetrennten Finger auch immer mit sich herumträgt.");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Mein Cousin macht genau das gleiche ständig mit seinem abgetrennten Finger. Zeig uns was neues!");
                                     trick = true;
-                                    dialogue8.Zaubertrick = "";
+                                    whatEntertainment.Zaubertrick = "";
                                     //hier zur Übersicht zurück, mit den anderen 2 Tricks
                                     break;
-                                case dialogue8.Handstand:
+                                case whatEntertainment.Handstand:
                                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "So, ich brauche etwas Platz.");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "_Du holst aus, platzierst mit Schwung deine Hände auf dem Boden, überschlägst dich und fällst auf den Hintern._");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Haha!");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "War klar, dass das nichts wird.");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Entschuldige, aber du hast echt nicht den Körperbau eines Akrobaten.");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Hast du was Besseres?");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du holst aus, platzierst mit Schwung deine Hände auf dem Boden, überschlägst dich und fällst auf den Hintern.*");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Haha!");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "War klar, dass das nichts wird.");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Entschuldige, aber du hast echt nicht den Körperbau eines Akrobaten.");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Hast du was Besseres?");
                                     stand = true;
-                                    dialogue8.Handstand = "";
+                                    whatEntertainment.Handstand = "";
                                     //hier zur Übersicht zurück, mit den anderen 2 oder 1 Tricks
                                     break;
-                                case dialogue8.Gedicht:
+                                case whatEntertainment.Gedicht:
                                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Okay, hrhmm.");
                                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Rosen sind rot,");
                                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Veilchen sind blau,");
                                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "die Wachleute vor dem Büro des Königs sind sehr schlau.");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Yeeahh!");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Recht hast du!");
-                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Leider sind wir so schlau, dass wir uns nicht einfach so bestechen lassen.");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Yeeahh!");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Recht hast du!");
+                                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Leider sind wir so schlau, dass wir uns nicht einfach so bestechen lassen.");
                                     poem = true;
-                                    dialogue8.Gedicht = "";
+                                    whatEntertainment.Gedicht = "";
                                     //zu Übersicht zurück, mit den anderen 2 oder 1 Tricks
                                     break;
                             }
                         }
                         ;
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich hab auch was anderes zu bieten.");
-                        dialogue6.Unterhaltung = "";
+                        bribeHow.Unterhaltung = "";
                         fun = true;
                         break;
                 }
             }
             ;
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "*Ich glaube, ich sollte was anderes probieren.*");
+            guardsSpoken = true;
             await redenScene();
         }
         ;
@@ -4484,15 +4562,15 @@ var MyNovel;
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich muss wirklich nur einen vergessenen Gegenstand holen.");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich würde es niemals wagen, dem König etwas zu entwenden.");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Wir kennen uns ja schon eine Weile, ich bin ein vertrauenswürdiger Typ und werde auch nichts kaputt machen oder so.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Das letzte Mal, als ich jemanden in ein Haus gelassen habe, der sagte er würde nichts kaputt machen, habe ich das Haus kurz darauf komplett verwüstet vorgefunden.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Och nee! Kannst du bitte einfach darüber hinweg kommen?");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Nein, kann ich nicht! Mein Therapeut sagt, ich soll meine Traumata nicht verdrängen.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Und mein Therapeut sagt, dass du aufhören sollst, immer so passiv-aggressiv zu sein!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Passiv-aggressiv? Pf! Da kenn ich noch einen anderen.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Komm schon! Ich habe dir versucht zu erklären, dass nichts davon beabsichtigt war.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Und ich habe wochenlang nach ihr gesucht.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Manche Sachen kann man als Zufall erklären, aber das Verschwinden meines Ibericos?");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Du wusstest genau, dass ich den für das große Fest aufheben wollte.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Das letzte Mal, als ich jemanden in ein Haus gelassen habe, der sagte er würde nichts kaputt machen, habe ich das Haus kurz darauf komplett verwüstet vorgefunden.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Och nee! Kannst du bitte einfach darüber hinweg kommen?");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Nein, kann ich nicht! Mein Therapeut sagt, ich soll meine Traumata nicht verdrängen.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Und mein Therapeut sagt, dass du aufhören sollst, immer so passiv-aggressiv zu sein!");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Passiv-aggressiv? Pf! Da kenn ich noch einen anderen.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Komm schon! Ich habe dir versucht zu erklären, dass nichts davon beabsichtigt war.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Und ich habe wochenlang nach ihr gesucht.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Manche Sachen kann man als Zufall erklären, aber das Verschwinden meines Ibericos?");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Du wusstest genau, dass ich den für das große Fest aufheben wollte.");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Was wenn wir uns beruhigen und zum Thema zurückkehren?");
             let trash = false;
             let pet = false;
@@ -4503,84 +4581,96 @@ var MyNovel;
                 pet = false;
                 food = false;
                 if (!firstLoop) {
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Versuchs nochmal, Kleiner, irgendwie kauf ich dir das nicht ab.");
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Versuchs nochmal, Kleiner, irgendwie kauf ich dir das nicht ab.");
                 }
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich bin vertrauenswürdig, weil ich niemals:");
-                let dialogue12 = {
-                    Nachbarn: "den Schuppen des Nachbarn",
-                    Freund: "oder die Wohnung eines Freundes",
-                    König: "oder das Haus des Königs verwüsten würde",
+                MyNovel.ƒS.Speech.hide();
+                let trustworthy1 = {
+                    Nachbarn: "den Schuppen des Nachbarn anzünden würde.",
+                    Freund: "die Wohnung eines Freundes verwüsten würde.",
+                    König: "das Haus des Königs beschmieren würde.",
                 };
-                let dialogueElement12 = await MyNovel.ƒS.Menu.getInput(dialogue12, "choicesCSSClass");
-                switch (dialogueElement12) {
-                    case dialogue12.Nachbarn:
+                let trustworthy1Element = await MyNovel.ƒS.Menu.getInput(trustworthy1, "choicesCSSClass");
+                switch (trustworthy1Element) {
+                    case trustworthy1.Nachbarn:
                         break;
-                    case dialogue12.Freund:
+                    case trustworthy1.Freund:
                         trash = true;
                         break;
-                    case dialogue12.König:
+                    case trustworthy1.König:
                         break;
                 }
                 ;
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Außerdem bin ich nicht die Art von Person, die:");
-                let dialogue13 = {
-                    Kind: "ein Kind",
-                    Sklave: "oder einen Sklaven",
-                    Haustier: "oder ein Haustier entkommen lässt",
+                MyNovel.ƒS.Speech.hide();
+                let trustworthy2 = {
+                    Kind: "ein Kind weglaufen lässt.",
+                    Sklave: "einen Sklaven entkommen lässt.",
+                    Haustier: "ein Haustier entwischen lässt.",
                 };
-                let dialogueElement13 = await MyNovel.ƒS.Menu.getInput(dialogue13, "choicesCSSClass");
-                switch (dialogueElement13) {
-                    case dialogue13.Kind:
+                let trustworthy2Element = await MyNovel.ƒS.Menu.getInput(trustworthy2, "choicesCSSClass");
+                switch (trustworthy2Element) {
+                    case trustworthy2.Kind:
                         break;
-                    case dialogue13.Sklave:
+                    case trustworthy2.Sklave:
                         break;
-                    case dialogue13.Haustier:
+                    case trustworthy2.Haustier:
                         pet = true;
                         break;
                 }
                 ;
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "ich würde auch nie auf die Idee kommen von Freunden:");
-                let dialogue14 = {
+                MyNovel.ƒS.Speech.hide();
+                let trustworthy3 = {
                     Kammer: "die Speisekammer zu plündern.",
                     Figur: "die Sammelfigur zu klauen.",
                     Hut: "fancy Hüte zu entwenden.",
                 };
-                let dialogueElement14 = await MyNovel.ƒS.Menu.getInput(dialogue14, "choicesCSSClass");
-                switch (dialogueElement14) {
-                    case dialogue14.Kammer:
+                let trustworthy3Element = await MyNovel.ƒS.Menu.getInput(trustworthy3, "choicesCSSClass");
+                switch (trustworthy3Element) {
+                    case trustworthy3.Kammer:
                         food = true;
                         break;
-                    case dialogue14.Figur:
+                    case trustworthy3.Figur:
                         break;
-                    case dialogue14.Hut:
+                    case trustworthy3.Hut:
                         break;
                 }
                 ;
                 firstLoop = false;
             }
             ;
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Wenn das stimmt, dann bist du das genaue Gegenzeil von ihm hier!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Es war ein Unfall! Ich hab versucht, es wieder gut zu machen und ich hab mich oft genug entschuldigt!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Eine Entschuldigung bringt sie mir auch nicht zurück!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Ich wollte nur sehen, wie Missy mit einem lustigen kleinen Hut aussieht und dir für deinen Geburtstag ein Bild davon malen!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Woher sollte ich wissen, dass sie auf den Iberico mehr abfährt als du und die Speisekammer so einfach geöffnet bekommt?");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Ich wollte nicht, dass sie davon läuft, aber der Iberico hat sie zum Berserker gemacht.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Sie hat die Wohnung verwüstet und ist durch die Tür gebrochen!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Ich habe sie versucht mit dem restlichen Essen wieder herzulocken, aber konnte sie nicht finden.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Zwei ganze Wochen habe ich Nacht für Nacht und Tag für Tag nach ihr gesucht!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Ich habe mich so oft entschuldigt, aber ich glaube, du willst einfach nicht mehr mein Freund sein.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Such dir jemand anderen, mit dem du das Büro des Königs bewachen kannst.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, "Ich bin raus!");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "_Die Wache kann die Tränen nicht mehr zurückhalten und rennt schluchzend davon._");
-            //hier machen, dass W1 verschwindet (einfach entfernen oder Animation?)
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Oh man.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, "Ich war mir nicht bewusst, dass ich...");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Wenn das stimmt, dann bist du das genaue Gegenzeil von ihm hier!");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Es war ein Unfall! Ich hab versucht, es wieder gut zu machen und ich hab mich oft genug entschuldigt!");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Eine Entschuldigung bringt sie mir auch nicht zurück!");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Ich wollte nur sehen, wie Missy mit einem lustigen kleinen Hut aussieht und dir für deinen Geburtstag ein Bild davon malen!");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Woher sollte ich wissen, dass sie auf den Iberico mehr abfährt als du und die Speisekammer so einfach geöffnet bekommt?");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Ich wollte nicht, dass sie davon läuft, aber der Iberico hat sie zum Berserker gemacht.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Sie hat die Wohnung verwüstet und ist durch die Tür gebrochen!");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Ich habe sie versucht mit dem restlichen Essen wieder herzulocken, aber konnte sie nicht finden.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Zwei ganze Wochen habe ich Nacht für Nacht und Tag für Tag nach ihr gesucht!");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Ich habe mich so oft entschuldigt, aber ich glaube, du willst einfach nicht mehr mein Freund sein.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Such dir jemand anderen, mit dem du das Büro des Königs bewachen kannst.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Ich bin raus!");
+            await MyNovel.ƒS.Sound.fade(MyNovel.sound.crying, 0.2, 1, false);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Die Wache kann die Tränen nicht mehr zurückhalten und rennt schluchzend davon.*");
+            await MyNovel.ƒS.Sound.fade(MyNovel.sound.crying, 0, 4, false);
+            await MyNovel.ƒS.Character.hide(MyNovel.characters.guardBully1Big);
+            await MyNovel.ƒS.update(1);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Oh man.");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Ich war mir nicht bewusst, dass ich...");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Geh ihm hinterher! Es ist Zeit, dass du dich einmal bei ihm entschuldigst.");
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Na los, renn! Du kannst das noch fixen!");
-            //hier verschwindet W2 (einfach entfernen oder Animation?)
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "_Die zweite Wache lässt ihren Speer fallen und rennt der anderen hinterher._");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Na los, renn! Du kannst das noch retten!");
+            MyNovel.ƒS.Sound.play(MyNovel.sound.clang, 0.1, false);
+            //hier verschwindet W2 
+            await MyNovel.ƒS.Character.hide(MyNovel.characters.guardBully2Big);
+            await MyNovel.ƒS.update(1);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Die zweite Wache lässt ihren Speer fallen und rennt der anderen hinterher.*");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich hoffe, dass die zwei wieder Freunde werden können...");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Naja, der Weg ist frei, ich geh mal besser rein, bevor jemand zurückkommt.");
+            //door creak
+            MyNovel.ƒS.Sound.play(MyNovel.sound.doorCreak, 0.2, false);
+            await MyNovel.delay(2);
             await drinnenScene();
         }
         ;
@@ -4594,23 +4684,23 @@ var MyNovel;
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0030);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0031);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du legst die Kette auf dem Schreibtisch ab.*");
-            //sound für öffnen der tür und fußschritte-------------------------------------------------------
+            await MyNovel.ƒS.Sound.play(MyNovel.sound.doorCreak, 0.2, false);
             //Steve und 2 Wachen spawnen
-            await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(55, 80));
-            await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully1, MyNovel.characters.guardBully1.pose.upset, MyNovel.ƒS.positionPercent(45, 80));
-            await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully2, MyNovel.characters.guardBully2.pose.upset, MyNovel.ƒS.positionPercent(65, 80));
+            await MyNovel.ƒS.Character.show(MyNovel.characters.steve, MyNovel.characters.steve.pose.upset, MyNovel.ƒS.positionPercent(55, 80));
+            await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully1Big, MyNovel.characters.guardBully1Big.pose.upset, MyNovel.ƒS.positionPercent(45, 80));
+            await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully2Big, MyNovel.characters.guardBully2Big.pose.upset, MyNovel.ƒS.positionPercent(65, 80));
             await MyNovel.ƒS.update(1);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0001);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0002);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0003);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0004);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0013);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0013);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0013);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0013);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0005);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0006);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0007);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.GuardBully1.T0014);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.GuardBully2.T0014);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0014);
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0014);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0008);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0009);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0010);
@@ -4647,7 +4737,7 @@ var MyNovel;
             document.getElementById("respawnQuote").style.display = "none";
             document.getElementById("respawnQuote").removeChild(pp);
             //dann fade in und tümpel sounds
-            await MyNovel.ƒS.Location.show(MyNovel.locations.swampBoat);
+            await MyNovel.ƒS.Location.show(MyNovel.locations.swamp);
             await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1);
             await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
             await MyNovel.ƒS.update(1);
@@ -4725,7 +4815,7 @@ var MyNovel;
         await MyNovel.ƒS.Location.show(MyNovel.locations.swampWalk);
         await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true);
         //Steve
-        await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(55, 80));
+        await MyNovel.ƒS.Character.show(MyNovel.characters.steve, MyNovel.characters.steve.pose.upset, MyNovel.ƒS.positionPercent(50, 80));
         await MyNovel.ƒS.update(1);
         //Dialog für Quest 1
         if (MyNovel.dataForSave.Quest == 1) {
@@ -4866,8 +4956,10 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0002);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0003);
         await MyNovel.ƒS.Location.show(MyNovel.locations.sageHouseInside);
-        await MyNovel.ƒS.Character.show(MyNovel.characters.sage, MyNovel.characters.sage.pose.upset, MyNovel.ƒS.positionPercent(50, 50));
-        await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.1, 1, true);
+        await MyNovel.ƒS.Sound.play(MyNovel.sound.cloth, 0.2, false);
+        await MyNovel.ƒS.Character.show(MyNovel.characters.sage, MyNovel.characters.sage.pose.upset, MyNovel.ƒS.positionPercent(50, 80));
+        await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.05, 1, true);
+        await MyNovel.ƒS.Sound.fade(MyNovel.sound.mystic, 0.1, 1, true);
         await MyNovel.ƒS.update(1);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.sage, text.Weiser.T0001);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.sage, text.Weiser.T0002);
@@ -5056,6 +5148,7 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0010);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.sage, text.Weiser.T0014);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0011);
+        await MyNovel.ƒS.Sound.play(MyNovel.sound.frogCroak, 0.2, false);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Dorfschreier.T0001);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Dorfschreier.T0002);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Dorfschreier.T0003);
@@ -5063,7 +5156,13 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0012);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.sage, text.Weiser.T0015);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.sage, text.Weiser.T0016);
+        await MyNovel.ƒS.Sound.play(MyNovel.sound.cloth, 0.2, false);
+        await MyNovel.ƒS.Sound.fade(MyNovel.sound.mystic, 0, 1, false);
+        await MyNovel.ƒS.update(MyNovel.transition.deathSpiral.duration, MyNovel.transition.deathSpiral.alpha, MyNovel.transition.deathSpiral.edge);
+        await MyNovel.ƒS.Location.show(MyNovel.locations.sageHouse);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du verlässt das Zelt und eilst zum Dorfplatz*");
+        await MyNovel.ƒS.Character.hideAll();
+        await MyNovel.ƒS.update(1);
         console.log("Scene06 done");
     }
     MyNovel.GameScene06 = GameScene06;
@@ -5133,26 +5232,27 @@ var MyNovel;
         await MyNovel.ƒS.Location.show(MyNovel.locations.villageSquare);
         await MyNovel.ƒS.Sound.fade(MyNovel.sound.crowd, 0.2, 1, true);
         await MyNovel.ƒS.update(1);
-        await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(30, 50)); //Hier Dorfschreier einblenden
-        await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug01, MyNovel.characters.bullywug01.pose.upset, MyNovel.ƒS.positionPercent(30, 80)); //hier dorfbewohner einblenden ------------------------
-        await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug01, MyNovel.characters.bullywug01.pose.upset, MyNovel.ƒS.positionPercent(50, 80));
+        await MyNovel.ƒS.Character.show(MyNovel.characters.cryer, MyNovel.characters.cryer.pose.upset, MyNovel.ƒS.positionPercent(30, 45)); //Hier Dorfschreier einblenden
+        await MyNovel.ƒS.Character.show(MyNovel.characters.frogCrowd, MyNovel.characters.frogCrowd.pose.upset, MyNovel.ƒS.positionPercent(45, 100));
         await MyNovel.ƒS.update(1);
         await MyNovel.delay(3000);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Dorfschreier.T0001);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Dorfschreier.T0002);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Dorfschreier.T0003);
+        await MyNovel.ƒS.Sound.play(MyNovel.sound.frogCroak, 0.2, false);
+        await MyNovel.ƒS.Speech.tell(MyNovel.characters.cryer, text.Dorfschreier.T0001);
+        await MyNovel.ƒS.Speech.tell(MyNovel.characters.cryer, text.Dorfschreier.T0002);
+        await MyNovel.ƒS.Speech.tell(MyNovel.characters.cryer, text.Dorfschreier.T0003);
         await MyNovel.ƒS.Sound.fade(MyNovel.sound.crowd, 0.1, 1, true);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Dorfschreier.T0004);
+        await MyNovel.ƒS.Speech.tell(MyNovel.characters.cryer, text.Dorfschreier.T0004);
         await MyNovel.ƒS.Sound.fade(MyNovel.sound.crowd, 0, 1, false);
-        await MyNovel.ƒS.Character.show(MyNovel.characters.steve, MyNovel.characters.steve.pose.upset, MyNovel.ƒS.positionPercent(50, 60)); //Hier Steve einblenden):
+        await MyNovel.ƒS.Character.show(MyNovel.characters.steve, MyNovel.characters.steve.pose.upset, MyNovel.ƒS.positionPercent(50, 45));
+        await MyNovel.ƒS.update(1);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0001);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0002);
         if (MyNovel.dataForSave.Quest == 1) {
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0003);
-            await MyNovel.ƒS.Sound.play(MyNovel.sound.crowdGasp, 0.1, false);
+            MyNovel.ƒS.Sound.play(MyNovel.sound.crowdGasp, 0.1, false);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0004);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0005);
-            await MyNovel.ƒS.Sound.play(MyNovel.sound.crowdGasp, 0.1, false);
+            MyNovel.ƒS.Sound.play(MyNovel.sound.crowdGasp, 0.1, false);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0006);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0007);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0008);
@@ -5162,7 +5262,7 @@ var MyNovel;
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0012);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0013);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, text.Erzähler.T0001);
-            await MyNovel.ƒS.Sound.play(MyNovel.sound.crowdGasp, 0.1, false);
+            MyNovel.ƒS.Sound.play(MyNovel.sound.crowdGasp, 0.1, false);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0014);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0015);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0016);
@@ -5171,8 +5271,7 @@ var MyNovel;
             //cheer sound---------------------
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0019);
             //tumult sound---------------------
-            await MyNovel.ƒS.Sound.fade(MyNovel.sound.crowd, 0.1, 1, true);
-            await MyNovel.ƒS.Sound.fade(MyNovel.sound.crowd, 0, 2, false);
+            MyNovel.ƒS.Sound.play(MyNovel.sound.crowdGasp, 0.1);
         }
         else if (MyNovel.dataForSave.Quest == 2) {
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0020);
@@ -5180,12 +5279,13 @@ var MyNovel;
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0022);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0023);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, text.Erzähler.T0002);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, text.Erzähler.T0002); //hier sound dazu----------------
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0024);
-            await MyNovel.ƒS.Sound.fade(MyNovel.sound.crowdGasp, 0.1, 1, false);
+            MyNovel.ƒS.Sound.play(MyNovel.sound.crowdGasp, 0.1);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0025);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0026);
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, text.Erzähler.T0004); //hier sound dazu----------------
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, text.Erzähler.T0004);
+            await MyNovel.ƒS.Sound.fade(MyNovel.sound.crowd, 0.2, 3, true); //schlechter sound rn
+            await MyNovel.ƒS.Sound.fade(MyNovel.sound.crowd, 0, 2, false);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0027);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0028);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0029);
@@ -5194,381 +5294,19 @@ var MyNovel;
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0032);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0033);
             //cheer sound----------------------------------------
-            await MyNovel.ƒS.Sound.fade(MyNovel.sound.cheer, 0.2, 1, false); //shits not working?????
+            await MyNovel.ƒS.Sound.fade(MyNovel.sound.cheer, 0.2, 1, false);
             await MyNovel.ƒS.Sound.fade(MyNovel.sound.cheer, 0, 2, false);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0034);
-            //tumult sound----------------------------------------
-            await MyNovel.ƒS.Sound.fade(MyNovel.sound.crowd, 0.2, 3, true); //schlechter sound rn
-            await MyNovel.ƒS.Sound.fade(MyNovel.sound.crowd, 0, 2, false);
+            MyNovel.ƒS.Sound.play(MyNovel.sound.crowdGasp, 0.1);
         }
         //Steve geht weg
+        await MyNovel.ƒS.Character.hide(MyNovel.characters.steve);
         //hier Ende screen? to be continued
+        await MyNovel.ƒS.Location.show(MyNovel.locations.endingScreen);
+        await MyNovel.ƒS.Character.hideAll();
+        await MyNovel.ƒS.update(MyNovel.transition.deathSpiral.duration, MyNovel.transition.deathSpiral.alpha, MyNovel.transition.deathSpiral.edge);
         console.log("Scene07 done");
     }
     MyNovel.GameScene07 = GameScene07;
-})(MyNovel || (MyNovel = {}));
-var MyNovel;
-(function (MyNovel) {
-    async function Scene() {
-        console.log("Scene starting");
-        await MyNovel.ƒS.Location.show(MyNovel.locations.cityNight);
-        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
-        //await ƒS.Character.show(roomInventory.ladenTheke, roomInventory.ladenTheke.pose.standard, ƒS.positionPercent(50, 100));
-        await MyNovel.ƒS.update(0.3);
-        let text = {
-            Aisaka: {
-                T0001: "Oh. Hi!",
-                T0002: "We go to the same school, right?",
-            },
-        };
-        MyNovel.ƒS.Speech.hide();
-        await MyNovel.ƒS.Location.show(MyNovel.locations.cityNight);
-        MyNovel.ƒS.Sound.fade(MyNovel.sound.street, 0.5, 2, true);
-        MyNovel.ƒS.Sound.fade(MyNovel.sound.piano, 0.5, 2, true);
-        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
-        //await ƒS.Character.show(roomInventory.ladenTheke, roomInventory.ladenTheke.pose.standard, ƒS.positionPercent(50, 100));
-        await MyNovel.ƒS.update(0.3); //??
-        await MyNovel.ƒS.Character.show(MyNovel.characters.aisaka, MyNovel.characters.aisaka.pose.happy, MyNovel.ƒS.positionPercent(50, 110));
-        await MyNovel.ƒS.update(0.3);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, text.Aisaka.T0001);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, text.Aisaka.T0002);
-        let dialogue0 = {
-            IAgree: "Right, I've seen you around!",
-            ICorrect: "We're in the same grade, actually.",
-            IDeny: "Do we? I don't know you."
-        };
-        let dialogueElement0 = await MyNovel.ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
-        let agreed;
-        let correct;
-        let deny;
-        //meter
-        //dataForSave.pickedMeterScene = true;
-        //document.getElementsByName("aisakaScore").forEach(meterStuff => meterStuff.hidden = true);
-        //document.getElementById("scoreForAisaka").style.display = "none";
-        //ƒS.Speech.hide();
-        //dataForSave.aisakaScore += 50;
-        //console.log(dataForSave.aisakaScore);
-        switch (dialogueElement0) {
-            case dialogue0.IAgree:
-                console.log("You agree");
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, "I didn't think someone in school would go to this thing. Why are you here?");
-                agreed = true;
-                break;
-            case dialogue0.ICorrect:
-                //storypfad 
-                await MyNovel.ƒS.Character.show(MyNovel.characters.aisaka, MyNovel.characters.aisaka.pose.upset, MyNovel.ƒS.positionPercent(50, 110));
-                await MyNovel.ƒS.Character.hide(MyNovel.characters.aisaka);
-                await MyNovel.ƒS.update(0.3);
-                await MyNovel.ƒS.Sound.play(MyNovel.sound.huh, 0.5);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, "WE ARE? I'm so sorry, I guess I'm just really bad at memorizing faces.");
-                correct = true;
-                break;
-            case dialogue0.IDeny:
-                //
-                await MyNovel.ƒS.Sound.play(MyNovel.sound.huh, 0.5);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, "Hmmm, I'm pretty sure I saw you at school just earlier today. Trust me, I would know, I'm really good at memorizing faces!");
-                deny = true;
-                break;
-        }
-        await MyNovel.ƒS.update(0.3);
-        let dialogueYHere = {
-            ITellTruth: "I'm meeting an old childhood friend. She's really into this stuff and came all the way from Kyushu, so we decided to meet up.",
-            IFindExcuse: "I was just uhh passing by and thought I'd look what kind of event this is.",
-            ImBeingACreep: "I hoped to find you here.",
-        };
-        let dialogueAsk = {
-            IAskYHere: "Anyway, what are you doing here?",
-            IJudge: "Soo, you're into this kind of stuff?",
-            IHurry: "Well, anayway, I gotta get going. See you at school!"
-        };
-        if (agreed) {
-            let dialogueElement1 = await MyNovel.ƒS.Menu.getInput(dialogueYHere, "choicesCSSClass");
-            let saidTruth;
-            let excuse;
-            let creepy;
-            switch (dialogueElement1) {
-                case dialogueYHere.ITellTruth:
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.aisaka, MyNovel.characters.aisaka.pose.upset, MyNovel.ƒS.positionPercent(50, 110));
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.aisaka);
-                    await MyNovel.ƒS.update(0.3);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, "Oh. I see. I'm-- It was nice meeting you here. I-- have to go. See you at school!");
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.aisaka);
-                    await MyNovel.ƒS.update(0.3);
-                    saidTruth = true;
-                    break;
-                case dialogueYHere.IFindExcuse:
-                    //storypfad 
-                    await MyNovel.ƒS.Sound.play(MyNovel.sound.huh, 0.5);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, "Huh, is that so? And what do you think? It's pretty great, isn't it?");
-                    excuse = true;
-                    break;
-                case dialogueYHere.ImBeingACreep:
-                    //
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, ".............what are you talking about? We don't even know each other.");
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.aisaka, MyNovel.characters.aisaka.pose.upset, MyNovel.ƒS.positionPercent(50, 110));
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.aisaka);
-                    await MyNovel.ƒS.update(0.3);
-                    creepy = true;
-                    break;
-            }
-            //Das hier macht, dass wir automatisch zu Scene2 springen!!
-            return "Scene2";
-        }
-        else {
-            let dialogueElement2 = await MyNovel.ƒS.Menu.getInput(dialogueAsk, "choicesCSSClass");
-            let yHere;
-            let judge;
-            let hurry;
-            switch (dialogueElement2) {
-                case dialogueAsk.IAskYHere:
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.aisaka, MyNovel.characters.aisaka.pose.happy, MyNovel.ƒS.positionPercent(50, 110));
-                    //await ƒS.Character.hide(characters.aisaka);
-                    await MyNovel.ƒS.update(0.3);
-                    await MyNovel.ƒS.Sound.fade(MyNovel.sound.chuckle, 0.5, 2);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, "Uhm, actually... this is kind of my, well, my hobby.");
-                    yHere = true;
-                    break;
-                case dialogueAsk.IJudge:
-                    //storypfad 
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, "Yes. Yes, I am into 'this kind of stuff'. You should stop being that judgy.");
-                    judge = true;
-                    break;
-                case dialogueAsk.IHurry:
-                    //
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, ".. okay. See you.");
-                    hurry = true;
-                    break;
-            }
-        }
-        MyNovel.ƒS.Speech.clear();
-        //await ƒS.Character.animate(characters.aisaka, characters.aisaka.pose.upset, animation());
-    }
-    MyNovel.Scene = Scene;
-})(MyNovel || (MyNovel = {}));
-var MyNovel;
-(function (MyNovel) {
-    async function Scene2() {
-        console.log("Scene 2 starting");
-        let text = {
-            Aisaka: {
-                T0001: "Oh. Hi!",
-                T0002: "We go to the same school, right?",
-                T0003: "I han hungary",
-                T0004: "AND I NEED TO FEAST",
-                T0005: "ON THE BLOOD OF MY ENEMIES!",
-            },
-        };
-        MyNovel.ƒS.Speech.hide();
-        await MyNovel.ƒS.Location.show(MyNovel.locations.citySunset);
-        //ƒS.Sound.fade(sound.club, 0.5, 2, true);
-        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
-        //await ƒS.Character.show(roomInventory.ladenTheke, roomInventory.ladenTheke.pose.standard, ƒS.positionPercent(50, 100));
-        await MyNovel.ƒS.update(0.3); //??
-        await MyNovel.ƒS.Character.show(MyNovel.characters.aisaka, MyNovel.characters.aisaka.pose.happy, MyNovel.ƒS.positionPercent(50, 110));
-        await MyNovel.ƒS.update(0.3);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, text.Aisaka.T0001);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, text.Aisaka.T0002);
-        let dialogue0 = {
-            IAgree: "Right, I've seen you around!",
-            ICorrect: "We're in the same grade, actually.",
-            IDeny: "Do we? I don't know you."
-        };
-        let dialogueElement0 = await MyNovel.ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
-        let agreed;
-        let correct;
-        let deny;
-        switch (dialogueElement0) {
-            case dialogue0.IAgree:
-                console.log("You agree");
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, "I didn't think someone in school would go to this thing. Why are you here?");
-                agreed = true;
-                break;
-            case dialogue0.ICorrect:
-                //storypfad 
-                await MyNovel.ƒS.Character.show(MyNovel.characters.aisaka, MyNovel.characters.aisaka.pose.upset, MyNovel.ƒS.positionPercent(50, 110));
-                await MyNovel.ƒS.Character.hide(MyNovel.characters.aisaka);
-                await MyNovel.ƒS.update(0.3);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, "WE ARE? I'm so sorry, I guess I'm just really bad at memorizing faces.");
-                correct = true;
-                break;
-            case dialogue0.IDeny:
-                //
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, "Hmmm, I'm pretty sure I saw you at school just earlier today. Trust me, I would know, I'm really good at memorizing faces!");
-                deny = true;
-                break;
-        }
-        await MyNovel.ƒS.update(0.3);
-        let dialogueYHere = {
-            ITellTruth: "I'm meeting an old childhood friend. She's really into this stuff and came all the way from Kyushu, so we decided to meet up.",
-            IFindExcuse: "I was just uhh passing by and thought I'd look what kind of event this is.",
-            ImBeingACreep: "I hoped to find you here.",
-        };
-        let dialogueAsk = {
-            IAskYHere: "Anyway, what are you doing here?",
-            IJudge: "Soo, you're into this kind of stuff?",
-            IHurry: "Well, anayway, I gotta get going. See you at school!"
-        };
-        if (agreed) {
-            let dialogueElement1 = await MyNovel.ƒS.Menu.getInput(dialogueYHere, "choicesCSSClass");
-            let saidTruth;
-            let excuse;
-            let creepy;
-            switch (dialogueElement1) {
-                case dialogueYHere.ITellTruth:
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.aisaka, MyNovel.characters.aisaka.pose.upset, MyNovel.ƒS.positionPercent(50, 110));
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.aisaka);
-                    await MyNovel.ƒS.update(0.3);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, "Oh. I see. I'm-- It was nice meeting you here. I-- have to go. See you at school!");
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.aisaka);
-                    await MyNovel.ƒS.update(0.3);
-                    saidTruth = true;
-                    break;
-                case dialogueYHere.IFindExcuse:
-                    //storypfad 
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, "Huh, is that so? And what do you think? It's pretty great, isn't it?");
-                    excuse = true;
-                    break;
-                case dialogueYHere.ImBeingACreep:
-                    //
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, ".............what are you talking about? We don't even know each other.");
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.aisaka, MyNovel.characters.aisaka.pose.upset, MyNovel.ƒS.positionPercent(50, 110));
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.aisaka);
-                    await MyNovel.ƒS.update(0.3);
-                    creepy = true;
-                    break;
-            }
-        }
-        else {
-            let dialogueElement2 = await MyNovel.ƒS.Menu.getInput(dialogueAsk, "choicesCSSClass");
-            let yHere;
-            let judge;
-            let hurry;
-            switch (dialogueElement2) {
-                case dialogueAsk.IAskYHere:
-                    await MyNovel.ƒS.Character.show(MyNovel.characters.aisaka, MyNovel.characters.aisaka.pose.happy, MyNovel.ƒS.positionPercent(50, 110));
-                    await MyNovel.ƒS.Character.hide(MyNovel.characters.aisaka);
-                    await MyNovel.ƒS.update(0.3);
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, "Uhm, actually... this is kind of my, well, my hobby.");
-                    yHere = true;
-                    break;
-                case dialogueAsk.IJudge:
-                    //storypfad 
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, "Yes. Yes, I am into 'this kind of stuff'. You should stop being that judgy.");
-                    MyNovel.dataForSave.points -= 10;
-                    judge = true;
-                    break;
-                case dialogueAsk.IHurry:
-                    //
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.aisaka, ".. okay. See you.");
-                    MyNovel.dataForSave.points -= 5;
-                    hurry = true;
-                    break;
-            }
-        }
-        await MyNovel.ƒS.Character.animate(MyNovel.characters.aisaka, MyNovel.characters.aisaka.pose.upset, MyNovel.animation());
-        MyNovel.ƒS.Speech.setTickerDelays(80, 5000);
-        await MyNovel.ƒS.Speech.tell(null, "WHat is happening here?"); //null heißt es wird kein Name angezeigt
-        //ƒS.Inventory.add(items.stick);
-        for (let i = 0; i < 5; i++) {
-            MyNovel.ƒS.Inventory.add(MyNovel.items.stick);
-            MyNovel.ƒS.Inventory.add(MyNovel.items.crossbow);
-        }
-        await MyNovel.ƒS.Inventory.open();
-        //Novel pages
-        await MyNovel.ƒS.Text.print("hi");
-        //CSS für Novel Page
-        MyNovel.ƒS.Text.addClass("novelPage");
-        /*  await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.upset, ƒS.positionPercent(50, 110));
-         await ƒS.Character.hide(characters.aisaka)
-         await ƒS.update(0.3);
-         await ƒS.Speech.tell(characters.aisaka, text.Aisaka.T0003);
-         await ƒS.Character.hide(characters.aisaka)
-         await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.angry, ƒS.positionPercent(50, 100));
-         await ƒS.update(0.3);
-         await ƒS.Speech.tell(characters.aisaka, text.Aisaka.T0004);
-         await ƒS.Speech.tell(characters.aisaka, text.Aisaka.T0005);
-         await ƒS.Character.hide(characters.aisaka)
-         await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.angry, ƒS.positionPercent(45, 90));
-         await ƒS.update(0.3);
-         await ƒS.Character.hide(characters.aisaka)
-         await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.angry, ƒS.positionPercent(55, 85));
-         await ƒS.update(0.3);
-         await ƒS.Character.hide(characters.aisaka)
-         await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.angry, ƒS.positionPercent(40, 80));
-         await ƒS.update(0.3);
-         await ƒS.Character.hide(characters.aisaka)
-         await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.angry, ƒS.positionPercent(60, 75));
-         await ƒS.update(0.3);
-         await ƒS.Character.hide(characters.aisaka)
-         await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.angry, ƒS.positionPercent(35, 70));
-         await ƒS.update(0.3);
-         await ƒS.Character.hide(characters.aisaka)
-         await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.angry, ƒS.positionPercent(65, 65));
-         await ƒS.update(0.3);
-         await ƒS.Character.hide(characters.aisaka)
-         await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.angry, ƒS.positionPercent(50, 60));
-         await ƒS.update(0.3);
-         await ƒS.Character.hide(characters.aisaka)
-         await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.angry, ƒS.positionPercent(50, 50));
-         await ƒS.update(0.3);
-         await ƒS.Character.hide(characters.aisaka)
-         await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.angry, ƒS.positionPercent(50, 40));
-         await ƒS.update(0.3);
-         await ƒS.Character.hide(characters.aisaka)
-         await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.angry, ƒS.positionPercent(50, 30));
-         await ƒS.update(0.3);
-         await ƒS.Character.hide(characters.aisaka)
-         await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.angry, ƒS.positionPercent(50, 20));
-         await ƒS.update(0.3);
-         await ƒS.Character.hide(characters.aisaka)
-         await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.angry, ƒS.positionPercent(50, 10));
-         await ƒS.update(0.3);
-         await ƒS.Character.hide(characters.aisaka)
-         await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.angry, ƒS.positionPercent(50, 0));
-         await ƒS.update(0.3);
-       
-       
-         let dialogue = {
-           iSayYes: "Yes",
-           ISayOkay: "Okay",
-           ISayNo: "No",
-           ISayMaybe: "Maybe"
-         };
-     
-         let dialogueElement = await ƒS.Menu.getInput(dialogue, "choicesCSSClass");
-   
-         let pickedYes: boolean;
-         let pickedNo: boolean;
-         let pickedOk: boolean;
-         let pickedMaybe: boolean;
-   
-         if(pickedYes || pickedMaybe || pickedNo){
-           delete dialogue.ISayMaybe;
-         }
-         else if (pickedOk) {
-           delete dialogue.ISayOkay;
-         }
-     
-         switch(dialogueElement) {
-           case dialogue.iSayYes:
-             console.log("test");
-             await ƒS.Speech.tell(characters.aisaka, "ByeBye")
-             break;
-           case dialogue.ISayNo:
-             //storypfad
-             await ƒS.Speech.tell(characters.aisaka, "Tja")
-             break;
-           case dialogue.ISayOkay:
-             //
-             await ƒS.Speech.tell(characters.aisaka, "Wie okay")
-             break;
-           case dialogue.ISayMaybe:
-             //
-             await ƒS.Speech.tell(characters.aisaka, "Was heißt maybe")
-             break;
-         } */
-        await MyNovel.ƒS.update(0.3);
-    }
-    MyNovel.Scene2 = Scene2;
 })(MyNovel || (MyNovel = {}));
 //# sourceMappingURL=MyNovel.js.map

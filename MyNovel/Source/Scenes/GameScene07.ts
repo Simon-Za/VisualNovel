@@ -70,30 +70,31 @@ namespace MyNovel {
         await ƒS.Sound.fade(sound.crowd, 0.2, 1, true);
         await ƒS.update(1);
 
-        await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.upset, ƒS.positionPercent(30, 50));    //Hier Dorfschreier einblenden
-        await ƒS.Character.show(characters.bullywug01, characters.bullywug01.pose.upset, ƒS.positionPercent(30, 80));    //hier dorfbewohner einblenden ------------------------
-        await ƒS.Character.show(characters.bullywug01, characters.bullywug01.pose.upset, ƒS.positionPercent(50, 80)); 
+        await ƒS.Character.show(characters.cryer, characters.cryer.pose.upset, ƒS.positionPercent(30, 45));    //Hier Dorfschreier einblenden
+        await ƒS.Character.show(characters.frogCrowd, characters.frogCrowd.pose.upset, ƒS.positionPercent(45, 100));
         await ƒS.update(1);
 
         await delay(3000);
-        await ƒS.Speech.tell(characters.unknown, text.Dorfschreier.T0001);
-        await ƒS.Speech.tell(characters.unknown, text.Dorfschreier.T0002);
-        await ƒS.Speech.tell(characters.unknown, text.Dorfschreier.T0003);
+        await ƒS.Sound.play(sound.frogCroak, 0.2, false);
+        await ƒS.Speech.tell(characters.cryer, text.Dorfschreier.T0001);
+        await ƒS.Speech.tell(characters.cryer, text.Dorfschreier.T0002);
+        await ƒS.Speech.tell(characters.cryer, text.Dorfschreier.T0003);
         await ƒS.Sound.fade(sound.crowd, 0.1, 1, true);
-        await ƒS.Speech.tell(characters.unknown, text.Dorfschreier.T0004);
+        await ƒS.Speech.tell(characters.cryer, text.Dorfschreier.T0004);
         await ƒS.Sound.fade(sound.crowd, 0, 1, false);
         
-        await ƒS.Character.show(characters.steve, characters.steve.pose.upset, ƒS.positionPercent(50, 60));    //Hier Steve einblenden):
+        await ƒS.Character.show(characters.steve, characters.steve.pose.upset, ƒS.positionPercent(50, 45));  
+        await ƒS.update(1);
 
         await ƒS.Speech.tell(characters.steve, text.Steve.T0001);
         await ƒS.Speech.tell(characters.steve, text.Steve.T0002);
 
         if(dataForSave.Quest == 1) {
             await ƒS.Speech.tell(characters.steve, text.Steve.T0003);
-            await ƒS.Sound.play(sound.crowdGasp, 0.1, false);
+            ƒS.Sound.play(sound.crowdGasp, 0.1, false);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0004);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0005);
-            await ƒS.Sound.play(sound.crowdGasp, 0.1, false);
+            ƒS.Sound.play(sound.crowdGasp, 0.1, false);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0006);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0007);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0008);
@@ -103,7 +104,7 @@ namespace MyNovel {
             await ƒS.Speech.tell(characters.steve, text.Steve.T0012);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0013);
             await ƒS.Speech.tell(characters.narrator, text.Erzähler.T0001);
-            await ƒS.Sound.play(sound.crowdGasp, 0.1, false); 
+            ƒS.Sound.play(sound.crowdGasp, 0.1, false); 
             await ƒS.Speech.tell(characters.steve, text.Steve.T0014);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0015);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0016);
@@ -112,10 +113,7 @@ namespace MyNovel {
             //cheer sound---------------------
             await ƒS.Speech.tell(characters.steve, text.Steve.T0019);
             //tumult sound---------------------
-            await ƒS.Sound.fade(sound.crowd, 0.1, 1, true);
-            await ƒS.Sound.fade(sound.crowd, 0, 2, false);
-
-
+            ƒS.Sound.play(sound.crowdGasp, 0.1,);
         }
         else if(dataForSave.Quest == 2) {
             await ƒS.Speech.tell(characters.steve, text.Steve.T0020);
@@ -123,12 +121,13 @@ namespace MyNovel {
             await ƒS.Speech.tell(characters.steve, text.Steve.T0022);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0023);
             await ƒS.Speech.tell(characters.narrator, text.Erzähler.T0002);
-            await ƒS.Speech.tell(characters.narrator, text.Erzähler.T0002); //hier sound dazu----------------
             await ƒS.Speech.tell(characters.steve, text.Steve.T0024);
-            await ƒS.Sound.fade(sound.crowdGasp, 0.1, 1, false);
+             ƒS.Sound.play(sound.crowdGasp, 0.1,);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0025);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0026);
-            await ƒS.Speech.tell(characters.narrator, text.Erzähler.T0004); //hier sound dazu----------------
+            await ƒS.Speech.tell(characters.narrator, text.Erzähler.T0004); 
+            await ƒS.Sound.fade(sound.crowd, 0.2, 3, true);//schlechter sound rn
+            await ƒS.Sound.fade(sound.crowd, 0, 2, false);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0027);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0028);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0029);
@@ -137,19 +136,18 @@ namespace MyNovel {
             await ƒS.Speech.tell(characters.steve, text.Steve.T0032);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0033);
             //cheer sound----------------------------------------
-            await ƒS.Sound.fade(sound.cheer, 0.2, 1, false);        //shits not working?????
+            await ƒS.Sound.fade(sound.cheer, 0.2, 1, false);  
             await ƒS.Sound.fade(sound.cheer, 0, 2, false);
             await ƒS.Speech.tell(characters.steve, text.Steve.T0034);
-            //tumult sound----------------------------------------
-            await ƒS.Sound.fade(sound.crowd, 0.2, 3, true);//schlechter sound rn
-            await ƒS.Sound.fade(sound.crowd, 0, 2, false);
-
+            ƒS.Sound.play(sound.crowdGasp, 0.1,);
         }
 
         //Steve geht weg
-
+        await ƒS.Character.hide(characters.steve);  
         //hier Ende screen? to be continued
-
+        await ƒS.Location.show(locations.endingScreen);
+        await ƒS.Character.hideAll();
+        await ƒS.update(transition.deathSpiral.duration, transition.deathSpiral.alpha, transition.deathSpiral.edge);
 
         console.log("Scene07 done");
     }

@@ -16,17 +16,33 @@ declare namespace MyNovel {
     let sound: {
         piano: string;
         swamp: string;
-        squelch: string;
+        mystic: string;
+        battle01: string;
+        battle02: string;
+        dungeon: string;
         drop: string;
         crash: string;
         drawSword: string;
         drawGun: string;
         slash: string;
-        chuckle: string;
-        huh: string;
+        slashAxe: string;
+        swordMiss: string;
+        healthPotion: string;
+        squelch: string;
+        cloth: string;
+        branchSnap: string;
+        fall: string;
+        stairs: string;
+        clang: string;
+        doorCreak: string;
+        closetCreak: string;
+        drawerOpen: string;
+        drawerClose: string;
         crowd: string;
         crowdGasp: string;
         cheer: string;
+        crying: string;
+        frogCroak: string;
     };
     let locations: {
         waldweg: {
@@ -45,7 +61,7 @@ declare namespace MyNovel {
             name: string;
             background: string;
         };
-        swampBoat: {
+        swamp: {
             name: string;
             background: string;
         };
@@ -81,6 +97,22 @@ declare namespace MyNovel {
             name: string;
             background: string;
         };
+        CellTym: {
+            name: string;
+            background: string;
+        };
+        CellFrogtaro: {
+            name: string;
+            background: string;
+        };
+        CellFroglin: {
+            name: string;
+            background: string;
+        };
+        CellEmpty: {
+            name: string;
+            background: string;
+        };
         sageHouse: {
             name: string;
             background: string;
@@ -93,25 +125,12 @@ declare namespace MyNovel {
             name: string;
             background: string;
         };
+        endingScreen: {
+            name: string;
+            background: string;
+        };
     };
     let items: {
-        stick: {
-            name: string;
-            description: string;
-            image: string;
-            static: boolean;
-        };
-        crossbow: {
-            name: string;
-            description: string;
-            image: string;
-            static: boolean;
-        };
-        healingPotion: {
-            name: string;
-            description: string;
-            image: string;
-        };
         keyDrawer: {
             name: string;
             description: string;
@@ -143,16 +162,13 @@ declare namespace MyNovel {
         unknown: {
             name: string;
             origin: ƒ.ORIGIN2D;
-            pose: {
-                upset: string;
-            };
+            pose: {};
         };
         steve: {
             name: string;
             origin: ƒ.ORIGIN2D;
             pose: {
                 upset: string;
-                down: string;
                 medium: string;
                 large: string;
             };
@@ -219,6 +235,20 @@ declare namespace MyNovel {
                 upset: string;
             };
         };
+        guardBully1Big: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                upset: string;
+            };
+        };
+        guardBully2Big: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                upset: string;
+            };
+        };
         prisoner1: {
             name: string;
             origin: ƒ.ORIGIN2D;
@@ -241,6 +271,20 @@ declare namespace MyNovel {
             };
         };
         sage: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                upset: string;
+            };
+        };
+        cryer: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                upset: string;
+            };
+        };
+        frogCrowd: {
             name: string;
             origin: ƒ.ORIGIN2D;
             pose: {
@@ -292,10 +336,4 @@ declare namespace MyNovel {
 }
 declare namespace MyNovel {
     function GameScene07(): ƒS.SceneReturn;
-}
-declare namespace MyNovel {
-    function Scene(): ƒS.SceneReturn;
-}
-declare namespace MyNovel {
-    function Scene2(): ƒS.SceneReturn;
 }

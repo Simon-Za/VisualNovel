@@ -40,7 +40,7 @@ namespace MyNovel {
                 T0010: "Was? Du hast es immer noch nicht gelöst?",
                 T0011: "Oh man. Na gut. Dann mal los:",
                 T0012: "..Sie spielen nur zum Spaß und ohne Einsatz.",
-                T0013: "Was spielen sie?",
+                T0013: "Wie schaffen sie das?",
             },
             Wache2: {
                 T0001: "Stehen geblieben!",
@@ -60,8 +60,8 @@ namespace MyNovel {
             Frogtaro: {
                 T0001: "Stop! Komm nicht näher!",
                 T0002: "Nein, danke. Ich bin freiwillig hier.",
-                T0003: "Ich bin von einem Geist besessen.",
-                T0004: "Solange ich hier drin bin, kann ich keinen verletzen.",
+                T0003: "Ich bin von einem bösen Geist besessen.",
+                T0004: "Solange ich hier drin bin, kann ich keinem schaden.",
                 T0005: "Deshalb komm nicht näher.",
                 T0006: "Ich habe Angst, dass ich dich sonst verletze.",
                 T0007: "Du kannst meinem Großvater, Frogseph, Bescheid geben, dass ich hier bin.",
@@ -115,6 +115,7 @@ namespace MyNovel {
 
         await ƒS.Location.show(locations.GefaengnisOutside);
         //await ƒS.Sound.fade();  //Passenden Sound finden //vllt einfach gedämpfte Sumpf sounds
+        await ƒS.Sound.fade(sound.swamp, 0.1, 2, true);
         await ƒS.Character.show(characters.bullywug01, characters.bullywug01.pose.upset, ƒS.positionPercent(40, 85));
         await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.upset, ƒS.positionPercent(55, 85));
         await ƒS.update(1);
@@ -164,12 +165,13 @@ namespace MyNovel {
         await ƒS.Speech.tell(characters.guardBully1, text.Wache1.T0009);
         await ƒS.Speech.tell(characters.guardBully2, text.Wache2.T0008);
         await ƒS.Speech.tell(characters.guardBully1, text.Wache1.T0010);
-        await ƒS.Speech.tell(characters.guardBully2, text.Wache1.T0009);
-        await ƒS.Speech.tell(characters.guardBully2, text.Wache1.T0010);
+        await ƒS.Speech.tell(characters.guardBully2, text.Wache2.T0009);
+        await ƒS.Speech.tell(characters.guardBully2, text.Wache2.T0010);
         await ƒS.Speech.tell(characters.guardBully1, text.Wache1.T0011);
-        await ƒS.Speech.tell(characters.guardBully2, text.Wache1.T0011);
+        await ƒS.Speech.tell(characters.guardBully2, text.Wache2.T0011);
         await ƒS.Speech.tell(characters.guardBully1, text.Wache1.T0012);
-        await ƒS.Speech.tell(characters.guardBully2, text.Wache1.T0012);
+        await ƒS.Speech.tell(characters.guardBully2, text.Wache2.T0012);
+        await ƒS.Speech.tell(characters.guardBully1, text.Wache1.T0013);
 
 
         let guardRiddle = {
@@ -193,10 +195,10 @@ namespace MyNovel {
                 await ƒS.Speech.tell(characters.guardBully1, "Uhhh..");
                 await ƒS.Speech.tell(characters.guardBully2, "Was ist Streaming?");
                 await ƒS.Speech.tell(characters.guardBully1, "Das ist definitiv nicht die richtige Antwort.");
-                await ƒS.Speech.tell(characters.guardBully2, "_Ich glaube, er hat eine Schraube locker._");
-                await ƒS.Speech.tell(characters.guardBully1, "_Wir sollten ihn nicht verärgern._");
+                await ƒS.Speech.tell(characters.guardBully2, "*geflüstert* Ich glaube, er hat eine Schraube locker.");
+                await ƒS.Speech.tell(characters.guardBully1, "*geflüstert* Wir sollten ihn nicht verärgern. Vielleicht ist er gefährlich.");
                 await ƒS.Speech.tell(characters.guardBully2, "Hm okay, uhh, du darfst rein.");
-                await ƒS.Speech.tell(characters.guardBully2, "_Bitte tu uns nichts._");
+                await ƒS.Speech.tell(characters.guardBully2, "*geflüstert* Bitte tu uns nichts.");
                 break;
             case guardRiddle.music:
                 await ƒS.Speech.tell(characters.guardBully1, "Das ist die richtige Antwort!");
@@ -206,23 +208,31 @@ namespace MyNovel {
                 break;
         };
 
+        await ƒS.Character.hideAll();
+        await ƒS.Speech.hide();
         //drinnen im Gefängnis sind wieder 3 guys: Frogtaro, Tym und ein Frog, der von dem Objekt weiß
+        //hier das Gefängnis innen eiblenden!!---------------------------------------------------------
 
 
         while (!finished) {
+            await ƒS.Location.show(locations.Gefaengnis);
+            await ƒS.Speech.hide();
+            await ƒS.Sound.fade(sound.swamp, 0, 1, true);
+            await ƒS.Sound.fade(sound.dungeon, 0.2, 1, true);
+            await ƒS.update(1);
             if (!knowLocation) {
                 //Choice, welche Zelle anschauen
                 let dialogue0 = {
-                    linksVorn: "die erste links",
                     linksHinten: "die hintere linke",
-                    rechtsVorn: "die rechts vorne",
                     rechtsHinten: "die in der Ecke rechts",
+                    linksVorn: "die erste links",
+                    rechtsVorn: "die rechts vorne",
                 };
 
                 let dialogueElement0 = await ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
 
                 switch (dialogueElement0) {
-                    case dialogue0.linksHinten:
+                    case dialogue0.linksVorn:
                         await cellFrontLeft();
                         break;
                     case dialogue0.linksHinten:
@@ -237,19 +247,19 @@ namespace MyNovel {
                 };
             }
             else {
-                 //Choice, welche Zelle anschauen
-                 let dialogue0 = {
-                    linksVorn: "die erste links",
+                //Choice, welche Zelle anschauen
+                let dialogue0 = {
                     linksHinten: "die hintere linke",
-                    rechtsVorn: "die rechts vorne",
                     rechtsHinten: "die in der Ecke rechts",
+                    linksVorn: "die erste links",
+                    rechtsVorn: "die rechts vorne",
                     sumpf: "Zum Sumpf"
                 };
 
                 let dialogueElement0 = await ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
 
                 switch (dialogueElement0) {
-                    case dialogue0.linksHinten:
+                    case dialogue0.linksVorn:
                         await cellFrontLeft();
                         break;
                     case dialogue0.linksHinten:
@@ -271,73 +281,80 @@ namespace MyNovel {
         console.log("Scene03Q1 done");
 
         async function cellFrontLeft() {    //Tym
-            //Bild für Nahansicht der Zelle---------------------------------
+            if (!dataForSave.Protagonist.savedTym) {
+                await ƒS.Location.show(locations.CellTym);
+                await ƒS.update(1);
+                if (tymSpoken == false) {
+                    await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0001);
+                    await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0002);
+                    await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0003);
+                    await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0004);
+                    await ƒS.Speech.tell(characters.protagonist, "Ich suche nach einem Frosch, der hier eingesperrt wurde.");
+                    await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0005);
+                    await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0006);
+                    await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0007);
+                    await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0008);
+                    await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0009);
+                    await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0010);
+                    await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0011);
+                    await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0012);
+                    await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0013);
+                    await ƒS.Speech.tell(characters.protagonist, "Super, danke!");
+                    tymSpoken = true;
+                }
+                else {
+                    await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0014);
+                    await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0015);
+                    //hier fragen, ob befreien
+                    let dialogueTymFree = {
+                        free: "Tym befreien",
+                        leave: "Gehen",
 
-            if (tymSpoken == false) {
-                await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0001);
-                await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0002);
-                await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0003);
-                await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0004);
-                await ƒS.Speech.tell(characters.protagonist, "Ich suche nach einem Frosch, der hier eingesperrt wurde.");
-                await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0005);
-                await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0006);
-                await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0007);
-                await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0008);
-                await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0009);
-                await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0010);
-                await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0011);
-                await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0012);
-                await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0013);
-                await ƒS.Speech.tell(characters.protagonist, "Super, danke!");
-                tymSpoken = true;
+                    };
+                    let dialogueElementTymFree = await ƒS.Menu.getInput(dialogueTymFree, "choicesCSSClass");
+
+                    switch (dialogueElementTymFree) {
+                        case dialogueTymFree.free:
+                            if (dataForSave.Protagonist.hasKey == true) {
+                                await ƒS.Speech.tell(characters.narrator, "*Du benutzt den Dungeon Schlüssel*");
+                                dataForSave.Protagonist.savedTym = true;
+                                await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0016);
+                                await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0017);
+                                await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0018);
+                                await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0019);
+                                await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0020);
+                                await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0021);
+                                await ƒS.Speech.tell(characters.prisoner1, text.Tym.T0022);
+                            }
+                            else {
+                                await ƒS.Speech.tell(characters.narrator, "Du hast keinen passenden Schlüssel.");
+                            }
+                            break;
+                        case dialogueTymFree.leave:
+                            await ƒS.Speech.tell(characters.protagonist, "Nichts weiter.");
+                            await ƒS.Speech.tell(characters.prisoner1, "Okay. Tschüss.");
+                            break;
+                    };
+                };
             }
             else {
-                await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0014);
-                await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0015);
-                //hier fragen, ob befreien
-                let dialogueTymFree = {
-                    free: "Tym befreien",
-                    leave: "Gehen",
-
-                };
-                let dialogueElementTymFree = await ƒS.Menu.getInput(dialogueTymFree, "choicesCSSClass");
-
-                switch (dialogueElementTymFree) {
-                    case dialogueTymFree.free:
-                        if (dataForSave.Protagonist.hasKey == true) {
-                            await ƒS.Speech.tell(characters.narrator, "*Du benutzt den Dungeon Schlüssel*");
-                            dataForSave.Protagonist.savedTym = true;
-                            await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0016);
-                            await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0017);
-                            await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0018);
-                            await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0019);
-                            await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0020);
-                            await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0021);
-                            await ƒS.Speech.tell(characters.prisoner2, text.Tym.T0022);
-                        }
-                        else {
-                            await ƒS.Speech.tell(characters.narrator, "Du hast keinen passenden Schlüssel.");
-                        }
-                        break;
-                    case dialogueTymFree.leave:
-                        await ƒS.Speech.tell(characters.protagonist, "Nichts weiter.");
-                        await ƒS.Speech.tell(characters.prisoner2, "Okay. Tschüss.");
-                        break;
-                };
+                await ƒS.Speech.tell(characters.narrator, "Tym ist gegangen und hat die Zellentür hinter sich geschlossen.");
             };
         };
 
         async function cellBackLeft() {     //Frog, der unsere Infos hat
             //hier Bild für Nahansicht der Zelle einfügen---------------------------------
+            await ƒS.Location.show(locations.CellFroglin);
+            await ƒS.update(1);
             if (!frogSpoken) {
-                await ƒS.Speech.tell(characters.prisoner1, text.Gefangener1.T0001);
-                await ƒS.Speech.tell(characters.prisoner1, text.Gefangener1.T0002);
-                await ƒS.Speech.tell(characters.prisoner1, text.Gefangener1.T0003);
+                await ƒS.Speech.tell(characters.prisoner2, text.Gefangener1.T0001);
+                await ƒS.Speech.tell(characters.prisoner2, text.Gefangener1.T0002);
+                await ƒS.Speech.tell(characters.prisoner2, text.Gefangener1.T0003);
                 await ƒS.Speech.tell(characters.protagonist, "Bin ich was?");
                 await ƒS.Speech.tell(characters.protagonist, "Steve schickt mich, aber ich soll bloß eine Sache herausfinden.");
-                await ƒS.Speech.tell(characters.prisoner1, text.Gefangener1.T0004);
+                await ƒS.Speech.tell(characters.prisoner2, text.Gefangener1.T0004);
                 await ƒS.Speech.tell(characters.protagonist, "Genau. Bist du der Frosch, der sie liefern sollte?");
-                await ƒS.Speech.tell(characters.prisoner1, text.Gefangener1.T0005);
+                await ƒS.Speech.tell(characters.prisoner2, text.Gefangener1.T0005);
 
                 while (!knowLocation) {
                     let talkPrisoner = {
@@ -351,39 +368,41 @@ namespace MyNovel {
 
                     switch (talkPrisonerElement) {
                         case talkPrisoner.prison:
-                            await ƒS.Speech.tell(characters.prisoner1, "Hmpf. Müsstest du das nicht wissen?");
-                            await ƒS.Speech.tell(characters.prisoner1, "Es scheint, der König hat Wind davon bekommen, dass wir von der Kette wussten.");
-                            await ƒS.Speech.tell(characters.prisoner1, "Er hat darauf gewartet, dass wir versuchen, sie rauszuholen und eine Falle gestellt");
-                            await ƒS.Speech.tell(characters.prisoner1, "Ich hatte Glück und konnte lang genug entkommen, um die Kette zu verstecken, bevor sie mich geschnappt haben.");
-                            await ƒS.Speech.tell(characters.prisoner1, "Ich frage mich, woher sie wussten, wann ich zuschlagen würde.");
+                            await ƒS.Speech.tell(characters.prisoner2, "Hmpf. Müsstest du das nicht wissen?");
+                            await ƒS.Speech.tell(characters.prisoner2, "Es scheint, der König hat Wind davon bekommen, dass wir von der Kette wussten.");
+                            await ƒS.Speech.tell(characters.prisoner2, "Er hat darauf gewartet, dass wir versuchen, sie rauszuholen und eine Falle gestellt");
+                            await ƒS.Speech.tell(characters.prisoner2, "Ich hatte Glück und konnte lang genug entkommen, um die Kette zu verstecken, bevor sie mich geschnappt haben.");
+                            await ƒS.Speech.tell(characters.prisoner2, "Ich frage mich, woher sie wussten, wann ich zuschlagen würde.");
                             break;
                         case talkPrisoner.necklace:
-                            await ƒS.Speech.tell(characters.prisoner1, "Huh. Ich bin mir nocht sicher, ob ich sollte.");
-                            await ƒS.Speech.tell(characters.prisoner1, "Aber es gibt sowieso nichts, was ich jetzt noch machen kann.");
-                            await ƒS.Speech.tell(characters.prisoner1, "Wenn du mich rausholst, sobald diese Sache vorüber ist, sag ich dir wo sie ist.");
-                            await ƒS.Speech.tell(characters.prisoner1, "Falls du es dann noch kannst.");
-                            await ƒS.Speech.tell(characters.prisoner1, "Die Kette ist unter dem kleinen Steg beim Sumpf, ca nach dem ersten Drittel.");
-                            await ƒS.Speech.tell(characters.prisoner1, "Viel Glück. Hoffen wir, dass du es nicht brauchst.");
+                            await ƒS.Speech.tell(characters.prisoner2, "Huh. Ich bin mir nocht sicher, ob ich sollte.");
+                            await ƒS.Speech.tell(characters.prisoner2, "Aber es gibt sowieso nichts, was ich jetzt noch machen kann.");
+                            await ƒS.Speech.tell(characters.prisoner2, "Wenn du mich rausholst, sobald diese Sache vorüber ist, sag ich dir wo sie ist.");
+                            await ƒS.Speech.tell(characters.prisoner2, "Falls du es dann noch kannst.");
+                            await ƒS.Speech.tell(characters.prisoner2, "Die Kette ist unter dem kleinen Steg beim Sumpf, ca nach dem ersten Drittel.");
+                            await ƒS.Speech.tell(characters.prisoner2, "Viel Glück. Hoffen wir, dass du es nicht brauchst.");
                             knowLocation = true;
                             break;
                         case talkPrisoner.steve:
-                            await ƒS.Speech.tell(characters.prisoner1, "Wir haben zusammen die Grundausbildung in der Armee gemacht.");
-                            await ƒS.Speech.tell(characters.prisoner1, "Ich habe für längere Zeit als uhh Söldner gearbeitet, aber vor einer Weile hat Steve mich rekrutiert, um ihm bei einem bestimmten Job zu helfen.");
-                            await ƒS.Speech.tell(characters.prisoner1, "Mittlerweile bin ich mir ziemich sicher, dass das, was er mir erzählt hat gelogen war.");
-                            await ƒS.Speech.tell(characters.prisoner1, "Was auch immer er dir erzählt, glaub ihm kein Wort.");
-                            await ƒS.Speech.tell(characters.prisoner1, "Und nimm dich in Acht, vor allem dann, wenn deine Aufgabe beendet ist.");
+                            await ƒS.Speech.tell(characters.prisoner2, "Wir haben zusammen die Grundausbildung in der Armee gemacht.");
+                            await ƒS.Speech.tell(characters.prisoner2, "Ich habe für längere Zeit als uhh.. Söldner gearbeitet, aber vor einer Weile hat Steve mich rekrutiert, um ihm bei einem bestimmten Job zu helfen.");
+                            await ƒS.Speech.tell(characters.prisoner2, "Mittlerweile bin ich mir ziemich sicher, dass das, was er mir erzählt hat gelogen war.");
+                            await ƒS.Speech.tell(characters.prisoner2, "Was auch immer er dir erzählt, glaub ihm kein Wort.");
+                            await ƒS.Speech.tell(characters.prisoner2, "Und nimm dich in Acht, vor allem dann, wenn deine Aufgabe beendet ist.");
                             break;
                     };
                     frogSpoken = true;
                 };
             }
             else {
-                await ƒS.Speech.tell(characters.prisoner1, "Viel Glück, Kleiner.");
+                await ƒS.Speech.tell(characters.prisoner2, "Viel Glück, Kleiner.");
             }
         };
 
         async function cellFrontRight() {   //Frogtaro
             //hier Bild für Nahansicht der Zelle einfügen---------------------------------
+            await ƒS.Location.show(locations.CellFrogtaro);
+            await ƒS.update(1);
             if (!frogTaroSpoken) {
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0001);
                 await ƒS.Speech.tell(characters.protagonist, "Ich bin keine Wache. Ich habe nur ein paar Fragen.");
@@ -393,9 +412,9 @@ namespace MyNovel {
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0003);
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0004);
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0005);
+                await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0006);
                 await ƒS.Speech.tell(characters.protagonist, "Oh. Okay.");
                 await ƒS.Speech.tell(characters.protagonist, "Kann ich dir irgendwie helfen?");
-                await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0006);
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0007);
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0008);
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0009);
@@ -418,11 +437,13 @@ namespace MyNovel {
         };
 
         async function cellBackRight() {    //leere Zelle
+            await ƒS.Location.show(locations.CellEmpty);
+            await ƒS.update(1);
             await ƒS.Speech.tell(characters.narrator, "Die Zelle ist leer und verschlossen.");
 
             if (dataForSave.Protagonist.hasKey == true) {
                 let dialogueEmptyCell = {
-                    keyDungeon: "Dungeonschlüsse benutzen?",
+                    keyDungeon: "Dungeonschlüssel benutzen?",
                     leave: "Zurück",
                 };
 
@@ -439,6 +460,7 @@ namespace MyNovel {
         };
         async function swamp() {
             await ƒS.Location.show(locations.swampWalk);
+            await ƒS.Sound.fade(sound.dungeon, 0, 1, false);
             await ƒS.Sound.fade(sound.swamp, 0.2, 1, true);
             await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
             await ƒS.Speech.tell(characters.protagonist, "So, hier müsste sie irgendwo sein.");
@@ -451,6 +473,7 @@ namespace MyNovel {
 
             await ƒS.Location.show(locations.blackscreen);
             await ƒS.Character.hideAll();
+            await ƒS.Speech.hide();
 
             finished = true;
         }

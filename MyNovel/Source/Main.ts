@@ -21,7 +21,10 @@ namespace MyNovel {
     //themes
     piano: "Sounds/soft_piano.mp3",
     swamp: "Sounds/swampWoods.mp3",
-    squelch: "Sounds/waterSquelch.mp3",
+    mystic: "Sounds/mystic.mp3",
+    battle01: "Sounds/battle01.mp3",
+    battle02: "Sounds/battle02.mp3",
+    dungeon: "Sounds/dungeon.mp3",
 
     // SFX
     drop: "", //Pfad
@@ -29,13 +32,26 @@ namespace MyNovel {
     drawSword: "Sounds/drawSword.mp3",
     drawGun: "Sounds/drawPistol.mp3",
     slash: "Sounds/slash.mp3",
+    slashAxe: "Sounds/slashAxe.mp3",
+    swordMiss: "Sounds/swordMiss.mp3",
+    healthPotion: "Sounds/healthPotion.mp3",
+    squelch: "Sounds/waterSquelch.mp3",
+    cloth: "Sounds/clothFlap.mp3",
+    branchSnap: "Sounds/branchSnap.mp3",
+    fall: "Sounds/fall.mp3",
+    stairs: "Sounds/stairs.mp3",
+    clang: "Sounds/clang.mp3",
+    doorCreak: "Sounds/doorCreak.mp3",
+    closetCreak: "Sounds/closetCreak.mp3",
+    drawerOpen: "Sounds/drawerOpen.mp3",
+    drawerClose: "Sounds/drawerClose.mp3",
 
     // Voices
-    chuckle: "Sounds/chuckle.mp3",
-    huh: "Sounds/huh.mp3",
     crowd: "Sounds/crowd.mp3",
     crowdGasp: "Sounds/gasp.mp3",
     cheer: "Sounds/cheer.mp3",
+    crying: "Sounds/crying.mp3",
+    frogCroak: "Sounds/frogCroak.mp3",
   };
 
   export let locations = {
@@ -53,19 +69,19 @@ namespace MyNovel {
     },
     swampWalk: {
       name: "SwampWalk",
-      background: "Images/Backgrounds/SwampWalk.jpeg"
+      background: "Images/Backgrounds/SwampWalk.png"
     },
-    swampBoat: {
-      name: "SwampBoat",
-      background: "Images/Backgrounds/SwampBoat.jpeg"
+    swamp: {
+      name: "Swamp",
+      background: "Images/Backgrounds/Swamp.png"
     },
     BueroAußen: {
       name: "BueroAußen",
-      background: "Images/Backgrounds/BueroAußen.jpeg"
+      background: "Images/Backgrounds/BueroAußen.png"
     },
     BueroInnen: {
       name: "BueroInnen",
-      background: "Images/Backgrounds/BueroInnen.jpeg"
+      background: "Images/Backgrounds/BueroInnen.png"
     },
     BueroHinten: {
       name: "BueroHinten",
@@ -75,73 +91,76 @@ namespace MyNovel {
       name: "BueroHintenAst",
       background: "Images/Backgrounds/BueroHintenAst.png"
     },
-    BueroVorne: { 
+    BueroVorne: {
       name: "BueroVorne",
       background: "Images/Backgrounds/BueroVorne.png"
     },
-    Gefaengnis: { 
+    Gefaengnis: {
       name: "Gefaengnis",
-      background: "Images/Backgrounds/GefaengnisDoorOpen.png"
+      background: "Images/Backgrounds/Gefaengnis.png"
     },
-    GefaengnisOpenVault: { 
+    GefaengnisOpenVault: {
       name: "GefaengnisVaultDoorOpen",
       background: "Images/Backgrounds/Gefaengnis.png"
     },
-    GefaengnisOutside: { 
+    GefaengnisOutside: {
       name: "GefaengnisOutside",
       background: "Images/Backgrounds/PrisonEntrance.png"
     },
+    CellTym: {
+      name: "TymCell",
+      background: "Images/Backgrounds/CellTym.png"
+    },
+    CellFrogtaro: {
+      name: "FrogtaroCell",
+      background: "Images/Backgrounds/CellFrogtaro.png"
+    },
+    CellFroglin: {
+      name: "FroglinCell",
+      background: "Images/Backgrounds/CellFroglin.png"
+    },
+    CellEmpty: {
+      name: "EmptyCell",
+      background: "Images/Backgrounds/CellEmpty.png"
+    },
     sageHouse: {
-    name: "Weisenhaus",
-    background: "Images/Backgrounds/SageHouse.png"
+      name: "Weisenhaus",
+      background: "Images/Backgrounds/SageHouse.png"
     },
     sageHouseInside: {
-    name: "WeisenhausInnen",
-    background: "Images/Backgrounds/sageHouseInside.png"
+      name: "WeisenhausInnen",
+      background: "Images/Backgrounds/sageHouseInside.png"
     },
     villageSquare: {
       name: "Marktplatz",
       background: "Images/Backgrounds/townSquare.png"
-      },
+    },
+    endingScreen: {
+      name: "Ende",
+      background: "Images/Backgrounds/EndingScreen.jpg"
+    },
   };
 
   export let items = {
-    stick: {
-      name: "Stick",
-      description: "an ordinary stick",
-      image: "Images/Items/stick.png", //Beispiel
-      static: true,  //konsumierbar = true, "statisch" machen = false oder weglassen
-    },
-    crossbow: {
-      name: "Crossbow",
-      description: "a simple ranged weapon",
-      image: "Images/Items/crossbow.png", //Beispiel
-      static: true,
-    },
-    healingPotion: {
-      name: "Healing Potion",
-      description: "a healy potion",
-      image: "Images/Items/.png", //Beispiel
-    },
     keyDrawer: {
       name: "Schubladenschlüssel",
       description: "Scheint eine Schublade zu öffnen",
-      image: "Images/Items/.png", //Beispiel
+      image: "Images/Items/drawerKey.png",
     },
     keyDungeon: {
       name: "Dungeon Schlüssel",
       description: "Schlüssel für das Verlies?",
-      image: "Images/Items/.png", //Beispiel
+      image: "Images/Items/dungeonKey.png",
     },
     keyVault: {
       name: "Tresorschlüssel",
       description: "Schlüssel für den Tresor",
-      image: "Images/Items/.png", //Beispiel
+      image: "Images/Items/vaultKey.png", 
     },
     dirtyMags: {
       name: "Schmutzige Magazine",
       description: "Aus der Privatsammlung des Königs",
-      image: "Images/Items/.png", //Beispiel
+      image: "Images/Items/mags.png", 
     },
   };
 
@@ -156,79 +175,93 @@ namespace MyNovel {
       name: "???",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        upset: "Images/Characters/aisaka_upset.png",
+
       }
     },
     steve: {
       name: "Steve",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        upset: "Images/Characters/smolBully.png",
-        down: "Images/Characters/smolBully_down.png",
-        medium: "Images/Characters/mediumBully.png",
-        large: "Images/Characters/largeBully.png",
+        upset: "Images/Characters/Steve.png",
+        medium: "Images/Characters/SteveMedium.png",
+        large: "Images/Characters/SteveBig.png",
       }
     },
     bullywug01: {
       name: "Bullywug01",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        upset: "Images/Characters/smolBully.png",
-        down: "Images/Characters/smolBully_down.png",
+        //frogs sind immer upset
+        upset: "Images/Characters/smolFrog.png",
+        down: "Images/Characters/smolFrogDown.png",
       }
     },
     bullywug02: {
       name: "Bullywug02",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        upset: "Images/Characters/smolBully.png",
-        down: "Images/Characters/smolBully_down.png",
+        upset: "Images/Characters/smolFrog.png",
+        down: "Images/Characters/smolFrogDown.png",
       }
     },
     bullywug03: {
       name: "Bullywug03",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        upset: "Images/Characters/smolBully.png",
-        down: "Images/Characters/smolBully_down.png",
+        upset: "Images/Characters/smolFrog.png",
+        down: "Images/Characters/smolFrogDown.png",
       }
     },
     bullywug04: {
       name: "Bullywug04",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        upset: "Images/Characters/smolBully.png",
-        down: "Images/Characters/smolBully_down.png",
+        upset: "Images/Characters/smolFrog.png",
+        down: "Images/Characters/smolFrogDown.png",
       }
     },
     fighter01: {
       name: "Fighter01",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        upset: "Images/Characters/fightersmol.png",
-        down: "Images/Characters/fightersmol_down.png",
+        upset: "Images/Characters/fighter.png",
+        down: "Images/Characters/fighterDown.png",
       }
     },
     fighter02: {
       name: "Fighter02",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        upset: "Images/Characters/fightersmol.png",
-        down: "Images/Characters/fightersmol_down.png",
+        upset: "Images/Characters/fighter.png",
+        down: "Images/Characters/fighterDown.png",
       }
     },
     guardBully1: {
-      name: "Wache links",
+      name: "WacheLinks",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        upset: "Images/Characters/smollerBully.png",
+        upset: "Images/Characters/smollerFrog.png",
       }
     },
     guardBully2: {
-      name: "Wache rechts",
+      name: "WacheRechts",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        upset: "Images/Characters/smollerBully.png",
+        upset: "Images/Characters/smollerFrog.png",
+      }
+    },
+    guardBully1Big: {
+      name: "WacheLinks",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        upset: "Images/Characters/smolFrog.png",
+      }
+    },
+    guardBully2Big: {
+      name: "WacheRechts",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        upset: "Images/Characters/smolFrog.png",
       }
     },
     prisoner1: {
@@ -256,7 +289,21 @@ namespace MyNovel {
       name: "Weiser",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        upset: "Images/Characters/smollerBully.png",  //fehlt!!
+        upset: "Images/Characters/sage.png",
+      }
+    },
+    cryer: {
+      name: "Dorfschreier",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        upset: "Images/Characters/cryer.png",
+      }
+    },
+    frogCrowd: {
+      name: "Versammlung",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        upset: "Images/Characters/frogCrowd.png",
       }
     },
   };
@@ -266,7 +313,7 @@ namespace MyNovel {
   export let dataForSave = {
     Protagonist: {
       name: "",
-      deaths: 0,
+      deaths: 3,
       mags: false,
       hasKey: false,
       savedTym: false,
@@ -274,7 +321,7 @@ namespace MyNovel {
     //für meter
     HP: 20,
     HPCount: "20/20",
-    Quest: 0,
+    Quest: 2,
   };
 
   export function animation(): ƒS.AnimationDefinition {
@@ -375,16 +422,16 @@ namespace MyNovel {
   }
 
 
-    export let deathQuotes: string[] = [ 
-      "'We all have big changes in our lives that are more or less a second chance.'",
-      "'If there is no struggle, there is no progress'",
-      "'I have not failed. I've just found 10,000 ways that won't work.'",
-      "'You only live once, but if you do it right, once is enough.'",
-      "'In three words I can sum up everything I've learned about life: it goes on.'",
-      "'A thing of nature. For every Push, there is a Pull. A consequence.'",
-      "'That which does not kill us makes us stronger.'",
-      "'There is a beauty in death -- the beauty of finality, the beauty of completion. For nothing is truly complete until the day it is at last destroyed.'",
-    ];
+  export let deathQuotes: string[] = [
+    "'We all have big changes in our lives that are more or less a second chance.'",
+    "'If there is no struggle, there is no progress'",
+    "'I have not failed. I've just found 10,000 ways that won't work.'",
+    "'You only live once, but if you do it right, once is enough.'",
+    "'In three words I can sum up everything I've learned about life: it goes on.'",
+    "'A thing of nature. For every Push, there is a Pull. A consequence.'",
+    "'That which does not kill us makes us stronger.'",
+    "'There is a beauty in death -- the beauty of finality, the beauty of completion. For nothing is truly complete until the day it is at last destroyed.'",
+  ];
 
 
 
@@ -400,10 +447,10 @@ namespace MyNovel {
       //{ id: "GameScene03Q2", scene: GameScene03Q2, name: "Quest2Start", next: "GameScene04Q2" },
       //{ id: "GameScene04Q1", scene: GameScene04Q1, name: "Quest1Part2", next: "GameScene05"},
       //{ id: "GameScene04Q2", scene: GameScene04Q2, name: "Quest2Part2", next: "GameScene05"},
-      { id: "GameScene05", scene: GameScene05, name: "QuestEnd", next: "GameScene06"},
-      { id: "GameScene06", scene: GameScene06, name: "Sage", next: "GameScene07"},
-      { id: "GameScene07", scene: GameScene07, name: "Ending"},
-      
+      //{ id: "GameScene05", scene: GameScene05, name: "QuestEnd", next: "GameScene06"},
+      //{ id: "GameScene06", scene: GameScene06, name: "Sage", next: "GameScene07"},
+      { id: "GameScene07", scene: GameScene07, name: "Ending" },
+
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");

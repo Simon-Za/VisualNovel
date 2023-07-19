@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   width: 100vw;
   height: 100vh;
   margin: 0px;
@@ -17,7 +18,7 @@ scene {
   height: 720px;
   display: inline-block;
   position: absolute;
-  
+
 }
 
 canvas {
@@ -41,15 +42,16 @@ dialog[type=splash]>img#FudgeStoryLogo {
 }*/
 
 dialog[type="splash"] {
-  background-image: url("Images/Backgrounds/starry.gif");
+  /*background-image: url("Images/Backgrounds/SwampWalk.png");*/
+  background-color: #4ab862;
   background-repeat: repeat;
   /* background-size: contain; */
   width: 100%;
   height: 100%;
 }
 
-dialog[type="splash"] > p {
-  font-size: 2vmin;
+dialog[type="splash"]>p {
+  font-size: 4vmin;
   color: white;
   text-align: center;
 }
@@ -77,7 +79,8 @@ speech content {
   font-size: 4vmin;
   position: absolute;
   left: 25px;
-  top: 80px; /*vllt stupid*/
+  top: 80px;
+  /*vllt stupid*/
 }
 
 name {
@@ -86,8 +89,74 @@ name {
   color: rgb(60, 144, 223);
   margin-bottom: 10px;
   padding-left: 25px;
-  padding-top: 20px;;
+  padding-top: 20px;
 }
+
+.Du {
+  font-size: 4vmin;
+  background-color: rgba(10, 36, 17, 0.9);
+}
+
+.Du name {
+  font-size: 4vmin;
+  display: block;
+  color: rgb(60, 223, 128);
+  margin-bottom: 10px;
+  padding-left: 25px;
+  padding-top: 20px;
+}
+
+.WacheLinks {
+  font-size: 4vmin;
+  background-color: rgba(22, 58, 31, 0.9);
+}
+
+.WacheLinks name {
+  font-size: 4vmin;
+  color: rgb(36, 170, 92);
+  margin-bottom: 10px;
+  padding-left: 25px;
+  padding-top: 20px;
+}
+
+.WacheRechts {
+  font-size: 4vmin;
+  background-color: rgba(7, 48, 16, 0.9);
+}
+
+.WacheRechts name {
+  font-size: 4vmin;
+  color: rgb(17, 138, 68);
+  margin-bottom: 10px;
+  padding-left: 25px;
+  padding-top: 20px;
+}
+
+.WacheLinksBig {
+  font-size: 4vmin;
+  background-color: rgba(10, 36, 17, 0.9);
+}
+
+.WacheLinksBig name {
+  font-size: 4vmin;
+  color: rgb(60, 223, 128);
+}
+
+.WacheRechtsBig {
+  font-size: 4vmin;
+  background-color: rgba(10, 36, 17, 0.9);
+}
+
+.WacheRechtsBig name {
+  font-size: 4vmin;
+  color: rgb(60, 223, 128);
+  margin-bottom: 10px;
+  padding-left: 25px;
+  padding-top: 20px;
+}
+
+
+
 /* Dass leere Optionen verschwinden*/
 button:empty {
   display: none;
@@ -135,36 +204,28 @@ meter[id="HPlvl1"] {
 
 meter[id="HPlvl1"]::-webkit-meter-optimum-value {
   background: red;
- /* background-image: linear-gradient(
-    90deg, 
-    #8bcf69 5%, 
-    #e6d450 5%,
-    #e6d450 15%,
-    #f28f68 15%,
-    #f28f68 55%,
-    #cf82bf 55%,
-    #cf82bf 95%,
-    #719fd1 95%,
-    #719fd1 100%
-    );*/
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
+#speech {
+  /*versteckt am Anfang die Textbox*/
+  visibility: hidden;
+}
 
-input[id="HPCount"] {  
+input[id="HPCount"] {
   display: none;
   /*color: rgb(255, 3, 3);*/
-  color:rgba(10, 6, 46, 0.9);
+  color: rgba(10, 6, 46, 0.9);
   /*background-color:rgb(155, 42, 95);*/
   background-color: transparent;
   font-size: 11pt;
   font-weight: bolder;
-  
+
   z-index: 1;
   border: none;
   position: absolute;
@@ -178,12 +239,9 @@ input[id="HPCount"] {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-} 
-
-
-#speech { /*versteckt am Anfang die Textbox*/
-  visibility: hidden;
 }
+
+
 #respawnQuote {
   display: none;
   position: relative;
@@ -200,96 +258,171 @@ input[id="HPCount"] {
 
 .choicesCSSClass {
   position: absolute;
-  top: 500px;
   bottom: 0px;
-  left: 0px;
-  color: beige;
+  left: 0;
+  /*color: beige;*/
   background-color: rgba(10, 6, 46, 0.9);
   width: 100%;
   height: 25%;
+  margin-bottom: 0px;
 }
+
+.choicesCSSClass button {
+  color: beige;
+  background-color: rgba(70, 66, 107, 0.8);
+  width: 40%;
+  height: 30%;
+  font-size: 20px;
+  font-weight: bolder;
+  border: none;
+  margin-left: 6.75%;
+  margin-top: 2.5%;
+  border-radius: 8px;
+  /*padding: 1em;
+  margin-left: 2em;
+  border: 0px;
+  font-size: 20px;
+  padding-left: 100px;
+  font-weight: bolder;
+  width: 300px;
+  height: 110px;*/
+}
+
 #Attack {
-  position: absolute;
-  bottom: 135px;
-  left: 0px;
   color: beige;
-  background-color: rgba(148, 144, 190, 0.9);
+  background-color: rgba(148, 144, 190, 1);
   width: 50%;
-  height: 25%;
+  height: 50%;
+  font-size: larger;
 }
+
 #Item {
-  position: absolute;
-  bottom: 135px;
-  left: 682px;
   color: beige;
-  background-color: rgba(148, 144, 190, 0.9);
+  background-color: rgba(148, 144, 190, 1);
   width: 50%;
-  height: 25%;
+  height: 50%;
+  font-size: larger;
 }
+
 #Dodge {
-  position: absolute;
-  bottom: 60px;
-  left: 0px;
   color: beige;
-  background-color: rgba(148, 144, 190, 0.9);
+  background-color: rgba(148, 144, 190, 1);
   width: 50%;
-  height: 25%;
+  height: 50%;
+  font-size: larger;
 }
+
 #Flee {
-  position: absolute;
-  bottom: 60px;
-  left: 682px;
   color: beige;
-  background-color: rgba(148, 144, 190, 0.9);
+  background-color: rgba(148, 144, 190, 1);
   width: 50%;
-  height: 25%;
+  height: 50%;
+  font-size: larger;
 }
+
 #Target1 {
-  position: absolute;
-  bottom: 135px;
-  left: 0px;
   color: beige;
-  background-color: rgba(148, 144, 190, 0.9);
+  background-color: rgba(148, 144, 190, 1);
   width: 50%;
-  height: 25%;
+  height: 100%;
+  font-size: larger;
 }
+
 #Target2 {
-  position: absolute;
-  bottom: 135px;
-  left: 682px;
   color: beige;
-  background-color: rgba(148, 144, 190, 0.9);
+  background-color: rgba(148, 144, 190, 1);
   width: 50%;
-  height: 25%;
+  height: 100%;
+  font-size: larger;
 }
-.enemy1 {
+
+.frog1 {
   position: absolute;
-  bottom: 500px;
-  left: 980px;
+  bottom: 33%;
+  left: -80%;
+  height: 5%;
+  border: transparent;
+  background: transparent;
+  color: red;
+  text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #fffcfc;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.frog2 {
+  position: absolute;
+  bottom: 18%;
+  left: -55%;
   width: 12%;
   height: 5%;
   border: transparent;
   background: transparent;
   color: red;
+  text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #fffcfc;
   font-weight: bold;
   font-size: larger;
 }
+
+.frog3 {
+  position: absolute;
+  bottom: 0%;
+  left: -75%;
+  width: 12%;
+  height: 5%;
+  border: transparent;
+  background: transparent;
+  color: red;
+  text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #fffcfc;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.Player {
+  position: absolute;
+  bottom: 57%;
+  left: -55%;
+  width: 12%;
+  height: 5%;
+  border: transparent;
+  background: transparent;
+  color: red;
+  text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #fffcfc;
+  font-weight: bold;
+  font-size: larger;
+}
+
 .enemy2 {
   position: absolute;
-  bottom: 150px;
-  left: 980px;
+  bottom: 60%;
+  left: 79%;
   width: 12%;
   height: 5%;
   border: transparent;
   background: transparent;
   color: red;
+  text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #fffcfc;
   font-weight: bold;
   font-size: larger;
 }
-.healEnemy1 {
+
+.enemy1 {
   position: absolute;
-  bottom: 150px;
-  left: 980px;
+  bottom: 10%;
+  left: 79%;
+  width: 12%;
+  height: 5%;
+  border: transparent;
+  background: transparent;
+  color: red;
+  text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #fffcfc;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.healEnemy2 {
+  position: absolute;
+  bottom: 54%;
+  left: 77%;
   width: 8%;
   height: 5%;
   border: transparent;
@@ -298,10 +431,11 @@ input[id="HPCount"] {
   font-weight: bold;
   font-size: larger;
 }
-.healEnemy2 {
+
+.healEnemy1 {
   position: absolute;
-  bottom: 500px;
-  left: 980px;
+  bottom: 5%;
+  left: 77%;
   width: 8%;
   height: 5%;
   border: transparent;

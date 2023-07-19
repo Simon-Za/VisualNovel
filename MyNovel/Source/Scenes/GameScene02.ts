@@ -80,7 +80,7 @@ namespace MyNovel {
 
     //dann fade in und tümpel sounds
 
-    await ƒS.Location.show(locations.swampBoat);
+    await ƒS.Location.show(locations.swamp);
     await ƒS.Sound.fade(sound.swamp, 0.2, 1, true);
     await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
 
@@ -98,7 +98,7 @@ namespace MyNovel {
     await ƒS.Sound.fade(sound.squelch, 0.2, 1);
 
     //BILD VON STEVE EINFÜGEN
-    await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.upset, ƒS.positionPercent(55, 80));
+    await ƒS.Character.show(characters.steve, characters.steve.pose.upset, ƒS.positionPercent(50, 80));
 
     await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
     await ƒS.Speech.tell(characters.unknown, text.Unknown.T0006);
@@ -265,13 +265,13 @@ namespace MyNovel {
     //Steve stabs player
     //Steve mit Messer oder Speer
     await ƒS.Character.hideAll();
-    await ƒS.Character.show(characters.steve, characters.steve.pose.upset, ƒS.positionPercent(55, 80));
+    await ƒS.Character.show(characters.steve, characters.steve.pose.upset, ƒS.positionPercent(50, 80));
     await ƒS.update(0.5);
     await ƒS.Character.hideAll();
-    await ƒS.Character.show(characters.steve, characters.steve.pose.medium, ƒS.positionPercent(58, 85));
+    await ƒS.Character.show(characters.steve, characters.steve.pose.medium, ƒS.positionPercent(50, 85));
     await ƒS.update(0.5);
     await ƒS.Character.hideAll();
-    await ƒS.Character.show(characters.steve, characters.steve.pose.large, ƒS.positionPercent(60, 100));
+    await ƒS.Character.show(characters.steve, characters.steve.pose.large, ƒS.positionPercent(55, 100));
     await ƒS.update(0.5);
     await ƒS.Sound.fade(sound.slash, 0.2, 1);
     //Hier respawn hintergrund (blackscreen + quote)
@@ -297,12 +297,12 @@ namespace MyNovel {
     document.getElementById("respawnQuote")?.appendChild(pp);
     await ƒS.update(1);
  
-    await delay(5000);
+    await delay(4000);
     document.getElementById("respawnQuote").style.display = "none";
     document.getElementById("respawnQuote").removeChild(pp);
 
     //dann fade in und tümpel sounds
-    await ƒS.Location.show(locations.swampBoat);
+    await ƒS.Location.show(locations.swamp);
     await ƒS.Sound.fade(sound.swamp, 0.2, 1);
     await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
     await ƒS.update(1);
@@ -318,7 +318,7 @@ namespace MyNovel {
     
     //Background Wechsel
     await ƒS.Location.show(locations.swampWalk);
-    await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.upset, ƒS.positionPercent(55, 80));
+    await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.upset, ƒS.positionPercent(50, 80));
     await ƒS.Sound.fade(sound.squelch, 0.2, 1);
     await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge)
 

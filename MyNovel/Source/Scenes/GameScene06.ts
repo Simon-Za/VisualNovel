@@ -87,8 +87,10 @@ namespace MyNovel {
     await ƒS.Speech.tell(characters.protagonist, text.Player.T0003);
 
     await ƒS.Location.show(locations.sageHouseInside);
-    await ƒS.Character.show(characters.sage, characters.sage.pose.upset, ƒS.positionPercent(50, 50));
-    await ƒS.Sound.fade(sound.swamp, 0.1, 1, true);
+    await ƒS.Sound.play(sound.cloth, 0.2, false);
+    await ƒS.Character.show(characters.sage, characters.sage.pose.upset, ƒS.positionPercent(50, 80));
+    await ƒS.Sound.fade(sound.swamp, 0.05, 1, true);
+    await ƒS.Sound.fade(sound.mystic, 0.1, 1, true);
     await ƒS.update(1);
 
     await ƒS.Speech.tell(characters.sage, text.Weiser.T0001);
@@ -282,6 +284,7 @@ namespace MyNovel {
     await ƒS.Speech.tell(characters.protagonist, text.Player.T0010);
     await ƒS.Speech.tell(characters.sage, text.Weiser.T0014);
     await ƒS.Speech.tell(characters.protagonist, text.Player.T0011);
+    await ƒS.Sound.play(sound.frogCroak, 0.2, false);
     await ƒS.Speech.tell(characters.unknown, text.Dorfschreier.T0001);
     await ƒS.Speech.tell(characters.unknown, text.Dorfschreier.T0002);
     await ƒS.Speech.tell(characters.unknown, text.Dorfschreier.T0003);
@@ -290,8 +293,17 @@ namespace MyNovel {
     await ƒS.Speech.tell(characters.sage, text.Weiser.T0015);
     await ƒS.Speech.tell(characters.sage, text.Weiser.T0016);
 
+    await ƒS.Sound.play(sound.cloth, 0.2, false);
+    await ƒS.Sound.fade(sound.mystic, 0, 1, false);
+  
+
+    await ƒS.update(transition.deathSpiral.duration, transition.deathSpiral.alpha, transition.deathSpiral.edge);
+    await ƒS.Location.show(locations.sageHouse);
     await ƒS.Speech.tell(characters.narrator, "*Du verlässt das Zelt und eilst zum Dorfplatz*");
-    
+    await ƒS.Character.hideAll();
+    await ƒS.update(1);
+
+   
 
     console.log("Scene06 done");
   }

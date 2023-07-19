@@ -63,7 +63,7 @@ namespace MyNovel {
         await ƒS.Location.show(locations.swampWalk);
         await ƒS.Sound.fade(sound.swamp, 0.2, 1, true);
         //Steve
-        await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.upset, ƒS.positionPercent(55, 80));
+        await ƒS.Character.show(characters.steve, characters.steve.pose.upset, ƒS.positionPercent(50, 80));
         await ƒS.update(1);
 
         //Dialog für Quest 1

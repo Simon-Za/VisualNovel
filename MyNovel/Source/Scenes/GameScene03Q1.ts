@@ -47,7 +47,7 @@ namespace MyNovel {
                 T0024: "Geschafft.",
                 //hinten
                 T0025: "Der morsche Ast ist unter meinen Tritten komplett zerbröselt.",
-                T0026: "Aber hier ist eine Leiter, zumindest komm ich damit sicher auf den Boden.",
+                T0026: "Aber hier drin ist eine Leiter, zumindest komm ich damit sicher auf den Boden.",
 
                 //vorne bei Wachen
                 //bestechen
@@ -105,7 +105,9 @@ namespace MyNovel {
         await ƒS.Speech.tell(characters.protagonist, text.Player.T0003);
         await ƒS.Speech.tell(characters.protagonist, text.Player.T0004);
 
-        let dialogue0 = {
+        await ƒS.Speech.hide();
+
+        let approachHouse = {
             AltWeg: "Soll ich einen anderen Weg suchen...",
             WachenAnsprechen: "...oder die Wachen ansprechen?",
         }
@@ -113,13 +115,13 @@ namespace MyNovel {
         let altWeg: boolean;
         let reden: boolean;
 
-        let dialogueElement0 = await ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
+        let approachHouseElement = await ƒS.Menu.getInput(approachHouse, "choicesCSSClass");
 
-        switch (dialogueElement0) {
-            case dialogue0.AltWeg:
+        switch (approachHouseElement) {
+            case approachHouse.AltWeg:
                 altWeg = true;
                 break;
-            case dialogue0.WachenAnsprechen:
+            case approachHouse.WachenAnsprechen:
                 reden = true;
                 break;
         }
@@ -133,11 +135,11 @@ namespace MyNovel {
 
 
         async function altWegScene() {
-            if (astGefallen == false) {
+            if (!astGefallen) {
                 await ƒS.Location.show(locations.BueroHinten);
                 await ƒS.Character.hideAll();
                 await ƒS.Speech.hide();
-                await ƒS.Sound.fade(sound.swamp, 0.2, 1, true);
+                await ƒS.Sound.fade(sound.swamp, 0.2, 1, true); //prolly useless
                 await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
 
                 await ƒS.Speech.tell(characters.protagonist, text.Player.T0005);
@@ -146,38 +148,41 @@ namespace MyNovel {
                 await ƒS.Speech.tell(characters.protagonist, text.Player.T0008);
                 await ƒS.Speech.tell(characters.protagonist, text.Player.T0009);
 
+                ƒS.Speech.hide();
+
                 //hier Auswahl, ob man es am Eingang versuchen will oder hierbleiben
-                let dialogue1 = {
+                let stayBackHouse = {
                     zurueck: "Soll ich mein Glück mit den Wachen versuchen...",
                     bleiben: "...oder erstmal hierbleiben?",
                 }
 
-                let dialogueElement1 = await ƒS.Menu.getInput(dialogue1, "choicesCSSClass");
+                let stayBackHouseElement = await ƒS.Menu.getInput(stayBackHouse, "choicesCSSClass");
 
-                switch (dialogueElement1) {
-                    case dialogue1.zurueck:
+                switch (stayBackHouseElement) {
+                    case stayBackHouse.zurueck:
                         await ƒS.Speech.hide();
                         await ƒS.update();
                         await redenScene();
                         break;
-                    case dialogue1.bleiben:
+                    case stayBackHouse.bleiben:
                         await ƒS.Speech.tell(characters.protagonist, text.Player.T0010);
                         await ƒS.Speech.tell(characters.protagonist, text.Player.T0011);
                         await ƒS.Speech.tell(characters.protagonist, text.Player.T0012);
+                        ƒS.Speech.hide();
 
                         //hier Auswahl, ob man es am Eingang versuchen will oder hierbleiben
-                        let dialogue2 = {
+                        let climbTree = {
                             zurueck: "Soll ich es doch lieber vorne herum versuchen...",
                             bleiben: "...oder wirklich versuchen, auf den Baum zu klettern?",
                         }
 
-                        let dialogueElement2 = await ƒS.Menu.getInput(dialogue2, "choicesCSSClass");
+                        let climbTreeElement = await ƒS.Menu.getInput(climbTree, "choicesCSSClass");
 
-                        switch (dialogueElement2) {
-                            case dialogue2.zurueck:
+                        switch (climbTreeElement) {
+                            case climbTree.zurueck:
                                 await redenScene();
                                 break;
-                            case dialogue2.bleiben:
+                            case climbTree.bleiben:
                                 break;
                         }
 
@@ -185,11 +190,12 @@ namespace MyNovel {
                         await ƒS.Speech.tell(characters.protagonist, text.Player.T0014);
                         await ƒS.Speech.tell(characters.protagonist, text.Player.T0015);
                         await ƒS.Speech.tell(characters.protagonist, text.Player.T0016);
-                        //hier sound für ast brechen ---------------------------------------------------------
-
+                        ƒS.Sound.play(sound.branchSnap, 1);
                         await ƒS.Speech.tell(characters.protagonist, text.Player.T0017);
                         astGefallen = true;
-                        //hier sound für fallen und sterben ---------------------------------------------------------
+
+                        await delay(2000);
+                        ƒS.Sound.play(sound.fall, 1);
 
                         //hier todesscreen
                         await ƒS.Speech.hide();
@@ -217,7 +223,7 @@ namespace MyNovel {
                         document.getElementById("respawnQuote").style.display = "none";
                         document.getElementById("respawnQuote").removeChild(pp);
 
-                        await ƒS.Location.show(locations.swampBoat);
+                        await ƒS.Location.show(locations.swamp);
                         await ƒS.Sound.fade(sound.swamp, 0.2, 1);
                         await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
                         await ƒS.update(1);
@@ -226,35 +232,35 @@ namespace MyNovel {
                         await ƒS.Speech.tell(characters.protagonist, text.Player.T0018);
                         await ƒS.Speech.tell(characters.protagonist, text.Player.T0019);
                         await ƒS.Speech.tell(characters.protagonist, text.Player.T0020);
+                        await ƒS.Speech.hide();
 
                         //Transition zurück zum Büro
                         await ƒS.Location.show(locations.BueroAußen);
-                        await ƒS.Sound.fade(sound.swamp, 0, 1);
                         await ƒS.Sound.fade(sound.swamp, 0.2, 1, true);
                         await ƒS.Character.show(characters.guardBully1, characters.guardBully1.pose.upset, ƒS.positionPercent(60, 71));
                         await ƒS.Character.show(characters.guardBully2, characters.guardBully2.pose.upset, ƒS.positionPercent(65, 70));
                         await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
 
                         //als nächstes wieder Auswahl, ob man nach hinten will oder mit Wachen reden; hier bei "nach hinten gehen" neue Methode/neuer Hintergrund mit gefallenem Ast
-                        let dialogue3 = {
+                        let approachHouseAgain = {
                             AltWeg: "Soll ich nochmal nach hinten gehen...",
                             WachenAnsprechen: "...oder die Wachen ansprechen?",
                         }
 
-                        let dialogueElement3 = await ƒS.Menu.getInput(dialogue3, "choicesCSSClass");
+                        let approachHouseAgainElement = await ƒS.Menu.getInput(approachHouseAgain, "choicesCSSClass");
 
-                        switch (dialogueElement3) {
-                            case dialogue3.AltWeg:
+                        switch (approachHouseAgainElement) {
+                            case approachHouseAgain.AltWeg:
                                 await altWeg2Scene();
                                 break;
-                            case dialogue3.WachenAnsprechen:
+                            case approachHouseAgain.WachenAnsprechen:
                                 await redenScene();
                                 break;
                         };
                         break;
                 }
             }
-            else if (astGefallen == true) {
+            else if (astGefallen) {
                 await altWeg2Scene();
 
             };
@@ -268,24 +274,28 @@ namespace MyNovel {
 
             await ƒS.Speech.tell(characters.protagonist, text.Player.T0021);
             await ƒS.Speech.tell(characters.protagonist, text.Player.T0022);
+            ƒS.Speech.hide();
 
-            let dialogue4 = {
+
+            let climbWindow = {
                 klettern: "Soll ich durch das Fenster hineinklettern...",
                 zurueck: "...oder lieber doch zurück zu den Wachen?",
             }
 
-            let dialogueElement4 = await ƒS.Menu.getInput(dialogue4, "choicesCSSClass");
+            let climbWindowElement = await ƒS.Menu.getInput(climbWindow, "choicesCSSClass");
 
-            switch (dialogueElement4) {
-                case dialogue4.klettern:
+            switch (climbWindowElement) {
+                case climbWindow.klettern:
+                    await ƒS.Sound.fade(sound.stairs, 0.2, 2, false);
                     await ƒS.Speech.tell(characters.protagonist, text.Player.T0023);
+                    await ƒS.Sound.fade(sound.stairs, 0, 2, false);
                     await ƒS.Speech.tell(characters.protagonist, text.Player.T0024);
                     await ƒS.Location.show(locations.BueroHinten);
                     await ƒS.Speech.tell(characters.protagonist, text.Player.T0025);
                     await ƒS.Speech.tell(characters.protagonist, text.Player.T0026);
                     await drinnenScene();
                     break;
-                case dialogue4.zurueck:
+                case climbWindow.zurueck:
                     await redenScene();
                     break;
             }
@@ -300,68 +310,71 @@ namespace MyNovel {
                     await ƒS.Sound.fade(sound.swamp, 0.2, 1, true);
                     await ƒS.Character.hideAll();
                     await ƒS.update(1);
-                    await ƒS.Character.show(characters.guardBully1, characters.guardBully1.pose.upset, ƒS.positionPercent(40, 70));
-                    await ƒS.Character.show(characters.guardBully2, characters.guardBully2.pose.upset, ƒS.positionPercent(66, 70));
+                    await ƒS.Character.show(characters.guardBully1Big, characters.guardBully1Big.pose.upset, ƒS.positionPercent(38, 80));
+                    await ƒS.Character.show(characters.guardBully2Big, characters.guardBully2Big.pose.upset, ƒS.positionPercent(64, 80));
                     await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
 
 
-                    await ƒS.Speech.tell(characters.guardBully1, text.GuardBully1.T0001);
-                    await ƒS.Speech.tell(characters.guardBully2, text.GuardBully2.T0001);
-                    await ƒS.Speech.tell(characters.guardBully1, text.GuardBully1.T0002);
-                    await ƒS.Speech.tell(characters.guardBully2, text.GuardBully2.T0002);
-                    await ƒS.Speech.tell(characters.guardBully2, text.GuardBully2.T0003);
-                    await ƒS.Speech.tell(characters.guardBully1, text.GuardBully1.T0003);
-                    await ƒS.Speech.tell(characters.guardBully2, text.GuardBully2.T0004);
-                    await ƒS.Speech.tell(characters.guardBully2, text.GuardBully2.T0005);
-                    await ƒS.Speech.tell(characters.guardBully1, text.GuardBully1.T0004);
-                    await ƒS.Speech.tell(characters.guardBully2, text.GuardBully2.T0006);
-                    await ƒS.Speech.tell(characters.guardBully2, text.GuardBully2.T0007);
-                    await ƒS.Speech.tell(characters.guardBully2, text.GuardBully2.T0008);
-                    await ƒS.Speech.tell(characters.guardBully1, text.GuardBully1.T0005);
-                    await ƒS.Speech.tell(characters.guardBully1, text.GuardBully1.T0006);
-                    await ƒS.Speech.tell(characters.guardBully2, text.GuardBully2.T0009);
-                    await ƒS.Speech.tell(characters.guardBully1, text.GuardBully1.T0007);
-                    await ƒS.Speech.tell(characters.guardBully1, text.GuardBully1.T0008);
-                    await ƒS.Speech.tell(characters.guardBully1, text.GuardBully1.T0009);
+                    await ƒS.Speech.tell(characters.guardBully1Big, text.GuardBully1.T0001);
+                    await ƒS.Speech.tell(characters.guardBully2Big, text.GuardBully2.T0001);
+                    await ƒS.Speech.tell(characters.guardBully1Big, text.GuardBully1.T0002);
+                    await ƒS.Speech.tell(characters.guardBully2Big, text.GuardBully2.T0002);
+                    await ƒS.Speech.tell(characters.guardBully2Big, text.GuardBully2.T0003);
+                    await ƒS.Speech.tell(characters.guardBully1Big, text.GuardBully1.T0003);
+                    await ƒS.Speech.tell(characters.guardBully2Big, text.GuardBully2.T0004);
+                    await ƒS.Speech.tell(characters.guardBully2Big, text.GuardBully2.T0005);
+                    await ƒS.Speech.tell(characters.guardBully1Big, text.GuardBully1.T0004);
+                    await ƒS.Speech.tell(characters.guardBully2Big, text.GuardBully2.T0006);
+                    await ƒS.Speech.tell(characters.guardBully2Big, text.GuardBully2.T0007);
+                    await ƒS.Speech.tell(characters.guardBully2Big, text.GuardBully2.T0008);
+                    await ƒS.Speech.tell(characters.guardBully1Big, text.GuardBully1.T0005);
+                    await ƒS.Speech.tell(characters.guardBully1Big, text.GuardBully1.T0006);
+                    await ƒS.Speech.tell(characters.guardBully2Big, text.GuardBully2.T0009);
+                    await ƒS.Speech.tell(characters.guardBully1Big, text.GuardBully1.T0007);
+                    await ƒS.Speech.tell(characters.guardBully1Big, text.GuardBully1.T0008);
+                    await ƒS.Speech.tell(characters.guardBully1Big, text.GuardBully1.T0009);
                 }
+                ƒS.Speech.hide();
 
-                let dialogue5 = {
+                let guardsDialogue = {
                     Bestechen: "Soll ich versuchen, die beiden zu bestechen...",
                     Überzeugen: "...oder sie mit meinem Charme zu überzeugen?",
                     Gehen: "Ich könnte auch gehen und mich hinterm Haus umschauen."
                 }
 
-                let dialogueElement5 = await ƒS.Menu.getInput(dialogue5, "choicesCSSClass");
+                let guardsDialogueElement = await ƒS.Menu.getInput(guardsDialogue, "choicesCSSClass");
 
-                switch (dialogueElement5) {
-                    case dialogue5.Bestechen:
-                        await dialogueBribe();
+                switch (guardsDialogueElement) {
+                    case guardsDialogue.Bestechen:
                         briberyAttempt = true;
                         guardsSpoken = true;
+                        await dialogueBribe();
                         break;
-                    case dialogue5.Überzeugen:
+                    case guardsDialogue.Überzeugen:
+                        guardsSpoken = true;
                         await dialoguePersuade();
-                        guardsSpoken = true;
                         break;
-                    case dialogue5.Gehen:
-                        await altWegScene();
+                    case guardsDialogue.Gehen:
                         guardsSpoken = true;
+                        await altWegScene();
                         break;
                 }
             }
             else {
-                let dialogue9 = {
+                let guardsDialogue2 = {
                     Überzeugen: "Soll ich versuchen, die beiden auf andere Weise zu überzeugen...",
                     Gehen: "... oder mich hinterm Haus umschauen?"
                 }
+                ƒS.Speech.hide();
 
-                let dialogueElement9 = await ƒS.Menu.getInput(dialogue9, "choicesCSSClass");
 
-                switch (dialogueElement9) {
-                    case dialogue9.Überzeugen:
+                let guardsDialogue2Element = await ƒS.Menu.getInput(guardsDialogue2, "choicesCSSClass");
+
+                switch (guardsDialogue2Element) {
+                    case guardsDialogue2.Überzeugen:
                         await dialoguePersuade();
                         break;
-                    case dialogue9.Gehen:
+                    case guardsDialogue2.Gehen:
                         await altWegScene();
                         break;
                 }
@@ -371,21 +384,22 @@ namespace MyNovel {
 
         async function dialogueBribe() {
             await ƒS.Speech.tell(characters.protagonist, text.Player.T0027);
-            await ƒS.Speech.tell(characters.guardBully1, text.GuardBully1.T0010);
-            await ƒS.Speech.tell(characters.guardBully1, text.GuardBully1.T0011);
+            await ƒS.Speech.tell(characters.guardBully1Big, text.GuardBully1.T0010);
+            await ƒS.Speech.tell(characters.guardBully1Big, text.GuardBully1.T0011);
             await ƒS.Speech.tell(characters.protagonist, text.Player.T0028);
             await ƒS.Speech.tell(characters.protagonist, text.Player.T0029);
-            await ƒS.Speech.tell(characters.guardBully2, text.GuardBully2.T0010);
-            await ƒS.Speech.tell(characters.guardBully2, text.GuardBully2.T0011);
-            await ƒS.Speech.tell(characters.guardBully1, text.GuardBully1.T0012);
-            await ƒS.Speech.tell(characters.guardBully2, text.GuardBully2.T0012);
+            await ƒS.Speech.tell(characters.guardBully2Big, text.GuardBully2.T0010);
+            await ƒS.Speech.tell(characters.guardBully2Big, text.GuardBully2.T0011);
+            await ƒS.Speech.tell(characters.guardBully1Big, text.GuardBully1.T0012);
+            await ƒS.Speech.tell(characters.guardBully2Big, text.GuardBully2.T0012);
 
             let gold: boolean = false;
             let food: boolean = false;
             let fun: boolean = false;
 
+            ƒS.Speech.hide();
 
-            let dialogue6 = {
+            let bribeHow = {
                 Gold: "Gold",
                 Essen: "Essen",
                 Unterhaltung: "Unterhaltung"
@@ -393,74 +407,75 @@ namespace MyNovel {
 
             while (!gold || !food || !fun) {
 
-                let dialogueElement6 = await ƒS.Menu.getInput(dialogue6, "choicesCSSClass");
+                let bribeHowElement = await ƒS.Menu.getInput(bribeHow, "choicesCSSClass");
 
-                switch (dialogueElement6) {
-                    case dialogue6.Gold:
-                        await ƒS.Speech.tell(characters.guardBully2, "Ein Pimpf wie du trägt Gold mit sich rum?");
-                        await ƒS.Speech.tell(characters.guardBully1, "Wieviel hast du denn?");
+                switch (bribeHowElement) {
+                    case bribeHow.Gold:
+                        await ƒS.Speech.tell(characters.guardBully2Big, "Ein Pimpf wie du trägt Gold mit sich rum?");
+                        await ƒS.Speech.tell(characters.guardBully1Big, "Wieviel hast du denn?");
                         await ƒS.Speech.tell(characters.protagonist, "*Verdammt, ich hab kein Gold und Steve sicher auch nicht.*");
                         await ƒS.Speech.tell(characters.protagonist, "*Und selbst wenn die alte Kröte was hätte, würde er mir nichts davon geben.*");
                         await ƒS.Speech.tell(characters.protagonist, "Es scheint, ich habe meine Geldbörse verlegt, aber manche Dinge sind viel besser als Gold.");
                         await ƒS.Speech.tell(characters.protagonist, "Ich könnte euch etwas anderes anbieten, zum Beispiel:");
                         //hier wieder zurück zur Auswahl, aber ohne Gold Option.
                         console.log(gold);
-                        dialogue6.Gold = "";
+                        bribeHow.Gold = "";
                         gold = true;
                         break;
-                    case dialogue6.Essen:
-                        await ƒS.Speech.tell(characters.guardBully2, "Rumstehen macht schon echt hungrig.");
-                        await ƒS.Speech.tell(characters.guardBully1, "Was kannst du denn anbieten?");
+                    case bribeHow.Essen:
+                        await ƒS.Speech.tell(characters.guardBully2Big, "Rumstehen macht schon echt hungrig.");
+                        await ƒS.Speech.tell(characters.guardBully1Big, "Was kannst du denn anbieten?");
+                        ƒS.Speech.hide();
 
-                        let dialogue7 = {
+                        let whatFood = {
                             Fliegen: "Fliegen",
                             Frikadellen: "Frikadellen",
                             Froschschenkel: "Froschschenkel"
                         }
-                        let dialogieElement7 = await ƒS.Menu.getInput(dialogue7, "choicesCSSClass");
+                        let whatFoodElement = await ƒS.Menu.getInput(whatFood, "choicesCSSClass");
 
-                        switch (dialogieElement7) {
-                            case dialogue7.Fliegen:
-                                await ƒS.Speech.tell(characters.guardBully1, "Fliegen? Sehen wir für dich aus wie Frösche??");
-                                await ƒS.Speech.tell(characters.guardBully2, "Frechheit! Jetzt ist mir der Appetit vergangen.");
+                        switch (whatFoodElement) {
+                            case whatFood.Fliegen:
+                                await ƒS.Speech.tell(characters.guardBully1Big, "Fliegen? Sehen wir für dich aus wie Frösche??");
+                                await ƒS.Speech.tell(characters.guardBully2Big, "Frechheit! Jetzt ist mir der Appetit vergangen.");
                                 await ƒS.Speech.tell(characters.protagonist, "War nur ein Witz. haha.. ");
                                 await ƒS.Speech.tell(characters.protagonist, "Ich habe etwas viel Interessanteres zu bieten.");
                                 //hier zurück zur Auswahl, aber nur mit Unterhaltung (und Gold, falls noch nicht ausgewählt)
                                 food = true;
-                                dialogue6.Essen = "";
+                                bribeHow.Essen = "";
                                 break;
-                            case dialogue7.Frikadellen:
-                                await ƒS.Speech.tell(characters.guardBully1, "Wir essen keine Frikadellen.");
-                                await ƒS.Speech.tell(characters.guardBully2, "Wir sind überzeugte Veganer.");
+                            case whatFood.Frikadellen:
+                                await ƒS.Speech.tell(characters.guardBully1Big, "Wir essen keine Frikadellen.");
+                                await ƒS.Speech.tell(characters.guardBully2Big, "Wir sind überzeugte Veganer.");
                                 await ƒS.Speech.tell(characters.protagonist, "Achso. Gut für euch!");
                                 await ƒS.Speech.tell(characters.protagonist, "Ich habe sowieso noch etwas viel Besseres zu bieten.");
                                 //hier zurück zur Auswahl, aber nur mit Unterhaltung (und Gold, falls noch nicht ausgewählt)
                                 food = true;
-                                dialogue6.Essen = "";
+                                bribeHow.Essen = "";
                                 break;
-                            case dialogue7.Froschschenkel:
-                                await ƒS.Speech.tell(characters.guardBully1, "Froschschenkel???");
-                                await ƒS.Speech.tell(characters.guardBully2, "Wir wissen feine Küche zu schätzen, aber wir sind doch keine Kannibalen!!");
+                            case whatFood.Froschschenkel:
+                                await ƒS.Speech.tell(characters.guardBully1Big, "Froschschenkel???");
+                                await ƒS.Speech.tell(characters.guardBully2Big, "Wir wissen feine Küche zu schätzen, aber wir sind doch keine Kannibalen!!");
                                 await ƒS.Speech.tell(characters.protagonist, "*Puh, ich hatte eh nicht so Lust drauf mir ein Bein abzuhacken.*");
                                 await ƒS.Speech.tell(characters.protagonist, "Wenn ihr meine Schenkel nicht appetitlich findet, habe ich noch etwas anderes zu bieten.");
                                 //hier zurück zur Auswahl, aber nur mit Unterhaltung (und Gold, falls noch nicht ausgewählt)
                                 food = true;
-                                dialogue6.Essen = "";
+                                bribeHow.Essen = "";
                                 break;
                         }
 
                         break;
 
-                    case dialogue6.Unterhaltung:
+                    case bribeHow.Unterhaltung:
                         await ƒS.Speech.tell(characters.guardBully2, "Unterhaltung? Was kannst du denn?");
 
                         let trick: boolean = false;
                         let stand: boolean = false;
                         let poem: boolean = false;
 
+                        ƒS.Speech.hide();
 
-
-                        let dialogue8 = {
+                        let whatEntertainment = {
                             Zaubertrick: "Zaubertrick",
                             Handstand: "Handstand",
                             Gedicht: "Gedicht"
@@ -468,51 +483,52 @@ namespace MyNovel {
 
                         while (!trick || !stand || !poem) {
 
-                            let dialogueElement8 = await ƒS.Menu.getInput(dialogue8, "choicesCSSClass");
+                            let whatEntertainmentElement = await ƒS.Menu.getInput(whatEntertainment, "choicesCSSClass");
 
-                            switch (dialogueElement8) {
-                                case dialogue8.Zaubertrick:
+                            switch (whatEntertainmentElement) {
+                                case whatEntertainment.Zaubertrick:
                                     await ƒS.Speech.tell(characters.protagonist, "Okay, passt auf!");
-                                    await ƒS.Speech.tell(characters.narrator, "_Du knickst deinen rechten Zeigefinger ein und legst deinen linken über die Mitte deines linken Daumens, hältst die beiden aneinander und ziehst sie ein paarmal wieder auseinander._");
-                                    await ƒS.Speech.tell(characters.guardBully1, "Dieser Trick wäre fast beeindruckend, wenn ich nicht wüsste, dass mein Schwager seinen abgetrennten Finger auch immer mit sich herumträgt.");
-                                    await ƒS.Speech.tell(characters.guardBully2, "Mein Cousin macht genau das gleiche ständig mit seinem abgetrennten Finger. Zeig uns was neues!");
+                                    await ƒS.Speech.tell(characters.narrator, "*Du knickst deinen rechten Zeigefinger ein und legst deinen linken über die Mitte deines linken Daumens, hältst die beiden aneinander und ziehst sie ein paarmal wieder auseinander.*");
+                                    await ƒS.Speech.tell(characters.guardBully1Big, "Dieser Trick wäre fast beeindruckend, wenn ich nicht wüsste, dass mein Schwager seinen abgetrennten Finger auch immer mit sich herumträgt.");
+                                    await ƒS.Speech.tell(characters.guardBully2Big, "Mein Cousin macht genau das gleiche ständig mit seinem abgetrennten Finger. Zeig uns was neues!");
                                     trick = true;
-                                    dialogue8.Zaubertrick = "";
+                                    whatEntertainment.Zaubertrick = "";
                                     //hier zur Übersicht zurück, mit den anderen 2 Tricks
                                     break;
-                                case dialogue8.Handstand:
+                                case whatEntertainment.Handstand:
                                     await ƒS.Speech.tell(characters.protagonist, "So, ich brauche etwas Platz.");
-                                    await ƒS.Speech.tell(characters.narrator, "_Du holst aus, platzierst mit Schwung deine Hände auf dem Boden, überschlägst dich und fällst auf den Hintern._");
-                                    await ƒS.Speech.tell(characters.guardBully1, "Haha!");
-                                    await ƒS.Speech.tell(characters.guardBully2, "War klar, dass das nichts wird.");
-                                    await ƒS.Speech.tell(characters.guardBully1, "Entschuldige, aber du hast echt nicht den Körperbau eines Akrobaten.");
-                                    await ƒS.Speech.tell(characters.guardBully2, "Hast du was Besseres?");
+                                    await ƒS.Speech.tell(characters.narrator, "*Du holst aus, platzierst mit Schwung deine Hände auf dem Boden, überschlägst dich und fällst auf den Hintern.*");
+                                    await ƒS.Speech.tell(characters.guardBully1Big, "Haha!");
+                                    await ƒS.Speech.tell(characters.guardBully2Big, "War klar, dass das nichts wird.");
+                                    await ƒS.Speech.tell(characters.guardBully1Big, "Entschuldige, aber du hast echt nicht den Körperbau eines Akrobaten.");
+                                    await ƒS.Speech.tell(characters.guardBully2Big, "Hast du was Besseres?");
                                     stand = true;
-                                    dialogue8.Handstand = "";
+                                    whatEntertainment.Handstand = "";
                                     //hier zur Übersicht zurück, mit den anderen 2 oder 1 Tricks
                                     break;
-                                case dialogue8.Gedicht:
+                                case whatEntertainment.Gedicht:
                                     await ƒS.Speech.tell(characters.protagonist, "Okay, hrhmm.");
                                     await ƒS.Speech.tell(characters.protagonist, "Rosen sind rot,");
                                     await ƒS.Speech.tell(characters.protagonist, "Veilchen sind blau,");
                                     await ƒS.Speech.tell(characters.protagonist, "die Wachleute vor dem Büro des Königs sind sehr schlau.");
-                                    await ƒS.Speech.tell(characters.guardBully1, "Yeeahh!");
-                                    await ƒS.Speech.tell(characters.guardBully2, "Recht hast du!");
-                                    await ƒS.Speech.tell(characters.guardBully1, "Leider sind wir so schlau, dass wir uns nicht einfach so bestechen lassen.");
+                                    await ƒS.Speech.tell(characters.guardBully1Big, "Yeeahh!");
+                                    await ƒS.Speech.tell(characters.guardBully2Big, "Recht hast du!");
+                                    await ƒS.Speech.tell(characters.guardBully1Big, "Leider sind wir so schlau, dass wir uns nicht einfach so bestechen lassen.");
                                     poem = true;
-                                    dialogue8.Gedicht = "";
+                                    whatEntertainment.Gedicht = "";
                                     //zu Übersicht zurück, mit den anderen 2 oder 1 Tricks
                                     break;
                             }
 
                         };
                         await ƒS.Speech.tell(characters.protagonist, "Ich hab auch was anderes zu bieten.");
-                        dialogue6.Unterhaltung = "";
+                        bribeHow.Unterhaltung = "";
                         fun = true;
                         break;
                 }
             };
             await ƒS.Speech.tell(characters.protagonist, "*Ich glaube, ich sollte was anderes probieren.*");
+            guardsSpoken = true;
             await redenScene();
         };
 
@@ -521,15 +537,15 @@ namespace MyNovel {
             await ƒS.Speech.tell(characters.protagonist, "Ich muss wirklich nur einen vergessenen Gegenstand holen.");
             await ƒS.Speech.tell(characters.protagonist, "Ich würde es niemals wagen, dem König etwas zu entwenden.");
             await ƒS.Speech.tell(characters.protagonist, "Wir kennen uns ja schon eine Weile, ich bin ein vertrauenswürdiger Typ und werde auch nichts kaputt machen oder so.");
-            await ƒS.Speech.tell(characters.guardBully2, "Das letzte Mal, als ich jemanden in ein Haus gelassen habe, der sagte er würde nichts kaputt machen, habe ich das Haus kurz darauf komplett verwüstet vorgefunden.");
-            await ƒS.Speech.tell(characters.guardBully1, "Och nee! Kannst du bitte einfach darüber hinweg kommen?");
-            await ƒS.Speech.tell(characters.guardBully2, "Nein, kann ich nicht! Mein Therapeut sagt, ich soll meine Traumata nicht verdrängen.");
-            await ƒS.Speech.tell(characters.guardBully1, "Und mein Therapeut sagt, dass du aufhören sollst, immer so passiv-aggressiv zu sein!");
-            await ƒS.Speech.tell(characters.guardBully2, "Passiv-aggressiv? Pf! Da kenn ich noch einen anderen.");
-            await ƒS.Speech.tell(characters.guardBully1, "Komm schon! Ich habe dir versucht zu erklären, dass nichts davon beabsichtigt war.");
-            await ƒS.Speech.tell(characters.guardBully1, "Und ich habe wochenlang nach ihr gesucht.");
-            await ƒS.Speech.tell(characters.guardBully2, "Manche Sachen kann man als Zufall erklären, aber das Verschwinden meines Ibericos?");
-            await ƒS.Speech.tell(characters.guardBully2, "Du wusstest genau, dass ich den für das große Fest aufheben wollte.");
+            await ƒS.Speech.tell(characters.guardBully2Big, "Das letzte Mal, als ich jemanden in ein Haus gelassen habe, der sagte er würde nichts kaputt machen, habe ich das Haus kurz darauf komplett verwüstet vorgefunden.");
+            await ƒS.Speech.tell(characters.guardBully1Big, "Och nee! Kannst du bitte einfach darüber hinweg kommen?");
+            await ƒS.Speech.tell(characters.guardBully2Big, "Nein, kann ich nicht! Mein Therapeut sagt, ich soll meine Traumata nicht verdrängen.");
+            await ƒS.Speech.tell(characters.guardBully1Big, "Und mein Therapeut sagt, dass du aufhören sollst, immer so passiv-aggressiv zu sein!");
+            await ƒS.Speech.tell(characters.guardBully2Big, "Passiv-aggressiv? Pf! Da kenn ich noch einen anderen.");
+            await ƒS.Speech.tell(characters.guardBully1Big, "Komm schon! Ich habe dir versucht zu erklären, dass nichts davon beabsichtigt war.");
+            await ƒS.Speech.tell(characters.guardBully1Big, "Und ich habe wochenlang nach ihr gesucht.");
+            await ƒS.Speech.tell(characters.guardBully2Big, "Manche Sachen kann man als Zufall erklären, aber das Verschwinden meines Ibericos?");
+            await ƒS.Speech.tell(characters.guardBully2Big, "Du wusstest genau, dass ich den für das große Fest aufheben wollte.");
             await ƒS.Speech.tell(characters.protagonist, "Was wenn wir uns beruhigen und zum Thema zurückkehren?");
 
             let trash: boolean = false;
@@ -544,97 +560,109 @@ namespace MyNovel {
                 food = false;
 
                 if (!firstLoop) {
-                    await ƒS.Speech.tell(characters.guardBully1, "Versuchs nochmal, Kleiner, irgendwie kauf ich dir das nicht ab.");
+                    await ƒS.Speech.tell(characters.guardBully1Big, "Versuchs nochmal, Kleiner, irgendwie kauf ich dir das nicht ab.");
                 }
 
                 await ƒS.Speech.tell(characters.protagonist, "Ich bin vertrauenswürdig, weil ich niemals:");
+                ƒS.Speech.hide();
 
-                let dialogue12 = {
-                    Nachbarn: "den Schuppen des Nachbarn",
-                    Freund: "die Wohnung eines Freundes",
-                    König: "das Haus des Königs verwüsten würde",
+                let trustworthy1 = {
+                    Nachbarn: "den Schuppen des Nachbarn anzünden würde.",
+                    Freund: "die Wohnung eines Freundes verwüsten würde.",
+                    König: "das Haus des Königs beschmieren würde.",
                 }
 
-                let dialogueElement12 = await ƒS.Menu.getInput(dialogue12, "choicesCSSClass");
+                let trustworthy1Element = await ƒS.Menu.getInput(trustworthy1, "choicesCSSClass");
 
-                switch (dialogueElement12) {
-                    case dialogue12.Nachbarn:
+                switch (trustworthy1Element) {
+                    case trustworthy1.Nachbarn:
                         break;
-                    case dialogue12.Freund:
+                    case trustworthy1.Freund:
                         trash = true;
                         break;
-                    case dialogue12.König:
+                    case trustworthy1.König:
                         break;
                 };
 
                 await ƒS.Speech.tell(characters.protagonist, "Außerdem bin ich nicht die Art von Person, die:");
+                ƒS.Speech.hide();
 
-                let dialogue13 = {
-                    Kind: "ein Kind",
-                    Sklave: "einen Sklaven",
-                    Haustier: "ein Haustier entkommen lässt",
+                let trustworthy2 = {
+                    Kind: "ein Kind weglaufen lässt.",
+                    Sklave: "einen Sklaven entkommen lässt.",
+                    Haustier: "ein Haustier entwischen lässt.",
                 }
 
-                let dialogueElement13 = await ƒS.Menu.getInput(dialogue13, "choicesCSSClass");
+                let trustworthy2Element = await ƒS.Menu.getInput(trustworthy2, "choicesCSSClass");
 
-                switch (dialogueElement13) {
-                    case dialogue13.Kind:
+                switch (trustworthy2Element) {
+                    case trustworthy2.Kind:
                         break;
-                    case dialogue13.Sklave:
+                    case trustworthy2.Sklave:
                         break;
-                    case dialogue13.Haustier:
+                    case trustworthy2.Haustier:
                         pet = true;
                         break;
                 };
 
                 await ƒS.Speech.tell(characters.protagonist, "ich würde auch nie auf die Idee kommen von Freunden:");
+                ƒS.Speech.hide();
 
-                let dialogue14 = {
+                let trustworthy3 = {
                     Kammer: "die Speisekammer zu plündern.",
                     Figur: "die Sammelfigur zu klauen.",
                     Hut: "fancy Hüte zu entwenden.",
 
                 }
 
-                let dialogueElement14 = await ƒS.Menu.getInput(dialogue14, "choicesCSSClass");
+                let trustworthy3Element = await ƒS.Menu.getInput(trustworthy3, "choicesCSSClass");
 
-                switch (dialogueElement14) {
-                    case dialogue14.Kammer:
+                switch (trustworthy3Element) {
+                    case trustworthy3.Kammer:
                         food = true;
                         break;
-                    case dialogue14.Figur:
+                    case trustworthy3.Figur:
                         break;
-                    case dialogue14.Hut:
+                    case trustworthy3.Hut:
                         break;
                 };
                 firstLoop = false;
             };
 
-            await ƒS.Speech.tell(characters.guardBully2, "Wenn das stimmt, dann bist du das genaue Gegenzeil von ihm hier!");
-            await ƒS.Speech.tell(characters.guardBully1, "Es war ein Unfall! Ich hab versucht, es wieder gut zu machen und ich hab mich oft genug entschuldigt!");
-            await ƒS.Speech.tell(characters.guardBully2, "Eine Entschuldigung bringt sie mir auch nicht zurück!");
-            await ƒS.Speech.tell(characters.guardBully1, "Ich wollte nur sehen, wie Missy mit einem lustigen kleinen Hut aussieht und dir für deinen Geburtstag ein Bild davon malen!");
-            await ƒS.Speech.tell(characters.guardBully1, "Woher sollte ich wissen, dass sie auf den Iberico mehr abfährt als du und die Speisekammer so einfach geöffnet bekommt?");
-            await ƒS.Speech.tell(characters.guardBully1, "Ich wollte nicht, dass sie davon läuft, aber der Iberico hat sie zum Berserker gemacht.");
-            await ƒS.Speech.tell(characters.guardBully1, "Sie hat die Wohnung verwüstet und ist durch die Tür gebrochen!");
-            await ƒS.Speech.tell(characters.guardBully1, "Ich habe sie versucht mit dem restlichen Essen wieder herzulocken, aber konnte sie nicht finden.");
-            await ƒS.Speech.tell(characters.guardBully1, "Zwei ganze Wochen habe ich Nacht für Nacht und Tag für Tag nach ihr gesucht!");
-            await ƒS.Speech.tell(characters.guardBully1, "Ich habe mich so oft entschuldigt, aber ich glaube, du willst einfach nicht mehr mein Freund sein.");
-            await ƒS.Speech.tell(characters.guardBully1, "Such dir jemand anderen, mit dem du das Büro des Königs bewachen kannst.");
-            await ƒS.Speech.tell(characters.guardBully1, "Ich bin raus!");
-            await ƒS.Speech.tell(characters.narrator, "_Die Wache kann die Tränen nicht mehr zurückhalten und rennt schluchzend davon._");
-            //hier machen, dass W1 verschwindet (einfach entfernen oder Animation?)
-            await ƒS.Speech.tell(characters.guardBully2, "Oh man.");
-            await ƒS.Speech.tell(characters.guardBully2, "Ich war mir nicht bewusst, dass ich...");
+            await ƒS.Speech.tell(characters.guardBully2Big, "Wenn das stimmt, dann bist du das genaue Gegenzeil von ihm hier!");
+            await ƒS.Speech.tell(characters.guardBully1Big, "Es war ein Unfall! Ich hab versucht, es wieder gut zu machen und ich hab mich oft genug entschuldigt!");
+            await ƒS.Speech.tell(characters.guardBully2Big, "Eine Entschuldigung bringt sie mir auch nicht zurück!");
+            await ƒS.Speech.tell(characters.guardBully1Big, "Ich wollte nur sehen, wie Missy mit einem lustigen kleinen Hut aussieht und dir für deinen Geburtstag ein Bild davon malen!");
+            await ƒS.Speech.tell(characters.guardBully1Big, "Woher sollte ich wissen, dass sie auf den Iberico mehr abfährt als du und die Speisekammer so einfach geöffnet bekommt?");
+            await ƒS.Speech.tell(characters.guardBully1Big, "Ich wollte nicht, dass sie davon läuft, aber der Iberico hat sie zum Berserker gemacht.");
+            await ƒS.Speech.tell(characters.guardBully1Big, "Sie hat die Wohnung verwüstet und ist durch die Tür gebrochen!");
+            await ƒS.Speech.tell(characters.guardBully1Big, "Ich habe sie versucht mit dem restlichen Essen wieder herzulocken, aber konnte sie nicht finden.");
+            await ƒS.Speech.tell(characters.guardBully1Big, "Zwei ganze Wochen habe ich Nacht für Nacht und Tag für Tag nach ihr gesucht!");
+            await ƒS.Speech.tell(characters.guardBully1Big, "Ich habe mich so oft entschuldigt, aber ich glaube, du willst einfach nicht mehr mein Freund sein.");
+            await ƒS.Speech.tell(characters.guardBully1Big, "Such dir jemand anderen, mit dem du das Büro des Königs bewachen kannst.");
+            await ƒS.Speech.tell(characters.guardBully1Big, "Ich bin raus!");
+            await ƒS.Sound.fade(sound.crying, 0.2, 1, false);
+            await ƒS.Speech.tell(characters.narrator, "*Die Wache kann die Tränen nicht mehr zurückhalten und rennt schluchzend davon.*");
+            await ƒS.Sound.fade(sound.crying, 0, 4, false);
+            await ƒS.Character.hide(characters.guardBully1Big);
+            await ƒS.update(1);
+
+            await ƒS.Speech.tell(characters.guardBully2Big, "Oh man.");
+            await ƒS.Speech.tell(characters.guardBully2Big, "Ich war mir nicht bewusst, dass ich...");
             await ƒS.Speech.tell(characters.protagonist, "Geh ihm hinterher! Es ist Zeit, dass du dich einmal bei ihm entschuldigst.");
             await ƒS.Speech.tell(characters.protagonist, "Na los, renn! Du kannst das noch retten!");
-            //hier verschwindet W2 (einfach entfernen oder Animation?)
-            await ƒS.Speech.tell(characters.narrator, "_Die zweite Wache lässt ihren Speer fallen und rennt der anderen hinterher._");
+            ƒS.Sound.play(sound.clang, 0.1, false);
+            //hier verschwindet W2 
+            await ƒS.Character.hide(characters.guardBully2Big);
+            await ƒS.update(1);
+            await ƒS.Speech.tell(characters.narrator, "*Die zweite Wache lässt ihren Speer fallen und rennt der anderen hinterher.*");
             await ƒS.Speech.tell(characters.protagonist, "Ich hoffe, dass die zwei wieder Freunde werden können...");
             await ƒS.Speech.tell(characters.protagonist, "Naja, der Weg ist frei, ich geh mal besser rein, bevor jemand zurückkommt.");
+            //door creak
+            ƒS.Sound.play(sound.doorCreak, 0.2, false);
+            await delay(2);
             await drinnenScene();
         };
-
 
         async function drinnenScene() {
 
@@ -652,7 +680,7 @@ namespace MyNovel {
             let keyFound: boolean = false;
             let leaving: boolean = false;
 
-            let dialogue10 = {
+            let searchWhat = {
                 Schublade: "Schubladen durchsuchen",
                 Bücherregal: "Bücherregal untersuchen",
                 Schrank: "Schrank öffnen"
@@ -660,10 +688,11 @@ namespace MyNovel {
 
             while (!leaving) {
 
-                let dialogueElement10 = await ƒS.Menu.getInput(dialogue10, "choicesCSSClass");
+                ƒS.Speech.hide();
+                let searchWhatElement = await ƒS.Menu.getInput(searchWhat, "choicesCSSClass");
 
-                switch (dialogueElement10) {
-                    case dialogue10.Schublade:
+                switch (searchWhatElement) {
+                    case searchWhat.Schublade:
                         if (!drawerInspected) {
                             await ƒS.Speech.tell(characters.protagonist, "Huh.");
                             await ƒS.Speech.tell(characters.protagonist, "Die Schublade ist abgeschlossen.");
@@ -675,69 +704,69 @@ namespace MyNovel {
                         else {
                             if (keyFound) {
                                 await ƒS.Speech.tell(characters.protagonist, "Na dann schauen wir mal, was sich in der Schublade befindet.");
-                                await ƒS.Speech.tell(characters.narrator, "_Du benutzt den Schubladenschlüssel und die Schublade öffnet sich_");
+                                ƒS.Sound.play(sound.drawerOpen, 0.2, false);
+                                await ƒS.Speech.tell(characters.narrator, "*Du benutzt den Schubladenschlüssel und die Schublade öffnet sich*");
                                 await ƒS.Speech.tell(characters.protagonist, "Hier sind Magazine drin?");
                                 await ƒS.Speech.tell(characters.protagonist, "Magazine, die nur Abbildungen von Fröschen zeigen?");
                                 await ƒS.Speech.tell(characters.protagonist, " Wieso hat keiner dieser Frösche Kleidung? OH!! EWW!");
                                 await ƒS.Speech.tell(characters.protagonist, "Ich glaube, ich habe genug gesehen.");
                                 await ƒS.Speech.tell(characters.protagonist, "Das macht mich krank. Ugh.");
+                                ƒS.Speech.hide();
 
-                                dialogue10.Schublade = "";
+                                searchWhat.Schublade = "";
 
-                                let dialogue11 = {
+                                let takeMags = {
                                     Magazines: "Magazine mitnehmen",
                                     Gehen: "Zurück"
                                 };
-                                let dialogueElement11 = await ƒS.Menu.getInput(dialogue11, "choicesCSSClass");
+                                let takeMagsElement = await ƒS.Menu.getInput(takeMags, "choicesCSSClass");
 
-                                switch (dialogueElement11) {
-                                    case dialogue11.Magazines:
+                                switch (takeMagsElement) {
+                                    case takeMags.Magazines:
                                         dataForSave.Protagonist.mags = true;
-                                        await ƒS.Speech.tell(characters.narrator, "_Du steckst die Magazine ein_");
+                                        await ƒS.Speech.tell(characters.narrator, "*Du steckst die Magazine ein*");
                                         ƒS.Inventory.add(items.dirtyMags);
                                         break;
-                                    case dialogue11.Gehen:
+                                    case takeMags.Gehen:
                                         break;
                                 };
-
                             }
                             else {
                                 await ƒS.Speech.tell(characters.protagonist, "Immer noch abgeschlossen.");
                             }
-
                         }
                         break;
-                    case dialogue10.Bücherregal:
+                    case searchWhat.Bücherregal:
                         if (!keyFound) {
                             await ƒS.Speech.tell(characters.protagonist, "Wow, das ist ein großes Bücherregal.");
                             await ƒS.Speech.tell(characters.protagonist, "Dabei hat der König bisher keinen belesenen Eindruck auf mich gemacht.");
                             await ƒS.Speech.tell(characters.protagonist, "Was für Bücher das wohl sind?");
-                            await ƒS.Speech.tell(characters.narrator, "_Du ziehst ein schweres Buch aus dem Regal_");
+                            await ƒS.Speech.tell(characters.narrator, "*Du ziehst ein schweres Buch aus dem Regal*");
                             await ƒS.Speech.tell(characters.protagonist, "Moment, was.");
                             await ƒS.Speech.tell(characters.protagonist, "Das sind angemalte Ziegelsteine.");
                             await ƒS.Speech.tell(characters.protagonist, "Was ein trauriger Flex.");
                             await ƒS.Speech.tell(characters.protagonist, " Ist wohl eher unwahrscheinlich, dass er in einem dieser 'Bücher' einen Schlüssel versteckt hat.");
-                            dialogue10.Bücherregal = "";
+                            searchWhat.Bücherregal = "";
                         }
                         else {
                             leaving = true;
                             break;
                         }
-
                         break;
-                    case dialogue10.Schrank:
+                    case searchWhat.Schrank:
                         await ƒS.Speech.tell(characters.protagonist, "So, schauen wir mal, was der König in seinem Schrank versteckt.");
-                        await ƒS.Speech.tell(characters.narrator, "_Du öffnest den Schrank_");
+                        ƒS.Sound.play(sound.doorCreak, 0.2);
+                        await ƒS.Speech.tell(characters.narrator, "*Du öffnest den Schrank*");
                         await ƒS.Speech.tell(characters.protagonist, "Wieso sind hier so viele Frauenkleider?");
                         await ƒS.Speech.tell(characters.protagonist, "In die passt der dicke..uhh majestätische König doch gar nicht rein.");
                         await ƒS.Speech.tell(characters.protagonist, "Ah! Hier hängen Schlüssel an Haken in der Schrankwand.");
-                        await ƒS.Speech.tell(characters.protagonist, "Ich steck die einfach mal ein.");
+                        await ƒS.Speech.tell(characters.protagonist, "Ich stecke die einfach mal ein.");
                         keyFound = true;
                         ƒS.Inventory.add(items.keyDrawer);
                         ƒS.Inventory.add(items.keyDungeon);
                         ƒS.Inventory.add(items.keyVault);
-                        dialogue10.Schrank = "";
-                        dialogue10.Bücherregal = "Gehen";
+                        searchWhat.Schrank = "";
+                        searchWhat.Bücherregal = "Gehen";
                         break;
                 };
             };
@@ -747,10 +776,11 @@ namespace MyNovel {
 
 
 
-            //hier Transition einfügen!!!
+            //hier Transition einfügen!!! ist glaub schon bei nächster sezene am anfang drin
+            await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //not sure, ob das geht/gebraucht wird
+            await ƒS.Sound.fade(sound.swamp, 0, 1);
         };
-        //bei Tod
-        //dataForSave.Protagonist.deaths += 1; //DANN HALT NOCH NE KLASSE/SZENE DAFÜR
+
         console.log("Scene 3.1 End");
     }
 }
