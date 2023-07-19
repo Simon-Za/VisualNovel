@@ -53,7 +53,7 @@ var MyNovel;
     MyNovel.locations = {
         waldweg: {
             name: "Waldweg",
-            background: "Images/Backgrounds/Map.jpg"
+            background: "Images/Backgrounds/map.jpg"
         },
         blackscreen: {
             name: "Blackscreen",
