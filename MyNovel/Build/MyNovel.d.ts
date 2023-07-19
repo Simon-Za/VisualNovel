@@ -135,21 +135,25 @@ declare namespace MyNovel {
             name: string;
             description: string;
             image: string;
+            static: boolean;
         };
         keyDungeon: {
             name: string;
             description: string;
             image: string;
+            static: boolean;
         };
         keyVault: {
             name: string;
             description: string;
             image: string;
+            static: boolean;
         };
         dirtyMags: {
             name: string;
             description: string;
             image: string;
+            static: boolean;
         };
     };
     let characters: {

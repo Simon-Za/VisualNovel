@@ -111,7 +111,7 @@ namespace MyNovel {
                 T0006: "Überlegt mal. Wer hat uns von diesem Unfall erzählt?",
                 T0007: "Unser König hat den alten König ermordet! Und dieser Dieb hat das versehentlich bewiesen.",
                 T0008: "Das müssen wir wohl...",
-                T0009: "Aber wir sollten erst den Eindringlich beseitigen.",
+                T0009: "Aber wir sollten erst den Eindringling beseitigen.",
                 T0010: "Er weiß zu viel.",
             }
         };

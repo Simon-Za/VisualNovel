@@ -241,7 +241,8 @@ namespace MyNovel {
         case pickAction.Item:
           console.log("You try to use an item");
           ƒS.Speech.clear();
-          await ƒS.Speech.tell(characters.unknown, "Dein Iventar ist leer.");
+          await ƒS.Speech.tell(characters.unknown, "Dein Inventar ist leer.");
+          await ƒS.Speech.hide();
           break;
 
         case pickAction.Dodge:

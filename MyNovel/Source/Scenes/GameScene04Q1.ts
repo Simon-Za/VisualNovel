@@ -643,7 +643,7 @@ namespace MyNovel {
                                 break;
                         };
                     }
-                    else {
+                    else { 
                         let dialogueEmptyCell = {
                             keyDrawer: "Schubladenschlüssel",
                             keyDungeon: "Dungeonschlüssel",

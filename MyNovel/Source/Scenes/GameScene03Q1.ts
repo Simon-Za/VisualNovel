@@ -51,7 +51,7 @@ namespace MyNovel {
 
                 //vorne bei Wachen
                 //bestechen
-                T0027: "Hallo, ich muss einen Schlüüühh.. Gegensand holen, den ein Freund hier vergessen hat.",
+                T0027: "Hallo, ich muss einen Schlüüühh.. Gegenstand holen, den ein Freund hier vergessen hat.",
                 T0028: "Ich könnte ein andermal wiederkommen...",
                 T0029: "...aber ich könnte auch auch jetzt schon reingehen und ihr wärt danach ein Stückchen reicher.",
                 //drinnen

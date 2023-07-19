@@ -146,21 +146,25 @@ namespace MyNovel {
       name: "Schubladenschlüssel",
       description: "Scheint eine Schublade zu öffnen",
       image: "Images/Items/drawerKey.png",
+      static: true,
     },
     keyDungeon: {
       name: "Dungeon Schlüssel",
       description: "Schlüssel für das Verlies?",
       image: "Images/Items/dungeonKey.png",
+      static: true,
     },
     keyVault: {
       name: "Tresorschlüssel",
       description: "Schlüssel für den Tresor",
       image: "Images/Items/vaultKey.png", 
+      static: true,
     },
     dirtyMags: {
       name: "Schmutzige Magazine",
       description: "Aus der Privatsammlung des Königs",
       image: "Images/Items/mags.png", 
+      static: true,
     },
   };
 
@@ -355,7 +359,8 @@ namespace MyNovel {
   let menuIsOpen: boolean = true;
 
   function credits(): void {
-    ƒS.Text.print("Credits<br>Design: Simon Zakowski <br>Programmierung: Simon Zakowski <br>Story: Simon Zakowski <br>Skript: Simon Zakowski <br>Hintergründe und Charakterdesign: Simon Zakowski <br>Musik und Sounds: pixabay.com");
+    ƒS.Text.print("Design: Simon Zakowski <br>Programmierung: Simon Zakowski <br>Story: Simon Zakowski <br>Skript: Simon Zakowski <br>Hintergründe und Charakterdesign: Simon Zakowski <br>Musik und Sounds: pixabay.com");
+    ƒS.Text.setClass("Credits"); //experimental; soll die Player novePage Klasse entfernen, dass das styling davon nicht kopiert wird
   }
 
   async function buttonFunctionalities(_option: string): Promise<void> {

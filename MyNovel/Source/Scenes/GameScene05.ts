@@ -13,7 +13,7 @@ namespace MyNovel {
               T0002: "Du meintest, du kannst mir helfen, herauszufinden, was es mit meinem unüblichen Wiederkommen auf sich hat.",
               T0003: "Der Dorfweise? Das ist deine Hilfe? Jeder kennt den Dorfweisen. Da hätte ich selbst draufkommen können!",
               T0004: "Dieser..!",
-              T0005: "Ugh. Ich glaube, dann bleibt mir nichts anders übrig, als den Weisen aufzusuchen.",
+              T0005: "Ugh. Ich glaube, dann bleibt mir nichts anderes übrig, als den Weisen aufzusuchen.",
               //Quest 2
               T0006: "Was zu den 7 Höllen sollte das?",
               T0007: "Du hast mich angelogen? Und abgestochen?? Schon wieder???",

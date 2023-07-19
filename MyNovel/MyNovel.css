@@ -235,7 +235,9 @@ name {
   margin-bottom: 1%;
   border-radius: 8px;
 }
-
+.Credits {
+  
+}
 /* Dass leere Optionen verschwinden*/
 button:empty {
   display: none;
@@ -402,7 +404,7 @@ input[id="HPCount"] {
 #Target1 {
   color: beige;
   background-color: rgba(148, 144, 190, 1);
-  width: 50%;
+  width: 40%;
   height: 100%;
   font-size: larger;
 }
@@ -410,7 +412,7 @@ input[id="HPCount"] {
 #Target2 {
   color: beige;
   background-color: rgba(148, 144, 190, 1);
-  width: 50%;
+  width: 40%;
   height: 100%;
   font-size: larger;
 }
@@ -523,7 +525,6 @@ input[id="HPCount"] {
   font-weight: bold;
   font-size: larger;
 }
-
 
 /* NOT SURE, WAS DAVON WIRKLICH FUNKTIONIERT (SPEECH INPUT)*/
 

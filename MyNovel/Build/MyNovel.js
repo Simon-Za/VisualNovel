@@ -141,21 +141,25 @@ var MyNovel;
             name: "Schubladenschlüssel",
             description: "Scheint eine Schublade zu öffnen",
             image: "Images/Items/drawerKey.png",
+            static: true,
         },
         keyDungeon: {
             name: "Dungeon Schlüssel",
             description: "Schlüssel für das Verlies?",
             image: "Images/Items/dungeonKey.png",
+            static: true,
         },
         keyVault: {
             name: "Tresorschlüssel",
             description: "Schlüssel für den Tresor",
             image: "Images/Items/vaultKey.png",
+            static: true,
         },
         dirtyMags: {
             name: "Schmutzige Magazine",
             description: "Aus der Privatsammlung des Königs",
             image: "Images/Items/mags.png",
+            static: true,
         },
     };
     MyNovel.characters = {
@@ -343,7 +347,8 @@ var MyNovel;
     let gameMenu;
     let menuIsOpen = true;
     function credits() {
-        MyNovel.ƒS.Text.print("Credits<br>Design: Simon Zakowski <br>Programmierung: Simon Zakowski <br>Story: Simon Zakowski <br>Skript: Simon Zakowski <br>Hintergründe und Charakterdesign: Simon Zakowski <br>Musik und Sounds: pixabay.com");
+        MyNovel.ƒS.Text.print("Design: Simon Zakowski <br>Programmierung: Simon Zakowski <br>Story: Simon Zakowski <br>Skript: Simon Zakowski <br>Hintergründe und Charakterdesign: Simon Zakowski <br>Musik und Sounds: pixabay.com");
+        MyNovel.ƒS.Text.setClass("Credits"); //experimental; soll die Player novePage Klasse entfernen, dass das styling davon nicht kopiert wird
     }
     async function buttonFunctionalities(_option) {
         console.log(_option);
@@ -659,7 +664,8 @@ var MyNovel;
                 case pickAction.Item:
                     console.log("You try to use an item");
                     MyNovel.ƒS.Speech.clear();
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, "Dein Iventar ist leer.");
+                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, "Dein Inventar ist leer.");
+                    await MyNovel.ƒS.Speech.hide();
                     break;
                 case pickAction.Dodge:
                     console.log("You dodge");
@@ -2283,7 +2289,7 @@ var MyNovel;
                 T0026: "Aber hier drin ist eine Leiter, zumindest komm ich damit sicher auf den Boden.",
                 //vorne bei Wachen
                 //bestechen
-                T0027: "Hallo, ich muss einen Schlüüühh.. Gegensand holen, den ein Freund hier vergessen hat.",
+                T0027: "Hallo, ich muss einen Schlüüühh.. Gegenstand holen, den ein Freund hier vergessen hat.",
                 T0028: "Ich könnte ein andermal wiederkommen...",
                 T0029: "...aber ich könnte auch auch jetzt schon reingehen und ihr wärt danach ein Stückchen reicher.",
                 //drinnen
@@ -4161,7 +4167,7 @@ var MyNovel;
                 T0006: "Überlegt mal. Wer hat uns von diesem Unfall erzählt?",
                 T0007: "Unser König hat den alten König ermordet! Und dieser Dieb hat das versehentlich bewiesen.",
                 T0008: "Das müssen wir wohl...",
-                T0009: "Aber wir sollten erst den Eindringlich beseitigen.",
+                T0009: "Aber wir sollten erst den Eindringling beseitigen.",
                 T0010: "Er weiß zu viel.",
             }
         };
@@ -4757,7 +4763,7 @@ var MyNovel;
                 T0002: "Du meintest, du kannst mir helfen, herauszufinden, was es mit meinem unüblichen Wiederkommen auf sich hat.",
                 T0003: "Der Dorfweise? Das ist deine Hilfe? Jeder kennt den Dorfweisen. Da hätte ich selbst draufkommen können!",
                 T0004: "Dieser..!",
-                T0005: "Ugh. Ich glaube, dann bleibt mir nichts anders übrig, als den Weisen aufzusuchen.",
+                T0005: "Ugh. Ich glaube, dann bleibt mir nichts anderes übrig, als den Weisen aufzusuchen.",
                 //Quest 2
                 T0006: "Was zu den 7 Höllen sollte das?",
                 T0007: "Du hast mich angelogen? Und abgestochen?? Schon wieder???",
