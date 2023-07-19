@@ -318,7 +318,7 @@ namespace MyNovel {
     
     //Background Wechsel
     await ƒS.Location.show(locations.swampWalk);
-    await ƒS.Character.show(characters.bullywug04, characters.bullywug04.pose.upset, ƒS.positionPercent(50, 80));
+    await ƒS.Character.show(characters.steve, characters.steve.pose.upset, ƒS.positionPercent(50, 80));
     await ƒS.Sound.fade(sound.squelch, 0.2, 1);
     await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge)
 

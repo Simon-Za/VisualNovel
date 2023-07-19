@@ -2121,7 +2121,7 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, MyNovel.dataForSave.Protagonist.name + "!");
         //Background Wechsel
         await MyNovel.ƒS.Location.show(MyNovel.locations.swampWalk);
-        await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug04, MyNovel.characters.bullywug04.pose.upset, MyNovel.ƒS.positionPercent(50, 80));
+        await MyNovel.ƒS.Character.show(MyNovel.characters.steve, MyNovel.characters.steve.pose.upset, MyNovel.ƒS.positionPercent(50, 80));
         await MyNovel.ƒS.Sound.fade(MyNovel.sound.squelch, 0.2, 1);
         await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0010);
