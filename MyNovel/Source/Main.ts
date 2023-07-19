@@ -312,7 +312,7 @@ namespace MyNovel {
   export let dataForSave = {
     Protagonist: {
       name: "",
-      deaths: 3,
+      deaths: 0,
       mags: false,
       hasKey: false,
       savedTym: false,
@@ -320,7 +320,7 @@ namespace MyNovel {
     //für meter
     HP: 20,
     HPCount: "20/20",
-    Quest: 2,
+    Quest: 0,
   };
 
   export function animation(): ƒS.AnimationDefinition {
@@ -440,14 +440,14 @@ namespace MyNovel {
     gameMenu = ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
     buttonFunctionalities("Close");
     let scenes: ƒS.Scenes = [
-      //{ scene: GameScene01, name: "OpeningFight"},
-      //{ scene: GameScene02, name: "Exposition"},
-      //{ id: "GameScene03Q1", scene: GameScene03Q1, name: "Quest1Start", next: "GameScene04Q1" },
-      //{ id: "GameScene03Q2", scene: GameScene03Q2, name: "Quest2Start", next: "GameScene04Q2" },
-      //{ id: "GameScene04Q1", scene: GameScene04Q1, name: "Quest1Part2", next: "GameScene05"},
-      //{ id: "GameScene04Q2", scene: GameScene04Q2, name: "Quest2Part2", next: "GameScene05"},
-      //{ id: "GameScene05", scene: GameScene05, name: "QuestEnd", next: "GameScene06"},
-      //{ id: "GameScene06", scene: GameScene06, name: "Sage", next: "GameScene07"},
+      { scene: GameScene01, name: "OpeningFight"},
+      { scene: GameScene02, name: "Exposition"},
+      { id: "GameScene03Q1", scene: GameScene03Q1, name: "Quest1Start", next: "GameScene04Q1" },
+      { id: "GameScene03Q2", scene: GameScene03Q2, name: "Quest2Start", next: "GameScene04Q2" },
+      { id: "GameScene04Q1", scene: GameScene04Q1, name: "Quest1Part2", next: "GameScene05"},
+      { id: "GameScene04Q2", scene: GameScene04Q2, name: "Quest2Part2", next: "GameScene05"},
+      { id: "GameScene05", scene: GameScene05, name: "QuestEnd", next: "GameScene06"},
+      { id: "GameScene06", scene: GameScene06, name: "Sage", next: "GameScene07"},
       { id: "GameScene07", scene: GameScene07, name: "Ending" },
 
     ];
