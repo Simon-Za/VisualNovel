@@ -158,7 +158,7 @@ namespace MyNovel {
         };
 
         await ƒS.Location.show(locations.Gefaengnis);
-        //await ƒS.Sound.fade();  //Passenden Sound finden //vllt einfach gedämpfte Sumpf sounds
+        await ƒS.Sound.fade(sound.dungeon, 0.2, 1, true);
         await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
 
         await ƒS.Speech.tell(characters.protagonist, text.Player.T0001);
@@ -171,41 +171,40 @@ namespace MyNovel {
         await ƒS.Speech.tell(characters.protagonist, text.Player.T0008);
 
         while (!finished) {
+            await ƒS.Location.show(locations.Gefaengnis);
             await ƒS.Speech.hide();
             await ƒS.update(1);
             back = false;
             //Choice, welche Zelle anschauen
-            let dialogue0 = {
-                linksVorn: "die erste links",
+            let pickCell = {
                 linksHinten: "die hintere linke",
-                rechtsVorn: "die rechts vorne",
                 rechtsHinten: "die in der Ecke rechts",
+                linksVorn: "die erste links",
+                rechtsVorn: "die rechts vorne",
             };
 
-            let dialogueElement0 = await ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
+            let pickCellElement = await ƒS.Menu.getInput(pickCell, "choicesCSSClass");
 
-            switch (dialogueElement0) {
-                case dialogue0.linksVorn:
+            switch (pickCellElement) {
+                case pickCell.linksVorn:
                     await cellFrontLeft();
                     break;
-                case dialogue0.linksHinten:
+                case pickCell.linksHinten:
                     await cellBackLeft();
                     break;
-                case dialogue0.rechtsVorn:
+                case pickCell.rechtsVorn:
                     await cellFrontRight();
                     break;
-                case dialogue0.rechtsHinten:
+                case pickCell.rechtsHinten:
                     await cellBackRight();
                     break;
             };
         };
 
 
-        async function cellFrontLeft() {    //hier ist guy drin, den wir befreien können (Tiefling?)
-            //hier Bild für Nahansicht der Zelle einfügen
-            //wenn wir ihm einen guten Witz erzählen, gibt er uns einen Hinweis --> dafür muss man 3 richtige Teile auswählen (zb: kommt ein König, Drache, Blutegel in eine Bar)
-            //würde gern freigelassen werden, weil er von seinen Kameraden geditcht wurde und die Quest aufgegeben hat
-            //Hinweise, die er hat: König schließt auf der anderen Seite zwei Türen auf; Goblin gegenüber weiß evtl mehr
+        async function cellFrontLeft() {    //Tym
+            await ƒS.Location.show(locations.CellTym);
+            await ƒS.update(1);
             if (!tymSpoken) {
                 await ƒS.Speech.tell(characters.prisoner1, text.Gefangener1.T0001);
                 await ƒS.Speech.tell(characters.prisoner1, text.Gefangener1.T0002);
@@ -327,31 +326,31 @@ namespace MyNovel {
                     };
 
                     if (joke1 == 2 && joke2 == 1 && joke3 == 3 && joke4 == 3) {
-                        await ƒS.Speech.tell(characters.prisoner2, "AHAHA!");
-                        await ƒS.Speech.tell(characters.prisoner2, "Der ist echt gut!");
-                        await ƒS.Speech.tell(characters.prisoner2, "Es ist witzig, weil ein König genau so gierig ist, wie ein roter Drache, der als der gierigste der Drachen gilt, und genauso geistig faul und hässlich wie ein Oger!");
-                        await ƒS.Speech.tell(characters.prisoner2, "Hahahaa!");
+                        await ƒS.Speech.tell(characters.prisoner1, "AHAHA!");
+                        await ƒS.Speech.tell(characters.prisoner1, "Der ist echt gut!");
+                        await ƒS.Speech.tell(characters.prisoner1, "Es ist witzig, weil ein König genau so gierig ist, wie ein roter Drache, der als der gierigste der Drachen gilt, und genauso geistig faul und hässlich wie ein Oger!");
+                        await ƒS.Speech.tell(characters.prisoner1, "Hahahaa!");
                         funny = true;
                     }
                     else if (joke1 == 1 && joke2 == 3 && joke3 == 1 && joke4 == 3) {
                         //ist er absolut nocht amused
-                        await ƒS.Speech.tell(characters.prisoner2, "Ist das dein Ernst?");
-                        await ƒS.Speech.tell(characters.prisoner2, "Das ist absolut nicht witzig.");
-                        await ƒS.Speech.tell(characters.prisoner2, "Ich gehe einfach mal davon aus, dass das ein gut gemeinter Scherz war.");
-                        await ƒS.Speech.tell(characters.prisoner2, "Versuchs nochmal, diesmal ohne Rassismus.");
+                        await ƒS.Speech.tell(characters.prisoner1, "Ist das dein Ernst?");
+                        await ƒS.Speech.tell(characters.prisoner1, "Das ist absolut nicht witzig.");
+                        await ƒS.Speech.tell(characters.prisoner1, "Ich gehe einfach mal davon aus, dass das ein gut gemeinter Scherz war.");
+                        await ƒS.Speech.tell(characters.prisoner1, "Versuchs nochmal, diesmal ohne Rassismus.");
                     }
                     else if (joke1 == 3 && joke2 == 2 && joke3 == 2 && joke4 == 3) {
                         //nicht so funny für ihn, weil friends elfen waren
-                        await ƒS.Speech.tell(characters.prisoner2, "Einer meiner Abenteurerfreunde war ein Elf.");
-                        await ƒS.Speech.tell(characters.prisoner2, "Unter diesen Umständen kann ich nicht über Elfenwitze lachen, tut mir Leid.");
-                        await ƒS.Speech.tell(characters.prisoner2, "Aber sicher kannst du dir was besseres einfallen lassen.");
+                        await ƒS.Speech.tell(characters.prisoner1, "Einer meiner Abenteurerfreunde war ein Elf.");
+                        await ƒS.Speech.tell(characters.prisoner1, "Unter diesen Umständen kann ich nicht über Elfenwitze lachen, tut mir Leid.");
+                        await ƒS.Speech.tell(characters.prisoner1, "Aber sicher kannst du dir was besseres einfallen lassen.");
                     }
                     else {
                         //ist halt nciht funny
-                        await ƒS.Speech.tell(characters.prisoner2, ".....");
-                        await ƒS.Speech.tell(characters.prisoner2, "Was?");
-                        await ƒS.Speech.tell(characters.prisoner2, "Versteh ich nicht.");
-                        await ƒS.Speech.tell(characters.prisoner2, "Probiers nochmal.");
+                        await ƒS.Speech.tell(characters.prisoner1, ".....");
+                        await ƒS.Speech.tell(characters.prisoner1, "Was?");
+                        await ƒS.Speech.tell(characters.prisoner1, "Versteh ich nicht.");
+                        await ƒS.Speech.tell(characters.prisoner1, "Probiers nochmal.");
                     }
 
                 }
@@ -398,9 +397,8 @@ namespace MyNovel {
         };
 
         async function cellBackLeft() { //hier ist guy drin, der gegen Magazine Infos gibt (Goblin)
-            //hier Bild für Nahansicht der Zelle einfügen
-            //Goblin gibt Tipp, dass Schlüssel umgedreht werden muss
-            //wenn keine Magazine, möchte er etwas anderes; zB eine Review zu seinem Buch, das er schreibt, hören
+            await ƒS.Location.show(locations.CellFroglin);
+            await ƒS.update(1);
 
             if (!goblinSpoken) {
 
@@ -410,17 +408,17 @@ namespace MyNovel {
                 await ƒS.Speech.tell(characters.prisoner2, text.Gefangener2.T0003);
                 await ƒS.Speech.tell(characters.prisoner2, text.Gefangener2.T0004);
 
-                let dialogue2 = {
+                let genericAnswer = {
                     jap: "Jup",
                     nope: "Nope",
                 };
 
-                let dialogueElement2 = await ƒS.Menu.getInput(dialogue2, "choicesCSSClass");
+                let genericAnswerElement = await ƒS.Menu.getInput(genericAnswer, "choicesCSSClass");
 
-                switch (dialogueElement2) {
-                    case dialogue2.jap:
+                switch (genericAnswerElement) {
+                    case genericAnswer.jap:
                         break;
-                    case dialogue2.nope:
+                    case genericAnswer.nope:
                         break;
                 };
 
@@ -578,7 +576,8 @@ namespace MyNovel {
         };
 
         async function cellFrontRight() {   //hier ist Frogtaro drin
-            //hier Bild für Nahansicht der Zelle einfügen
+            await ƒS.Location.show(locations.CellFrogtaro);
+            await ƒS.update(1);
             if (!frogTaroSpoken) {
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0001);
                 await ƒS.Speech.tell(characters.protagonist, "Ich bin keine Wache. Ich habe nur ein paar Fragen.");
@@ -610,7 +609,8 @@ namespace MyNovel {
         };
 
         async function cellBackRight() {    //hier ist der Vault drin aka leere Zelle
-            //hier Bild für Nahansicht der Zelle einfügen
+            await ƒS.Location.show(locations.CellEmpty);
+            await ƒS.update(1);
             if(!vaultDoorOpen) {
                 await ƒS.Speech.tell(characters.narrator, "Die Zelle ist leer und verschlossen.");
                 await ƒS.Speech.tell(characters.narrator, "Willst du einen Schlüssel benutzen?");
@@ -660,8 +660,7 @@ namespace MyNovel {
                                 break;
                             case dialogueEmptyCell.keyDungeon:
                                 await ƒS.Speech.tell(characters.protagonist, "Passt nicht zu dem Schloss.");
-                                await ƒS.Speech.tell(characters.protagonist, "Ich frage mich wofür der Dungeonschlüssel ist, wenn er im Dungeon nichts öffnen kann.");
-                                await ƒS.Speech.tell(characters.protagonist, "Wüsste auch nicht, dass es noch ein anderes Verlies gibt.");
+                                await ƒS.Speech.tell(characters.protagonist, "Ich frage mich wofür der Dungeonschlüssel ist.");
                                 break;
                             case dialogueEmptyCell.keyVault:
                                 await ƒS.Speech.tell(characters.protagonist, "Nope. Passt nicht.");
@@ -709,6 +708,7 @@ namespace MyNovel {
             await ƒS.Speech.tell(characters.narrator, "*Du nimmst das Zepter vom Sockel und steckst es in deine Tasche*");
             await ƒS.Speech.tell(characters.protagonist, text.Player.T0011);
             await ƒS.Speech.tell(characters.narrator, "*Du verlässt das Gefängnis und gehst zurück Richtung Tümpel*");
+            await ƒS.Sound.fade(sound.dungeon, 0, 1, false);
             finished = true;
         }
 

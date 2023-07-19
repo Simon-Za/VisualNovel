@@ -146,7 +146,7 @@ namespace MyNovel {
         await ƒS.Character.hide(characters.steve);  
         //hier Ende screen? to be continued
         await ƒS.Location.show(locations.endingScreen);
-        await ƒS.Character.hideAll();
+        await ƒS.Character.hideAll(); 
         await ƒS.update(transition.deathSpiral.duration, transition.deathSpiral.alpha, transition.deathSpiral.edge);
 
         console.log("Scene07 done");

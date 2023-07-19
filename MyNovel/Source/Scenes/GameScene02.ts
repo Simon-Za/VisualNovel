@@ -115,7 +115,7 @@ namespace MyNovel {
     await ƒS.Speech.tell(characters.steve, text.Steve.T0004);
 
 
-    let dialogue0 = {
+    let whyBack = {
       Glück: "Einfach Glück gehabt, denke ich.",
       Wahrheit: "Das haben Sie. Ich bin irgendwie zurückgekehrt.",
       Gegenfrage: "Wenn du das gesehen hast, wie bist du dann noch entkommen?",
@@ -125,20 +125,20 @@ namespace MyNovel {
     let wahrheit: boolean;
     let gegenfrage: boolean;
 
-    let dialogueElement0 = await ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
+    let whyBackElement = await ƒS.Menu.getInput(whyBack, "choicesCSSClass");
 
-    switch (dialogueElement0) {
-      case dialogue0.Glück:
+    switch (whyBackElement) {
+      case whyBack.Glück:
         await ƒS.Speech.tell(characters.steve, "Glück? Dir wurde gehörig auf die Fresse gegeben und jetzt stehst du 5 Minuten später wieder putzmunter vor mir? Stehst du mit einem Teufel im Bunde??");
         glück = true;
         break;
 
-      case dialogue0.Wahrheit:
+      case whyBack.Wahrheit:
         await ƒS.Speech.tell(characters.steve, "Wie meinst du ‘zurückgekehrt’? Im Sinne von du bist von den Toten auferstanden??");
         wahrheit = true;
         break;
 
-      case dialogue0.Gegenfrage:
+      case whyBack.Gegenfrage:
         await ƒS.Speech.tell(characters.steve, "Sie haben mich nicht verfolgt.");
         await ƒS.Speech.tell(characters.steve, "Hatten wahrscheinlich Angst, dass ich sie überlisten würde. Ha!");
         await ƒS.Speech.tell(characters.steve, "...");
@@ -149,38 +149,38 @@ namespace MyNovel {
         break;
     }
 
-    let glückAntwort = {
+    let luckAnswer = {
       Spaß: "Nein. Ich BIN ein Teufel!",
       Unwissen: "Nicht, dass ich wüsste.",
       Info: "Da war eine Stimme.",
     }
-    let wahrheitAntwort = {
+    let truthAnswer = {
       Zustimmung: "Sozusagen.",
       Erklärung: "Ich habe eine Stimme gehört. Sie hat zu mir gesprochen. Und dann bin ich aus dem Sumpf aufgetaucht.",
       Verbesserung: "Nicht auferstanden. Eher … wiedergeboren?"
     }
-    let gegenfrageAntwort = {
+    let counterquestionAnswer = {
       Sassy: "Wir haben den gleichen Körpertyp.",
       Sachlage: "Ich bin eben so im Tümpel aufgewacht.",
       Vermutung: "Ich glaube, jemand hat mich wiederbelebt."
     }
 
     if (glück) {
-      let dialogueElement1 = await ƒS.Menu.getInput(glückAntwort, "choicesCSSClass");
+      let luckElement = await ƒS.Menu.getInput(luckAnswer, "choicesCSSClass");
 
-      switch (dialogueElement1) {
-        case glückAntwort.Spaß:
+      switch (luckElement) {
+        case luckAnswer.Spaß:
           await ƒS.Speech.tell(characters.steve, "Ja genau, dann hättest du die Typen vorhin aber direkt fertigmachen können.");
 
 
-          let glückAntwort2 = {
+          let luckAnswer2 = {
             Info: "Da war eine Stimme.",
           }
           //Hier zurück zur Auswahl, aber Antwort 1 und 2 ausblenden
-          let dialogueElement1 = await ƒS.Menu.getInput(glückAntwort2, "choicesCSSClass");
+          let luck2Element = await ƒS.Menu.getInput(luckAnswer2, "choicesCSSClass");
 
-          switch (dialogueElement1) {
-            case glückAntwort2.Info:
+          switch (luck2Element) {
+            case luckAnswer2.Info:
               await ƒS.Speech.tell(characters.steve, "Eine Stimme? Die Stimme eines Teufels?");
               await ƒS.Speech.tell(characters.protagonist, "Nein. Also, nicht sicher. Sie meinte, das Schicksal hätte mich auserwählt.");
               await ƒS.Speech.tell(characters.steve, "Das Schicksal? Soso..");
@@ -188,17 +188,17 @@ namespace MyNovel {
           }
           break;
 
-        case glückAntwort.Unwissen:
+        case luckAnswer.Unwissen:
           await ƒS.Speech.tell(characters.steve, "Hm. Äußerst kurios.");
 
-          let glückAntwort3 = {
+          let luckAnswer3 = {
             Info: "Da war eine Stimme.",
           }
           //Hier zurück zur Auswahl, aber ANtwort 1 und 2 ausblenden
-          let dialogueElement2 = await ƒS.Menu.getInput(glückAntwort3, "choicesCSSClass");
+          let luck3Element = await ƒS.Menu.getInput(luckAnswer3, "choicesCSSClass");
 
-          switch (dialogueElement2) {
-            case glückAntwort3.Info:
+          switch (luck3Element) {
+            case luckAnswer3.Info:
               await ƒS.Speech.tell(characters.steve, "Eine Stimme? Die Stimme eines Teufels?");
               await ƒS.Speech.tell(characters.protagonist, "Nein. Also, nicht sicher. Sie meinte, das Schicksal hätte mich auserwählt.");
               await ƒS.Speech.tell(characters.steve, "Das Schicksal? Soso..");
@@ -206,7 +206,7 @@ namespace MyNovel {
           }
           break;
 
-        case glückAntwort.Info:
+        case luckAnswer.Info:
           await ƒS.Speech.tell(characters.steve, "Eine Stimme? Die Stimme eines Teufels?");
           await ƒS.Speech.tell(characters.protagonist, "Nein. Also, nicht sicher. Sie meinte, das Schicksal hätte mich auserwählt.");
           await ƒS.Speech.tell(characters.steve, "Das Schicksal? Soso..");
@@ -214,38 +214,38 @@ namespace MyNovel {
       }
     }
     else if (wahrheit) {
-      let dialogueElement1 = await ƒS.Menu.getInput(wahrheitAntwort, "choicesCSSClass");
+      let truthElement = await ƒS.Menu.getInput(truthAnswer, "choicesCSSClass");
 
       await ƒS.Speech.tell(characters.steve, "Wenn das stimmt, dann…");
       await ƒS.Speech.tell(characters.steve,"Aber wieso ist das passiert? Und wieso DIR?");
     }
     else if (gegenfrage) {
-      let dialogueElement1 = await ƒS.Menu.getInput(gegenfrageAntwort, "choicesCSSClass");
+      let counterquestionElement = await ƒS.Menu.getInput(counterquestionAnswer, "choicesCSSClass");
 
-      switch (dialogueElement1) {
-        case gegenfrageAntwort.Sassy:
+      switch (counterquestionElement) {
+        case counterquestionAnswer.Sassy:
           await ƒS.Speech.tell(characters.steve, "HM?");
           await ƒS.Speech.tell(characters.protagonist, "Nichts.");
 
-          let gegenfrageAntwort2 = {
+          let counterquestionAnswer2 = {
             Vermutung: "Ich glaube, jemand hat mich wiederbelebt."
           }
           //hier zurück zur Auswahl, aber nur antwort 3
-          let dialogueElement2 = await ƒS.Menu.getInput(gegenfrageAntwort2, "choicesCSSClass");
+          let counterquestionElement2 = await ƒS.Menu.getInput(counterquestionAnswer2, "choicesCSSClass");
 
-          switch (dialogueElement2) {
-          case gegenfrageAntwort2.Vermutung:
+          switch (counterquestionElement2) {
+          case counterquestionAnswer2.Vermutung:
             await ƒS.Speech.tell(characters.steve, "Aber zu welchem Zweck?");
             await ƒS.Speech.tell(characters.steve, "Warum sollte jemandem wie dir eine zweite Chance vergönnt sein?");
             break;
           }
           break;
-        case gegenfrageAntwort.Sachlage: 
+        case counterquestionAnswer.Sachlage: 
           await ƒS.Speech.tell(characters.steve, "Hmm.");
           await ƒS.Speech.tell(characters.steve, "Hmmmmm.");
           await ƒS.Speech.tell(characters.steve, "Scheint, als ob du tatsächlich wiedergeboren wurdest.");
           break;
-        case gegenfrageAntwort.Vermutung:
+        case counterquestionAnswer.Vermutung:
           await ƒS.Speech.tell(characters.steve, "Aber zu welchem Zweck?");
           await ƒS.Speech.tell(characters.steve, "Warum sollte jemandem wie dir eine zweite Chance vergönnt sein?");
       }
@@ -254,13 +254,13 @@ namespace MyNovel {
     await ƒS.Speech.tell(characters.steve, text.Steve.T0006);
     await ƒS.Speech.tell(characters.steve, text.Steve.T0007);
 
-    let dialogue1 = {
+    let isRespawn = {
       Ablehnend: "Ich will es nicht herausfinden!",
       Neugierig: "Interessiert mich auch.",
       Vorahnung: "Bitte tu es nicht!"
     }
 
-    let dialogueElement1 = await ƒS.Menu.getInput(dialogue1, "choicesCSSClass");
+    let isRespawnElement = await ƒS.Menu.getInput(isRespawn, "choicesCSSClass");
 
     //Steve stabs player
     //Steve mit Messer oder Speer
@@ -328,12 +328,12 @@ namespace MyNovel {
     await ƒS.Speech.tell(characters.steve, text.Steve.T0012);
     await ƒS.Speech.tell(characters.steve, text.Steve.T0013);
 
-    let dialogue2 = {
+    let gift = {
       Panik: "eine Gabe? Aber wozu? Wieso ich?",
       Positiv: "Ok wow. Scheint, als wäre ich für Großes bestimmt.",
       Negativ: "Oder es ist ein Fluch."
     }
-    let dialogueElement2 = await ƒS.Menu.getInput(dialogue2, "choicesCSSClass");
+    let giftElement = await ƒS.Menu.getInput(gift, "choicesCSSClass");
 
     await ƒS.Speech.tell(characters.steve, text.Steve.T0014);
     await ƒS.Speech.tell(characters.steve, text.Steve.T0015);
@@ -341,26 +341,26 @@ namespace MyNovel {
     await ƒS.Speech.tell(characters.steve, text.Steve.T0017);
     await ƒS.Speech.tell(characters.steve, text.Steve.T0018);
 
-    let dialogue3 = {
+    let helpSteve = {
       Frage: "Wobei soll ich denn helfen?",
       Actually: "Stimmt das? Technisch gesehen sind alle deine Untergebenen vorhin im Kampf gefallen.",
       Disgruntled: "Ugh. Fein. Wofür brauchst du mich?"
     }
-    let dialogueElement3 = await ƒS.Menu.getInput(dialogue3, "choicesCSSClass");
+    let helpSteveElement = await ƒS.Menu.getInput(helpSteve, "choicesCSSClass");
 
-    switch (dialogueElement3) {
-      case dialogue3.Actually:
+    switch (helpSteveElement) {
+      case helpSteve.Actually:
         await ƒS.Speech.tell(characters.steve, "Und technisch gesehen bin ich die einzige Person, die bereit ist, dir zu helfen – im Tausch gegen einen kleinen Gefallen.");
         //hier zurück zur Auswahl, aber nur Antwort 1 + 3
-        let dialogue4 = {
+        let helpSteve2 = {
           Frage: "Wobei soll ich denn helfen?",
           Disgruntled: "Ugh. Fein. Wofür brauchst du mich?",
         }
-        let dialogueElement4 = await ƒS.Menu.getInput(dialogue4, "choicesCSSClass");
-        switch (dialogueElement4) {
-          case dialogue4.Frage:
+        let helpSteve2Element = await ƒS.Menu.getInput(helpSteve2, "choicesCSSClass");
+        switch (helpSteve2Element) {
+          case helpSteve2.Frage:
             break;
-          case dialogue4.Disgruntled:
+          case helpSteve2.Disgruntled:
             break; 
         }
         break;
@@ -376,21 +376,21 @@ namespace MyNovel {
     //    Gegenstände sind Beweis, dass König den vorherigen König beseitigt hat (oder so -> vllt die Kette / Knochen / ein Merkmal des vorigen Königs, der eig
     //                                                                              das Dorf verlassen haben sollte oder in einem Unfall gestorben ist)
     //    Danach muss der Spieler sich ins Büro des Königs schleichen, um die Gegenstände zu platzieren
-    let dialogue5 = {
+    let friendsWKingReaction = {
       Misstrauisch: "Hm komisch, habe euch noch nie zusammen auf einem Bild gesehen.",
       Akzeptanz: "Oh, wusste ich gar nicht.",
       Erstaunen: "Beste Freunde mit dem König? Wow!"
     }
 
-    let dialogueElement5 = await ƒS.Menu.getInput(dialogue5, "choicesCSSClass");
-    switch (dialogueElement5) {
-      case dialogue5.Misstrauisch:
+    let friendsWKingReactionElement = await ƒS.Menu.getInput(friendsWKingReaction, "choicesCSSClass");
+    switch (friendsWKingReactionElement) {
+      case friendsWKingReaction.Misstrauisch:
         await ƒS.Speech.tell(characters.steve, "Hinterfrage mich einfach nicht, klar?");
         break;
-      case dialogue5.Akzeptanz:
+      case friendsWKingReaction.Akzeptanz:
         await ƒS.Speech.tell(characters.steve, "Jaja, wissen viele nicht, ist aber so.");
         break;
-      case dialogue5.Erstaunen:
+      case friendsWKingReaction.Erstaunen:
         await ƒS.Speech.tell(characters.steve, "Hehe, jaja. Wenn ich nicht so ein guter Kämpfer wäre, dann würde ich sagen, dass er meinen angenehmen Charakter am meisten an mir schätzt.");
         break;  
     }

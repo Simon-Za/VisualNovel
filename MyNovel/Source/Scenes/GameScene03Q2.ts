@@ -222,33 +222,33 @@ namespace MyNovel {
             await ƒS.update(1);
             if (!knowLocation) {
                 //Choice, welche Zelle anschauen
-                let dialogue0 = {
+                let pickCell = {
                     linksHinten: "die hintere linke",
                     rechtsHinten: "die in der Ecke rechts",
                     linksVorn: "die erste links",
                     rechtsVorn: "die rechts vorne",
                 };
 
-                let dialogueElement0 = await ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
+                let pickCellElement = await ƒS.Menu.getInput(pickCell, "choicesCSSClass");
 
-                switch (dialogueElement0) {
-                    case dialogue0.linksVorn:
+                switch (pickCellElement) {
+                    case pickCell.linksVorn:
                         await cellFrontLeft();
                         break;
-                    case dialogue0.linksHinten:
+                    case pickCell.linksHinten:
                         await cellBackLeft();
                         break;
-                    case dialogue0.rechtsVorn:
+                    case pickCell.rechtsVorn:
                         await cellFrontRight();
                         break;
-                    case dialogue0.rechtsHinten:
+                    case pickCell.rechtsHinten:
                         await cellBackRight();
                         break;
                 };
             }
             else {
                 //Choice, welche Zelle anschauen
-                let dialogue0 = {
+                let pickCell2 = {
                     linksHinten: "die hintere linke",
                     rechtsHinten: "die in der Ecke rechts",
                     linksVorn: "die erste links",
@@ -256,22 +256,22 @@ namespace MyNovel {
                     sumpf: "Zum Sumpf"
                 };
 
-                let dialogueElement0 = await ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
+                let pickCell2Element = await ƒS.Menu.getInput(pickCell2, "choicesCSSClass");
 
-                switch (dialogueElement0) {
-                    case dialogue0.linksVorn:
+                switch (pickCell2Element) {
+                    case pickCell2.linksVorn:
                         await cellFrontLeft();
                         break;
-                    case dialogue0.linksHinten:
+                    case pickCell2.linksHinten:
                         await cellBackLeft();
                         break;
-                    case dialogue0.rechtsVorn:
+                    case pickCell2.rechtsVorn:
                         await cellFrontRight();
                         break;
-                    case dialogue0.rechtsHinten:
+                    case pickCell2.rechtsHinten:
                         await cellBackRight();
                         break;
-                    case dialogue0.sumpf:
+                    case pickCell2.sumpf:
                         await swamp();
                         break;
                 };
@@ -343,7 +343,6 @@ namespace MyNovel {
         };
 
         async function cellBackLeft() {     //Frog, der unsere Infos hat
-            //hier Bild für Nahansicht der Zelle einfügen---------------------------------
             await ƒS.Location.show(locations.CellFroglin);
             await ƒS.update(1);
             if (!frogSpoken) {
@@ -400,7 +399,6 @@ namespace MyNovel {
         };
 
         async function cellFrontRight() {   //Frogtaro
-            //hier Bild für Nahansicht der Zelle einfügen---------------------------------
             await ƒS.Location.show(locations.CellFrogtaro);
             await ƒS.update(1);
             if (!frogTaroSpoken) {

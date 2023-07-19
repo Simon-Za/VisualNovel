@@ -264,7 +264,7 @@ var MyNovel;
             }
         },
         prisoner2: {
-            name: "???",
+            name: "unbekannt",
             origin: MyNovel.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
                 upset: "Images/Characters/.png", //fehlt!!
@@ -343,7 +343,7 @@ var MyNovel;
     let gameMenu;
     let menuIsOpen = true;
     function credits() {
-        MyNovel.ƒS.Text.print("");
+        MyNovel.ƒS.Text.print("Credits<br>Design: Simon Zakowski <br>Programmierung: Simon Zakowski <br>Story: Simon Zakowski <br>Skript: Simon Zakowski <br>Hintergründe und Charakterdesign: Simon Zakowski <br>Musik und Sounds: pixabay.com");
     }
     async function buttonFunctionalities(_option) {
         console.log(_option);
@@ -460,11 +460,8 @@ var MyNovel;
         let e2DmgTaken = 0;
         let e2Dodge = false;
         let frog1HP = 11;
-        let f1DmgTaken = 0;
         let frog2HP = 11;
-        let f2DmgTaken = 0;
         let frog3HP = 11;
-        let f3DmgTaken = 0;
         let actionTaken = false;
         MyNovel.ƒS.Speech.hide();
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Unknown.T0001);
@@ -630,46 +627,46 @@ var MyNovel;
         }
         ;
         async function takeAction() {
-            let dialogue0 = {
+            let pickAction = {
                 Attack: "Attack",
                 Item: "Item",
                 Dodge: "Dodge",
                 Flee: "Flee"
             };
-            let dialogueElement0 = await MyNovel.ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
-            switch (dialogueElement0) {
-                case dialogue0.Attack:
+            let pickActionElement = await MyNovel.ƒS.Menu.getInput(pickAction, "choicesCSSClass");
+            switch (pickActionElement) {
+                case pickAction.Attack:
                     console.log("You attack");
                     //target select
-                    let dialogue1 = {
+                    let enemySelect = {
                         Target1: "Gegner 1",
                         Target2: "Gegner 2"
                     };
-                    let dialogueElement1 = await MyNovel.ƒS.Menu.getInput(dialogue1, "choicesCSSClass");
-                    switch (dialogueElement1) {
-                        case dialogue1.Target1:
+                    let enemySelectElement = await MyNovel.ƒS.Menu.getInput(enemySelect, "choicesCSSClass");
+                    switch (enemySelectElement) {
+                        case enemySelect.Target1:
                             console.log("Target 1");
                             await attack(2);
                             actionTaken = true;
                             break;
-                        case dialogue1.Target2:
+                        case enemySelect.Target2:
                             console.log("Target 2");
                             await attack(1);
                             actionTaken = true;
                             break;
                     }
                     break;
-                case dialogue0.Item:
+                case pickAction.Item:
                     console.log("You try to use an item");
                     MyNovel.ƒS.Speech.clear();
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, "Dein Iventar ist leer.");
                     break;
-                case dialogue0.Dodge:
+                case pickAction.Dodge:
                     console.log("You dodge");
                     await dodge();
                     actionTaken = true;
                     break;
-                case dialogue0.Flee:
+                case pickAction.Flee:
                     console.log("You try to flee");
                     await flee();
                     break;
@@ -993,12 +990,6 @@ var MyNovel;
             await MyNovel.ƒS.Character.hide(MyNovel.characters.bullywug01);
             await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug01, MyNovel.characters.bullywug01.pose.upset, MyNovel.ƒS.positionPercent(20, 40));
             await MyNovel.ƒS.update(0.1);
-        }
-        ;
-        async function useItem() {
-            dodging = false;
-            await MyNovel.ƒS.Inventory.open();
-            //ITEM SELECTEN ETC
         }
         ;
         async function dodge() {
@@ -1960,7 +1951,7 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0002);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0003);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0004);
-        let dialogue0 = {
+        let whyBack = {
             Glück: "Einfach Glück gehabt, denke ich.",
             Wahrheit: "Das haben Sie. Ich bin irgendwie zurückgekehrt.",
             Gegenfrage: "Wenn du das gesehen hast, wie bist du dann noch entkommen?",
@@ -1968,17 +1959,17 @@ var MyNovel;
         let glück;
         let wahrheit;
         let gegenfrage;
-        let dialogueElement0 = await MyNovel.ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
-        switch (dialogueElement0) {
-            case dialogue0.Glück:
+        let whyBackElement = await MyNovel.ƒS.Menu.getInput(whyBack, "choicesCSSClass");
+        switch (whyBackElement) {
+            case whyBack.Glück:
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Glück? Dir wurde gehörig auf die Fresse gegeben und jetzt stehst du 5 Minuten später wieder putzmunter vor mir? Stehst du mit einem Teufel im Bunde??");
                 glück = true;
                 break;
-            case dialogue0.Wahrheit:
+            case whyBack.Wahrheit:
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Wie meinst du ‘zurückgekehrt’? Im Sinne von du bist von den Toten auferstanden??");
                 wahrheit = true;
                 break;
-            case dialogue0.Gegenfrage:
+            case whyBack.Gegenfrage:
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Sie haben mich nicht verfolgt.");
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Hatten wahrscheinlich Angst, dass ich sie überlisten würde. Ha!");
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "...");
@@ -1988,55 +1979,55 @@ var MyNovel;
                 gegenfrage = true;
                 break;
         }
-        let glückAntwort = {
+        let luckAnswer = {
             Spaß: "Nein. Ich BIN ein Teufel!",
             Unwissen: "Nicht, dass ich wüsste.",
             Info: "Da war eine Stimme.",
         };
-        let wahrheitAntwort = {
+        let truthAnswer = {
             Zustimmung: "Sozusagen.",
             Erklärung: "Ich habe eine Stimme gehört. Sie hat zu mir gesprochen. Und dann bin ich aus dem Sumpf aufgetaucht.",
             Verbesserung: "Nicht auferstanden. Eher … wiedergeboren?"
         };
-        let gegenfrageAntwort = {
+        let counterquestionAnswer = {
             Sassy: "Wir haben den gleichen Körpertyp.",
             Sachlage: "Ich bin eben so im Tümpel aufgewacht.",
             Vermutung: "Ich glaube, jemand hat mich wiederbelebt."
         };
         if (glück) {
-            let dialogueElement1 = await MyNovel.ƒS.Menu.getInput(glückAntwort, "choicesCSSClass");
-            switch (dialogueElement1) {
-                case glückAntwort.Spaß:
+            let luckElement = await MyNovel.ƒS.Menu.getInput(luckAnswer, "choicesCSSClass");
+            switch (luckElement) {
+                case luckAnswer.Spaß:
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Ja genau, dann hättest du die Typen vorhin aber direkt fertigmachen können.");
-                    let glückAntwort2 = {
+                    let luckAnswer2 = {
                         Info: "Da war eine Stimme.",
                     };
                     //Hier zurück zur Auswahl, aber Antwort 1 und 2 ausblenden
-                    let dialogueElement1 = await MyNovel.ƒS.Menu.getInput(glückAntwort2, "choicesCSSClass");
-                    switch (dialogueElement1) {
-                        case glückAntwort2.Info:
+                    let luck2Element = await MyNovel.ƒS.Menu.getInput(luckAnswer2, "choicesCSSClass");
+                    switch (luck2Element) {
+                        case luckAnswer2.Info:
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Eine Stimme? Die Stimme eines Teufels?");
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Nein. Also, nicht sicher. Sie meinte, das Schicksal hätte mich auserwählt.");
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Das Schicksal? Soso..");
                             break;
                     }
                     break;
-                case glückAntwort.Unwissen:
+                case luckAnswer.Unwissen:
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Hm. Äußerst kurios.");
-                    let glückAntwort3 = {
+                    let luckAnswer3 = {
                         Info: "Da war eine Stimme.",
                     };
                     //Hier zurück zur Auswahl, aber ANtwort 1 und 2 ausblenden
-                    let dialogueElement2 = await MyNovel.ƒS.Menu.getInput(glückAntwort3, "choicesCSSClass");
-                    switch (dialogueElement2) {
-                        case glückAntwort3.Info:
+                    let luck3Element = await MyNovel.ƒS.Menu.getInput(luckAnswer3, "choicesCSSClass");
+                    switch (luck3Element) {
+                        case luckAnswer3.Info:
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Eine Stimme? Die Stimme eines Teufels?");
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Nein. Also, nicht sicher. Sie meinte, das Schicksal hätte mich auserwählt.");
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Das Schicksal? Soso..");
                             break;
                     }
                     break;
-                case glückAntwort.Info:
+                case luckAnswer.Info:
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Eine Stimme? Die Stimme eines Teufels?");
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Nein. Also, nicht sicher. Sie meinte, das Schicksal hätte mich auserwählt.");
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Das Schicksal? Soso..");
@@ -2044,46 +2035,46 @@ var MyNovel;
             }
         }
         else if (wahrheit) {
-            let dialogueElement1 = await MyNovel.ƒS.Menu.getInput(wahrheitAntwort, "choicesCSSClass");
+            let truthElement = await MyNovel.ƒS.Menu.getInput(truthAnswer, "choicesCSSClass");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Wenn das stimmt, dann…");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Aber wieso ist das passiert? Und wieso DIR?");
         }
         else if (gegenfrage) {
-            let dialogueElement1 = await MyNovel.ƒS.Menu.getInput(gegenfrageAntwort, "choicesCSSClass");
-            switch (dialogueElement1) {
-                case gegenfrageAntwort.Sassy:
+            let counterquestionElement = await MyNovel.ƒS.Menu.getInput(counterquestionAnswer, "choicesCSSClass");
+            switch (counterquestionElement) {
+                case counterquestionAnswer.Sassy:
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "HM?");
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Nichts.");
-                    let gegenfrageAntwort2 = {
+                    let counterquestionAnswer2 = {
                         Vermutung: "Ich glaube, jemand hat mich wiederbelebt."
                     };
                     //hier zurück zur Auswahl, aber nur antwort 3
-                    let dialogueElement2 = await MyNovel.ƒS.Menu.getInput(gegenfrageAntwort2, "choicesCSSClass");
-                    switch (dialogueElement2) {
-                        case gegenfrageAntwort2.Vermutung:
+                    let counterquestionElement2 = await MyNovel.ƒS.Menu.getInput(counterquestionAnswer2, "choicesCSSClass");
+                    switch (counterquestionElement2) {
+                        case counterquestionAnswer2.Vermutung:
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Aber zu welchem Zweck?");
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Warum sollte jemandem wie dir eine zweite Chance vergönnt sein?");
                             break;
                     }
                     break;
-                case gegenfrageAntwort.Sachlage:
+                case counterquestionAnswer.Sachlage:
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Hmm.");
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Hmmmmm.");
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Scheint, als ob du tatsächlich wiedergeboren wurdest.");
                     break;
-                case gegenfrageAntwort.Vermutung:
+                case counterquestionAnswer.Vermutung:
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Aber zu welchem Zweck?");
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Warum sollte jemandem wie dir eine zweite Chance vergönnt sein?");
             }
         }
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0006);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0007);
-        let dialogue1 = {
+        let isRespawn = {
             Ablehnend: "Ich will es nicht herausfinden!",
             Neugierig: "Interessiert mich auch.",
             Vorahnung: "Bitte tu es nicht!"
         };
-        let dialogueElement1 = await MyNovel.ƒS.Menu.getInput(dialogue1, "choicesCSSClass");
+        let isRespawnElement = await MyNovel.ƒS.Menu.getInput(isRespawn, "choicesCSSClass");
         //Steve stabs player
         //Steve mit Messer oder Speer
         await MyNovel.ƒS.Character.hideAll();
@@ -2137,36 +2128,36 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0011);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0012);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0013);
-        let dialogue2 = {
+        let gift = {
             Panik: "eine Gabe? Aber wozu? Wieso ich?",
             Positiv: "Ok wow. Scheint, als wäre ich für Großes bestimmt.",
             Negativ: "Oder es ist ein Fluch."
         };
-        let dialogueElement2 = await MyNovel.ƒS.Menu.getInput(dialogue2, "choicesCSSClass");
+        let giftElement = await MyNovel.ƒS.Menu.getInput(gift, "choicesCSSClass");
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0014);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0015);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0016);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0017);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0018);
-        let dialogue3 = {
+        let helpSteve = {
             Frage: "Wobei soll ich denn helfen?",
             Actually: "Stimmt das? Technisch gesehen sind alle deine Untergebenen vorhin im Kampf gefallen.",
             Disgruntled: "Ugh. Fein. Wofür brauchst du mich?"
         };
-        let dialogueElement3 = await MyNovel.ƒS.Menu.getInput(dialogue3, "choicesCSSClass");
-        switch (dialogueElement3) {
-            case dialogue3.Actually:
+        let helpSteveElement = await MyNovel.ƒS.Menu.getInput(helpSteve, "choicesCSSClass");
+        switch (helpSteveElement) {
+            case helpSteve.Actually:
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Und technisch gesehen bin ich die einzige Person, die bereit ist, dir zu helfen – im Tausch gegen einen kleinen Gefallen.");
                 //hier zurück zur Auswahl, aber nur Antwort 1 + 3
-                let dialogue4 = {
+                let helpSteve2 = {
                     Frage: "Wobei soll ich denn helfen?",
                     Disgruntled: "Ugh. Fein. Wofür brauchst du mich?",
                 };
-                let dialogueElement4 = await MyNovel.ƒS.Menu.getInput(dialogue4, "choicesCSSClass");
-                switch (dialogueElement4) {
-                    case dialogue4.Frage:
+                let helpSteve2Element = await MyNovel.ƒS.Menu.getInput(helpSteve2, "choicesCSSClass");
+                switch (helpSteve2Element) {
+                    case helpSteve2.Frage:
                         break;
-                    case dialogue4.Disgruntled:
+                    case helpSteve2.Disgruntled:
                         break;
                 }
                 break;
@@ -2181,20 +2172,20 @@ var MyNovel;
         //    Gegenstände sind Beweis, dass König den vorherigen König beseitigt hat (oder so -> vllt die Kette / Knochen / ein Merkmal des vorigen Königs, der eig
         //                                                                              das Dorf verlassen haben sollte oder in einem Unfall gestorben ist)
         //    Danach muss der Spieler sich ins Büro des Königs schleichen, um die Gegenstände zu platzieren
-        let dialogue5 = {
+        let friendsWKingReaction = {
             Misstrauisch: "Hm komisch, habe euch noch nie zusammen auf einem Bild gesehen.",
             Akzeptanz: "Oh, wusste ich gar nicht.",
             Erstaunen: "Beste Freunde mit dem König? Wow!"
         };
-        let dialogueElement5 = await MyNovel.ƒS.Menu.getInput(dialogue5, "choicesCSSClass");
-        switch (dialogueElement5) {
-            case dialogue5.Misstrauisch:
+        let friendsWKingReactionElement = await MyNovel.ƒS.Menu.getInput(friendsWKingReaction, "choicesCSSClass");
+        switch (friendsWKingReactionElement) {
+            case friendsWKingReaction.Misstrauisch:
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Hinterfrage mich einfach nicht, klar?");
                 break;
-            case dialogue5.Akzeptanz:
+            case friendsWKingReaction.Akzeptanz:
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Jaja, wissen viele nicht, ist aber so.");
                 break;
-            case dialogue5.Erstaunen:
+            case friendsWKingReaction.Erstaunen:
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Hehe, jaja. Wenn ich nicht so ein guter Kämpfer wäre, dann würde ich sagen, dass er meinen angenehmen Charakter am meisten an mir schätzt.");
                 break;
         }
@@ -3140,24 +3131,24 @@ var MyNovel;
             await MyNovel.ƒS.update(1);
             if (!knowLocation) {
                 //Choice, welche Zelle anschauen
-                let dialogue0 = {
+                let pickCell = {
                     linksHinten: "die hintere linke",
                     rechtsHinten: "die in der Ecke rechts",
                     linksVorn: "die erste links",
                     rechtsVorn: "die rechts vorne",
                 };
-                let dialogueElement0 = await MyNovel.ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
-                switch (dialogueElement0) {
-                    case dialogue0.linksVorn:
+                let pickCellElement = await MyNovel.ƒS.Menu.getInput(pickCell, "choicesCSSClass");
+                switch (pickCellElement) {
+                    case pickCell.linksVorn:
                         await cellFrontLeft();
                         break;
-                    case dialogue0.linksHinten:
+                    case pickCell.linksHinten:
                         await cellBackLeft();
                         break;
-                    case dialogue0.rechtsVorn:
+                    case pickCell.rechtsVorn:
                         await cellFrontRight();
                         break;
-                    case dialogue0.rechtsHinten:
+                    case pickCell.rechtsHinten:
                         await cellBackRight();
                         break;
                 }
@@ -3165,28 +3156,28 @@ var MyNovel;
             }
             else {
                 //Choice, welche Zelle anschauen
-                let dialogue0 = {
+                let pickCell2 = {
                     linksHinten: "die hintere linke",
                     rechtsHinten: "die in der Ecke rechts",
                     linksVorn: "die erste links",
                     rechtsVorn: "die rechts vorne",
                     sumpf: "Zum Sumpf"
                 };
-                let dialogueElement0 = await MyNovel.ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
-                switch (dialogueElement0) {
-                    case dialogue0.linksVorn:
+                let pickCell2Element = await MyNovel.ƒS.Menu.getInput(pickCell2, "choicesCSSClass");
+                switch (pickCell2Element) {
+                    case pickCell2.linksVorn:
                         await cellFrontLeft();
                         break;
-                    case dialogue0.linksHinten:
+                    case pickCell2.linksHinten:
                         await cellBackLeft();
                         break;
-                    case dialogue0.rechtsVorn:
+                    case pickCell2.rechtsVorn:
                         await cellFrontRight();
                         break;
-                    case dialogue0.rechtsHinten:
+                    case pickCell2.rechtsHinten:
                         await cellBackRight();
                         break;
-                    case dialogue0.sumpf:
+                    case pickCell2.sumpf:
                         await swamp();
                         break;
                 }
@@ -3260,7 +3251,6 @@ var MyNovel;
         }
         ;
         async function cellBackLeft() {
-            //hier Bild für Nahansicht der Zelle einfügen---------------------------------
             await MyNovel.ƒS.Location.show(MyNovel.locations.CellFroglin);
             await MyNovel.ƒS.update(1);
             if (!frogSpoken) {
@@ -3315,7 +3305,6 @@ var MyNovel;
         }
         ;
         async function cellFrontRight() {
-            //hier Bild für Nahansicht der Zelle einfügen---------------------------------
             await MyNovel.ƒS.Location.show(MyNovel.locations.CellFrogtaro);
             await MyNovel.ƒS.update(1);
             if (!frogTaroSpoken) {
@@ -3545,7 +3534,7 @@ var MyNovel;
             },
         };
         await MyNovel.ƒS.Location.show(MyNovel.locations.Gefaengnis);
-        //await ƒS.Sound.fade();  //Passenden Sound finden //vllt einfach gedämpfte Sumpf sounds
+        await MyNovel.ƒS.Sound.fade(MyNovel.sound.dungeon, 0.2, 1, true);
         await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0001);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0002);
@@ -3556,28 +3545,29 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0007);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0008);
         while (!finished) {
+            await MyNovel.ƒS.Location.show(MyNovel.locations.Gefaengnis);
             await MyNovel.ƒS.Speech.hide();
             await MyNovel.ƒS.update(1);
             back = false;
             //Choice, welche Zelle anschauen
-            let dialogue0 = {
-                linksVorn: "die erste links",
+            let pickCell = {
                 linksHinten: "die hintere linke",
-                rechtsVorn: "die rechts vorne",
                 rechtsHinten: "die in der Ecke rechts",
+                linksVorn: "die erste links",
+                rechtsVorn: "die rechts vorne",
             };
-            let dialogueElement0 = await MyNovel.ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
-            switch (dialogueElement0) {
-                case dialogue0.linksVorn:
+            let pickCellElement = await MyNovel.ƒS.Menu.getInput(pickCell, "choicesCSSClass");
+            switch (pickCellElement) {
+                case pickCell.linksVorn:
                     await cellFrontLeft();
                     break;
-                case dialogue0.linksHinten:
+                case pickCell.linksHinten:
                     await cellBackLeft();
                     break;
-                case dialogue0.rechtsVorn:
+                case pickCell.rechtsVorn:
                     await cellFrontRight();
                     break;
-                case dialogue0.rechtsHinten:
+                case pickCell.rechtsHinten:
                     await cellBackRight();
                     break;
             }
@@ -3585,10 +3575,8 @@ var MyNovel;
         }
         ;
         async function cellFrontLeft() {
-            //hier Bild für Nahansicht der Zelle einfügen
-            //wenn wir ihm einen guten Witz erzählen, gibt er uns einen Hinweis --> dafür muss man 3 richtige Teile auswählen (zb: kommt ein König, Drache, Blutegel in eine Bar)
-            //würde gern freigelassen werden, weil er von seinen Kameraden geditcht wurde und die Quest aufgegeben hat
-            //Hinweise, die er hat: König schließt auf der anderen Seite zwei Türen auf; Goblin gegenüber weiß evtl mehr
+            await MyNovel.ƒS.Location.show(MyNovel.locations.CellTym);
+            await MyNovel.ƒS.update(1);
             if (!tymSpoken) {
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Gefangener1.T0001);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Gefangener1.T0002);
@@ -3699,31 +3687,31 @@ var MyNovel;
                     }
                     ;
                     if (joke1 == 2 && joke2 == 1 && joke3 == 3 && joke4 == 3) {
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "AHAHA!");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Der ist echt gut!");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Es ist witzig, weil ein König genau so gierig ist, wie ein roter Drache, der als der gierigste der Drachen gilt, und genauso geistig faul und hässlich wie ein Oger!");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Hahahaa!");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "AHAHA!");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Der ist echt gut!");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Es ist witzig, weil ein König genau so gierig ist, wie ein roter Drache, der als der gierigste der Drachen gilt, und genauso geistig faul und hässlich wie ein Oger!");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Hahahaa!");
                         funny = true;
                     }
                     else if (joke1 == 1 && joke2 == 3 && joke3 == 1 && joke4 == 3) {
                         //ist er absolut nocht amused
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Ist das dein Ernst?");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Das ist absolut nicht witzig.");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Ich gehe einfach mal davon aus, dass das ein gut gemeinter Scherz war.");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Versuchs nochmal, diesmal ohne Rassismus.");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Ist das dein Ernst?");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Das ist absolut nicht witzig.");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Ich gehe einfach mal davon aus, dass das ein gut gemeinter Scherz war.");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Versuchs nochmal, diesmal ohne Rassismus.");
                     }
                     else if (joke1 == 3 && joke2 == 2 && joke3 == 2 && joke4 == 3) {
                         //nicht so funny für ihn, weil friends elfen waren
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Einer meiner Abenteurerfreunde war ein Elf.");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Unter diesen Umständen kann ich nicht über Elfenwitze lachen, tut mir Leid.");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Aber sicher kannst du dir was besseres einfallen lassen.");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Einer meiner Abenteurerfreunde war ein Elf.");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Unter diesen Umständen kann ich nicht über Elfenwitze lachen, tut mir Leid.");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Aber sicher kannst du dir was besseres einfallen lassen.");
                     }
                     else {
                         //ist halt nciht funny
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, ".....");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Was?");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Versteh ich nicht.");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, "Probiers nochmal.");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, ".....");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Was?");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Versteh ich nicht.");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, "Probiers nochmal.");
                     }
                 }
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner1, text.Gefangener1.T0018);
@@ -3768,24 +3756,23 @@ var MyNovel;
         }
         ;
         async function cellBackLeft() {
-            //hier Bild für Nahansicht der Zelle einfügen
-            //Goblin gibt Tipp, dass Schlüssel umgedreht werden muss
-            //wenn keine Magazine, möchte er etwas anderes; zB eine Review zu seinem Buch, das er schreibt, hören
+            await MyNovel.ƒS.Location.show(MyNovel.locations.CellFroglin);
+            await MyNovel.ƒS.update(1);
             if (!goblinSpoken) {
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Gefangener2.T0001); //das mit sound untermalen?
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "UWAAAH!");
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Gefangener2.T0002);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Gefangener2.T0003);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner2, text.Gefangener2.T0004);
-                let dialogue2 = {
+                let genericAnswer = {
                     jap: "Jup",
                     nope: "Nope",
                 };
-                let dialogueElement2 = await MyNovel.ƒS.Menu.getInput(dialogue2, "choicesCSSClass");
-                switch (dialogueElement2) {
-                    case dialogue2.jap:
+                let genericAnswerElement = await MyNovel.ƒS.Menu.getInput(genericAnswer, "choicesCSSClass");
+                switch (genericAnswerElement) {
+                    case genericAnswer.jap:
                         break;
-                    case dialogue2.nope:
+                    case genericAnswer.nope:
                         break;
                 }
                 ;
@@ -3930,7 +3917,8 @@ var MyNovel;
         }
         ;
         async function cellFrontRight() {
-            //hier Bild für Nahansicht der Zelle einfügen
+            await MyNovel.ƒS.Location.show(MyNovel.locations.CellFrogtaro);
+            await MyNovel.ƒS.update(1);
             if (!frogTaroSpoken) {
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0001);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich bin keine Wache. Ich habe nur ein paar Fragen.");
@@ -3962,7 +3950,8 @@ var MyNovel;
         }
         ;
         async function cellBackRight() {
-            //hier Bild für Nahansicht der Zelle einfügen
+            await MyNovel.ƒS.Location.show(MyNovel.locations.CellEmpty);
+            await MyNovel.ƒS.update(1);
             if (!vaultDoorOpen) {
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "Die Zelle ist leer und verschlossen.");
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "Willst du einen Schlüssel benutzen?");
@@ -4009,8 +3998,7 @@ var MyNovel;
                                 break;
                             case dialogueEmptyCell.keyDungeon:
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Passt nicht zu dem Schloss.");
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich frage mich wofür der Dungeonschlüssel ist, wenn er im Dungeon nichts öffnen kann.");
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Wüsste auch nicht, dass es noch ein anderes Verlies gibt.");
+                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich frage mich wofür der Dungeonschlüssel ist.");
                                 break;
                             case dialogueEmptyCell.keyVault:
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Nope. Passt nicht.");
@@ -4059,6 +4047,7 @@ var MyNovel;
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du nimmst das Zepter vom Sockel und steckst es in deine Tasche*");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0011);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du verlässt das Gefängnis und gehst zurück Richtung Tümpel*");
+            await MyNovel.ƒS.Sound.fade(MyNovel.sound.dungeon, 0, 1, false);
             finished = true;
         }
         console.log("Scene 04Q1 done.");
@@ -4880,7 +4869,6 @@ var MyNovel;
 (function (MyNovel) {
     async function GameScene06() {
         console.log("Scene 6 starting");
-        let firstTry = true;
         let answerFound = false;
         let case1read = false;
         let case2read = false;
@@ -5005,7 +4993,7 @@ var MyNovel;
                     }
                     break;
                 case 4:
-                    if (!case1read) {
+                    if (!case4read) {
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.sage, "Jeder Tag ist eine neue Chance, um dein Leben zu genießen.");
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ist das ein Witz?");
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.sage, "Dann eine andere Weisheit:");
@@ -5149,19 +5137,19 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.sage, text.Weiser.T0014);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0011);
         await MyNovel.ƒS.Sound.play(MyNovel.sound.frogCroak, 0.2, false);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Dorfschreier.T0001);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Dorfschreier.T0002);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Dorfschreier.T0003);
-        await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Dorfschreier.T0004);
+        await MyNovel.ƒS.Speech.tell(MyNovel.characters.cryer, text.Dorfschreier.T0001);
+        await MyNovel.ƒS.Speech.tell(MyNovel.characters.cryer, text.Dorfschreier.T0002);
+        await MyNovel.ƒS.Speech.tell(MyNovel.characters.cryer, text.Dorfschreier.T0003);
+        await MyNovel.ƒS.Speech.tell(MyNovel.characters.cryer, text.Dorfschreier.T0004);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0012);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.sage, text.Weiser.T0015);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.sage, text.Weiser.T0016);
-        await MyNovel.ƒS.Sound.play(MyNovel.sound.cloth, 0.2, false);
+        MyNovel.ƒS.Sound.play(MyNovel.sound.cloth, 0.2, false);
         await MyNovel.ƒS.Sound.fade(MyNovel.sound.mystic, 0, 1, false);
         await MyNovel.ƒS.update(MyNovel.transition.deathSpiral.duration, MyNovel.transition.deathSpiral.alpha, MyNovel.transition.deathSpiral.edge);
         await MyNovel.ƒS.Location.show(MyNovel.locations.sageHouse);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du verlässt das Zelt und eilst zum Dorfplatz*");
-        await MyNovel.ƒS.Character.hideAll();
+        MyNovel.ƒS.Character.hideAll();
         await MyNovel.ƒS.update(1);
         console.log("Scene06 done");
     }

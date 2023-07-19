@@ -26,11 +26,8 @@ namespace MyNovel {
     let e2DmgTaken = 0;
     let e2Dodge = false;
     let frog1HP = 11;
-    let f1DmgTaken = 0;
     let frog2HP = 11;
-    let f2DmgTaken = 0;
     let frog3HP = 11;
-    let f3DmgTaken = 0;
     let actionTaken = false;
 
 
@@ -208,32 +205,32 @@ namespace MyNovel {
 
     async function takeAction() {
 
-      let dialogue0 = {
+      let pickAction = {
         Attack: "Attack",
         Item: "Item",
         Dodge: "Dodge",
         Flee: "Flee"
       }
 
-      let dialogueElement0 = await ƒS.Menu.getInput(dialogue0, "choicesCSSClass");
+      let pickActionElement = await ƒS.Menu.getInput(pickAction, "choicesCSSClass");
 
-      switch (dialogueElement0) {
-        case dialogue0.Attack:
+      switch (pickActionElement) {
+        case pickAction.Attack:
           console.log("You attack");
           //target select
-          let dialogue1 = {
+          let enemySelect = {
             Target1: "Gegner 1",
             Target2: "Gegner 2"
           }
-          let dialogueElement1 = await ƒS.Menu.getInput(dialogue1, "choicesCSSClass");
+          let enemySelectElement = await ƒS.Menu.getInput(enemySelect, "choicesCSSClass");
 
-          switch (dialogueElement1) {
-            case dialogue1.Target1:
+          switch (enemySelectElement) {
+            case enemySelect.Target1:
               console.log("Target 1");
               await attack(2);
               actionTaken = true;
               break;
-            case dialogue1.Target2:
+            case enemySelect.Target2:
               console.log("Target 2");
               await attack(1);
               actionTaken = true;
@@ -241,19 +238,19 @@ namespace MyNovel {
           }
           break;
 
-        case dialogue0.Item:
+        case pickAction.Item:
           console.log("You try to use an item");
           ƒS.Speech.clear();
           await ƒS.Speech.tell(characters.unknown, "Dein Iventar ist leer.");
           break;
 
-        case dialogue0.Dodge:
+        case pickAction.Dodge:
           console.log("You dodge");
           await dodge();
           actionTaken = true;
           break;
 
-        case dialogue0.Flee:
+        case pickAction.Flee:
           console.log("You try to flee");
           await flee();
           break;
@@ -598,12 +595,6 @@ namespace MyNovel {
       await ƒS.Character.hide(characters.bullywug01);
       await ƒS.Character.show(characters.bullywug01, characters.bullywug01.pose.upset, ƒS.positionPercent(20, 40));
       await ƒS.update(0.1);
-    };
-
-    async function useItem(): Promise<void> {
-      dodging = false;
-      await ƒS.Inventory.open();
-      //ITEM SELECTEN ETC
     };
 
     async function dodge() {

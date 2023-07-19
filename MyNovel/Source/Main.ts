@@ -175,7 +175,6 @@ namespace MyNovel {
       name: "???",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-
       }
     },
     steve: {
@@ -272,7 +271,7 @@ namespace MyNovel {
       }
     },
     prisoner2: {
-      name: "???",
+      name: "unbekannt",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
         upset: "Images/Characters/.png",  //fehlt!!
@@ -356,7 +355,7 @@ namespace MyNovel {
   let menuIsOpen: boolean = true;
 
   function credits(): void {
-    ƒS.Text.print("");
+    ƒS.Text.print("Credits<br>Design: Simon Zakowski <br>Programmierung: Simon Zakowski <br>Story: Simon Zakowski <br>Skript: Simon Zakowski <br>Hintergründe und Charakterdesign: Simon Zakowski <br>Musik und Sounds: pixabay.com");
   }
 
   async function buttonFunctionalities(_option: string): Promise<void> {

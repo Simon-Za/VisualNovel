@@ -4,7 +4,6 @@ namespace MyNovel {
 
     console.log("Scene 6 starting");
 
-    let firstTry: boolean = true;
     let answerFound: boolean = false;
     let case1read: boolean = false;
     let case2read: boolean = false;
@@ -139,7 +138,7 @@ namespace MyNovel {
           }
           break;
         case 4:
-          if (!case1read) {
+          if (!case4read) {
             await ƒS.Speech.tell(characters.sage, "Jeder Tag ist eine neue Chance, um dein Leben zu genießen.");
             await ƒS.Speech.tell(characters.protagonist, "Ist das ein Witz?");
             await ƒS.Speech.tell(characters.sage, "Dann eine andere Weisheit:");
@@ -285,22 +284,22 @@ namespace MyNovel {
     await ƒS.Speech.tell(characters.sage, text.Weiser.T0014);
     await ƒS.Speech.tell(characters.protagonist, text.Player.T0011);
     await ƒS.Sound.play(sound.frogCroak, 0.2, false);
-    await ƒS.Speech.tell(characters.unknown, text.Dorfschreier.T0001);
-    await ƒS.Speech.tell(characters.unknown, text.Dorfschreier.T0002);
-    await ƒS.Speech.tell(characters.unknown, text.Dorfschreier.T0003);
-    await ƒS.Speech.tell(characters.unknown, text.Dorfschreier.T0004);
+    await ƒS.Speech.tell(characters.cryer, text.Dorfschreier.T0001);
+    await ƒS.Speech.tell(characters.cryer, text.Dorfschreier.T0002);
+    await ƒS.Speech.tell(characters.cryer, text.Dorfschreier.T0003);
+    await ƒS.Speech.tell(characters.cryer, text.Dorfschreier.T0004);
     await ƒS.Speech.tell(characters.protagonist, text.Player.T0012);
     await ƒS.Speech.tell(characters.sage, text.Weiser.T0015);
     await ƒS.Speech.tell(characters.sage, text.Weiser.T0016);
 
-    await ƒS.Sound.play(sound.cloth, 0.2, false);
+    ƒS.Sound.play(sound.cloth, 0.2, false);
     await ƒS.Sound.fade(sound.mystic, 0, 1, false);
   
 
     await ƒS.update(transition.deathSpiral.duration, transition.deathSpiral.alpha, transition.deathSpiral.edge);
     await ƒS.Location.show(locations.sageHouse);
     await ƒS.Speech.tell(characters.narrator, "*Du verlässt das Zelt und eilst zum Dorfplatz*");
-    await ƒS.Character.hideAll();
+    ƒS.Character.hideAll();
     await ƒS.update(1);
 
    

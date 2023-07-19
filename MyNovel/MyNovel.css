@@ -43,7 +43,7 @@ dialog[type=splash]>img#FudgeStoryLogo {
 
 dialog[type="splash"] {
   /*background-image: url("Images/Backgrounds/SwampWalk.png");*/
-  background-color: #4ab862;
+  background-color: #27382b;
   background-repeat: repeat;
   /* background-size: contain; */
   width: 100%;
@@ -96,7 +96,6 @@ name {
   font-size: 4vmin;
   background-color: rgba(10, 36, 17, 0.9);
 }
-
 .Du name {
   font-size: 4vmin;
   display: block;
@@ -105,12 +104,22 @@ name {
   padding-left: 25px;
   padding-top: 20px;
 }
-
+.Steve {
+  font-size: 4vmin;
+  background-color: rgba(87, 51, 52, 0.9);
+}
+.Steve name {
+  font-size: 4vmin;
+  display: block;
+  color: rgb(240, 163, 163);
+  margin-bottom: 10px;
+  padding-left: 25px;
+  padding-top: 20px;
+}
 .WacheLinks {
   font-size: 4vmin;
   background-color: rgba(22, 58, 31, 0.9);
 }
-
 .WacheLinks name {
   font-size: 4vmin;
   color: rgb(36, 170, 92);
@@ -118,44 +127,114 @@ name {
   padding-left: 25px;
   padding-top: 20px;
 }
-
 .WacheRechts {
   font-size: 4vmin;
-  background-color: rgba(7, 48, 16, 0.9);
+  background-color: rgba(26, 112, 62, 0.9);
 }
-
 .WacheRechts name {
   font-size: 4vmin;
-  color: rgb(17, 138, 68);
+  color: rgb(22, 58, 31);
   margin-bottom: 10px;
   padding-left: 25px;
   padding-top: 20px;
 }
-
 .WacheLinksBig {
   font-size: 4vmin;
-  background-color: rgba(10, 36, 17, 0.9);
+  background-color: rgba(22, 58, 31, 0.9);
 }
-
 .WacheLinksBig name {
   font-size: 4vmin;
-  color: rgb(60, 223, 128);
+  color: rgb(36, 170, 92);
+  margin-bottom: 10px;
+  padding-left: 25px;
+  padding-top: 20px;
 }
-
 .WacheRechtsBig {
   font-size: 4vmin;
-  background-color: rgba(10, 36, 17, 0.9);
+  background-color: rgba(26, 112, 62, 0.9);
 }
-
 .WacheRechtsBig name {
   font-size: 4vmin;
-  color: rgb(60, 223, 128);
+  color: rgb(22, 58, 31);
+  margin-bottom: 10px;
+  padding-left: 25px;
+  padding-top: 20px;
+}
+.Tym {
+  font-size: 4vmin;
+  background-color: rgba(92, 16, 79, 0.9);
+}
+.Tym name{
+  font-size: 4vmin;
+  color: rgb(211, 79, 171);
+  margin-bottom: 10px;
+  padding-left: 25px;
+  padding-top: 20px;
+}
+.unbekannt {
+  font-size: 4vmin;
+  background-color: rgba(8, 6, 8, 0.9);
+}
+.unbekannt name {
+  font-size: 4vmin;
+  color: rgb(139, 139, 139);
+  margin-bottom: 10px;
+  padding-left: 25px;
+  padding-top: 20px;
+}
+.Frogtaro {
+  font-size: 4vmin;
+  background-color: rgba(62, 42, 80, 0.9);
+}
+.Frogtaro name {
+  font-size: 4vmin;
+  color: rgb(74, 111, 189);
+  margin-bottom: 10px;
+  padding-left: 25px;
+  padding-top: 20px;
+}
+.Weiser {
+  font-size: 4vmin;
+  background-color: rgba(67, 14, 80, 0.9);
+}
+.Weiser name {
+  font-size: 4vmin;
+  color: rgb(220, 224, 142);
+  margin-bottom: 10px;
+  padding-left: 25px;
+  padding-top: 20px;
+}
+.Dorfschreier {
+  font-size: 4vmin;
+  background-color: rgba(85, 82, 33, 0.9);
+}
+.Dorfschreier name {
+  font-size: 4vmin;
+  color: rgb(206, 149, 102);
   margin-bottom: 10px;
   padding-left: 25px;
   padding-top: 20px;
 }
 
-
+.gameMenuCSSClass{
+  background-color: #5f7c66;
+  /*color: beige;*/
+  width:30%;
+  height: 10%;
+}
+.gameMenuCSSClass button{
+  color: beige;
+  background-color: rgba(9, 102, 71, 0.8);
+  width: 40%;
+  height: 40%;
+  font-size: 20px;
+  font-weight: bolder;
+  border: none;
+  margin-left: 6.75%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  border-radius: 8px;
+}
 
 /* Dass leere Optionen verschwinden*/
 button:empty {
