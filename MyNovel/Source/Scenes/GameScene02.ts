@@ -329,7 +329,7 @@ namespace MyNovel {
     await ƒS.Speech.tell(characters.steve, text.Steve.T0013);
 
     let gift = {
-      Panik: "eine Gabe? Aber wozu? Wieso ich?",
+      Panik: "Eine Gabe? Aber wozu? Wieso ich?",
       Positiv: "Ok wow. Scheint, als wäre ich für Großes bestimmt.",
       Negativ: "Oder es ist ein Fluch."
     }

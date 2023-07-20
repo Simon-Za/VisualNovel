@@ -144,7 +144,7 @@ var MyNovel;
             static: true,
         },
         keyDungeon: {
-            name: "Dungeon Schlüssel",
+            name: "Dungeon_Schlüssel",
             description: "Schlüssel für das Verlies?",
             image: "Images/Items/dungeonKey.png",
             static: true,
@@ -156,7 +156,7 @@ var MyNovel;
             static: true,
         },
         dirtyMags: {
-            name: "Schmutzige Magazine",
+            name: "Schmutzige_Magazine",
             description: "Aus der Privatsammlung des Königs",
             image: "Images/Items/mags.png",
             static: true,
@@ -425,15 +425,15 @@ var MyNovel;
         gameMenu = MyNovel.ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
         buttonFunctionalities("Close");
         let scenes = [
-            { scene: MyNovel.GameScene01, name: "OpeningFight" },
-            { scene: MyNovel.GameScene02, name: "Exposition" },
-            { id: "GameScene03Q1", scene: MyNovel.GameScene03Q1, name: "Quest1Start", next: "GameScene04Q1" },
-            { id: "GameScene03Q2", scene: MyNovel.GameScene03Q2, name: "Quest2Start", next: "GameScene04Q2" },
+            //{ scene: GameScene01, name: "OpeningFight"},
+            //{ scene: GameScene02, name: "Exposition"},
+            //{ id: "GameScene03Q1", scene: GameScene03Q1, name: "Quest1Start", next: "GameScene04Q1" },
+            //{ id: "GameScene03Q2", scene: GameScene03Q2, name: "Quest2Start", next: "GameScene04Q2" },
             { id: "GameScene04Q1", scene: MyNovel.GameScene04Q1, name: "Quest1Part2", next: "GameScene05" },
-            { id: "GameScene04Q2", scene: MyNovel.GameScene04Q2, name: "Quest2Part2", next: "GameScene05" },
-            { id: "GameScene05", scene: MyNovel.GameScene05, name: "QuestEnd", next: "GameScene06" },
-            { id: "GameScene06", scene: MyNovel.GameScene06, name: "Sage", next: "GameScene07" },
-            { id: "GameScene07", scene: MyNovel.GameScene07, name: "Ending" },
+            //{ id: "GameScene04Q2", scene: GameScene04Q2, name: "Quest2Part2", next: "GameScene05"},
+            //{ id: "GameScene05", scene: GameScene05, name: "QuestEnd", next: "GameScene06"},
+            //{ id: "GameScene06", scene: GameScene06, name: "Sage", next: "GameScene07"},
+            //{ id: "GameScene07", scene: GameScene07, name: "Ending" },
         ];
         let uiElement = document.querySelector("[type=interface]");
         MyNovel.dataForSave = MyNovel.ƒS.Progress.setData(MyNovel.dataForSave, uiElement);
@@ -2135,7 +2135,7 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0012);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0013);
         let gift = {
-            Panik: "eine Gabe? Aber wozu? Wieso ich?",
+            Panik: "Eine Gabe? Aber wozu? Wieso ich?",
             Positiv: "Ok wow. Scheint, als wäre ich für Großes bestimmt.",
             Negativ: "Oder es ist ein Fluch."
         };
@@ -2792,7 +2792,7 @@ var MyNovel;
                 firstLoop = false;
             }
             ;
-            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Wenn das stimmt, dann bist du das genaue Gegenzeil von ihm hier!");
+            await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Wenn das stimmt, dann bist du das genaue Gegenteil von ihm hier!");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Es war ein Unfall! Ich hab versucht, es wieder gut zu machen und ich hab mich oft genug entschuldigt!");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, "Eine Entschuldigung bringt sie mir auch nicht zurück!");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, "Ich wollte nur sehen, wie Missy mit einem lustigen kleinen Hut aussieht und dir für deinen Geburtstag ein Bild davon malen!");

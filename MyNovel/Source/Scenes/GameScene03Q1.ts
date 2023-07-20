@@ -515,7 +515,7 @@ namespace MyNovel {
                                     await ƒS.Speech.tell(characters.guardBully2Big, "Recht hast du!");
                                     await ƒS.Speech.tell(characters.guardBully1Big, "Leider sind wir so schlau, dass wir uns nicht einfach so bestechen lassen.");
                                     poem = true;
-                                    whatEntertainment.Gedicht = "";
+                                whatEntertainment.Gedicht = "";
                                     //zu Übersicht zurück, mit den anderen 2 oder 1 Tricks
                                     break;
                             }
@@ -629,7 +629,7 @@ namespace MyNovel {
                 firstLoop = false;
             };
 
-            await ƒS.Speech.tell(characters.guardBully2Big, "Wenn das stimmt, dann bist du das genaue Gegenzeil von ihm hier!");
+            await ƒS.Speech.tell(characters.guardBully2Big, "Wenn das stimmt, dann bist du das genaue Gegenteil von ihm hier!");
             await ƒS.Speech.tell(characters.guardBully1Big, "Es war ein Unfall! Ich hab versucht, es wieder gut zu machen und ich hab mich oft genug entschuldigt!");
             await ƒS.Speech.tell(characters.guardBully2Big, "Eine Entschuldigung bringt sie mir auch nicht zurück!");
             await ƒS.Speech.tell(characters.guardBully1Big, "Ich wollte nur sehen, wie Missy mit einem lustigen kleinen Hut aussieht und dir für deinen Geburtstag ein Bild davon malen!");

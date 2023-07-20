@@ -452,7 +452,7 @@ namespace MyNovel {
                     };
 
                     let dialogueElementGoblin = await ƒS.Menu.getInput(dialogueGoblin, "choicesCSSClass");
-
+                    
                     switch (dialogueElementGoblin) {
                         case dialogueGoblin.mags:
                             if (dataForSave.Protagonist.mags == true) {
