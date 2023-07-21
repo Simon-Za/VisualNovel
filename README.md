@@ -3,38 +3,41 @@ A FUDGE module for the easy development of interactive stories, visual novels an
 
 
 # Reference
-- [APIs](https://jirkadelloro.github.io/FUDGE_Story/Documentation/Reference/#fudge-story-reference)
+- [Konzept](https://github.com/Simon-Za/VisualNovel/tree/main/Konzept)
+- [Quellcode](https://github.com/Simon-Za/VisualNovel/tree/main/MyNovel)
+- [Visual Novel](https://simon-za.github.io/VisualNovel/MyNovel/MyNovel.html)
+- [Ordner mit Dateien](https://1drv.ms/u/s!Am6xZ3TlLhKJ0W2kSt_5anzIPs03?e=LDGXNQ)
 
 ## Bewertungskriterien
 © Prof. Dipl.-Ing. Jirka R. Dell'Oro-Friedl, HFU  
 
 | Nr | Bezeichnung           | Inhalt |
 |---:|-----------------------|------|
-|    | Titel                 |   |
-|    | Name                  |   |
-|    | Matrikelnummer        |   |
-|  1 | Konzeption     | Die Story der Visual Novel wird in einer kurzen Inhaltsangabe beschrieben und der Konzeption beigefügt. In dieser sind jegliche Diagramme, Scribbles sowie entweder ein Storyboard, ein Drehbuch oder Ähnliches enthalten.                                                                                                                            |
-|  2 | Charakter-Konzept     | Kommen Archetypen zum Einsatz? Welche anderweitigen Charaktermodelle existieren (Steckbriefe)?                                                                                                                                                                                |
-|  3 | Auswahlmöglichkeiten | Dialogoptionen stellen _branching plots_ zur Verfügung und lassen den Spieler zu einem gewissen Grad selbstbestimmt handeln. Sind derartige Entscheidungen vorhanden und unterscheidet sich der Dialog je nach getätigter Auswahl?                                                                                                                                                     |
-|  4 | Branching paths      | Verzweigte Pfade bieten dem Spieler die Möglichkeit, seinen individuell präferierten Pfad zu verfolgen. Sind alle Variablen sinnvoll benannt und die Szenenhierarchie strukturiert und übersichtlich aufgebaut? Welche Szenen sind wie miteinander gekoppelt?                                                                                                                                                          |
-|  5 | Transitions            | Transitions stellen Überblendungen z.B. zwischen Szenen dar und können leicht modifiziert werden. Kommen unterschiedliche Transitions zum Einsatz?                                                                                                                                                      |
-|  6 | Novel-Pages            | Novel-Pages können eingesetzt werden, um weitere Textelemente mit ggf. besonderen Interaktionsmöglichkeiten auszustatten und einzublenden. Wie wurden Novel Pages umgesetzt und welche Interaktionsmöglichkeiten gibt es?                                                                                                                                                          |
-|  7 |         Audio         | Sounds sind eingebunden und unterstützen oder ermöglichen die Wahrnehmung der Aktionen. Welche Ereignisse werden durch Geräusche akustisch unterstützt; durch welche Geräuschkulisse oder Musik die Atmosphäre? Gibt es ein auditiv geplantes Muster, bei dem zu ganz speziellen Events Sound / Musik abgespielt wird?   |
-|  8 |         GUI            | Ein grafisches Interface gibt dem Nutzer die Möglichkeit, Einstellungen beim Programmstart oder während des Programmlaufs vorzunehmen. Was kann er dort tun? Wird z.B. auf ein Out-Of-Game-Menu oder ein sogenanntes Ingame-Menu zurückgegriffen? Alternativ kann eine Art von Skala, die sich unter bestimmten Bedingungen füllt oder leert (bspw. eine Lovebar / ein Love'O'Meter) eingebaut werden.                                                                                                                                                                    |
-|  9 | Input-Feld(er)          | Input-Felder können verwendet werden, damit man dem Spieler die Option bietet, mithilfe einer Eingabe interne Zustände zu verändern. Wird dem Spieler die Möglichkeit gegeben z.B. seinen Namen einzugeben und wird dieser im Verlauf der Story verwendet? Sind weitere Input-Felder eingesetzt worden? Zu welchem Zweck?                                                                                                                                                                   |
-|  10 | Punkteverteilungssystem     | Ein Punktesystem kann bei den unterschiedlichsten Situationen zum Einsatz kommen. So können Punkte vergeben, abgezogen, berechnet und das Ergebnis ausgewertet werden. Gibt es hierfür ein geregeltes Schema, das die Punkteverteilung für das Verhalten des Spielers festlegt oder ähnliche Regeln?                                                                                                                                                             |
-|  11 | Inventory- und Item-System     | Das Inventarsystem übernimmt das Management von hinzugefügten, konsumierbaren sowie nicht-konsumierbaren Items. Wird dieses System genutzt? Welche Items gibt es und was für Eigenschaften werden diesen zugeschrieben? Wozu existieren sie?                                                                                                                                                                 |
-| 12 | Animation     | Animationen können selbst definiert und auf Objekte angewendet werden. Wurden verschiedene Animationen bestimmt und kommen zur Verwendung?                                                                                                                                                                 |
-| 13 | Styling          | Werden alle relevanten Elemente mithilfe von CSS gestylt?                                                                                                                                                                                 |
-| 14 | Enden          | Wurden verschiedene Spielenden eingebaut (mind. zwei)?                                                                                                                                                                                 |
+|    | Titel                 | A Story About Frogs  |
+|    | Name                  | Simon Zakowski  |
+|    | Matrikelnummer        | 263184  |
+|  1 | Konzeption     | Die Konzeptdatei enthält eine Zusammenfassung, die Alleinstellungsmerkmale, den Decision Tree, die Charaktersteckbriefe und das Drehbuch. In dem Konzept Ordner sind Bilder des Decision Trees und eines Diagramms der geplanten Story Struktur. |
+|  2 | Charakter-Konzept     | Den Charakteren werden Archetypen zugeordnet, sie werden beschrieben und Bilder von ihnen werden gezeigt. (s. Konzept)           |
+|  3 | Auswahlmöglichkeiten | Es gibt viele Dialogoptionen, die den Verlauf der Konversationen oder der Story ändern.    |
+|  4 | Branching paths      | Alle Variablen sind sinnvoll benannt und die Szenenhierarchie ist sinnvoll geordnet. Es gibt einige optionale Konversationen und zwei größere Pfade zwischen denen man wählen kann. |
+|  5 | Transitions            |  Es kommen verschiedene Transitions zum Einsatz. |
+|  6 | Novel-Pages            | NovelPages wurden verwendet, um die Schadens- und Statusindikatoren darzustellen. |
+|  7 |         Audio         | Jedes Gebiet hat sein eigenes Theme und einzelne Dinge werden mit Soundeffekten betont.  |
+|  8 |         GUI            | Ein funktionsfähiges und gestyltes Menü ist vorhanden. Es gibt eine Skala bzw. ein Meter, mit dem die HP des Spielers angezeigt werden. Im Kampf leert sich die HP Leiste dynamisch. |
+|  9 | Input-Feld(er)          | Input-Felder sind vorhanden. Der Spieler wird nach seinem Namen gefragt und wird mit diesem angesprochen. |
+|  10 | Punkteverteilungssystem     | Ein Punktesystem im traditionellen Sinn ist nicht vorhanden, aber die Anzahl der Tode hat einen Einfluss auf das Spiel. In späteren Akten soll die Todesanzahl noch wichtiger werden.  |
+|  11 | Inventory- und Item-System     | Während des Spiels findet man Items und kann sich auch entscheiden, ob man welche mitnehmen will. Items können an bestimmten Orten genutzt oder abgegeben werden. Es gibt eine Methode, die Items aus dem Inventar entfernt ohne das Zutun des Spielers. Items sind nicht konsumierbar. |
+| 12 | Animation     | Animationen werden genutzt, um Charaktere im Kampf zu bewegen. |
+| 13 | Styling          | Alle relevanten Elemente wurden gestyled. Jeder Charakter hat seine eigene Farbe für Hintergrund und Namen.   |
+| 14 | Enden          | Es gibt zwei Enden. |
 
 
 
 ##  Abgabeformat
 
-* Die Konzeption soll als .pdf-Dokument abgegeben werden.
-* Platziere einen Link in der Readme-Datei deines VisualNovel-Repositories auf Github auf die fertige und in Github-Pages lauffähige Anwendung.
-* Platziere ebenso Links zu den Stellen in deinem Repository, an denen der Quellcode und das Konzept-Dokument zu finden sind.
-* Stelle zudem auf diese Art dort auch ein gepacktes Archiv zur Verfügung, welches folgende Daten enthält
-  * Das Konzept-Dokument 
-  * Die Projektordner inklusive aller erforderlichen Dateien, also auch Bild- und Audiodaten
+✓ Die Konzeption soll als .pdf-Dokument abgegeben werden.
+✓ Platziere einen Link in der Readme-Datei deines VisualNovel-Repositories auf Github auf die fertige und in Github-Pages lauffähige Anwendung.
+✓ Platziere ebenso Links zu den Stellen in deinem Repository, an denen der Quellcode und das Konzept-Dokument zu finden sind.
+✓ Stelle zudem auf diese Art dort auch ein gepacktes Archiv zur Verfügung, welches folgende Daten enthält
+  ✓ Das Konzept-Dokument 
+  ✓ Die Projektordner inklusive aller erforderlichen Dateien, also auch Bild- und Audiodaten
