@@ -3,7 +3,7 @@ A FUDGE module for the easy development of interactive stories, visual novels an
 
 
 # Reference
-- [Konzept](https://github.com/Simon-Za/VisualNovel/Konzept)
+- [Konzept](https://github.com/Simon-Za/VisualNovel/tree/main/Konzept)
 - [Quellcode](https://github.com/Simon-Za/VisualNovel/tree/main/MyNovel)
 - [Visual Novel](https://simon-za.github.io/VisualNovel/MyNovel/MyNovel.html)
 - [Ordner mit Dateien](https://1drv.ms/f/s!Am6xZ3TlLhKJ0WwQwby2Itx-6BGW?e=WKaLeo)
