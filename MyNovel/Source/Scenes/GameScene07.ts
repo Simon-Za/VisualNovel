@@ -147,7 +147,7 @@ namespace MyNovel {
         //hier Ende screen? to be continued
         await ƒS.Location.show(locations.endingScreen);
         await ƒS.Character.hideAll(); 
-        await ƒS.update(transition.deathSpiral.duration, transition.deathSpiral.alpha, transition.deathSpiral.edge);
+        await ƒS.update(transition.spiral.duration, transition.spiral.alpha, transition.spiral.edge);
 
         console.log("Scene07 done");
     }

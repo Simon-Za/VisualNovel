@@ -437,7 +437,7 @@ namespace MyNovel {
         dataForSave.Quest = 2;
         return "GameScene03Q2";
     }
-    await ƒS.update(transition.deathSpiral.duration, transition.deathSpiral.alpha, transition.deathSpiral.edge);
+    await ƒS.update(transition.spiral.duration, transition.spiral.alpha, transition.spiral.edge);
     await ƒS.update(1);
     await ƒS.Character.hideAll();
     await ƒS.update(1);

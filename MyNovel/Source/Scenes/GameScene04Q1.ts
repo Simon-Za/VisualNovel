@@ -4,7 +4,7 @@ namespace MyNovel {
 
         console.log("Scene 4.1 starting");
 
-        await ƒS.update(transition.deathSpiral.duration, transition.deathSpiral.alpha, transition.deathSpiral.edge);
+        await ƒS.update(transition.spiral.duration, transition.spiral.alpha, transition.spiral.edge);
         await ƒS.Character.hideAll();
         ƒS.Speech.hide();
         await ƒS.update(1);
@@ -160,7 +160,7 @@ namespace MyNovel {
 
         await ƒS.Location.show(locations.Gefaengnis);
         await ƒS.Sound.fade(sound.dungeon, 0.2, 1, true);
-        await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
+        await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge);
 
         await ƒS.Speech.tell(characters.protagonist, text.Player.T0001);
         await ƒS.Speech.tell(characters.protagonist, text.Player.T0002);

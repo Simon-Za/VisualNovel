@@ -15,6 +15,11 @@ var MyNovel;
             alpha: "Images/Transitions/Others/015.jpg",
             edge: 1
         },
+        spiral: {
+            duration: 1,
+            alpha: "Images/Transitions/Others/swirl.png",
+            edge: 1
+        },
     };
     MyNovel.sound = {
         //themes
@@ -425,7 +430,7 @@ var MyNovel;
         gameMenu = MyNovel.ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
         buttonFunctionalities("Close");
         let scenes = [
-            { scene: MyNovel.GameScene01, name: "OpeningFight" },
+            //{ scene: GameScene01, name: "OpeningFight"},
             { scene: MyNovel.GameScene02, name: "Exposition" },
             { id: "GameScene03Q1", scene: MyNovel.GameScene03Q1, name: "Quest1Start", next: "GameScene04Q1" },
             { id: "GameScene03Q2", scene: MyNovel.GameScene03Q2, name: "Quest2Start", next: "GameScene04Q2" },
@@ -2235,7 +2240,7 @@ var MyNovel;
                 MyNovel.dataForSave.Quest = 2;
                 return "GameScene03Q2";
         }
-        await MyNovel.ƒS.update(MyNovel.transition.deathSpiral.duration, MyNovel.transition.deathSpiral.alpha, MyNovel.transition.deathSpiral.edge);
+        await MyNovel.ƒS.update(MyNovel.transition.spiral.duration, MyNovel.transition.spiral.alpha, MyNovel.transition.spiral.edge);
         await MyNovel.ƒS.update(1);
         await MyNovel.ƒS.Character.hideAll();
         await MyNovel.ƒS.update(1);
@@ -2246,7 +2251,7 @@ var MyNovel;
 (function (MyNovel) {
     async function GameScene03Q1() {
         console.log("Scene 3.1 starting");
-        await MyNovel.ƒS.update(MyNovel.transition.deathSpiral.duration, MyNovel.transition.deathSpiral.alpha, MyNovel.transition.deathSpiral.edge);
+        await MyNovel.ƒS.update(MyNovel.transition.spiral.duration, MyNovel.transition.spiral.alpha, MyNovel.transition.spiral.edge);
         await MyNovel.ƒS.update(1);
         await MyNovel.ƒS.Character.hideAll();
         await MyNovel.ƒS.update(1);
@@ -2333,7 +2338,7 @@ var MyNovel;
         await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true);
         await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully1, MyNovel.characters.guardBully1.pose.upset, MyNovel.ƒS.positionPercent(60, 71));
         await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully2, MyNovel.characters.guardBully2.pose.upset, MyNovel.ƒS.positionPercent(65, 70));
-        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
+        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
         //self-dialogue
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0001);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0002);
@@ -2368,7 +2373,7 @@ var MyNovel;
                 await MyNovel.ƒS.Character.hideAll();
                 await MyNovel.ƒS.Speech.hide();
                 await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true); //prolly useless
-                await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
+                await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0005);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0006);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0007);
@@ -2436,7 +2441,7 @@ var MyNovel;
                         document.getElementById("respawnQuote").removeChild(pp);
                         await MyNovel.ƒS.Location.show(MyNovel.locations.swamp);
                         await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1);
-                        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
+                        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
                         await MyNovel.ƒS.update(1);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0018);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0019);
@@ -2447,7 +2452,7 @@ var MyNovel;
                         await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true);
                         await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully1, MyNovel.characters.guardBully1.pose.upset, MyNovel.ƒS.positionPercent(60, 71));
                         await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully2, MyNovel.characters.guardBully2.pose.upset, MyNovel.ƒS.positionPercent(65, 70));
-                        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
+                        await MyNovel.ƒS.update(MyNovel.transition.spiral.duration, MyNovel.transition.spiral.alpha, MyNovel.transition.spiral.edge);
                         //als nächstes wieder Auswahl, ob man nach hinten will oder mit Wachen reden; hier bei "nach hinten gehen" neue Methode/neuer Hintergrund mit gefallenem Ast
                         let approachHouseAgain = {
                             AltWeg: "Soll ich nochmal nach hinten gehen...",
@@ -2514,7 +2519,7 @@ var MyNovel;
                     await MyNovel.ƒS.update(1);
                     await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully1Big, MyNovel.characters.guardBully1Big.pose.upset, MyNovel.ƒS.positionPercent(38, 80));
                     await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully2Big, MyNovel.characters.guardBully2Big.pose.upset, MyNovel.ƒS.positionPercent(64, 80));
-                    await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
+                    await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0001);
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0001);
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0002);
@@ -2827,12 +2832,12 @@ var MyNovel;
         }
         ;
         async function drinnenScene() {
-            await MyNovel.ƒS.Location.show(MyNovel.locations.BueroInnen); //Bachground neu malen
+            await MyNovel.ƒS.Location.show(MyNovel.locations.BueroInnen);
             await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.1, 1, true);
             await MyNovel.ƒS.Character.hideAll();
             await MyNovel.ƒS.Speech.hide();
             await MyNovel.ƒS.update(1);
-            await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
+            await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0030);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0031);
             let drawerInspected = false;
@@ -2928,7 +2933,6 @@ var MyNovel;
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich habe was ich wollte, ich geh jetzt besser.");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0032);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Dann auf Richtung Gefängnis.");
-            //hier Transition einfügen!!! ist glaub schon bei nächster sezene am anfang drin
             await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //not sure, ob das geht/gebraucht wird
             await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0, 1);
         }
@@ -2941,7 +2945,7 @@ var MyNovel;
 (function (MyNovel) {
     async function GameScene03Q2() {
         console.log("Scene 3.2 starting");
-        await MyNovel.ƒS.update(MyNovel.transition.deathSpiral.duration, MyNovel.transition.deathSpiral.alpha, MyNovel.transition.deathSpiral.edge);
+        await MyNovel.ƒS.update(MyNovel.transition.spiral.duration, MyNovel.transition.spiral.alpha, MyNovel.transition.spiral.edge);
         await MyNovel.ƒS.update(1);
         await MyNovel.ƒS.Character.hideAll();
         await MyNovel.ƒS.update(1);
@@ -3046,7 +3050,7 @@ var MyNovel;
         await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug01, MyNovel.characters.bullywug01.pose.upset, MyNovel.ƒS.positionPercent(40, 85));
         await MyNovel.ƒS.Character.show(MyNovel.characters.bullywug02, MyNovel.characters.bullywug02.pose.upset, MyNovel.ƒS.positionPercent(55, 85));
         await MyNovel.ƒS.update(1);
-        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
+        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.Wache1.T0001);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2, text.Wache2.T0001);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1, text.Wache1.T0002);
@@ -3372,7 +3376,7 @@ var MyNovel;
             await MyNovel.ƒS.Location.show(MyNovel.locations.swampWalk);
             await MyNovel.ƒS.Sound.fade(MyNovel.sound.dungeon, 0, 1, false);
             await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true);
-            await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
+            await MyNovel.ƒS.update(MyNovel.transition.spiral.duration, MyNovel.transition.spiral.alpha, MyNovel.transition.spiral.edge);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "So, hier müsste sie irgendwo sein.");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du suchst den Steg von unten ab und findest schließlich eine Kette, die voller Matsch ist.*");
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Da ist sie ja!");
@@ -3392,7 +3396,7 @@ var MyNovel;
 (function (MyNovel) {
     async function GameScene04Q1() {
         console.log("Scene 4.1 starting");
-        await MyNovel.ƒS.update(MyNovel.transition.deathSpiral.duration, MyNovel.transition.deathSpiral.alpha, MyNovel.transition.deathSpiral.edge);
+        await MyNovel.ƒS.update(MyNovel.transition.spiral.duration, MyNovel.transition.spiral.alpha, MyNovel.transition.spiral.edge);
         await MyNovel.ƒS.Character.hideAll();
         MyNovel.ƒS.Speech.hide();
         await MyNovel.ƒS.update(1);
@@ -3463,7 +3467,7 @@ var MyNovel;
                 T0008: "Was genau willst du von mir?",
                 T0009: "Lass mich raten, du hast gehört, dass ich ein famoser Autor bin und willst mir eine Idee für ein Buch pitchen?",
                 T0010: "Ich bin gerade leider beschäftigt mit meinen eigenen Ideen, vielleicht ein andermal!",
-                T0011: "Der König? Ist das die besonders fette Kröte?",
+                T0011: "Der König? Ist das die besonders fette Kröte? Sieht ein bisschen aus wie ein Oger?",
                 T0012: "Tatsächlich habe ich ihn schon ein paar Mal gesehen.",
                 T0013: "Tjaa, das wollen wir wohl gerne wissen, was?",
                 T0014: "Ich kann dir ein paar Informationen geben, aber nicht umsonst natürlich.",
@@ -3534,14 +3538,15 @@ var MyNovel;
                 T0009: "Willst du noch irgendwas von mir?",
                 T0010: "Huh. Ich hab den König schon ein paar Mal an meiner Zelle vorbeigehen sehen.",
                 T0011: "Zumindest glaube ich, dass er es war, weil der Schatten riesig war und die Schritte den Boden zum Beben brachten.",
-                T0012: "Meine Güte. Ist das ein Verhör? Ich hab außer seinem Schatten nichts gesehen.",
-                T0013: "Aber ich habe noch gehört, wie er eine Tür aufgeschlossen hat, kann dir aber nicht sagen, welche.",
-                T0014: "Gibt`s noch was?",
+                T0012: "Fast wie ein Drache, der sein Hort abläuft.",
+                T0013: "Meine Güte. Ist das ein Verhör? Ich hab außer seinem Schatten nichts gesehen.",
+                T0014: "Aber ich habe noch gehört, wie er eine Tür aufgeschlossen hat, kann dir aber nicht sagen, welche.",
+                T0015: "Gibt`s noch was?",
             },
         };
         await MyNovel.ƒS.Location.show(MyNovel.locations.Gefaengnis);
         await MyNovel.ƒS.Sound.fade(MyNovel.sound.dungeon, 0.2, 1, true);
-        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
+        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0001);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0002);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0003);
@@ -3934,23 +3939,24 @@ var MyNovel;
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0003);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0004);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0005);
+                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0006);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Oh. Okay.");
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Kann ich dir irgendwie helfen?");
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0006);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0007);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0008);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0009);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich bin auf der Suche nach dem Tresor des Königs.");
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0010);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0011);
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Okay, danke. Hast du gesehen wo genau er reingegangen ist?");
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0012);
+                await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Okay, danke. Hast du gesehen wo genau er reingegangen ist?");
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0013);
+                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0014);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Alles klar. Danke.");
                 frogTaroSpoken = true;
             }
             else {
-                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0014);
+                await MyNovel.ƒS.Speech.tell(MyNovel.characters.prisoner3, text.Frogtaro.T0015);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ne, alles gut.");
             }
         }
@@ -4004,7 +4010,6 @@ var MyNovel;
                                 break;
                             case dialogueEmptyCell.keyDungeon:
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Passt nicht zu dem Schloss.");
-                                await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Ich frage mich wofür der Dungeonschlüssel ist.");
                                 break;
                             case dialogueEmptyCell.keyVault:
                                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Nope. Passt nicht.");
@@ -4064,7 +4069,7 @@ var MyNovel;
 (function (MyNovel) {
     async function GameScene04Q2() {
         console.log("Scene 4.2 starting");
-        await MyNovel.ƒS.update(MyNovel.transition.deathSpiral.duration, MyNovel.transition.deathSpiral.alpha, MyNovel.transition.deathSpiral.edge);
+        await MyNovel.ƒS.update(MyNovel.transition.spiral.duration, MyNovel.transition.spiral.alpha, MyNovel.transition.spiral.edge);
         await MyNovel.ƒS.update(1);
         await MyNovel.ƒS.Character.hideAll();
         await MyNovel.ƒS.update(1);
@@ -4176,7 +4181,7 @@ var MyNovel;
         await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true);
         await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully1, MyNovel.characters.guardBully1.pose.upset, MyNovel.ƒS.positionPercent(60, 71));
         await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully2, MyNovel.characters.guardBully2.pose.upset, MyNovel.ƒS.positionPercent(65, 70));
-        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
+        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
         //self-dialogue
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0001);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0002);
@@ -4211,7 +4216,7 @@ var MyNovel;
                 await MyNovel.ƒS.Character.hideAll();
                 await MyNovel.ƒS.Speech.hide();
                 await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true);
-                await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
+                await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0005);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0006);
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0007);
@@ -4279,7 +4284,7 @@ var MyNovel;
                         document.getElementById("respawnQuote").removeChild(pp);
                         await MyNovel.ƒS.Location.show(MyNovel.locations.swamp);
                         await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1);
-                        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
+                        await MyNovel.ƒS.update(MyNovel.transition.spiral.duration, MyNovel.transition.spiral.alpha, MyNovel.transition.spiral.edge);
                         await MyNovel.ƒS.update(1);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0018);
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0019);
@@ -4290,8 +4295,7 @@ var MyNovel;
                         await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1, true);
                         await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully1, MyNovel.characters.guardBully1.pose.upset, MyNovel.ƒS.positionPercent(60, 71));
                         await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully2, MyNovel.characters.guardBully2.pose.upset, MyNovel.ƒS.positionPercent(65, 70));
-                        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
-                        //als nächstes wieder Auswahl, ob man nach hinten will oder mit Wachen reden; hier bei "nach hinten gehen" neue Methode/neuer Hintergrund mit gefallenem Ast
+                        await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
                         let approachHouseAgain = {
                             AltWeg: "Soll ich nochmal nach hinten gehen...",
                             WachenAnsprechen: "...oder die Wachen ansprechen?",
@@ -4357,7 +4361,7 @@ var MyNovel;
                     await MyNovel.ƒS.update(1);
                     await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully1Big, MyNovel.characters.guardBully1Big.pose.upset, MyNovel.ƒS.positionPercent(40, 75));
                     await MyNovel.ƒS.Character.show(MyNovel.characters.guardBully2Big, MyNovel.characters.guardBully2Big.pose.upset, MyNovel.ƒS.positionPercent(66, 75));
-                    await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
+                    await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0001);
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully2Big, text.GuardBully2.T0001);
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.guardBully1Big, text.GuardBully1.T0002);
@@ -4675,7 +4679,7 @@ var MyNovel;
             await MyNovel.ƒS.Character.hideAll();
             await MyNovel.ƒS.Speech.hide();
             await MyNovel.ƒS.update(1);
-            await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
+            await MyNovel.ƒS.update(MyNovel.transition.spiral.duration, MyNovel.transition.spiral.alpha, MyNovel.transition.spiral.edge);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0030);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0031);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du legst die Kette auf dem Schreibtisch ab.*");
@@ -4734,7 +4738,7 @@ var MyNovel;
             //dann fade in und tümpel sounds
             await MyNovel.ƒS.Location.show(MyNovel.locations.swamp);
             await MyNovel.ƒS.Sound.fade(MyNovel.sound.swamp, 0.2, 1);
-            await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge); //neue transition wählen
+            await MyNovel.ƒS.update(MyNovel.transition.puzzle.duration, MyNovel.transition.puzzle.alpha, MyNovel.transition.puzzle.edge);
             await MyNovel.ƒS.update(1);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0032);
             await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0033);
@@ -5152,7 +5156,7 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.sage, text.Weiser.T0016);
         MyNovel.ƒS.Sound.play(MyNovel.sound.cloth, 0.2, false);
         await MyNovel.ƒS.Sound.fade(MyNovel.sound.mystic, 0, 1, false);
-        await MyNovel.ƒS.update(MyNovel.transition.deathSpiral.duration, MyNovel.transition.deathSpiral.alpha, MyNovel.transition.deathSpiral.edge);
+        await MyNovel.ƒS.update(MyNovel.transition.spiral.duration, MyNovel.transition.spiral.alpha, MyNovel.transition.spiral.edge);
         await MyNovel.ƒS.Location.show(MyNovel.locations.sageHouse);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.narrator, "*Du verlässt das Zelt und eilst zum Dorfplatz*");
         MyNovel.ƒS.Character.hideAll();
@@ -5298,7 +5302,7 @@ var MyNovel;
         //hier Ende screen? to be continued
         await MyNovel.ƒS.Location.show(MyNovel.locations.endingScreen);
         await MyNovel.ƒS.Character.hideAll();
-        await MyNovel.ƒS.update(MyNovel.transition.deathSpiral.duration, MyNovel.transition.deathSpiral.alpha, MyNovel.transition.deathSpiral.edge);
+        await MyNovel.ƒS.update(MyNovel.transition.spiral.duration, MyNovel.transition.spiral.alpha, MyNovel.transition.spiral.edge);
         console.log("Scene07 done");
     }
     MyNovel.GameScene07 = GameScene07;

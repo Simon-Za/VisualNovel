@@ -4,7 +4,7 @@ namespace MyNovel {
 
         console.log("Scene 3.1 starting");
 
-        await ƒS.update(transition.deathSpiral.duration, transition.deathSpiral.alpha, transition.deathSpiral.edge);
+        await ƒS.update(transition.spiral.duration, transition.spiral.alpha, transition.spiral.edge);
         await ƒS.update(1);
         await ƒS.Character.hideAll();
         await ƒS.update(1);
@@ -97,7 +97,7 @@ namespace MyNovel {
         await ƒS.Sound.fade(sound.swamp, 0.2, 1, true);
         await ƒS.Character.show(characters.guardBully1, characters.guardBully1.pose.upset, ƒS.positionPercent(60, 71));
         await ƒS.Character.show(characters.guardBully2, characters.guardBully2.pose.upset, ƒS.positionPercent(65, 70));
-        await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
+        await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge);
 
         //self-dialogue
         await ƒS.Speech.tell(characters.protagonist, text.Player.T0001);
@@ -140,7 +140,7 @@ namespace MyNovel {
                 await ƒS.Character.hideAll();
                 await ƒS.Speech.hide();
                 await ƒS.Sound.fade(sound.swamp, 0.2, 1, true); //prolly useless
-                await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
+                await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); 
 
                 await ƒS.Speech.tell(characters.protagonist, text.Player.T0005);
                 await ƒS.Speech.tell(characters.protagonist, text.Player.T0006);
@@ -225,7 +225,7 @@ namespace MyNovel {
 
                         await ƒS.Location.show(locations.swamp);
                         await ƒS.Sound.fade(sound.swamp, 0.2, 1);
-                        await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
+                        await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); 
                         await ƒS.update(1);
 
 
@@ -239,7 +239,7 @@ namespace MyNovel {
                         await ƒS.Sound.fade(sound.swamp, 0.2, 1, true);
                         await ƒS.Character.show(characters.guardBully1, characters.guardBully1.pose.upset, ƒS.positionPercent(60, 71));
                         await ƒS.Character.show(characters.guardBully2, characters.guardBully2.pose.upset, ƒS.positionPercent(65, 70));
-                        await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
+                        await ƒS.update(transition.spiral.duration, transition.spiral.alpha, transition.spiral.edge); 
 
                         //als nächstes wieder Auswahl, ob man nach hinten will oder mit Wachen reden; hier bei "nach hinten gehen" neue Methode/neuer Hintergrund mit gefallenem Ast
                         let approachHouseAgain = {
@@ -312,7 +312,7 @@ namespace MyNovel {
                     await ƒS.update(1);
                     await ƒS.Character.show(characters.guardBully1Big, characters.guardBully1Big.pose.upset, ƒS.positionPercent(38, 80));
                     await ƒS.Character.show(characters.guardBully2Big, characters.guardBully2Big.pose.upset, ƒS.positionPercent(64, 80));
-                    await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
+                    await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); 
 
 
                     await ƒS.Speech.tell(characters.guardBully1Big, text.GuardBully1.T0001);
@@ -666,13 +666,12 @@ namespace MyNovel {
 
         async function drinnenScene() {
 
-            await ƒS.Location.show(locations.BueroInnen); //Bachground neu malen
+            await ƒS.Location.show(locations.BueroInnen);
             await ƒS.Sound.fade(sound.swamp, 0.1, 1, true);
             await ƒS.Character.hideAll();
             await ƒS.Speech.hide();
             await ƒS.update(1);
-            await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
-
+            await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); 
             await ƒS.Speech.tell(characters.protagonist, text.Player.T0030);
             await ƒS.Speech.tell(characters.protagonist, text.Player.T0031);
 
@@ -775,8 +774,6 @@ namespace MyNovel {
             await ƒS.Speech.tell(characters.protagonist, "Dann auf Richtung Gefängnis.");
 
 
-
-            //hier Transition einfügen!!! ist glaub schon bei nächster sezene am anfang drin
             await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //not sure, ob das geht/gebraucht wird
             await ƒS.Sound.fade(sound.swamp, 0, 1);
         };

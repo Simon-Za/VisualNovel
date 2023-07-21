@@ -296,7 +296,7 @@ namespace MyNovel {
     await ƒS.Sound.fade(sound.mystic, 0, 1, false);
   
 
-    await ƒS.update(transition.deathSpiral.duration, transition.deathSpiral.alpha, transition.deathSpiral.edge);
+    await ƒS.update(transition.spiral.duration, transition.spiral.alpha, transition.spiral.edge);
     await ƒS.Location.show(locations.sageHouse);
     await ƒS.Speech.tell(characters.narrator, "*Du verlässt das Zelt und eilst zum Dorfplatz*");
     ƒS.Character.hideAll();

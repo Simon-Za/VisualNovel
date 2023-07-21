@@ -15,6 +15,11 @@ namespace MyNovel {
       alpha: "Images/Transitions/Others/015.jpg", //"" mit Pfad füllen
       edge: 1
     },
+    spiral: {
+      duration: 1,
+      alpha: "Images/Transitions/Others/swirl.png", //"" mit Pfad füllen
+      edge: 1
+    },
   };
 
   export let sound = {
@@ -445,7 +450,7 @@ namespace MyNovel {
     gameMenu = ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
     buttonFunctionalities("Close");
     let scenes: ƒS.Scenes = [
-      { scene: GameScene01, name: "OpeningFight"},
+      //{ scene: GameScene01, name: "OpeningFight"},
       { scene: GameScene02, name: "Exposition"},
       { id: "GameScene03Q1", scene: GameScene03Q1, name: "Quest1Start", next: "GameScene04Q1" },
       { id: "GameScene03Q2", scene: GameScene03Q2, name: "Quest2Start", next: "GameScene04Q2" },

@@ -12,6 +12,11 @@ declare namespace MyNovel {
             alpha: string;
             edge: number;
         };
+        spiral: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
     };
     let sound: {
         piano: string;

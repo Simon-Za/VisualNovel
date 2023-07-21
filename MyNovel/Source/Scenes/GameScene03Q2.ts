@@ -4,7 +4,7 @@ namespace MyNovel {
 
         console.log("Scene 3.2 starting");
 
-        await ƒS.update(transition.deathSpiral.duration, transition.deathSpiral.alpha, transition.deathSpiral.edge);
+        await ƒS.update(transition.spiral.duration, transition.spiral.alpha, transition.spiral.edge);
         await ƒS.update(1);
         await ƒS.Character.hideAll();
         await ƒS.update(1);
@@ -119,7 +119,7 @@ namespace MyNovel {
         await ƒS.Character.show(characters.bullywug01, characters.bullywug01.pose.upset, ƒS.positionPercent(40, 85));
         await ƒS.Character.show(characters.bullywug02, characters.bullywug02.pose.upset, ƒS.positionPercent(55, 85));
         await ƒS.update(1);
-        await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
+        await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge);
 
         await ƒS.Speech.tell(characters.guardBully1, text.Wache1.T0001);
         await ƒS.Speech.tell(characters.guardBully2, text.Wache2.T0001);
@@ -460,7 +460,7 @@ namespace MyNovel {
             await ƒS.Location.show(locations.swampWalk);
             await ƒS.Sound.fade(sound.dungeon, 0, 1, false);
             await ƒS.Sound.fade(sound.swamp, 0.2, 1, true);
-            await ƒS.update(transition.puzzle.duration, transition.puzzle.alpha, transition.puzzle.edge); //neue transition wählen
+            await ƒS.update(transition.spiral.duration, transition.spiral.alpha, transition.spiral.edge); 
             await ƒS.Speech.tell(characters.protagonist, "So, hier müsste sie irgendwo sein.");
             await ƒS.Speech.tell(characters.narrator, "*Du suchst den Steg von unten ab und findest schließlich eine Kette, die voller Matsch ist.*");
             await ƒS.Speech.tell(characters.protagonist, "Da ist sie ja!");
