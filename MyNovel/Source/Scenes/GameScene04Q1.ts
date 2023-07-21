@@ -78,7 +78,7 @@ namespace MyNovel {
                 T0008: "Was genau willst du von mir?",
                 T0009: "Lass mich raten, du hast gehört, dass ich ein famoser Autor bin und willst mir eine Idee für ein Buch pitchen?",
                 T0010: "Ich bin gerade leider beschäftigt mit meinen eigenen Ideen, vielleicht ein andermal!",
-                T0011: "Der König? Ist das die besonders fette Kröte?",
+                T0011: "Der König? Ist das die besonders fette Kröte? Sieht ein bisschen aus wie ein Oger?",
                 T0012: "Tatsächlich habe ich ihn schon ein paar Mal gesehen.",
                 T0013: "Tjaa, das wollen wir wohl gerne wissen, was?",
                 T0014: "Ich kann dir ein paar Informationen geben, aber nicht umsonst natürlich.",
@@ -151,9 +151,10 @@ namespace MyNovel {
                 T0009: "Willst du noch irgendwas von mir?",
                 T0010: "Huh. Ich hab den König schon ein paar Mal an meiner Zelle vorbeigehen sehen.",
                 T0011: "Zumindest glaube ich, dass er es war, weil der Schatten riesig war und die Schritte den Boden zum Beben brachten.",
-                T0012: "Meine Güte. Ist das ein Verhör? Ich hab außer seinem Schatten nichts gesehen.",
-                T0013: "Aber ich habe noch gehört, wie er eine Tür aufgeschlossen hat, kann dir aber nicht sagen, welche.",
-                T0014: "Gibt`s noch was?",
+                T0012: "Fast wie ein Drache, der sein Hort abläuft.",
+                T0013: "Meine Güte. Ist das ein Verhör? Ich hab außer seinem Schatten nichts gesehen.",
+                T0014: "Aber ich habe noch gehört, wie er eine Tür aufgeschlossen hat, kann dir aber nicht sagen, welche.",
+                T0015: "Gibt`s noch was?",
             },
         };
 
@@ -587,23 +588,24 @@ namespace MyNovel {
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0003);
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0004);
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0005);
+                await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0006);
                 await ƒS.Speech.tell(characters.protagonist, "Oh. Okay.");
                 await ƒS.Speech.tell(characters.protagonist, "Kann ich dir irgendwie helfen?");
-                await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0006);
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0007);
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0008);
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0009);
                 await ƒS.Speech.tell(characters.protagonist, "Ich bin auf der Suche nach dem Tresor des Königs.");
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0010);
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0011);
-                await ƒS.Speech.tell(characters.protagonist, "Okay, danke. Hast du gesehen wo genau er reingegangen ist?");
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0012);
+                await ƒS.Speech.tell(characters.protagonist, "Okay, danke. Hast du gesehen wo genau er reingegangen ist?");
                 await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0013);
+                await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0014);
                 await ƒS.Speech.tell(characters.protagonist, "Alles klar. Danke.");
                 frogTaroSpoken = true;
             }
             else {
-                await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0014);
+                await ƒS.Speech.tell(characters.prisoner3, text.Frogtaro.T0015);
                 await ƒS.Speech.tell(characters.protagonist, "Ne, alles gut.");
             }
         };
@@ -660,7 +662,6 @@ namespace MyNovel {
                                 break;
                             case dialogueEmptyCell.keyDungeon:
                                 await ƒS.Speech.tell(characters.protagonist, "Passt nicht zu dem Schloss.");
-                                await ƒS.Speech.tell(characters.protagonist, "Ich frage mich wofür der Dungeonschlüssel ist.");
                                 break;
                             case dialogueEmptyCell.keyVault:
                                 await ƒS.Speech.tell(characters.protagonist, "Nope. Passt nicht.");

@@ -45,7 +45,7 @@ Szene 2:
 ✓ sounds
 ✓ Quest Auswahl
 ✓ Steve platzieren
-- Steve css design
+✓ Steve css design
 ✓ Button 
 
 
@@ -57,11 +57,11 @@ Szene 3_Q1:
 ✓ Hintereingang szene komplett
 ✓ smol guards durch bigger erstetzen bei buero vorne
 ✓ Überreden Dialog
-- textboxen für wachen und narrator anders
-- Erzähler Aussagen einheitlicher machen
+✓ textboxen für wachen und narrator anders
+✓ Erzähler Aussagen einheitlicher machen
 
 Szene3_Q2:
-- Css für Tym
+✓ Css für Tym
 ✓ Sound für prison?
 
 Szene 4_Q2:
@@ -80,14 +80,14 @@ Szene Ende
 General:
 
 ✓ splash screen?
-- schönes css für buttons und dialog
-- farben und font bei dialog ändern (gerade narrator sollte anders sein)
+✓ schönes css für buttons und dialog
+✓ farben und font bei dialog ändern (gerade narrator sollte anders sein)
 ✓ sounds characters etc sortieren
 - transitions variieren
 ✓ NovelPages Nutzung
-- Menu CSS
+✓ Menu CSS
 ✓ Inventar Items bilder
-- dialogue felder ersetzen
+✓ dialogue felder ersetzen
 
 
 
@@ -115,7 +115,7 @@ Szene 3 Quest 1:
 ✓ hier klettergeräusche und astbruchgeräusche + impact
 ✓ hintergründe updaten
 ✓ wachen richtig platzieren
-- versch. css für die beiden wachen
+✓ versch. css für die beiden wachen
 ✓ wenn 1 option exhausted (zb bribe), dann sollen die wachen nicht neu laden (text fixed)
 ✓ bei "vertrauenswürdig weil", ist die erste option wie die zweite formuliert
 ✓ anstatt "fixen" lieber "retten"
@@ -125,7 +125,7 @@ Szene 3 Quest 1:
 Szene 4 Quest 1: 
 ✓ am Anfang oder vorher am Ende die Sumpfgeräusche leise machen (done?)
 ✓ gefängnis ambiente? oder stille
-- obv css für versch. personen
+✓ obv css für versch. personen
 ✓ frogtaro voicelines (sounds)
 ✓ frogtaro wiederholt 1 voiceline iwie?
 ✓ beim zurück zur Auswahl den text ausblenden
