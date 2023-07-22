@@ -228,7 +228,7 @@ namespace MyNovel {
         case 15:
           if (!case15read) {
             await ƒS.Speech.tell(characters.sage, "Habe den Mut, du selbst zu sein, und das Glück wird dir folgen.");
-            await ƒS.Speech.tell(characters.protagonist, "Wenn es Mut braucht, um Ich zu sein, dass bin ich jemand anderes.");
+            await ƒS.Speech.tell(characters.protagonist, "Wenn es Mut braucht, um Ich zu sein, dann bin ich jemand anderes.");
             await ƒS.Speech.tell(characters.sage, "Vielleicht kann das dir mit deiner Negativität helfen:");
             case15read = true;
           }
