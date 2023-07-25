@@ -430,7 +430,7 @@ var MyNovel;
         gameMenu = MyNovel.ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
         buttonFunctionalities("Close");
         let scenes = [
-            { scene: GameScene01, name: "OpeningFight"},
+            { scene: MyNovel.GameScene01, name: "OpeningFight" },
             { scene: MyNovel.GameScene02, name: "Exposition" },
             { id: "GameScene03Q1", scene: MyNovel.GameScene03Q1, name: "Quest1Start", next: "GameScene04Q1" },
             { id: "GameScene03Q2", scene: MyNovel.GameScene03Q2, name: "Quest2Start", next: "GameScene04Q2" },
@@ -5093,7 +5093,7 @@ var MyNovel;
                 case 15:
                     if (!case15read) {
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.sage, "Habe den Mut, du selbst zu sein, und das Glück wird dir folgen.");
-                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Wenn es Mut braucht, um Ich zu sein, dass bin ich jemand anderes.");
+                        await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, "Wenn es Mut braucht, um Ich zu sein, dann bin ich jemand anderes.");
                         await MyNovel.ƒS.Speech.tell(MyNovel.characters.sage, "Vielleicht kann das dir mit deiner Negativität helfen:");
                         case15read = true;
                     }
