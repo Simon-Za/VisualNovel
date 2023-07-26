@@ -731,7 +731,7 @@ namespace MyNovel {
             await ƒS.Character.hideAll();
             await ƒS.Character.show(characters.steve, characters.steve.pose.large, ƒS.positionPercent(60, 100));
             await ƒS.update(0.5);
-            await ƒS.Sound.fade(sound.slash, 0.2, 1);
+            await ƒS.Sound.play(sound.slash, 0.2);
             //Hier respawn hintergrund (blackscreen + quote)
             await ƒS.Speech.hide();
             //await ƒS.Character.show(characters.bullywug01, characters.bullywug01.pose.down, ƒS.positionPercent(50, 80));

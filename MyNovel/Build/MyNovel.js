@@ -1944,6 +1944,7 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0003);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0004);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0005);
+        await MyNovel.ƒS.Speech.hide();
         //aus Tümpel raus und steve erscheint
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.unknown, text.Unknown.T0005);
         await MyNovel.ƒS.Location.show(MyNovel.locations.swampWalk);
@@ -1962,6 +1963,8 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0002);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0003);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0004);
+        await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0005);
+        await MyNovel.ƒS.Speech.hide();
         let whyBack = {
             Glück: "Einfach Glück gehabt, denke ich.",
             Wahrheit: "Das haben Sie. Ich bin irgendwie zurückgekehrt.",
@@ -1975,10 +1978,12 @@ var MyNovel;
             case whyBack.Glück:
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Glück? Dir wurde gehörig auf die Fresse gegeben und jetzt stehst du 5 Minuten später wieder putzmunter vor mir? Stehst du mit einem Teufel im Bunde??");
                 glück = true;
+                await MyNovel.ƒS.Speech.hide();
                 break;
             case whyBack.Wahrheit:
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Wie meinst du ‘zurückgekehrt’? Im Sinne von du bist von den Toten auferstanden??");
                 wahrheit = true;
+                await MyNovel.ƒS.Speech.hide();
                 break;
             case whyBack.Gegenfrage:
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Sie haben mich nicht verfolgt.");
@@ -1988,6 +1993,7 @@ var MyNovel;
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Aber ich frage mich immer noch, wie du es so schnell zurückgeschafft hast, nachdem du so schwer verwundet wurdest.");
                 await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Und, was noch kurioser ist, warum du komplett in Ordnung aussiehst. Abgesehen von deiner mickrigen Gestalt und dem Fratzengesicht natürlich.");
                 gegenfrage = true;
+                await MyNovel.ƒS.Speech.hide();
                 break;
         }
         let luckAnswer = {
@@ -2010,6 +2016,7 @@ var MyNovel;
             switch (luckElement) {
                 case luckAnswer.Spaß:
                     await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Ja genau, dann hättest du die Typen vorhin aber direkt fertigmachen können.");
+                    await MyNovel.ƒS.Speech.hide();
                     let luckAnswer2 = {
                         Info: "Da war eine Stimme.",
                     };
@@ -2066,20 +2073,20 @@ var MyNovel;
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Aber zu welchem Zweck?");
                             await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Warum sollte jemandem wie dir eine zweite Chance vergönnt sein?");
                             break;
+                        case counterquestionAnswer.Sachlage:
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Hmm.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Hmmmmm.");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Scheint, als ob du tatsächlich wiedergeboren wurdest.");
+                            break;
+                        case counterquestionAnswer.Vermutung:
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Aber zu welchem Zweck?");
+                            await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Warum sollte jemandem wie dir eine zweite Chance vergönnt sein?");
                     }
-                    break;
-                case counterquestionAnswer.Sachlage:
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Hmm.");
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Hmmmmm.");
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Scheint, als ob du tatsächlich wiedergeboren wurdest.");
-                    break;
-                case counterquestionAnswer.Vermutung:
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Aber zu welchem Zweck?");
-                    await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Warum sollte jemandem wie dir eine zweite Chance vergönnt sein?");
             }
         }
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0006);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0007);
+        await MyNovel.ƒS.Speech.hide();
         let isRespawn = {
             Ablehnend: "Ich will es nicht herausfinden!",
             Neugierig: "Interessiert mich auch.",
@@ -2097,7 +2104,7 @@ var MyNovel;
         await MyNovel.ƒS.Character.hideAll();
         await MyNovel.ƒS.Character.show(MyNovel.characters.steve, MyNovel.characters.steve.pose.large, MyNovel.ƒS.positionPercent(55, 100));
         await MyNovel.ƒS.update(0.5);
-        await MyNovel.ƒS.Sound.fade(MyNovel.sound.slash, 0.2, 1);
+        await MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
         //Hier respawn hintergrund (blackscreen + quote)
         await MyNovel.ƒS.Speech.hide();
         //await ƒS.Character.show(characters.bullywug01, characters.bullywug01.pose.down, ƒS.positionPercent(50, 80));
@@ -2130,6 +2137,7 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.protagonist, text.Player.T0009);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0008);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, MyNovel.dataForSave.Protagonist.name + "!");
+        await MyNovel.ƒS.Speech.hide();
         //Background Wechsel
         await MyNovel.ƒS.Location.show(MyNovel.locations.swampWalk);
         await MyNovel.ƒS.Character.show(MyNovel.characters.steve, MyNovel.characters.steve.pose.upset, MyNovel.ƒS.positionPercent(50, 80));
@@ -2139,6 +2147,7 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0011);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0012);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0013);
+        await MyNovel.ƒS.Speech.hide();
         let gift = {
             Panik: "Eine Gabe? Aber wozu? Wieso ich?",
             Positiv: "Ok wow. Scheint, als wäre ich für Großes bestimmt.",
@@ -2150,6 +2159,7 @@ var MyNovel;
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0016);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0017);
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0018);
+        await MyNovel.ƒS.Speech.hide();
         let helpSteve = {
             Frage: "Wobei soll ich denn helfen?",
             Actually: "Stimmt das? Technisch gesehen sind alle deine Untergebenen vorhin im Kampf gefallen.",
@@ -2175,6 +2185,7 @@ var MyNovel;
         }
         //HIER KOMMT DIE QUEST ERÖFFNUNG
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, text.Steve.T0019);
+        await MyNovel.ƒS.Speech.hide();
         //QUEST: Entweder: 
         // 1. In das Büro des Königs einbrechen und einen Schlüssel zu stehlen
         //    Mit diesem Schlüssel zum vault im Gefängnis gehen und dort einen Gegenstand stehlen (gegesntand: vllt königl. Zepter oder so (gibt legitimität))
@@ -2202,6 +2213,7 @@ var MyNovel;
         }
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Wie dem auch sei, ich möchte meinem besten Freund, dem König, einen Gefallen tun.");
         await MyNovel.ƒS.Speech.tell(MyNovel.characters.steve, "Ich habe mir zwei Wege überlegt, mit denen wir den König überraschen können. Du darfst sogar den wählen, den du lieber magst.");
+        await MyNovel.ƒS.Speech.hide();
         let questChoice = {
             Stehlen: "Entweder du holst ein altes Geschenk, das ich dem König gemacht habe aus seiner Kammer, damit ich es wieder aufpolieren kann...",
             //"Unser König hat ein altes Geschenk von mir, dass er so sehr schätzt, dass er es in einem Tresor im Gefängnis aufbewahrt, 
@@ -2241,7 +2253,6 @@ var MyNovel;
                 return "GameScene03Q2";
         }
         await MyNovel.ƒS.update(MyNovel.transition.spiral.duration, MyNovel.transition.spiral.alpha, MyNovel.transition.spiral.edge);
-        await MyNovel.ƒS.update(1);
         await MyNovel.ƒS.Character.hideAll();
         await MyNovel.ƒS.update(1);
     }
@@ -4713,7 +4724,7 @@ var MyNovel;
             await MyNovel.ƒS.Character.hideAll();
             await MyNovel.ƒS.Character.show(MyNovel.characters.steve, MyNovel.characters.steve.pose.large, MyNovel.ƒS.positionPercent(60, 100));
             await MyNovel.ƒS.update(0.5);
-            await MyNovel.ƒS.Sound.fade(MyNovel.sound.slash, 0.2, 1);
+            await MyNovel.ƒS.Sound.play(MyNovel.sound.slash, 0.2);
             //Hier respawn hintergrund (blackscreen + quote)
             await MyNovel.ƒS.Speech.hide();
             //await ƒS.Character.show(characters.bullywug01, characters.bullywug01.pose.down, ƒS.positionPercent(50, 80));

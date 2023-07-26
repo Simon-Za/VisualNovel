@@ -39,10 +39,10 @@ namespace MyNovel {
         T0006: "Wie dem auch sei, eine Frage gilt es zu klären.",
         T0007: "Nämlich, ob das nur eine einmalige Sache war, oder ob das jedesmal passiert, wenn du stirbst.",
 
-        T0008: "Hey!" ,
+        T0008: "Hey!",
         T0009: "",
         T0010: "Da bist du ja!",
-        T0011: "Ich wusste es!", 
+        T0011: "Ich wusste es!",
         T0012: "War mir fast zu 44% sicher, dass es klappt!",
         T0013: "Es scheint, das Schicksal hat dir – aus welchem Grund auch immer – eine Art Gabe verliehen.",
 
@@ -90,7 +90,7 @@ namespace MyNovel {
     await ƒS.Speech.tell(characters.protagonist, text.Player.T0003);
     await ƒS.Speech.tell(characters.protagonist, text.Player.T0004);
     await ƒS.Speech.tell(characters.protagonist, text.Player.T0005);
-
+    await ƒS.Speech.hide();
 
     //aus Tümpel raus und steve erscheint
     await ƒS.Speech.tell(characters.unknown, text.Unknown.T0005);
@@ -113,6 +113,8 @@ namespace MyNovel {
     await ƒS.Speech.tell(characters.steve, text.Steve.T0002);
     await ƒS.Speech.tell(characters.steve, text.Steve.T0003);
     await ƒS.Speech.tell(characters.steve, text.Steve.T0004);
+    await ƒS.Speech.tell(characters.steve, text.Steve.T0005);
+    await ƒS.Speech.hide();
 
 
     let whyBack = {
@@ -131,11 +133,13 @@ namespace MyNovel {
       case whyBack.Glück:
         await ƒS.Speech.tell(characters.steve, "Glück? Dir wurde gehörig auf die Fresse gegeben und jetzt stehst du 5 Minuten später wieder putzmunter vor mir? Stehst du mit einem Teufel im Bunde??");
         glück = true;
+        await ƒS.Speech.hide();
         break;
 
       case whyBack.Wahrheit:
         await ƒS.Speech.tell(characters.steve, "Wie meinst du ‘zurückgekehrt’? Im Sinne von du bist von den Toten auferstanden??");
         wahrheit = true;
+        await ƒS.Speech.hide();
         break;
 
       case whyBack.Gegenfrage:
@@ -146,6 +150,7 @@ namespace MyNovel {
         await ƒS.Speech.tell(characters.steve, "Aber ich frage mich immer noch, wie du es so schnell zurückgeschafft hast, nachdem du so schwer verwundet wurdest.");
         await ƒS.Speech.tell(characters.steve, "Und, was noch kurioser ist, warum du komplett in Ordnung aussiehst. Abgesehen von deiner mickrigen Gestalt und dem Fratzengesicht natürlich.");
         gegenfrage = true;
+        await ƒS.Speech.hide();
         break;
     }
 
@@ -171,6 +176,7 @@ namespace MyNovel {
       switch (luckElement) {
         case luckAnswer.Spaß:
           await ƒS.Speech.tell(characters.steve, "Ja genau, dann hättest du die Typen vorhin aber direkt fertigmachen können.");
+          await ƒS.Speech.hide();
 
 
           let luckAnswer2 = {
@@ -217,7 +223,7 @@ namespace MyNovel {
       let truthElement = await ƒS.Menu.getInput(truthAnswer, "choicesCSSClass");
 
       await ƒS.Speech.tell(characters.steve, "Wenn das stimmt, dann…");
-      await ƒS.Speech.tell(characters.steve,"Aber wieso ist das passiert? Und wieso DIR?");
+      await ƒS.Speech.tell(characters.steve, "Aber wieso ist das passiert? Und wieso DIR?");
     }
     else if (gegenfrage) {
       let counterquestionElement = await ƒS.Menu.getInput(counterquestionAnswer, "choicesCSSClass");
@@ -234,25 +240,25 @@ namespace MyNovel {
           let counterquestionElement2 = await ƒS.Menu.getInput(counterquestionAnswer2, "choicesCSSClass");
 
           switch (counterquestionElement2) {
-          case counterquestionAnswer2.Vermutung:
-            await ƒS.Speech.tell(characters.steve, "Aber zu welchem Zweck?");
-            await ƒS.Speech.tell(characters.steve, "Warum sollte jemandem wie dir eine zweite Chance vergönnt sein?");
-            break;
+            case counterquestionAnswer2.Vermutung:
+              await ƒS.Speech.tell(characters.steve, "Aber zu welchem Zweck?");
+              await ƒS.Speech.tell(characters.steve, "Warum sollte jemandem wie dir eine zweite Chance vergönnt sein?");
+              break;
+            case counterquestionAnswer.Sachlage:
+              await ƒS.Speech.tell(characters.steve, "Hmm.");
+              await ƒS.Speech.tell(characters.steve, "Hmmmmm.");
+              await ƒS.Speech.tell(characters.steve, "Scheint, als ob du tatsächlich wiedergeboren wurdest.");
+              break;
+            case counterquestionAnswer.Vermutung:
+              await ƒS.Speech.tell(characters.steve, "Aber zu welchem Zweck?");
+              await ƒS.Speech.tell(characters.steve, "Warum sollte jemandem wie dir eine zweite Chance vergönnt sein?");
           }
-          break;
-        case counterquestionAnswer.Sachlage: 
-          await ƒS.Speech.tell(characters.steve, "Hmm.");
-          await ƒS.Speech.tell(characters.steve, "Hmmmmm.");
-          await ƒS.Speech.tell(characters.steve, "Scheint, als ob du tatsächlich wiedergeboren wurdest.");
-          break;
-        case counterquestionAnswer.Vermutung:
-          await ƒS.Speech.tell(characters.steve, "Aber zu welchem Zweck?");
-          await ƒS.Speech.tell(characters.steve, "Warum sollte jemandem wie dir eine zweite Chance vergönnt sein?");
       }
     }
 
     await ƒS.Speech.tell(characters.steve, text.Steve.T0006);
     await ƒS.Speech.tell(characters.steve, text.Steve.T0007);
+    await ƒS.Speech.hide();
 
     let isRespawn = {
       Ablehnend: "Ich will es nicht herausfinden!",
@@ -273,7 +279,7 @@ namespace MyNovel {
     await ƒS.Character.hideAll();
     await ƒS.Character.show(characters.steve, characters.steve.pose.large, ƒS.positionPercent(55, 100));
     await ƒS.update(0.5);
-    await ƒS.Sound.fade(sound.slash, 0.2, 1);
+    await ƒS.Sound.play(sound.slash, 0.2);
     //Hier respawn hintergrund (blackscreen + quote)
     await ƒS.Speech.hide();
     //await ƒS.Character.show(characters.bullywug01, characters.bullywug01.pose.down, ƒS.positionPercent(50, 80));
@@ -296,7 +302,7 @@ namespace MyNovel {
     pp.textContent = deathQuotes[dataForSave.Protagonist.deaths - 1];
     document.getElementById("respawnQuote")?.appendChild(pp);
     await ƒS.update(1);
- 
+
     await delay(4000);
     document.getElementById("respawnQuote").style.display = "none";
     document.getElementById("respawnQuote").removeChild(pp);
@@ -315,7 +321,8 @@ namespace MyNovel {
 
     await ƒS.Speech.tell(characters.steve, text.Steve.T0008);
     await ƒS.Speech.tell(characters.steve, dataForSave.Protagonist.name + "!");
-    
+    await ƒS.Speech.hide();
+
     //Background Wechsel
     await ƒS.Location.show(locations.swampWalk);
     await ƒS.Character.show(characters.steve, characters.steve.pose.upset, ƒS.positionPercent(50, 80));
@@ -327,6 +334,7 @@ namespace MyNovel {
     await ƒS.Speech.tell(characters.steve, text.Steve.T0011);
     await ƒS.Speech.tell(characters.steve, text.Steve.T0012);
     await ƒS.Speech.tell(characters.steve, text.Steve.T0013);
+    await ƒS.Speech.hide();
 
     let gift = {
       Panik: "Eine Gabe? Aber wozu? Wieso ich?",
@@ -340,6 +348,7 @@ namespace MyNovel {
     await ƒS.Speech.tell(characters.steve, text.Steve.T0016);
     await ƒS.Speech.tell(characters.steve, text.Steve.T0017);
     await ƒS.Speech.tell(characters.steve, text.Steve.T0018);
+    await ƒS.Speech.hide();
 
     let helpSteve = {
       Frage: "Wobei soll ich denn helfen?",
@@ -361,12 +370,13 @@ namespace MyNovel {
           case helpSteve2.Frage:
             break;
           case helpSteve2.Disgruntled:
-            break; 
+            break;
         }
         break;
     }
     //HIER KOMMT DIE QUEST ERÖFFNUNG
     await ƒS.Speech.tell(characters.steve, text.Steve.T0019);
+    await ƒS.Speech.hide();
 
     //QUEST: Entweder: 
     // 1. In das Büro des Königs einbrechen und einen Schlüssel zu stehlen
@@ -392,10 +402,11 @@ namespace MyNovel {
         break;
       case friendsWKingReaction.Erstaunen:
         await ƒS.Speech.tell(characters.steve, "Hehe, jaja. Wenn ich nicht so ein guter Kämpfer wäre, dann würde ich sagen, dass er meinen angenehmen Charakter am meisten an mir schätzt.");
-        break;  
+        break;
     }
     await ƒS.Speech.tell(characters.steve, "Wie dem auch sei, ich möchte meinem besten Freund, dem König, einen Gefallen tun.");
     await ƒS.Speech.tell(characters.steve, "Ich habe mir zwei Wege überlegt, mit denen wir den König überraschen können. Du darfst sogar den wählen, den du lieber magst.");
+    await ƒS.Speech.hide();
 
     let questChoice = {
       Stehlen: "Entweder du holst ein altes Geschenk, das ich dem König gemacht habe aus seiner Kammer, damit ich es wieder aufpolieren kann...",
@@ -438,7 +449,6 @@ namespace MyNovel {
         return "GameScene03Q2";
     }
     await ƒS.update(transition.spiral.duration, transition.spiral.alpha, transition.spiral.edge);
-    await ƒS.update(1);
     await ƒS.Character.hideAll();
     await ƒS.update(1);
   }
